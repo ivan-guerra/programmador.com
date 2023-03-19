@@ -7,7 +7,7 @@ title = "@ Ivan Guerra"
 languageCode = "en"
 defaultContentLanguage = "en"
 copyright = """Ivan Guerra - Licensed under
-    [MIT](https://github.com/ivan-guerra/programma/blob/master/LICENSE)."""
+    [MIT](https://github.com/ivan-guerra/programmador.com/blob/master/LICENSE)."""
 
 paginate = 5
 summaryLength = 70

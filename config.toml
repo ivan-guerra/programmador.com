@@ -19,13 +19,12 @@ summaryLength = 30
     posts = "posts"
     showPostsLink = true
 
-    # TODO: Create our own icons and add them to the "static" folder.
-    logo = "/logo.svg"
-    favicon = "/favicon.png"
-    faviconIco = "/favicon.ico"
-    appletouch = "/apple-touch-icon.png"
-    svgicon = "/logo.svg"
-    icon512 = "/icon512.png"
+    logo = "/logo/logo.svg"
+    favicon = "/logo/favicon.png"
+    faviconIco = "/logo/favicon.ico"
+    appletouch = "/logo/apple-touch-icon.png"
+    svgicon = "/logo/logo.svg"
+    icon512 = "/logo/icon512.png"
     logoRightOfTitle = true
 
     showRss = true

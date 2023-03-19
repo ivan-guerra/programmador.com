@@ -3,7 +3,7 @@
 # project page: https://gitlab.com/gabmus/hugo-ficurinia
 baseURL = "https://programmador.com/"
 theme = "hugo-ficurinia"
-title = "@ Ivan Guerra"
+title = "@ieg Dev Log"
 languageCode = "en"
 defaultContentLanguage = "en"
 copyright = """Ivan Guerra - Licensed under

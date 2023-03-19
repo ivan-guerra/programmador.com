@@ -1,7 +1,7 @@
 # Credit to GabMus for creating the hugo-ficurinia theme used here. Details
 # regarding theme settings (some not shown here) can be found on the official
 # project page: https://gitlab.com/gabmus/hugo-ficurinia
-baseURL = "https://ivan-guerra.github.io/"
+baseURL = "https://programmador.com/"
 theme = "hugo-ficurinia"
 title = "@ Ivan Guerra"
 languageCode = "en"

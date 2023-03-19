@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on @ Ivan Guerra</title>
-    <link>https://ivan-guerra.github.io/categories/</link>
+    <link>https://programmador.com/categories/</link>
     <description>Recent content in Categories on @ Ivan Guerra</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Ivan Guerra - Licensed under
-    [MIT](https://github.com/ivan-guerra/programma/blob/master/LICENSE).</copyright><atom:link href="https://ivan-guerra.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    [MIT](https://github.com/ivan-guerra/programma/blob/master/LICENSE).</copyright><atom:link href="https://programmador.com/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

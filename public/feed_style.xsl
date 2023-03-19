@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
         <meta charset="UTF-8"/>
         
-        <link type="text/css" rel="stylesheet" href="https://ivan-guerra.github.io/css/styles.8d820c0effd8c3fce5b5860f618313fe265f2ca13db63ee77f7cd055c81a326d9e9b051cc3df66de41be85aab6af0adb5e130a0c1d262f7cfc1f332119e09ed6.css" integrity="sha512-jYIMDv/Yw/zltYYPYYMT/iZfLKE9tj7nf3zQVcgaMm2emwUcw99m3kG+haq2rwrbXhMKDB0mL3z8HzMhGeCe1g==" />
+        <link type="text/css" rel="stylesheet" href="https://programmador.com/css/styles.8d820c0effd8c3fce5b5860f618313fe265f2ca13db63ee77f7cd055c81a326d9e9b051cc3df66de41be85aab6af0adb5e130a0c1d262f7cfc1f332119e09ed6.css" integrity="sha512-jYIMDv/Yw/zltYYPYYMT/iZfLKE9tj7nf3zQVcgaMm2emwUcw99m3kG+haq2rwrbXhMKDB0mL3z8HzMhGeCe1g==" />
         <style>
           .aboutfeeds {
             margin: 24px 0; padding: 12px;

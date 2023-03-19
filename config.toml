@@ -1,0 +1,83 @@
+# Credit to GabMus for creating the hugo-ficurinia theme used here. Details
+# regarding theme settings (some not shown here) can be found on the official
+# project page: https://gitlab.com/gabmus/hugo-ficurinia
+baseURL = "https://ivan-guerra.github.io/"
+theme = "hugo-ficurinia"
+title = "@ Ivan Guerra"
+languageCode = "en"
+defaultContentLanguage = "en"
+copyright = """Ivan Guerra - Licensed under
+    [MIT](https://github.com/ivan-guerra/programma/blob/master/LICENSE)."""
+
+paginate = 5
+summaryLength = 70
+
+[params]
+    author = "Ivan Guerra"
+    description = "Miscellaneous projects and thoughts on programming and tech."
+
+    posts = "posts" # Content dir to be displayed on homepage and for search.
+    showPostsLink = true # Show the link to the post list.
+
+    # TODO: Create our own icons and add them to the "static" folder.
+    logo = "/logo.svg"
+    favicon = "/favicon.png"  # 32x32
+    faviconIco = "/favicon.ico"  # 32x32
+    appletouch = "/apple-touch-icon.png"  # 180x180
+    svgicon = "/logo.svg"
+    icon512 = "/icon512.png"  # 512x512 png image
+    logoRightOfTitle = true
+
+    showRss = true # Show the link for the RSS feed.
+
+    imageInArticlePreview = false # Show image in article preview.
+    fitImageInArticlePreview = false
+    articleSummary = true # Show article summary in article preview.
+
+    fontFamily = "JetBrains Mono"
+    titleFontFamily = "JetBrains Mono"
+    monospaceFontFamily = "JetBrains Mono"
+
+    # Font size multipliers, useful for custom fonts that be too big/small.
+    titleFontSizeMultiplier = 1.0
+    mainFontSizeMultiplier = 1.0
+    monoFontSizeMultiplier = 1.0
+
+    contentWidth = "1000px" # Max width of site content (css syntax).
+
+    buttonTags = true # Enable button tag style.
+    tagsInArticlePreview = true # Enable tags in article previews.
+    navtype = "standard" # Changes the style pagination. See docs for options.
+    enableShadow = true # Shows a shadow around some elements.
+    menuStyle = "buttons" # Menu styling. See docs for options.
+
+    enableSearch = true # Enable the search page.
+    searchbarEverywhere = true
+    mobileHamburgerNav = true # Alt menu layout for main menu on mobile.
+
+    underlineTitleLinks = true
+
+    # TODO: Consider adding support for article comments.
+    # commento = "https://example.com/js/commento.js"
+
+    # TODO: Consider adding support for site analytics.
+
+    forceRedirect = true # See docs for details.
+
+[menu]
+    [[menu.icons]]
+        identifier = "github"
+        name = "GitHub"
+        url = "https://github.com/ivan-guerra"
+        weight = 10
+    [[menu.icons]]
+        identifier = "linkedin"
+        name = "LinkedIn"
+        url = "https://linkedin.com/in/ivan-guerra"
+        weight = 10
+    [[menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about/"
+        weight = 10
+

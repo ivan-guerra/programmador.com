@@ -10,50 +10,49 @@ copyright = """Ivan Guerra - Licensed under
     [MIT](https://github.com/ivan-guerra/programmador.com/blob/master/LICENSE)."""
 
 paginate = 5
-summaryLength = 70
+summaryLength = 30
 
 [params]
     author = "Ivan Guerra"
     description = "Miscellaneous projects and thoughts on programming and tech."
 
-    posts = "posts" # Content dir to be displayed on homepage and for search.
-    showPostsLink = true # Show the link to the post list.
+    posts = "posts"
+    showPostsLink = true
 
     # TODO: Create our own icons and add them to the "static" folder.
     logo = "/logo.svg"
-    favicon = "/favicon.png"  # 32x32
-    faviconIco = "/favicon.ico"  # 32x32
-    appletouch = "/apple-touch-icon.png"  # 180x180
+    favicon = "/favicon.png"
+    faviconIco = "/favicon.ico"
+    appletouch = "/apple-touch-icon.png"
     svgicon = "/logo.svg"
-    icon512 = "/icon512.png"  # 512x512 png image
+    icon512 = "/icon512.png"
     logoRightOfTitle = true
 
-    showRss = true # Show the link for the RSS feed.
+    showRss = true
 
-    imageInArticlePreview = false # Show image in article preview.
+    imageInArticlePreview = false
     fitImageInArticlePreview = false
-    articleSummary = true # Show article summary in article preview.
+    articleSummary = true
 
     fontFamily = "JetBrains Mono"
     titleFontFamily = "JetBrains Mono"
     monospaceFontFamily = "JetBrains Mono"
 
-    # Font size multipliers, useful for custom fonts that be too big/small.
     titleFontSizeMultiplier = 1.0
     mainFontSizeMultiplier = 1.0
     monoFontSizeMultiplier = 1.0
 
-    contentWidth = "1000px" # Max width of site content (css syntax).
+    contentWidth = "1000px"
 
-    buttonTags = true # Enable button tag style.
-    tagsInArticlePreview = true # Enable tags in article previews.
-    navtype = "standard" # Changes the style pagination. See docs for options.
-    enableShadow = true # Shows a shadow around some elements.
-    menuStyle = "buttons" # Menu styling. See docs for options.
+    buttonTags = true
+    tagsInArticlePreview = true
+    navtype = "standard"
+    enableShadow = true
+    menuStyle = "buttons"
 
-    enableSearch = true # Enable the search page.
+    enableSearch = true
     searchbarEverywhere = true
-    mobileHamburgerNav = true # Alt menu layout for main menu on mobile.
+    mobileHamburgerNav = true
 
     underlineTitleLinks = true
 
@@ -62,7 +61,7 @@ summaryLength = 70
 
     # TODO: Consider adding support for site analytics.
 
-    forceRedirect = true # See docs for details.
+    forceRedirect = true
 
 [menu]
     [[menu.icons]]

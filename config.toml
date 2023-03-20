@@ -29,8 +29,8 @@ summaryLength = 30
 
     showRss = true
 
-    imageInArticlePreview = false
-    fitImageInArticlePreview = false
+    imageInArticlePreview = true
+    fitImageInArticlePreview = true
     articleSummary = true
 
     fontFamily = "JetBrains Mono"

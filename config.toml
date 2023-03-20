@@ -27,6 +27,10 @@ summaryLength = 30
     icon512 = "/logo/icon512.png"
     logoRightOfTitle = true
 
+    cactusCommentsSiteName = "programmador.com"
+    cactusCommentsServerName = "cactus.chat"
+    cactusCommentsHomeserver = "https://matrix.cactus.chat:8448"
+
     showRss = true
 
     imageInArticlePreview = true
@@ -54,9 +58,6 @@ summaryLength = 30
     mobileHamburgerNav = true
 
     underlineTitleLinks = true
-
-    # TODO: Consider adding support for article comments.
-    # commento = "https://example.com/js/commento.js"
 
     # TODO: Consider adding support for site analytics.
 

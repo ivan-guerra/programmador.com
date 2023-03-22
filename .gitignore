@@ -1,2 +1,6 @@
-# Ignore the hugo server lock file.
+# Ignore the Hugo server lock file.
 .hugo_build.lock
+
+# Ignore generated resources:
+# https://discourse.gohugo.io/t/why-does-hugo-create-the-resources-directory/13021/2
+resources

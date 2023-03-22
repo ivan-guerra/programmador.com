@@ -4,3 +4,7 @@
 # Ignore generated resources:
 # https://discourse.gohugo.io/t/why-does-hugo-create-the-resources-directory/13021/2
 resources
+
+# We might occassionally build the site locally but we don't want to
+# accidentally version our local build.
+public

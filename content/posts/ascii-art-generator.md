@@ -22,7 +22,7 @@ decided to give it a try.
 I settled on the goal of writing a JPEG/PNG to ASCII art generator. As a side
 goal, I wanted to implement this tool in C++ so I could get exposure to the
 image libraries provided by that community (more on that later). I came across
-a great Youtube tutorial by [Raphson][1] which shows how to construct the
+a great Youtube tutorial by Raphson[^1] which shows how to construct the
 generator in Python:
 
 [![Raphson - Making An ASCII-ART GENERATOR!?](https://img.youtube.com/vi/2fZBLPk-T2Y/0.jpg)](https://www.youtube.com/watch?v=2fZBLPk-T2Y)
@@ -44,16 +44,16 @@ I had to do some searching to find what C++ libraries were out there to deal
 with image data. There were a couple options I came across:
 
 * Use `libpng` and `libjpeg` directly.
-* [C++ Template Image Processing Library][2]
+* C++ Template Image Processing Library[^2]
   (AKA CImg)
-* [Boost Generic Image Library][3] (GIL)
+* Boost Generic Image Library[^3] (GIL)
 
 Using the raw PNG/JPEG image libraries seemed unecessary given that I had
 atleast two good image libraries that would handle `libpng`/`libjpeg` on my
 behalf. I tried out CImg. CImg was a header-only library with great
 documentation. The one downside and the reason I was turned off from it was
 that my compilation times were pretty large. After doing some digging, I found
-folks ran into [similar compile time issues][4]. That left me with Boost's GIL.
+folks ran into similar compile time issues[^4]. That left me with Boost's GIL.
 GIL's not a bad option since its community is active, there's plenty of docs,
 and it's easy to integrate into a CMake project. Most importantly, GIL supports
 PNG/JPEG file formats and image scaling out of the box.
@@ -95,10 +95,10 @@ file formats since you could add any extension you like. Calling an external
 program to query for file info also seemed like overkill.
 
 After doing some Googling and looking into how programs like Unix's
-[`file`][5] work, I found that PNG/JPEG images
+`file`[^5] work, I found that PNG/JPEG images
 each include header info in the first few bytes of the file. PNG's start with
-an [8-byte signature][6] of `0x89504E470D0A1A0A`. All JPEGs start with a
-[2-byte signature][7] of `0xFFD8`. This was all the information I needed to
+an 8-byte signature[^6] of `0x89504E470D0A1A0A`. All JPEGs start with a
+2-byte signature[^7] of `0xFFD8`. This was all the information I needed to
 detect the file format.
 
 ### Conclusion
@@ -123,3 +123,13 @@ within a Docker container.
 [6]: https://en.wikipedia.org/wiki/PNG#File_format
 [7]: https://en.wikipedia.org/wiki/JPEG#Syntax_and_structure
 [8]: https://github.com/ivan-guerra/ascii_art_gen
+
+[^1]: Checkout [Raphson][1] on YouTube.
+[^2]: See [The CImg Library][2] project page.
+[^3]: See the [Boost GIL][3] docs.
+[^4]: There was an [issue][4] submitted to the CImg project regarding compile
+times. The reply wasn't very satisfying and boiled down to turning down/off
+optimizations and reducing code complexity in the client code.
+[^5]: Good ole manpages: [file][5].
+[^6]: Wikipedia provides a summary of the [PNG File Format][6].
+[^7]: Wikipedia provides a summary of the [JPEG File Format][7].

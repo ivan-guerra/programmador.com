@@ -10,20 +10,20 @@ comments: true
 
 ### Motivation
 
-Who doesn't like ASCII art? If you're like me, you probably thought about
-making your own ASCII art generator before. Also, if you're like me, you gave
-up on the idea thinking that it must be extremely complicated and not worth the
-effort to beable to draw ASCII versions of your favorite LOTR characters. Well,
-after some Googling and Youtubing, I found out it's not all that bad and
-decided to give it a try.
+Who doesn't like ASCII art? If you're like me, you probably thought about making
+your own ASCII art generator before. Also, if you're like me, you gave up on the
+idea thinking that it must be extremely complicated and not worth the effort to
+beable to draw ASCII versions of your favorite LOTR characters. Well, after some
+Googling and Youtubing, I found out it's not all that bad and decided to give it
+a try.
 
 ### Project Goals
 
 I settled on the goal of writing a JPEG/PNG to ASCII art generator. As a side
 goal, I wanted to implement this tool in C++ so I could get exposure to the
-image libraries provided by that community (more on that later). I came across
-a great Youtube tutorial by Raphson[^1] which shows how to construct the
-generator in Python:
+image libraries provided by that community (more on that later). I came across a
+great Youtube tutorial by Raphson[^1] which shows how to construct the generator
+in Python:
 
 [![Raphson - Making An ASCII-ART GENERATOR!?][9]][10]
 
@@ -44,19 +44,18 @@ I had to do some searching to find what C++ libraries were out there to deal
 with image data. There were a couple options I came across:
 
 * Use `libpng` and `libjpeg` directly.
-* C++ Template Image Processing Library[^2]
-  (AKA CImg)
+* C++ Template Image Processing Library[^2] (AKA CImg)
 * Boost Generic Image Library[^3] (GIL)
 
 Using the raw PNG/JPEG image libraries seemed unecessary given that I had
 atleast two good image libraries that would handle `libpng`/`libjpeg` on my
 behalf. I tried out CImg. CImg was a header-only library with great
-documentation. The one downside and the reason I was turned off from it was
-that my compilation times were pretty large. After doing some digging, I found
-folks ran into similar compile time issues[^4]. That left me with Boost's GIL.
-GIL's not a bad option since its community is active, there's plenty of docs,
-and it's easy to integrate into a CMake project. Most importantly, GIL supports
-PNG/JPEG file formats and image scaling out of the box.
+documentation. The one downside and the reason I was turned off from it was that
+my compilation times were pretty large. After doing some digging, I found folks
+ran into similar compile time issues[^4]. That left me with Boost's GIL.  GIL's
+not a bad option since its community is active, there's plenty of docs, and it's
+easy to integrate into a CMake project. Most importantly, GIL supports PNG/JPEG
+file formats and image scaling out of the box.
 
 ### Mapping Pixel Data to ASCII Characters
 
@@ -64,16 +63,16 @@ This is the secret sauce to this whole project. The process for pixel to
 character conversion looks something like this:
 
 1. Compute the average of a given pixel's R, G, and B value (i.e., the pixel's
-grayscale value).
+   grayscale value).
 2. Apply a scale factor to the grayscale value.
 3. Use the integral value from (2) as the index into an array of printable ASCII
-chars.
+   chars.
 
 The tricky part was defining the scaling factor. After thinking about it, I
 found that there are 256 possible grayscale values (0 - 255). I also have N
-ASCII chars in my array from which to choose from when printing. Therefore,
-a scale factor of `N / 256` made sense. Below is the function I used to get
-the ASCII char from the grayscale value:
+ASCII chars in my array from which to choose from when printing. Therefore, a
+scale factor of `N / 256` made sense. Below is the function I used to get the
+ASCII char from the grayscale value:
 
 ```cpp
 char AsciiGenerator::GetChar(int value) {
@@ -90,16 +89,15 @@ char AsciiGenerator::GetChar(int value) {
 
 Since the generator I was implementing was meant to operate only on PNG/JPEG
 images, I wanted to have a means of checking that the input image actually had
-one of those file types. File extensions are not a valid way of identifying
-file formats since you could add any extension you like. Calling an external
-program to query for file info also seemed like overkill.
+one of those file types. File extensions are not a valid way of identifying file
+formats since you could add any extension you like. Calling an external program
+to query for file info also seemed like overkill.
 
-After doing some Googling and looking into how programs like Unix's
-`file`[^5] work, I found that PNG/JPEG images
-each include header info in the first few bytes of the file. PNG's start with
-an 8-byte signature[^6] of `0x89504E470D0A1A0A`. All JPEGs start with a
-2-byte signature[^7] of `0xFFD8`. This was all the information I needed to
-detect the file format.
+After doing some Googling and looking into how programs like Unix's `file`[^5]
+work, I found that PNG/JPEG images each include header info in the first few
+bytes of the file. PNG's start with an 8-byte signature[^6] of
+`0x89504E470D0A1A0A`. All JPEGs start with a 2-byte signature[^7] of `0xFFD8`.
+This was all the information I needed to detect the file format.
 
 ### Conclusion
 
@@ -130,8 +128,8 @@ within a Docker container.
 [^2]: See [The CImg Library][2] project page.
 [^3]: See the [Boost GIL][3] docs.
 [^4]: There was an [issue][4] submitted to the CImg project regarding compile
-times. The reply wasn't very satisfying and boiled down to turning down/off
-optimizations and reducing code complexity in the client code.
+    times. The reply wasn't very satisfying and boiled down to turning down/off
+    optimizations and reducing code complexity in the client code.
 [^5]: Good ole manpages: [file][5].
 [^6]: Wikipedia provides a summary of the [PNG File Format][6].
 [^7]: Wikipedia provides a summary of the [JPEG File Format][7].

@@ -11,17 +11,17 @@ comments: true
 
 ### Motivation
 
-I've been guilty of reusing passwords across tons of online services. As far
-as I can tell, I haven't been pwned[^1] just yet. That said, I wanted to give
-myself a better chance that if one of my accounts got hijacked, atleast my
-other accounts would be safe. I needed a password manager.
+I've been guilty of reusing passwords across tons of online services. As far as
+I can tell, I haven't been pwned[^1] just yet. That said, I wanted to give
+myself a better chance that if one of my accounts got hijacked, atleast my other
+accounts would be safe. I needed a password manager.
 
 ### Finding a Password Manager
 
 There's no shortage of password managers to choose from[^2]. To narrow down my
-search, I considered what devices I use and what my typical workflow looks
-like. I came up with the following set of basic requirements for a password
-manager (PM):
+search, I considered what devices I use and what my typical workflow looks like.
+I came up with the following set of basic requirements for a password manager
+(PM):
 
 1. The PM shall have Android support.
 2. The PM shall have Linux support.
@@ -32,14 +32,14 @@ manager which checked all the boxes: [pass][3]. The `pass` homepage has a nice
 summary of the tool:
 
 > Password management should be simple and follow Unix philosophy. With pass,
-> each password lives inside of a gpg encrypted file whose filename is the
-> title of the website or resource that requires the password. These encrypted
-> files may be organized into meaningful folder hierarchies, copied from
-> computer to computer, and, in general, manipulated using standard command
-> line file management utilities.
+> each password lives inside of a gpg encrypted file whose filename is the title
+> of the website or resource that requires the password. These encrypted files
+> may be organized into meaningful folder hierarchies, copied from computer to
+> computer, and, in general, manipulated using standard command line file
+> management utilities.
 
-`pass` checked requirements 2-3 off. Further digging showed that requirement
-1 could be met with use of the actively maintained Password Store app (more on
+`pass` checked requirements 2-3 off. Further digging showed that requirement 1
+could be met with use of the actively maintained Password Store app (more on
 that later).
 
 ### Setting Up a GPG-ID
@@ -65,8 +65,8 @@ to generate a 4096 bit RSA key:
 ### Password Database Creation and Git Support
 
 To initialize `pass`, call its init function with your public GPG key as the
-argument. You can find your key by running `gpg --list-keys`. In the
-screenshot [above](#setting-up-a-gpg-id), my public key is
+argument. You can find your key by running `gpg --list-keys`. In the screenshot
+[above](#setting-up-a-gpg-id), my public key is
 `EBAA65BDAF7BF5D770070F013BE52220A00B08A9`. Here's how I initialize my `pass`
 database:
 
@@ -98,22 +98,22 @@ passwords via the `pass` CLI!
 ### Password Generation and Storage
 
 The whole reason I migrated to using `pass` was so I could generate and store
-strong passwords. `pass` has password generation built-in. To generate and
-store passwords, the syntax is:
+strong passwords. `pass` has password generation built-in. To generate and store
+passwords, the syntax is:
 
 ```bash
 pass generate [--no-symbols, -n] [--clip, -c] [--force, -f] PASS_NAME PASS_LEN
 ```
 
-I like to generate passwords with symbols. Some websites only allow
-alphanumeric passwords in which case the `--no-symbols` option comes in handy.
-The `--clip` option is useful if you want to generate and simultaneously copy
-to the clipboard the new password[^5]. Password insertion, removal, and editing
-are all supported. See the manpage[^6] for the details.
+I like to generate passwords with symbols. Some websites only allow alphanumeric
+passwords in which case the `--no-symbols` option comes in handy.  The `--clip`
+option is useful if you want to generate and simultaneously copy to the
+clipboard the new password[^5]. Password insertion, removal, and editing are all
+supported. See the manpage[^6] for the details.
 
 `pass` gives a lot of flexibility in how you organize your passwords. I like to
-organize my passwords into folders like *email*, *games*, *services*, etc.
-For example, I might generate these passwords:
+organize my passwords into folders like *email*, *games*, *services*, etc.  For
+example, I might generate these passwords:
 
 ```bash
 pass generate games/runescape 20
@@ -140,8 +140,8 @@ Password Store
     `-- linkedin
 ```
 
-You get full control over how you organize your passwords! When it comes time
-to login to one of the services, just show the password with the command
+You get full control over how you organize your passwords! When it comes time to
+login to one of the services, just show the password with the command
 
 ```bash
 pass [show] PASS_NAME
@@ -156,11 +156,11 @@ pass -c PASS_NAME
 ### Beyond Passwords
 
 If you take a look at the `.password-store` directory, you'll notice that
-passwords are stored in `*.gpg` files. That is, `pass` is basically encrypting
-a flat text file that when decrypted contains a password on the first line.
-The author of `pass` was aware of this and made it easy to store arbitrary
-info along with a password. The feature is referred to as multiline. For
-example, if you wanted to edit `games/runescape` to add additional info:
+passwords are stored in `*.gpg` files. That is, `pass` is basically encrypting a
+flat text file that when decrypted contains a password on the first line.  The
+author of `pass` was aware of this and made it easy to store arbitrary info
+along with a password. The feature is referred to as multiline. For example, if
+you wanted to edit `games/runescape` to add additional info:
 
 ```bash
 pass edit games/runescape
@@ -169,8 +169,8 @@ pass edit games/runescape
 `pass` will bring up the editor pointed to by your `EDITOR` environment
 variable. From there, you can **put your password on the first line** and all
 other secrets (e.g., username and recovery questions/answers) on subsequent
-lines. Note, you can also use the `--multiline` option with the `insert`
-command to store secret data:
+lines. Note, you can also use the `--multiline` option with the `insert` command
+to store secret data:
 
 ```bash
 pass insert --multiline misc/super_secret
@@ -181,8 +181,8 @@ pass insert --multiline misc/super_secret
 Of course, before your can access your password database remotely you need to
 host it somewhere. Some people host their own git instances. I personally use
 GitHub to store my password database in a private repo. You might ask, is my
-password database safe if it is at all reachable from the Internet? To quote
-the Password Store[^7] wiki:
+password database safe if it is at all reachable from the Internet? To quote the
+Password Store[^7] wiki:
 
 > Yes and no. The password themselves are safe, since they are stored in an
 > encrypted fashion. They are secure as long as your GPG key's secret part is
@@ -198,8 +198,8 @@ the Password Store[^7] wiki:
 
 I needed to host my database on some service since I wanted to sync passwords
 between my phone and PC. In my case, convenience of password syncing beat out
-the danger of exposing my password names to GitHub employees or some attacker
-in general.
+the danger of exposing my password names to GitHub employees or some attacker in
+general.
 
 Whether your self hosting a git instance or using a service like GitHub, the
 `pass` commands for syncing a remote database with a local one remain the same:
@@ -209,15 +209,16 @@ pass git remote add origin GIT_URL
 pass git push origin master
 ```
 
-After executing the above two commands, your remote instance will be synced
-with your local password database.
+After executing the above two commands, your remote instance will be synced with
+your local password database.
 
 ### *pass* on Android
 
-[![Password Store](/posts/cross-device-password-management/password_store.png)][9]
+[![Password
+Store](/posts/cross-device-password-management/password_store.png)][9]
 
-One of my [requirements](#finding-a-password-manager) for a password manager
-was that it have Android support. `pass` is just a Unix password management
+One of my [requirements](#finding-a-password-manager) for a password manager was
+that it have Android support. `pass` is just a Unix password management
 commandline utility. Luckily, the Password Store[^7] Android app exists.
 Password Store allows one to sync with a remote server hosting the
 `.password-store` database. Working in conjunction with Password Store is the
@@ -236,13 +237,13 @@ gpg --armor --gen-random 1 20
 gpg --armor --export-secret-keys YOUREMAILADDRESS | gpg --armor --symmetric --output mykey.sec.asc
 ```
 
-The first command generates a one time password. The second encrypts the
-private key tied to `YOUREMAILADDRESS` and outputs it to the file
-`mykey.sec.asc`. When prompted to enter a passphrase, make sure you
-enter the password that was previously generated. You can transfer
-`mykey.sec.asc` to your phone and tell OpenKeychain to decrypt it by selecting
-*Keys -> Import from File*. **Do not text, email, etc. the file password.
-Manually input the password when prompted by the app!**
+The first command generates a one time password. The second encrypts the private
+key tied to `YOUREMAILADDRESS` and outputs it to the file `mykey.sec.asc`. When
+prompted to enter a passphrase, make sure you enter the password that was
+previously generated. You can transfer `mykey.sec.asc` to your phone and tell
+OpenKeychain to decrypt it by selecting *Keys -> Import from File*. **Do not
+text, email, etc. the file password.  Manually input the password when prompted
+by the app!**
 
 Now all that's left is setting up your password database in Password Store.
 Here are the steps:
@@ -250,16 +251,16 @@ Here are the steps:
 1. Open Password Store on mobile.
 2. Select *Clone Remote Repo*.
 3. In the *Server* section, enter your repository URL and branch name.
-4. In the *Authentication Mode* section, select your mode of authentication.
-If using GitHub, select the SSH key option.
-5. Follow the prompts to generate an SSH key. Upload the public portion of
-the key to your GitHub account[^10].
+4. In the *Authentication Mode* section, select your mode of authentication.  If
+   using GitHub, select the SSH key option.
+5. Follow the prompts to generate an SSH key. Upload the public portion of the
+   key to your GitHub account[^10].
 
 That's it. You should see your password database appear in the app. When you
 select a password, Password Store will prompt you for your GPG key passphrase.
 Password Store is smart enough to show you not only passwords but any other
-secrets you may have hidden in the store (see
-[Beyond Passwords](#beyond-passwords))!
+secrets you may have hidden in the store (see [Beyond
+Passwords](#beyond-passwords))!
 
 ### Conclusion
 
@@ -287,12 +288,11 @@ is definitely worth the squeeze when it comes to protecting your data.
 [^1]: Have you been [pwned][1]?
 [^2]: [Wikipedia][2] lists over 20 password managers!
 [^3]: The GNU Privacy Handbook shows how to [generate a new keypair][5].
-[^4]: The Arch Linux Wiki has some good advice on
-[choosing secure passwords][6]
-[^5]: `pass` uses [xclip][7] to carry out copies to the clipboard. `xclip`
-is available in the package repository of most Linux distros.
+[^4]: The Arch Linux Wiki has some good advice on [choosing secure passwords][6]
+[^5]: `pass` uses [xclip][7] to carry out copies to the clipboard. `xclip` is
+    available in the package repository of most Linux distros.
 [^6]: `pass`'s [manpage][8] has some nice usage examples that show how to
-generate, insert, remove, and edit passwords.
+    generate, insert, remove, and edit passwords.
 [^7]: See the [Password Store][9] project page.
 [^8]: See the [OpenKeychain][10] project page.
 [^9]: [What is the best way to transfer my own key to OpenKeychain?][11]

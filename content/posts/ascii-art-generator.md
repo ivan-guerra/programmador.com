@@ -25,7 +25,7 @@ image libraries provided by that community (more on that later). I came across
 a great Youtube tutorial by Raphson[^1] which shows how to construct the
 generator in Python:
 
-[![Raphson - Making An ASCII-ART GENERATOR!?](https://img.youtube.com/vi/2fZBLPk-T2Y/0.jpg)](https://www.youtube.com/watch?v=2fZBLPk-T2Y)
+[![Raphson - Making An ASCII-ART GENERATOR!?][9]][10]
 
 Raphson's video pointed out the key steps required to do the conversion:
 
@@ -123,6 +123,8 @@ within a Docker container.
 [6]: https://en.wikipedia.org/wiki/PNG#File_format
 [7]: https://en.wikipedia.org/wiki/JPEG#Syntax_and_structure
 [8]: https://github.com/ivan-guerra/ascii_art_gen
+[9]: https://img.youtube.com/vi/2fZBLPk-T2Y/0.jpg
+[10]: https://www.youtube.com/watch?v=2fZBLPk-T2Y
 
 [^1]: Checkout [Raphson][1] on YouTube.
 [^2]: See [The CImg Library][2] project page.

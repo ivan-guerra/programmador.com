@@ -9,7 +9,7 @@ defaultContentLanguage = "en"
 copyright = """Ivan Guerra - Licensed under
     [MIT](https://github.com/ivan-guerra/programmador.com/blob/master/LICENSE)."""
 
-paginate = 5
+paginate = 6
 summaryLength = 30
 
 [params]
@@ -41,14 +41,16 @@ summaryLength = 30
     titleFontFamily = "JetBrains Mono"
     monospaceFontFamily = "JetBrains Mono"
 
-    titleFontSizeMultiplier = 1.0
+    titleFontSizeMultiplier = 0.75
     mainFontSizeMultiplier = 1.0
     monoFontSizeMultiplier = 1.0
 
     contentWidth = "1000px"
 
+    paperCards = true
+    gridView = true
     buttonTags = true
-    tagsInArticlePreview = true
+    tagsInArticlePreview = false
     navtype = "standard"
     enableShadow = true
     menuStyle = "buttons"
@@ -57,7 +59,7 @@ summaryLength = 30
     searchbarEverywhere = true
     mobileHamburgerNav = true
 
-    underlineTitleLinks = true
+    underlineTitleLinks = false
 
     # TODO: Consider adding support for site analytics.
 

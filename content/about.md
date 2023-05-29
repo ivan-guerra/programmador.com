@@ -10,15 +10,17 @@ comments: false
 Hi, my name is Ivan Guerra, I am an embedded software engineer.
 
 I've worked in the aerospace industry for over 6 years specializing in avionics
-software development. Previously, I've developed engine control algorithms and
-actuator/GPS/air data system drivers. Currently, I am working a project to
-improve the autonomous capabilities of an aircraft.
+software development. Previously, I've developed various flight control device
+drivers. Currently, I am working a project to improve the autonomous
+capabilities of an aircraft.
 
 This blog is about the different development projects I take on in my spare
-time. Each article serves as a journal of what I created and learned.
+time.
 
 # Contact
 
-You can reach out to me at
-[ivan.eduardo.guerra@gmail.com](mailto:ivan.eduardo.guerra@gmail.com) or follow
-me on [GitHub](https://github.com/ivan-guerra).
+**Email**: [ivan.eduardo.guerra@gmail.com](mailto:ivan.eduardo.guerra@gmail.com)
+
+**GitHub**: [ivan-guerra](https://github.com/ivan-guerra)
+
+**LinkedIn**: [ivan-guerra](https://linkedin.com/in/ivan-guerra)

@@ -24,7 +24,6 @@ summaryLength = 30
     faviconIco = "/logo/favicon.ico"
     appletouch = "/logo/apple-touch-icon.png"
     svgicon = "/logo/logo.svg"
-    icon512 = "/logo/icon512.png"
     logoRightOfTitle = true
 
     cactusCommentsSiteName = "programmador.com"

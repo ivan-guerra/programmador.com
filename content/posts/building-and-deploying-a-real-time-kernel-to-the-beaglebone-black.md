@@ -9,8 +9,6 @@ tags: ["linux", "kernel", "real-time", "beaglebone-black", "docker"]
 comments: true
 ---
 
-## Motivation
-
 Recently, I wanted to develop a low latency app running on my BeagleBone Black
 (BBB)[^1]. My application had timing requirements that are strict enough to
 where it made sense to run the BBB with a `PREEMPT_RT`[^2] kernel. Luckily for

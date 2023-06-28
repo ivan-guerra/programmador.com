@@ -8,8 +8,6 @@ tags: ["linux", "kernel", "real-time", "rtos", "embedded"]
 comments: true
 ---
 
-## Motivation
-
 If you a are programmer in the embedded space, you have likely touched on the
 topic of real-time operating systems (RTOS). There are plenty of commercial
 RTOSes available on the market: VxWorks, Integrity, DeOS, Helix, the list goes

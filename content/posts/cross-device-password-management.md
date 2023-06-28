@@ -9,8 +9,6 @@ tags: ["android", "linux", "pass", "password-manager", "openkeychain",
 comments: true
 ---
 
-## Motivation
-
 I've been guilty of reusing passwords across tons of online services. As far as
 I can tell, I haven't been pwned[^1] just yet. That said, I wanted to give
 myself a better chance that if one of my accounts got hijacked, atleast my other

@@ -8,8 +8,6 @@ tags: ["linux", "real-time", "gpio", "embedded", "c++"]
 comments: true
 ---
 
-## Motivation
-
 I happened to stumble across a pretty neat Wikipedia page: [Kuramoto Model][1].
 I was impressed by a video on the page showing out of phase metronomes
 synchronizing seemingly by magic:

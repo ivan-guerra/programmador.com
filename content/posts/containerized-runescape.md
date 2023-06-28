@@ -8,8 +8,6 @@ tags: ["runescape", "docker"]
 comments: true
 ---
 
-## Motivation
-
 If you grew up gaming in the 00's and even into the 10's, you probably have
 heard of Runescape. Some might be surprised to hear that people still play a
 Java based MMO from early 2001. Don't worry, there is a large community of 25-30

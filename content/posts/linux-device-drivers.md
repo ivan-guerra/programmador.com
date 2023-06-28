@@ -8,8 +8,6 @@ tags: ["linux", "docker", "device-drivers"]
 comments: true
 ---
 
-## Motivation
-
 Recently, I wanted to learn more about Linux kernel internals. Like most newbies
 who don't have a particular subsystem in mind, I gravitated towards learning
 about how to write Linux device drivers. Surprisingly, most people recommended

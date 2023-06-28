@@ -8,8 +8,6 @@ tags: ["steganography", "boost", "image-processing"]
 comments: true
 ---
 
-## Motivation
-
 While on a computerphile[^1] marathon, I came a across a pretty neat video of
 theirs covering steganography[^2]. In the video, Mike Pound talks about a
 technique for steganography on digital images: least significant bit

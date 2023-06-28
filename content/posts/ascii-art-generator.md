@@ -8,7 +8,7 @@ tags: ["ascii-art", "boost", "c++"]
 comments: true
 ---
 
-### Motivation
+## Motivation
 
 Who doesn't like ASCII art? If you're like me, you probably thought about making
 your own ASCII art generator before. Also, if you're like me, you gave up on the
@@ -17,7 +17,7 @@ beable to draw ASCII versions of your favorite LOTR characters. Well, after some
 Googling and Youtubing, I found out it's not all that bad and decided to give it
 a try.
 
-### Project Goals
+## Project Goals
 
 I settled on the goal of writing a JPEG/PNG to ASCII art generator. As a side
 goal, I wanted to implement this tool in C++ so I could get exposure to the
@@ -38,7 +38,7 @@ Now, to be clear, 1-4 gets you a basic generator. Raphson goes on to add
 features such as customizing fonts and adding color. I decided to keep it simple
 and just get a basic ASCII text file as my output.
 
-### Picking an Image Library
+## Picking an Image Library
 
 I had to do some searching to find what C++ libraries were out there to deal
 with image data. There were a couple options I came across:
@@ -57,7 +57,7 @@ not a bad option since its community is active, there's plenty of docs, and it's
 easy to integrate into a CMake project. Most importantly, GIL supports PNG/JPEG
 file formats and image scaling out of the box.
 
-### Mapping Pixel Data to ASCII Characters
+## Mapping Pixel Data to ASCII Characters
 
 This is the secret sauce to this whole project. The process for pixel to
 character conversion looks something like this:
@@ -85,7 +85,7 @@ char AsciiGenerator::GetChar(int value) {
 }
 ```
 
-### Identifying File Types
+## Identifying File Types
 
 Since the generator I was implementing was meant to operate only on PNG/JPEG
 images, I wanted to have a means of checking that the input image actually had
@@ -99,7 +99,7 @@ bytes of the file. PNG's start with an 8-byte signature[^6] of
 `0x89504E470D0A1A0A`. All JPEGs start with a 2-byte signature[^7] of `0xFFD8`.
 This was all the information I needed to detect the file format.
 
-### Conclusion
+## Conclusion
 
 Putting it all together, I was able to write a utility called `asciigen` which
 performs the ASCII art generation task. Unsurprisingly, my SLOC count exceeded

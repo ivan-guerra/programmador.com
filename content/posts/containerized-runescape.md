@@ -8,7 +8,7 @@ tags: ["runescape", "docker"]
 comments: true
 ---
 
-### Motivation
+## Motivation
 
 If you grew up gaming in the 00's and even into the 10's, you probably have
 heard of Runescape. Some might be surprised to hear that people still play a
@@ -26,7 +26,7 @@ game. I also daily a Fedora box and would rather not have to install a plethora
 of dependencies to support either client (one of which is only officially
 supported on Debian based distributions).
 
-### Project Goals
+## Project Goals
 
 I had been working with Docker[^7] for a minute. I figured containerizing the
 clients would be a worthy endeavor. There were a couple of questions I needed to
@@ -39,7 +39,7 @@ answer to get this all working...
 2. How do I make a GUI work with Docker?
 3. How do I get audio? I can't play OSRS without those [sweet tunes][6].
 
-#### Dockerfile Setup
+### Dockerfile Setup
 
 When it came to writing the Dockerfile, I decided to kick both client images off
 with an Ubuntu base image. In the case of Runelite, the distro the client is
@@ -53,7 +53,7 @@ Making a user part of the `audio` group is not recommended on desktop
 Ubuntu[^9], however, I found it necessary in order to get audio working along
 with steps in [Audio Setup](#audio-setup).
 
-#### Cache Persistence
+### Cache Persistence
 
 This issue was actually fairly easy to tackle. Docker has support for what are
 known as volumes[^10]. The gist of it is that you can mount a folder on the host
@@ -62,7 +62,7 @@ that was written to the volume by the container will persist. Volumes fit my use
 case perfectly. The container launch scripts I developed for each client include
 a `*_CACHE` variable that makes the cache name and location customizable.
 
-#### On Docker Containers and GUIs
+### On Docker Containers and GUIs
 
 Running a GUI from a Docker container is, in my opinion, a pain in the ass.
 That said, there's plenty of docs you can slog through to piece together a
@@ -101,7 +101,7 @@ docker run --rm \
     ...
 ```
 
-#### Audio Setup
+### Audio Setup
 
 I got lucky with the audio setup and came across an article[^15] that explains
 how to get audio from a docker container to pass through to the host's speakers.
@@ -125,7 +125,7 @@ docker run --rm \
     ...
 ```
 
-### RuneLite Gremlins...
+## RuneLite Gremlins...
 
 ![Goblins!](/posts/containerized-runescape/goblins.png)
 
@@ -163,7 +163,7 @@ buffer), the second, client process will spawn. I capture that client processes'
 PID and "wait" on it until the user exits the client. It ain't elegant but it
 works.
 
-### Conclusion
+## Conclusion
 
 Containerizing RS3 and OSRS turned out to be possible though I had to bleed a
 bit getting there. I found getting the GUI and audio working to be the most

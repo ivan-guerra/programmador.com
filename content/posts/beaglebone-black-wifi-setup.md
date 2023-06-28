@@ -8,7 +8,7 @@ tags: ["linux", "beaglebone-black", "usb", "wifi"]
 comments: true
 ---
 
-### Motivation
+## Motivation
 
 When developing on the Beaglebone Black (BBB), it's handy to have the board on
 the network for when you want to SSH into it, install packages, etc. That said,
@@ -19,7 +19,7 @@ This article walks through the steps I followed to get connected. These
 instructions also apply to the BBB wireless variants (i.e., those BBBs with a
 wireless chip).
 
-### Beaglebone Black Wifi Configuration
+## Beaglebone Black Wifi Configuration
 
 The steps below assume use of a supported wifi dongle on an official BBB image.
 **`root` or `sudo` access is required to execute these instructions!**

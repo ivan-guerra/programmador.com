@@ -8,7 +8,7 @@ tags: ["linux", "embedded", "serial", "usb"]
 comments: true
 ---
 
-### Motivation
+## Motivation
 
 On a recent project, I was developing an app on Linux that gathered data from a
 number of USB serial devices. One annoyance I came across was that oftentimes
@@ -20,7 +20,7 @@ To be clear, this article walks through assigning USB **serial devices**
 persistent names. If you have a USB **block device** and would like to give it a
 persistent name, the ArchWiki[^1] has you covered.
 
-### USB Serial Device Name Binding Using *udev*
+## USB Serial Device Name Binding Using *udev*
 
 The instructions below will work on a Linux distro that uses the `udev`[^2]
 device manager which is just about any modern distro. **`root` privileges will

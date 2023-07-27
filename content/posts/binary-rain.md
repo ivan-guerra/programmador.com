@@ -26,7 +26,7 @@ Before coding anything up, I had to better understand how the digital rain
 effect actually works. I studied a few of the compilations put up by fans on
 YouTube:
 
-[![10 Horas Matrix][4]][5]
+{{< youtube E8y3eDUMb4Q >}}
 
 Here are the key features I noted:
 
@@ -240,17 +240,15 @@ All that said, the screensaver has been fun to use at home and a great
 conversation piece amongst the Matrix nerds at work.
 
 You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [neo][6].
+my GitHub page under [neo][4].
 
 [1]: https://en.wikipedia.org/wiki/The_Matrix
 [2]: https://tinyurl.com/yc7p7285
 [3]: https://en.wikipedia.org/wiki/Matrix_digital_rain
-[4]: https://img.youtube.com/vi/E8y3eDUMb4Q/0.jpg
-[5]: https://www.youtube.com/watch?v=E8y3eDUMb4Q
-[6]: https://github.com/ivan-guerra/neo
-[7]: https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/
+[4]: https://github.com/ivan-guerra/neo
+[5]: https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/
 
 [^1]: Say what you want about the sequels, but [The Matrix][1] is a classic and
     a must watch for anyone interested in the cyberpunk subgenre.
 [^2]: [Matrix Digital Rain][3]
-[^3]: [ncurses][7]
+[^3]: [ncurses][5]

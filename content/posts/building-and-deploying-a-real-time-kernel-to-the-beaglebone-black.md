@@ -59,7 +59,7 @@ For now, I highly recommend anyone reading watch John Ogness's "A Checklist for
 Writing Real-Time Linux Applications" and skip to the section on kernel
 configuration:
 
-[![A Checklist for Writing Linux Real-Time Applications - John Ogness][7]][8]
+{{< youtube NrjXEaTSyrw >}}
 
 ## Installing the Kernel on the BBB
 
@@ -117,8 +117,6 @@ configure the system and application for ideal RT performance.
 [4]: https://beagleboard.org/latest-images
 [5]: https://github.com/ivan-guerra/bbb_kernel_builder
 [6]: https://github.com/ivan-guerra/bbb_kernel_builder/blob/master/README.md
-[7]: https://img.youtube.com/vi/NrjXEaTSyrw/hqdefault.jpg
-[8]: https://www.youtube.com/watch?v=NrjXEaTSyrw
 
 [^1]: The [BeagleBone Black][1] is a low-cost, community-supported development
     platform for developers and hobbyists.

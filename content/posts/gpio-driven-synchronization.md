@@ -11,7 +11,7 @@ I happened to stumble across a pretty neat Wikipedia page: [Kuramoto Model][1].
 I was impressed by a video on the page showing out of phase metronomes
 synchronizing seemingly by magic:
 
-[![Wesphysdemo - Synchronized Metronomes][2]][3]
+{{< youtube QyX-Vs_mwsI >}}
 
 I guess I didn't pay enough attention in physics because everyone and I showed
 this to was aware this was a thing...
@@ -94,11 +94,11 @@ configured correctly before powering the circuit!**
 To achieve half decent sync results, I decided to have `gtimer` and `gsync`
 execute as real-time processes on a Linux kernel supporting preemption. The task
 of configuring and building an RT Linux kernel is nontrivial even in 2023. I
-have a small project, [bbb_kernel_builder][6], that streamlines the process of
+have a small project, [bbb_kernel_builder][4], that streamlines the process of
 building a Linux kernel for the BBB with the `PREEMPT_RT` patches applied.
 
 There's more to setting up a real-time Linux application than configuring and
-building the kernel. A lot more. In ["Real-Time Linux App Development"][7] I go
+building the kernel. A lot more. In ["Real-Time Linux App Development"][5] I go
 into detail and provide a checklist of all the little tweaks that can/should be
 made at the system and source code level in order to achieve deterministic
 behavior. Both the `gtimer` and `gsync` implementations follow the guidelines
@@ -227,7 +227,7 @@ To go from an angle to time we can solve for \\(\theta\\):
 
 Note, the \\( t \\) above is in units of seconds. The `gsync` implementation
 tracks time in units of nanoseconds. The conversion equations used in [the
-code][11] account for the units change.
+code][9] account for the units change.
 
 ## The Wakeup Delta
 
@@ -321,32 +321,30 @@ able to achieve submillisecond synchronization for rates below 500Hz on bargain
 hardware using free and open source software.
 
 You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [gsync][12].
+my GitHub page under [gsync][10].
 
 [1]: https://en.wikipedia.org/wiki/Kuramoto_model
-[2]: https://img.youtube.com/vi/QyX-Vs_mwsI/0.jpg
-[3]: https://www.youtube.com/watch?v=QyX-Vs_mwsI
-[4]: https://beagleboard.org/black
-[5]: https://www.amazon.com/Exploring-BeagleBone-Techniques-Building-Embedded/dp/1118935128#:~:text=Exploring%20BeagleBone%20provides%20a%20reader,and%20modules%2C%20with%20practical%20examples
-[6]: https://github.com/ivan-guerra/bbb_kernel_builder
-[7]: https://programmador.com/posts/real-time-linux-app-development/
-[8]: http://www.lartmaker.nl/lartware/port/devmem2.c
-[9]: https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/
-[10]: https://github.com/brgl/libgpiod
-[11]: https://github.com/ivan-guerra/gsync/blob/master/src/sync/sync.cc
-[12]: https://github.com/ivan-guerra/gsync
+[2]: https://beagleboard.org/black
+[3]: https://www.amazon.com/Exploring-BeagleBone-Techniques-Building-Embedded/dp/1118935128#:~:text=Exploring%20BeagleBone%20provides%20a%20reader,and%20modules%2C%20with%20practical%20examples
+[4]: https://github.com/ivan-guerra/bbb_kernel_builder
+[5]: https://programmador.com/posts/real-time-linux-app-development/
+[6]: http://www.lartmaker.nl/lartware/port/devmem2.c
+[7]: https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/
+[8]: https://github.com/brgl/libgpiod
+[9]: https://github.com/ivan-guerra/gsync/blob/master/src/sync/sync.cc
+[10]: https://github.com/ivan-guerra/gsync
 
-[^1]: The [BeagleBone Black][4] (BBB) is a low cost (~$60), ARM board capable of
+[^1]: The [BeagleBone Black][2] (BBB) is a low cost (~$60), ARM board capable of
     running Linux. The BBB has a ton of configurable GPIOs and so is nicely
     suited in that regard for this project.
-[^2]: ["Exploring BeagleBone"][5] is an awesome book not only for understanding
+[^2]: ["Exploring BeagleBone"][3] is an awesome book not only for understanding
     all the ins and outs of the BBB, but in general as an introduction to
     development on an embedded platform. Chapter 6 is especially useful if you
     find yourself needing to configure the BBB's GPIOs.
-[^3]: [libgpiod][9] development now lives at [kernel.org](kernel.org). That
-    said, I found the old [GitHub][10] repo easier to browse. Just be wary when
+[^3]: [libgpiod][7] development now lives at [kernel.org](kernel.org). That
+    said, I found the old [GitHub][8] repo easier to browse. Just be wary when
     looking at the GH repo, you're looking at potentially outdated code!
-[^4]: Well that's kinda BS. You could control the pins [directly in memory][8].
+[^4]: Well that's kinda BS. You could control the pins [directly in memory][6].
     I thought about trying that before learning about `libgpiod`. However, the
     complexity added by this optimization did not seem necessary for the task of
     toggling a GPIO at a 1Hz rate.

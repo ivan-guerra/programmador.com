@@ -21,7 +21,7 @@ image libraries provided by that community (more on that later). I came across a
 great Youtube tutorial by Raphson[^1] which shows how to construct the generator
 in Python:
 
-[![Raphson - Making An ASCII-ART GENERATOR!?][9]][10]
+{{< youtube 2fZBLPk-T2Y >}}
 
 Raphson's video pointed out the key steps required to do the conversion:
 
@@ -99,7 +99,7 @@ This was all the information I needed to detect the file format.
 
 Putting it all together, I was able to write a utility called `asciigen` which
 performs the ASCII art generation task. Unsurprisingly, my SLOC count exceeded
-the ~45 lines of code used in the Python tutorial 😂. Surprisingly, the project
+the ~45 lines of code used in the Python tutorial. Surprisingly, the project
 took about a day to complete from start to finish. Even more surprising was how
 simple it was to get such a satisfying result (sweet ASCII images) with just a
 handful of insights and freely available open source libraries.
@@ -117,8 +117,6 @@ within a Docker container.
 [6]: https://en.wikipedia.org/wiki/PNG#File_format
 [7]: https://en.wikipedia.org/wiki/JPEG#Syntax_and_structure
 [8]: https://github.com/ivan-guerra/ascii_art_gen
-[9]: https://img.youtube.com/vi/2fZBLPk-T2Y/0.jpg
-[10]: https://www.youtube.com/watch?v=2fZBLPk-T2Y
 
 [^1]: Checkout [Raphson][1] on YouTube.
 [^2]: See [The CImg Library][2] project page.

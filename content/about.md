@@ -1,10 +1,7 @@
 ---
 title: "About"
-date: 2023-03-18T23:40:09-07:00
+date: 2022-01-18T23:40:09-07:00
 tags: ["about"]
-showTitle: true
-showDate: false
-comments: false
 ---
 
 Hi, my name is Ivan Guerra, I am an embedded software engineer.

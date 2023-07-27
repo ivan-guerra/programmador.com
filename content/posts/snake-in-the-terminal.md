@@ -1,11 +1,8 @@
 ---
 title: "Snake in the Terminal"
 date: 2023-06-17T17:04:23-07:00
-image: "/posts/snake-in-the-terminal/snake.png"
-alt: "Snake in the Terminal"
 description: "An implementation of the classic snake game for the terminal."
 tags: ["ncurses", "games", "tui", "terminal", "c++"]
-comments: true
 ---
 
 As a text user interface enjoyer, I've always wondered how difficult it is to

@@ -1,12 +1,9 @@
 ---
 title: "Cross-Device Password Mgmt Using pass"
 date: 2023-03-31T11:08:58-07:00
-image: "/posts/cross-device-password-management/password.png"
-alt: "Password"
 description: "Managing passwords across Linux and Android devices using pass."
 tags: ["android", "linux", "pass", "password-manager", "openkeychain",
 "passwordstore"]
-comments: true
 ---
 
 I've been guilty of reusing passwords across tons of online services. As far as

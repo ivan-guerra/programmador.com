@@ -1,12 +1,9 @@
 ---
 title: "Building and Deploying a Real-Time Kernel to the BeagleBone Black"
 date: 2023-04-22T11:13:34-07:00
-image: "/posts/building-and-deploying-a-real-time-kernel-to-the-beaglebone-black/bbb.png"
-alt: "BeagleBone Black"
 description: "How to build and deploy a real-time Linux kernel to the BeagleBone
 Black."
 tags: ["linux", "kernel", "real-time", "beaglebone-black", "docker"]
-comments: true
 ---
 
 Recently, I wanted to develop a low latency app running on my BeagleBone Black

@@ -1,11 +1,8 @@
 ---
 title: "Linux USB Serial Device Name Binding"
 date: 2023-05-06T08:45:42-07:00
-image: "/posts/linux-usb-serial-device-name-binding/serial-over-usb.jpg"
-alt: "Serial Over USB"
 description: "How to set persistent USB serial device names in Linux."
 tags: ["linux", "embedded", "serial", "usb"]
-comments: true
 ---
 
 On a recent project, I was developing an app on Linux that gathered data from a

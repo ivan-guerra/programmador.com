@@ -1,11 +1,8 @@
 ---
 title: "Cosmo: A Hobby x86 OS"
 date: 2022-02-23T11:15:24-07:00
-image: "/posts/cosmo/cosmo.png"
-alt: "Cosmo OS"
 description: "On developing a hobby x86 OS."
 tags: ["os-dev", "docker", "linux"]
-comments: true
 ---
 
 I've always been interested in the topic of OS development. At the beginning of

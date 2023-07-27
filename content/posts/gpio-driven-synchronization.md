@@ -1,11 +1,8 @@
 ---
 title: "GPIO Driven Synchronization"
 date: 2023-05-29T21:24:12-07:00
-image: "/posts/gpio-driven-synchronization/synced.jpg"
-alt: "Synchronized BeagleBone Computers"
 description: "Synchronizing two single board computers using only GPIO."
 tags: ["linux", "real-time", "gpio", "embedded", "c++"]
-comments: true
 ---
 
 I happened to stumble across a pretty neat Wikipedia page: [Kuramoto Model][1].

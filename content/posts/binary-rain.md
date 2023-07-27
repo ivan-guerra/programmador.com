@@ -1,11 +1,8 @@
 ---
 title: "Binary Rain"
 date: 2023-07-23T16:16:47-07:00
-image: "/posts/binary-rain/neo.png"
-alt: "Binary Rain"
 description: "A Matrix inspired terminal screensaver."
 tags: ["ncurses", "matrix"]
-comments: true
 ---
 
 Most programmers young and old have seen the cyberpunk sci-fi film The

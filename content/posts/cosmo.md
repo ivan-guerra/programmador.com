@@ -6,6 +6,8 @@ tags: ["os-dev", "docker", "linux"]
 toc: true
 ---
 
+![Cosmo OS](/posts/cosmo/cosmo.png)
+
 I've always been interested in the topic of OS development. At the beginning of
 2022, I set a personal goal to implement a very barebones OS of my own.
 Emphasis on barebones! The first step I took was to define what success would

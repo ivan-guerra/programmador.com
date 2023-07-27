@@ -6,6 +6,8 @@ tags: ["steganography", "boost", "image-processing"]
 toc: true
 ---
 
+![Steganography](/posts/digital-image-steganography/unmerged.jpg)
+
 While on a computerphile[^1] marathon, I came a across a pretty neat video of
 theirs covering steganography[^2]. In the video, Mike Pound talks about a
 technique for steganography on digital images: least significant bit

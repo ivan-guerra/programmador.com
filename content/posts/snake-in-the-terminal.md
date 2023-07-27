@@ -6,6 +6,8 @@ tags: ["ncurses", "games", "tui", "terminal", "c++"]
 toc: true
 ---
 
+![Snake in the Terminal](/posts/snake-in-the-terminal/snake.gif)
+
 As a text user interface enjoyer, I've always wondered how difficult it is to
 write an [ncurses][1] UI. What better way to find out then to write a little
 program of my own that explores ncurses' API. Of course, we had to keep it

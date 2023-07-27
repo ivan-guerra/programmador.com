@@ -6,6 +6,8 @@ tags: ["linux", "beaglebone-black", "usb", "wifi"]
 toc: true
 ---
 
+![Beaglebone Logo](/posts/beaglebone-black-wifi-setup/wifi-dongle.png)
+
 When developing on the Beaglebone Black (BBB), it's handy to have the board on
 the network for when you want to SSH into it, install packages, etc. That said,
 I don't always want to run an Ethernet cable from the BBB to a switch. Luckily,

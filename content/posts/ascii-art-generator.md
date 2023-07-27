@@ -6,6 +6,8 @@ tags: ["ascii-art", "boost", "c++"]
 toc: true
 ---
 
+![asciigen ASCII Art Banner](/posts/ascii-art-generator/asciigen.png)
+
 Who doesn't like ASCII art? If you're like me, you probably thought about making
 your own ASCII art generator before. Also, if you're like me, you gave up on the
 idea thinking that it must be extremely complicated and not worth the effort to

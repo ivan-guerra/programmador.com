@@ -6,6 +6,8 @@ tags: ["compression", "huffman-codes", "information-theory"]
 toc: true
 ---
 
+![Huffman Tree](/posts/huffman-coding/huffman-tree.png)
+
 While reading through an old data structures book, I came across a cool looking
 tree structure called a Huffman Tree[^1]. A Huffman Tree is a type of binary
 tree that can be used to compress an arbitrary data file. I never implemented

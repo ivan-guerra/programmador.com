@@ -6,6 +6,8 @@ tags: ["linux", "embedded", "serial", "usb"]
 toc: true
 ---
 
+![Serial Over USB](/posts/linux-usb-serial-device-name-binding/serial-over-usb.jpg)
+
 On a recent project, I was developing an app on Linux that gathered data from a
 number of USB serial devices. One annoyance I came across was that oftentimes
 when the machine was rebooted, the device names would get all mixed up! After

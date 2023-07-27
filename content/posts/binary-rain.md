@@ -6,6 +6,8 @@ tags: ["ncurses", "matrix"]
 toc: true
 ---
 
+![Binary Rain](/posts/binary-rain/neo.gif)
+
 Most programmers young and old have seen the cyberpunk sci-fi film The
 Matrix[^1]. When I watched The Matrix as a kid, the scene that stood out the
 most is the closing scene where Neo sees the Matrix when facing off against the

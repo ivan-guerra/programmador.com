@@ -3,6 +3,7 @@ title: "Beaglebone Black Wifi Setup"
 date: 2023-05-14T12:07:51-07:00
 description: "How to configure wifi on the Beaglebone Black."
 tags: ["linux", "beaglebone-black", "usb", "wifi"]
+toc: true
 ---
 
 When developing on the Beaglebone Black (BBB), it's handy to have the board on

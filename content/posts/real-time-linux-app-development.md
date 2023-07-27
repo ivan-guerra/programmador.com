@@ -3,6 +3,7 @@ title: "Real-Time Linux App Development"
 date: 2023-04-27T22:49:14-07:00
 description: "A checklist for developing real-time applications in Linux."
 tags: ["linux", "kernel", "real-time", "rtos", "embedded"]
+toc: true
 ---
 
 If you a are programmer in the embedded space, you have likely touched on the

@@ -3,6 +3,7 @@ title: "A CLI Base Converter"
 date: 2023-07-08T11:14:45-07:00
 description: "A command line numerical base conversion utility."
 tags: ["number-systems", "linux", "cli", "gnu-mp", "bignum"]
+toc: true
 ---
 
 When debugging an embedded system, I often find myself working with raw data

@@ -3,6 +3,7 @@ title: "Containerizing Runescape"
 date: 2023-01-14T21:29:52-07:00
 description: "Containerizing OSRS and RS3 game clients."
 tags: ["runescape", "docker"]
+toc: true
 ---
 
 If you grew up gaming in the 00's and even into the 10's, you probably have

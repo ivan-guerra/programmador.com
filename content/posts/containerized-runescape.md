@@ -167,7 +167,7 @@ Containerizing RS3 and OSRS turned out to be possible though I had to bleed a
 bit getting there. I found getting the GUI and audio working to be the most
 challenging part. The brightside is that the steps I discovered have been useful
 on other projects where I needed those features. Performance on my admittedly
-dated laptop has been good with no noticable overhead to running inside the
+dated laptop has been good with no noticeable overhead to running inside the
 container versus on the host. [Now we can finally play the game][19].
 
 You can find the complete source with build instructions, usage, etc. on my

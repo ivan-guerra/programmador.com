@@ -139,7 +139,7 @@ templating, and interoperability with C made it a great candidate for my
 project. Being able to package concepts like the frame buffer, global descriptor
 table, etc. into a neat little class led to more modular code.
 
-There was no noticable overhead to switching over to C++ beyond passing a few
+There was no noticeable overhead to switching over to C++ beyond passing a few
 additional flags to the compiler in my CMake toolchain file:
 
 ```bash
@@ -251,8 +251,8 @@ Below is a table listing what has been implemented in Cosmo OS and what remains:
 
 ## Conclusion
 
-Writing your own OS, even a primitive one, is a daunting task. Thankfully,
-there's communities and plenty of resources out there to help get the job done.
+Writing your own OS, even a primitive one, is a daunting task. Thankfully, there
+are communities and plenty of resources out there to help get the job done.
 I've managed to learn quite a bit about toolchains, the x86 architecture,
 assembly, and more. I recommend anyone thinking about starting an OS development
 project dive in. Even if you don't hit your mark, you'll pick up some useful

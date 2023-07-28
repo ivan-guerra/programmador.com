@@ -38,7 +38,8 @@ some positive integer value.
 To make this idea more concrete, I came up with some basic requirements I could
 code to:
 
-1. `dhb` shall support conversions to/from binary, decimal, and hexadecimal.
+1. `dhb` shall support conversions to/from binary, decimal, hexadecimal, and
+   octal.
 2. `dhb` shall include an option for minimum output width.
 3. `dhb` shall include an option to group digits into segments of size N.
 4. `dhb` shall support arbitrarily large positive integers.

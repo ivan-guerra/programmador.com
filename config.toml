@@ -15,7 +15,7 @@ sectionPagesMenu = "main"
 noindex = false
 
 [params.theme]
-palette = "base16-dark"
+palette = "base16-chalk"
 
 [params.about]
 title = "programmador.com"

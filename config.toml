@@ -48,6 +48,11 @@ url = "https://programmador.com/index.xml"
     name = "About"
     url = "/about/"
     weight = 10
+  [[menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    url = "/tags/"
+    weight = 10
 
 [taxonomies]
 category = "categories"

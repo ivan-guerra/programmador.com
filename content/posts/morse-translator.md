@@ -243,7 +243,7 @@ Building a text to Morse code audio/code translator was an adventure. Morse code
 itself is relatively straightforward to understand with not many gotchas or edge
 cases as far as I could tell. That's nice, because it made the task of
 programming much easier. The most challenging part of this project was
-understanding how to to play dot/dash sounds over the host's speakers. Of
+understanding how to play dot/dash sounds over the host's speakers. Of
 course, playing sound on a computer is a problem that has been solved a thousand
 times over. The SDL library with its simple C API covered all our audio needs.
 In the end, we walk away with a fun, flexible CLI tool.
@@ -271,7 +271,7 @@ path: ["RSCW's Algorithm"][14].
 [10]: https://web.archive.org/web/20120313055436/http://www.dgames.org/beep-sound-with-sdl/
 [11]: https://github.com/ivan-guerra/morse/blob/master/src/audio/beeper.cc
 [12]: https://github.com/ivan-guerra/morse/blob/master/include/audio/beeper.hpp
-[13]: http://www.pa3fwm.nl/software/rscw/algorithm.htmlhttps://github.com/ivan-guerra/morse/tree/master
+[13]: https://github.com/ivan-guerra/morse/tree/master
 [14]: http://www.pa3fwm.nl/software/rscw/algorithm.html
 
 [^1]: The bane of many freshly graduated CS students' existence, [LeetCode][1]

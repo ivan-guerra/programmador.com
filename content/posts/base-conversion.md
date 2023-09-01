@@ -6,8 +6,6 @@ tags: ["number-systems", "linux", "cli", "gnu-mp", "bignum"]
 toc: true
 ---
 
-![Hexdump](/posts/base-conversion/hexdump.png)
-
 When debugging an embedded system, I often find myself working with raw data
 that has me converting between decimal, hexadecimal, binary, and (sometimes)
 octal number systems. I have yet to find a Linux equivalent to the Windows

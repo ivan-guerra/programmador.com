@@ -6,8 +6,6 @@ tags: ["docker", "latex"]
 toc: true
 ---
 
-![Resumes](/posts/resumes-in-latex/resume.jpg)
-
 Writing a resume can be a time consuming task involving many rounds of
 proofreading, recollection, and wordsmithing. Alongside the content, the format
 of a resume carries a lot of weight. Like most, the first drafts of my resume

@@ -1,95 +1,20 @@
 baseURL = "https://programmador.com/"
-theme = "risotto"
+theme = "console"
 title = "i.e.g."
-author = "Ivan Eduardo Guerra"
-copyright = "© 2022-2023 [Ivan Eduardo Guerra](https://github.com/ivan-guerra/programmador.com/blob/master/LICENSE)"
 languageCode = "en"
-DefaultContentLanguage = "en"
-paginate = 3
-enableInlineShortcodes = true
-
-# Automatically add content sections to main menu
-sectionPagesMenu = "main"
 
 [params]
-noindex = false
+  titleCutting = false
+  animateStyle = "animated zoomIn fast"
 
-[params.theme]
-palette = "base16-tokyo-city-terminal-dark"
+  [[params.navlinks]]
+  name = "about/"
+  url = "about"
 
-[params.about]
-title = "programmador.com"
-description = "Hobby projects and learning."
-logo = "/logo/logo.svg"
+  [[params.navlinks]]
+  name = "posts/"
+  url = "posts/"
 
-[[params.socialLinks]]
-icon = "fa-brands fa-github"
-title = "GitHub"
-url = "https://github.com/ivan-guerra"
-
-[[params.socialLinks]]
-icon = "fa-brands fa-linkedin"
-title = "LinkedIn"
-url = "https://linkedin.com/in/ivan-guerra/"
-
-[[params.socialLinks]]
-icon = "fa-solid fa-envelope"
-title = "Email"
-url = "mailto:ivan.eduardo.guerra@gmail.com"
-
-[[params.socialLinks]]
-icon = "fa-solid fa-rss"
-title = "rss"
-url = "https://programmador.com/index.xml"
-
-[menu]
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 10
-  [[menu.main]]
-    identifier = "categories"
-    name = "Categories"
-    url = "/tags/"
-    weight = 10
-
-[taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
-
-[markup.goldmark.renderer]
-unsafe = true
-
-[markup]
-  # Add toc = true to content front matter to enable
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel   = 3
-    ordered    = true
-
-[privacy]
-  [privacy.vimeo]
-    disabled = false
-    simple = true
-
-  [privacy.twitter]
-    disabled = true
-    enableDNT = true
-    simple = true
-
-  [privacy.instagram]
-    disabled = true
-    simple = true
-
-  [privacy.youtube]
-    disabled = false
-    privacyEnhanced = true
-
-[services]
-  [services.instagram]
-    disableInlineCSS = true
-
-  [services.twitter]
-    disableInlineCSS = true
+  [[params.navlinks]]
+  name = "tags/"
+  url = "tags/"

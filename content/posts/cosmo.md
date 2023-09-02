@@ -6,7 +6,7 @@ tags: ["os-dev", "docker", "linux"]
 toc: true
 ---
 
-![Cosmo OS](/posts/cosmo/cosmo.png)
+![Cosmo OS](/posts/cosmo/cosmo.png#center)
 
 I've always been interested in the topic of OS development. At the beginning of
 2022, I set a personal goal to implement a very barebones OS of my own.
@@ -18,7 +18,7 @@ the world of x86 emulators, NASM assembler, and architecure reference manuals.
 
 ## Getting the Right Resources
 
-[![Little Book About OS Development](/posts/cosmo/lbaod.png)][2]
+[![Little Book About OS Development](/posts/cosmo/lbaod.png#center)][2]
 
 I knew I wasn't going to get very far without the right references and
 resources. Early on, I found the OSDev wiki[^1]. The OSDev wiki audience is in
@@ -91,7 +91,7 @@ the output binaries to have user/group `root`).
 
 ## Bochs Emulation
 
-[![Bochs IA-32 Emulator](/posts/cosmo/bochs.png)][6]
+[![Bochs IA-32 Emulator](/posts/cosmo/bochs.png#center)][6]
 
 I needed an emulator in which to run my OS. The OSDev wiki gives a nice summary
 table comparing the different emulators available[^6]. I decided to go with
@@ -206,7 +206,7 @@ Makefile generation was as simple as calling `cmake` with the
 
 ## Generating an OS ISO
 
-[![GNU Grub](/posts/cosmo/grub.png)][17]
+[![GNU Grub](/posts/cosmo/grub.png#center)][17]
 
 When we run our OS under Bochs, it's as if we were putting a CD with our OS ISO
 image in a computer. The output of the Cosmo OS build system is a `kernel.elf`

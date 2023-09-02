@@ -6,7 +6,8 @@ tags: ["runescape", "docker"]
 toc: true
 ---
 
-![OSRS - Slaying the King Black Dragon](/posts/containerized-runescape/osrs.png)
+![OSRS - Slaying the King Black
+Dragon](/posts/containerized-runescape/osrs.png#center)
 
 If you grew up gaming in the 00's and even into the 10's, you probably have
 heard of Runescape. Some might be surprised to hear that people still play a
@@ -125,7 +126,7 @@ docker run --rm \
 
 ## RuneLite Gremlins...
 
-![Goblins!](/posts/containerized-runescape/goblins.png)
+![Goblins!](/posts/containerized-runescape/goblins.png#center)
 
 No project is free of gremlins. While the RS3 container was working as expected,
 the RuneLite client would seemingly load and then cut out before the login

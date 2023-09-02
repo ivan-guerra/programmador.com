@@ -6,14 +6,14 @@ tags: ["ncurses", "matrix"]
 toc: true
 ---
 
-![Binary Rain](/posts/binary-rain/neo.gif)
+![Binary Rain](/posts/binary-rain/neo.gif#center)
 
 Most programmers young and old have seen the cyberpunk sci-fi film The
 Matrix[^1]. When I watched The Matrix as a kid, the scene that stood out the
 most is the closing scene where Neo sees the Matrix when facing off against the
 Agents:
 
-[![Neo Sees the Matrix](/posts/binary-rain/matrix.jpg)][2]
+[![Neo Sees the Matrix](/posts/binary-rain/matrix.jpg#center)][2]
 
 The visual effect with the code running along all the surfaces was really cool.
 Seems other people thought so too to the point that the effect has a name:

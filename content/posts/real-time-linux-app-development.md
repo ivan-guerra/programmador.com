@@ -40,7 +40,7 @@ Now, you must ask yourself another question: 'do I need a soft or a hard
 real-time system'. What's the difference? It all relates to the application's
 deadlines.
 
-[![Soft vs Hard RT](/posts/real-time-linux-app-development/soft-vs-hard-rt.jpg)][2]
+[![Soft vs Hard RT](/posts/real-time-linux-app-development/soft-vs-hard-rt.jpg#center)][2]
 
 In hard real-time systems, **task deadlines must be met otherwise the system may
 fail or fault**. In soft real-time systems, **the system is resilient to task
@@ -102,7 +102,7 @@ option footnotes for more details.
 
 ## Scheduling Policies
 
-[![Linux Scheduling Policies](/posts/real-time-linux-app-development/scheduling.png)][13]
+[![Linux Scheduling Policies](/posts/real-time-linux-app-development/scheduling.png#center)][13]
 
 Linux provides three real-time scheduling policies.
 
@@ -244,7 +244,7 @@ correct core-to-task assignment.
 
 ## Memory Management
 
-[![Simplistic Virtual Address Space](/posts/real-time-linux-app-development/virtual-addr-space.png)][12]
+[![Simplistic Virtual Address Space](/posts/real-time-linux-app-development/virtual-addr-space.png#center)][12]
 
 How an RT application manages memory deserves some attention. Going back to
 college and your OS course, you may remember that processes often are given
@@ -375,7 +375,7 @@ is what's known as priority boosting or inheritance and it is how Linux resolves
 the priority inversion problem[^14]. The image below illustrates this concept.
 You can imagine Resource A is a lock under contention.
 
-[![Priority Inheritance](/posts/real-time-linux-app-development/priority-inheritance.png)][15]
+[![Priority Inheritance](/posts/real-time-linux-app-development/priority-inheritance.png#center)][15]
 
 To get `pthread_mutex` to behave as described above, we have to tell the kernel
 to employ priority inheritance. The latter can be done by setting the
@@ -538,7 +538,7 @@ A resource worth mentioning is the [OSADL website][22].
 On the OSADL site, they share a script[^19] that you can run on your system to
 generate a histogram plot of latencies as shown below.
 
-[![Latency Histogram](/posts/real-time-linux-app-development/latency-plot.png)][23]
+[![Latency Histogram](/posts/real-time-linux-app-development/latency-plot.png#center)][23]
 
 If you choose to use the OSADL script, **make sure you update cyclictest
 parameters so that you are testing for the right latencies on your system!**

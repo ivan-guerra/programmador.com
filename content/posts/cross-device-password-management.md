@@ -40,7 +40,7 @@ that later).
 
 ## Setting Up a GPG-ID
 
-[![GnuPG](/posts/cross-device-password-management/gnupg.png)][4]
+[![GnuPG](/posts/cross-device-password-management/gnupg.png#center)][4]
 
 To work with `pass`, you need a gpg-id. I actually had a gpg-id I used to sign
 my git commits, so I went ahead with using that ID. If you need to make an ID,
@@ -56,7 +56,7 @@ to generate a 4096 bit RSA key:
 7. Enter a secure password[^4].
 8. Enter `gpg --list-keys` to view your newly minted key.
 
-![GPG Key Generation](/posts/cross-device-password-management/keygen.png)
+![GPG Key Generation](/posts/cross-device-password-management/keygen.png#center)
 
 ## Password Database Creation and Git Support
 

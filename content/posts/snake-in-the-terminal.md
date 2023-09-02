@@ -6,7 +6,7 @@ tags: ["ncurses", "games", "tui", "terminal", "c++"]
 toc: true
 ---
 
-![Snake in the Terminal](/posts/snake-in-the-terminal/snake.gif)
+![Snake in the Terminal](/posts/snake-in-the-terminal/snake.gif#center)
 
 As a text user interface enjoyer, I've always wondered how difficult it is to
 write an [ncurses][1] UI. What better way to find out then to write a little
@@ -28,7 +28,7 @@ except those occupied by the snake. The snake is made up of one or more adjacent
 tiles with no more than two tiles being adjacent to one another.  Shown below is
 a target (red diamond) and snake made up of 13 tiles.
 
-![Snake Objects](/posts/snake-in-the-terminal/snake-objects.png)
+![Snake Objects](/posts/snake-in-the-terminal/snake-objects.png#center)
 
 To win the game, the snake must cover all tiles that make up the play arena.
 Each time the snake's head intersects or "eats" a target, the snake grows in
@@ -486,7 +486,7 @@ values.
 
 Here's what the start screen looks like when rendered:
 
-![Start Screen](/posts/snake-in-the-terminal/snake.png)
+![Start Screen](/posts/snake-in-the-terminal/snake.png#center)
 
 Nothing fancy. The up/down arrow keys are used to navigate the mode menu. ENTER
 is used to make a selection.
@@ -559,7 +559,7 @@ void DrawGameOverScreen(const snake::game::SnakeGame& game) {
 
 And the final result...
 
-![Game Over Screen](/posts/snake-in-the-terminal/game-over.png)
+![Game Over Screen](/posts/snake-in-the-terminal/game-over.png#center)
 
 ### The Game Screen
 
@@ -622,7 +622,7 @@ void DrawSnakeScreen(const snake::game::SnakeGame& game) {
 
 And the rendering...
 
-![Game Screen](/posts/snake-in-the-terminal/game-screen.png)
+![Game Screen](/posts/snake-in-the-terminal/game-screen.png#center)
 
 ## Putting It All Together
 

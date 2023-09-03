@@ -2,7 +2,7 @@
 title: "Huffman Coding"
 date: 2023-07-04T20:57:06-07:00
 description: "Data compression using Huffman coding."
-tags: ["compression", "huffman-codes", "information-theory"]
+tags: ["c++", "cli-tools", "compression"]
 toc: true
 ---
 

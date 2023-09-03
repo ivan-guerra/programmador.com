@@ -2,7 +2,7 @@
 title: "GPIO Driven Synchronization"
 date: 2023-05-29T21:24:12-07:00
 description: "Synchronizing two single board computers using only GPIO."
-tags: ["linux", "real-time", "gpio", "embedded", "c++"]
+tags: ["c++", "beaglebone", "realtime"]
 toc: true
 math: true
 ---

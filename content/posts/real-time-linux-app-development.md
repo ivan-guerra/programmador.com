@@ -2,7 +2,7 @@
 title: "Real-Time Linux App Development"
 date: 2023-04-27T22:49:14-07:00
 description: "A checklist for developing real-time applications in Linux."
-tags: ["linux", "kernel", "real-time", "rtos", "embedded"]
+tags: ["c", "c++", "linux", "realtime"]
 toc: true
 ---
 

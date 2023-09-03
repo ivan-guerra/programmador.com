@@ -2,7 +2,7 @@
 title: "Morse Translator"
 date: 2023-08-01T20:51:32-07:00
 description: "A text to Morse code translator."
-tags: ["sdl2", "morse-code", "audio", "text-to-audio"]
+tags: ["c++", "cli-tools", "sdl"]
 toc: true
 ---
 

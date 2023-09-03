@@ -2,7 +2,7 @@
 title: "Digital Image Steganography"
 date: 2023-06-25T22:13:54-07:00
 description: "How to embed an image within another."
-tags: ["steganography", "boost", "image-processing"]
+tags: ["c++", "boost", "cli-tools"]
 toc: true
 ---
 

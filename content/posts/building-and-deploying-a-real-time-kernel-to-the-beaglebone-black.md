@@ -3,7 +3,7 @@ title: "Building and Deploying a Real-Time Kernel to the BeagleBone Black"
 date: 2023-04-22T11:13:34-07:00
 description: "How to build and deploy a real-time Linux kernel to the BeagleBone
 Black."
-tags: ["linux", "kernel", "real-time", "beaglebone-black", "docker"]
+tags: ["beaglebone", "docker", "realtime"]
 toc: true
 ---
 

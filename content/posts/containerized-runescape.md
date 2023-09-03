@@ -2,7 +2,7 @@
 title: "Containerizing Runescape"
 date: 2023-01-14T21:29:52-07:00
 description: "Containerizing OSRS and RS3 game clients."
-tags: ["runescape", "docker"]
+tags: ["docker", "games"]
 toc: true
 ---
 

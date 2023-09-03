@@ -2,7 +2,7 @@
 title: "Beaglebone Black Wifi Setup"
 date: 2023-05-14T12:07:51-07:00
 description: "How to configure wifi on the Beaglebone Black."
-tags: ["linux", "beaglebone-black", "usb", "wifi"]
+tags: ["beaglebone", "wifi"]
 toc: true
 ---
 

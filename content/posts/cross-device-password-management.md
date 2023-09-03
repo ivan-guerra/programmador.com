@@ -2,8 +2,7 @@
 title: "Cross-Device Password Mgmt Using pass"
 date: 2023-03-31T11:08:58-07:00
 description: "Managing passwords across Linux and Android devices using pass."
-tags: ["android", "linux", "pass", "password-manager", "openkeychain",
-"passwordstore"]
+tags: ["gnu", "password-mgmt"]
 toc: true
 ---
 

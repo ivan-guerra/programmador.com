@@ -2,7 +2,7 @@
 title: "Cosmo: A Hobby x86 OS"
 date: 2022-02-23T11:15:24-07:00
 description: "On developing a hobby x86 OS."
-tags: ["os-dev", "docker", "linux"]
+tags: ["asm", "c++", "docker"]
 toc: true
 ---
 

@@ -4,9 +4,10 @@ date: 2023-06-17T17:04:23-07:00
 description: "An implementation of the classic snake game for the terminal."
 tags: ["c++", "cli-tools", "ncurses", "games"]
 toc: true
+cover:
+    image: "/posts/snake-in-the-terminal/snake.gif"
+    alt: "Terminal Snake"
 ---
-
-![Snake in the Terminal](/posts/snake-in-the-terminal/snake.gif#center)
 
 As a text user interface enjoyer, I've always wondered how difficult it is to
 write an [ncurses][1] UI. What better way to find out then to write a little

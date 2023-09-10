@@ -4,6 +4,9 @@ date: 2023-06-25T22:13:54-07:00
 description: "How to embed an image within another."
 tags: ["c++", "boost", "cli-tools"]
 toc: true
+cover:
+    image: "/posts/digital-image-steganography/camo.jpg"
+    alt: "Camouflaged"
 ---
 
 While on a computerphile[^1] marathon, I came a across a pretty neat video of

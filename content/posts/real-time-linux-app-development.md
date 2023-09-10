@@ -4,6 +4,9 @@ date: 2023-04-27T22:49:14-07:00
 description: "A checklist for developing real-time applications in Linux."
 tags: ["c", "c++", "linux", "realtime"]
 toc: true
+cover:
+    image: "/posts/real-time-linux-app-development/realtime-tux.jpg"
+    alt: "Realtime Tux"
 ---
 
 If you a are programmer in the embedded space, you have likely touched on the

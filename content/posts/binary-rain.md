@@ -4,9 +4,10 @@ date: 2023-07-23T16:16:47-07:00
 description: "A Matrix inspired terminal screensaver."
 tags: ["c++", "cli-tools", "ncurses"]
 toc: true
+cover:
+    image: "/posts/binary-rain/neo.gif"
+    alt: "Binary Rain GIF"
 ---
-
-![Binary Rain](/posts/binary-rain/neo.gif#center)
 
 Most programmers young and old have seen the cyberpunk sci-fi film The
 Matrix[^1]. When I watched The Matrix as a kid, the scene that stood out the

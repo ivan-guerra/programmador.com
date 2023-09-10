@@ -5,9 +5,10 @@ description: "Synchronizing two single board computers using only GPIO."
 tags: ["c++", "beaglebone", "realtime"]
 toc: true
 math: true
+cover:
+    image: "/posts/gpio-driven-synchronization/synced.jpg"
+    alt: "Synchronized Beaglebone Black Computers"
 ---
-
-![Synchronized BeagleBone Computers](/posts/gpio-driven-synchronization/synced.jpg#center)
 
 I happened to stumble across a pretty neat Wikipedia page: [Kuramoto Model][1].
 I was impressed by a video on the page showing out of phase metronomes

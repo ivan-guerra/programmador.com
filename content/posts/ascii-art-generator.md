@@ -4,9 +4,10 @@ date: 2023-02-26T13:25:04-07:00
 description: "A JPEG/PNG to ASCII Art generator."
 tags: ["ascii-art", "boost", "c++", "cli-tools"]
 toc: true
+cover:
+    image: "/posts/ascii-art-generator/asciigen.png"
+    alt: "asciigen ASCII Art Banner"
 ---
-
-![asciigen ASCII Art Banner](/posts/ascii-art-generator/asciigen.png#center)
 
 Who doesn't like ASCII art? If you're like me, you probably thought about making
 your own ASCII art generator before. Also, if you're like me, you gave up on the

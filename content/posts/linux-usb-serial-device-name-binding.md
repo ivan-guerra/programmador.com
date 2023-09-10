@@ -4,6 +4,9 @@ date: 2023-05-06T08:45:42-07:00
 description: "How to set persistent USB serial device names in Linux."
 tags: ["linux"]
 toc: true
+cover:
+    image: "/posts/linux-usb-serial-device-name-binding/linux-usb.webp"
+    alt: "Tux with a USB Stick"
 ---
 
 On a recent project, I was developing an app on Linux that gathered data from a

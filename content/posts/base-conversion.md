@@ -4,6 +4,9 @@ date: 2023-07-08T11:14:45-07:00
 description: "A command line numerical base conversion utility."
 tags: ["c++", "cli-tools", "gnu"]
 toc: true
+cover:
+    image: "/posts/base-conversion/binary-head.png"
+    alt: "Human Head Drawn in Binary Code"
 ---
 
 When debugging an embedded system, I often find myself working with raw data

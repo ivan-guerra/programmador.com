@@ -4,6 +4,9 @@ date: 2022-09-18T20:44:17-07:00
 description: "Creating a containerized Linux dev environment with working LDD3 modules."
 tags: ["docker", "linux"]
 toc: true
+cover:
+    image: "/posts/linux-device-drivers/ldd3.jpg"
+    alt: "Linux Device Driver Book Cover"
 ---
 
 Recently, I wanted to learn more about Linux kernel internals. Like most newbies

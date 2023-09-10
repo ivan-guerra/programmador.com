@@ -4,6 +4,9 @@ date: 2023-09-02T12:46:36-07:00
 description: "Play a soundbite on keypress anywhere in the desktop."
 tags: ["c++", "cli-tools", "sdl", "x11", "windows"]
 toc: true
+cover:
+    image: "/posts/keyboard-hell/keyboard-on-fire.jpg"
+    alt: "Keyboard on Fire"
 ---
 
 I was talking with a few people at work about mechanical keyboards. We were

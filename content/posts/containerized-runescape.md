@@ -4,10 +4,10 @@ date: 2023-01-14T21:29:52-07:00
 description: "Containerizing OSRS and RS3 game clients."
 tags: ["docker", "games"]
 toc: true
+cover:
+    image: "/posts/containerized-runescape/osrs.png"
+    alt: "OSRS - Slaying the King Black Dragon"
 ---
-
-![OSRS - Slaying the King Black
-Dragon](/posts/containerized-runescape/osrs.png#center)
 
 If you grew up gaming in the 00's and even into the 10's, you probably have
 heard of Runescape. Some might be surprised to hear that people still play a

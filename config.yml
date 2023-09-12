@@ -92,14 +92,18 @@ menu:
       name: Search
       url: /search/
       weight: 10
+    - identifier: posts
+      name: Posts
+      url: /post-list/
+      weight: 20
     - identifier: tags
       name: Tags
       url: /tags/
-      weight: 20
+      weight: 30
     - identifier: about
       name: About
       url: /about/
-      weight: 30
+      weight: 40
 
 pygmentsUseClasses: true
 markup:

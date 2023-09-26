@@ -3,11 +3,7 @@ title: "GPIO Driven Synchronization"
 date: 2023-05-29T21:24:12-07:00
 description: "Synchronizing two single board computers using only GPIO."
 tags: ["c++", "beaglebone", "realtime"]
-toc: true
 math: true
-cover:
-    image: "/posts/gpio-driven-synchronization/synced.jpg"
-    alt: "Synchronized Beaglebone Black Computers"
 ---
 
 I happened to stumble across a pretty neat Wikipedia page: [Kuramoto Model][1].
@@ -25,7 +21,7 @@ share a common "fabric". In the clip with the metronomes, the base board is
 crucial in bringing the metronomes into phase. I figured two computers could
 similarly be synced using GPIO as the link.
 
-## Architecting a Test
+# Architecting a Test
 
 At a high level, the problem I wanted to solve was synchronizing two identical,
 cyclic tasks running on seperate but identical hardware. I figured a 1Hz task
@@ -63,7 +59,7 @@ The best&trade; implementation of `gsync` and `gtimer` is not immediately
 obvious.  However, the hardware setup is pretty straighforward so lets look at
 that first.
 
-## Hardware Test Setup
+# Hardware Test Setup
 
 I needed two computers with which to test. Luckily for me, I was able to get my
 hands on two BeagleBone Black[^1] (BBB) single board computers. The BBB is a
@@ -92,7 +88,7 @@ were unallocated pins configured as GPIO (mux mode 7) with internal pull down
 resistors enabled. **If you choose to use different pins, make sure they are
 configured correctly before powering the circuit!**
 
-## Doing Things Real-Time
+# Doing Things Real-Time
 
 To achieve half decent sync results, I decided to have `gtimer` and `gsync`
 execute as real-time processes on a Linux kernel supporting preemption. The task
@@ -150,7 +146,7 @@ getting this project on a platform on which we could dedicate a core to each RT
 process and comparing the measured latencies with those presented at the end of
 this article.
 
-## GPIO Woes
+# GPIO Woes
 
 One of the more tedious parts of implementing this sync concept was getting
 software control of the GPIOs right. I mistakenly started out using the legacy
@@ -196,7 +192,7 @@ you misuse the API (which is pretty hard when using the C++ bindings because it
 throws exceptions for every imaginable error), it does the job and is as
 efficient as possible[^4].
 
-## The Kuramoto Model
+# The Kuramoto Model
 
 Finally, we get to talk about implementing the Kuramoto Model. Step one was to
 translate the equation from the wiki page to something I could manage in the
@@ -205,7 +201,7 @@ code. Here's the original equation:
 \\[ {d\theta \over dt} = \omega_i + {K \over N}\sum_{i=1}^N \sin(\theta_j -
 \theta_i) \\]
 
-## Phase Angles and Time
+# Phase Angles and Time
 
 One thing was immediately apparent: I needed a way to convert time to phase
 angles and vice versa. Our blink task has a known frequency of 1 Hertz meaning
@@ -232,7 +228,7 @@ Note, the \\( t \\) above is in units of seconds. The `gsync` implementation
 tracks time in units of nanoseconds. The conversion equations used in [the
 code][9] account for the units change.
 
-## The Wakeup Delta
+# The Wakeup Delta
 
 At this point, we're ready to plug some numbers into the base equation to
 compute \\( d\theta \over dt \\)! Let's fill in the blanks on the terms:
@@ -271,7 +267,7 @@ returns a delta of \\( 0.8 \\), then `gsync` will sleep for \\( 1.0 + 0.8 = 1.8
 time of the computers oscillates about \\( 0 \\)! The smaller the oscillations,
 the better the sync.
 
-## The End Result
+# The End Result
 
 In the end, what do we see? Well, running `gtimer` and `gsync` on both BBBs with
 the frequency of `gtimer` set to 1 Hz and the coupling constant set to \\(
@@ -315,7 +311,7 @@ additional testing.
 Could the spikes be caused by weak coupling? Is there a timing bug between
 `gtimer` and `gsync`?  Questions for another day I guess.
 
-## Conclusion
+# Conclusion
 
 So what did we learn? Synchronizing at least two computers linked via only GPIO
 is possible. Better yet, the Kuramoto Model used to bring the two machines into

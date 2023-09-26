@@ -3,10 +3,6 @@ title: "Digital Image Steganography"
 date: 2023-06-25T22:13:54-07:00
 description: "How to embed an image within another."
 tags: ["c++", "boost", "cli-tools"]
-toc: true
-cover:
-    image: "/posts/digital-image-steganography/camo.jpg"
-    alt: "Camouflaged"
 ---
 
 While on a computerphile[^1] marathon, I came a across a pretty neat video of
@@ -17,7 +13,7 @@ effective it is (atleast to the human eye). This seemed like a fun weekend
 project so I set out to write a command line tool for embedding one image within
 another.
 
-## A Little Background on Digital Images
+# A Little Background on Digital Images
 
 No fancy image manipulation techniques are needed to make this steganography
 tool work. That said, we do need to know a little bit about how a digital image
@@ -45,7 +41,7 @@ of pixel values. The steganography algorithm discussed here will encode the
 pixel data of one secret image in the pixel data of another cover image using a
 reversible process.
 
-## Least Significant Bit Substitution
+# Least Significant Bit Substitution
 
 Least signifcant bit substitution works on the principal that the most
 significant bits (MSBs) of a number have a much larger impact on the numerical
@@ -111,7 +107,7 @@ going as low as 2-bits and still got half decent results. The examples and code
 presented in this article use the 4 LSBs of each channel but the code can easily
 be modified to work with different LSB counts.
 
-## Making it Happen
+# Making it Happen
 
 The idea is to have a command line tool that could merge and unmerge two images.
 That is, I expected the program take in a command with arguments and spit out an
@@ -126,7 +122,7 @@ $ steganography unmerge out.png secret.jpg
 If we ignore all the argument processing and error checking code, the program
 boiled down to implementing two functions: `Merge()` and `Unmerge()`.
 
-### Merging
+# Merging
 
 Below is a snippet showing the interesting bits of the merge implementation:
 
@@ -205,7 +201,7 @@ image files [here][5] if you're interested.
   </div>
 </div>
 
-### Unmerging
+# Unmerging
 
 Here are the critical parts of the unmerge implementation:
 
@@ -261,7 +257,7 @@ merge operation.
   </div>
 </div>
 
-## A Note on Image Formats
+# A Note on Image Formats
 
 While implementing this tool, I ran into a fun a little bug. It turns out some
 image formats are lossy. What this means is that when you format your image data
@@ -277,7 +273,7 @@ took the easy route and required that the output of a merge command always be a
 PNG which in turn means the input to an unmerge command is always a PNG. The
 output of an unmerge command can be either format.
 
-## Conclusion
+# Conclusion
 
 The least significant bit substitution method proved simple to implement and did
 not disappoint in its effectiveness in secretly embedding one image within

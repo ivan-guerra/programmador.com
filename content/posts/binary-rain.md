@@ -3,10 +3,6 @@ title: "Binary Rain"
 date: 2023-07-23T16:16:47-07:00
 description: "A Matrix inspired terminal screensaver."
 tags: ["c++", "cli-tools", "ncurses"]
-toc: true
-cover:
-    image: "/posts/binary-rain/neo.gif"
-    alt: "Binary Rain GIF"
 ---
 
 Most programmers young and old have seen the cyberpunk sci-fi film The
@@ -23,7 +19,7 @@ Matrix Digital Rain[^2].
 I thought it would be neat to create a terminal screensaver that mimicked the
 effect seen in the movie.
 
-## How to Make It Rain
+# How to Make It Rain
 
 Before coding anything up, I had to better understand how the digital rain
 effect actually works. I studied a few of the compilations put up by fans on
@@ -47,7 +43,7 @@ characters. Each frame of the screensaver will scroll the screen down a single
 row such that the characters at the bottom row "fall off" the screen. The higher
 the framerate, the faster the characters fly down the screen.
 
-## Building a Scrolling Buffer
+# Building a Scrolling Buffer
 
 I came up with a handful of data structures to help implement the scrolling
 buffer effect. The first is the `Char` type:
@@ -168,7 +164,7 @@ and retrieval of a read-only view of the buffer's contents.
 With the above data structures in place, all that is left to do is render the
 `ScreenBuffer`'s contents using the ncurses API.
 
-## Rendering the Screensaver
+# Rendering the Screensaver
 
 Since the goal is to create a terminal screensaver, my choices in graphical
 libraries are limited. I went with the time tested ncurses[^3] API.
@@ -233,7 +229,7 @@ int main() {
 The main loop continuously draws the screensaver with a delay in between
 updates. If the user presses any key, the application exits.
 
-## Conclusion
+# Conclusion
 
 Making the `neo` screensaver had its challenges. In particular, this was one of
 those classic problems where if you have the right data structures its simple.

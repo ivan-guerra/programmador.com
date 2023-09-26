@@ -3,10 +3,6 @@ title: "Snake in the Terminal"
 date: 2023-06-17T17:04:23-07:00
 description: "An implementation of the classic snake game for the terminal."
 tags: ["c++", "cli-tools", "ncurses", "games"]
-toc: true
-cover:
-    image: "/posts/snake-in-the-terminal/snake.gif"
-    alt: "Terminal Snake"
 ---
 
 As a text user interface enjoyer, I've always wondered how difficult it is to
@@ -15,7 +11,7 @@ program of my own that explores ncurses' API. Of course, we had to keep it
 interesting.  A simple menu app wouldn't do. I landed on implementing a dumbed
 down version of a retro arcade game: [snake][2].
 
-## The Rules of Snake
+# The Rules of Snake
 
 Step one of this project was looking up what the rules for a game of snake were.
 In particular, I was interested in what the play "arena" looked like, how you
@@ -46,7 +42,7 @@ Targets just keep spawning on open tiles until the snake gets itself in a losing
 situation or wins by taking over all the tiles. That's it! That's all there is
 to this game.
 
-## Implementing the Game
+# Implementing the Game
 
 My original goal was to learn about the ncurses library not necessarily
 implement the most theoretically space/time efficient version of snake. With
@@ -89,7 +85,7 @@ With these simple data structures, implementing the core logic of the game was
 relatively straightforward. These next few sections will cover the core
 algorithms and their implementations.
 
-### Initialization
+# Initialization
 
 Initializing the game involves two key steps: generating all possible target
 locations and spawning the snake. I bundle both these steps into a single
@@ -150,7 +146,7 @@ void SnakeGame::Reset() {
 }
 ```
 
-### Moving the Snake
+# Moving the Snake
 
 Moving the snake was a little tricky. The snake head `Tile` would update its
 `row` or `col` depending on the value of its `direction` field.  All other
@@ -193,7 +189,7 @@ opinion, they are all overkill considering how lightweight the objects we are
 working with are. This pattern of going with the less computationally efficient
 but more obvious implementation is one you'll see repeating here.
 
-### Snake Extension
+# Snake Extension
 
 I actually had to think a little about how the snake would grow. I knew I wanted
 to extend from the tail. The question was, in which direction? The solution I
@@ -225,7 +221,7 @@ void SnakeGame::ExtendSnake() {
 }
 ```
 
-### Did I Win?
+# Did I Win?
 
 To win, the snake must cover every possible arena tile. Since my `targets_`
 vector has every possible arena `Tile` contained within it, checking for a win
@@ -252,7 +248,7 @@ bool SnakeGame::SnakeWins() const {
 
 A good ol' `O(n^2)` time complexity double nested loop does the trick.
 
-### Did I Lose?
+# Did I Lose?
 
 Yet another `O(n^2)` algorithm can be used to check if the game is lost. In this
 case, the majority of the time is spent checking whether the snake is
@@ -286,7 +282,7 @@ can optionally include a border. If a border is included, the snake cannot make
 contact with the border else the game is over. Hence why the `border_` variable
 is included in the bounds check logic.
 
-### Tick Tick Tick...
+# Tick Tick Tick...
 
 This version of snake operates using game ticks. On a single game tick the snake
 will move and logic will execute to determine whether the player has won, lost,
@@ -323,7 +319,7 @@ void SnakeGame::Tick(const Direction& new_direction) {
 }
 ```
 
-## UI Design with ncurses
+# UI Design with ncurses
 
 With the game logic and state wrapped in a neat class, it was time to write the
 UI.  I needed to to see what API calls ncurses provides and preferrably examples
@@ -339,7 +335,7 @@ when using just about any function in this library. To keep things manageable, I
 decided to split my game into three primary views: start screen, game screen,
 game over screen.
 
-### Start Screen
+# Start Screen
 
 A simple game should have simple start menu. In the case of terminal snake, I
 decided to go with a nice ASCII art title banner followed by a menu from which
@@ -492,7 +488,7 @@ Here's what the start screen looks like when rendered:
 Nothing fancy. The up/down arrow keys are used to navigate the mode menu. ENTER
 is used to make a selection.
 
-### Game Over Screen
+# Game Over Screen
 
 After writing the start screen, the game over screen was a walk in the park. The
 game over screen only needed to display a banner along with text showing the
@@ -562,7 +558,7 @@ And the final result...
 
 ![Game Over Screen](/posts/snake-in-the-terminal/game-over.png#center)
 
-### The Game Screen
+# The Game Screen
 
 Finally, we get to the most satisfying of the three screens: the game screen. In
 the game screen, we need to draw the snake, target, and the border around the
@@ -625,7 +621,7 @@ And the rendering...
 
 ![Game Screen](/posts/snake-in-the-terminal/game-screen.png#center)
 
-## Putting It All Together
+# Putting It All Together
 
 The glue that ties all the game logic and graphical elements is in the program
 `main()`.
@@ -697,7 +693,7 @@ longer the player has to provide an input before the next game tick is executed.
 If the player fails to provide an input, the snake will continue to move in the
 direction it's currently facing.
 
-## Conclusion
+# Conclusion
 
 It was fun learning the ncurses API. I got lucky in that I stumbled across an
 excellent resource with plenty of examples early on in the project. Implementing

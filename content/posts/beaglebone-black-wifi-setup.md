@@ -3,10 +3,6 @@ title: "Beaglebone Black Wifi Setup"
 date: 2023-05-14T12:07:51-07:00
 description: "How to configure wifi on the Beaglebone Black."
 tags: ["beaglebone", "wifi"]
-toc: true
-cover:
-    image: "/posts/beaglebone-black-wifi-setup/beaglebone-logo.jpg"
-    alt: "Beaglebone Black Logo"
 ---
 
 When developing on the Beaglebone Black (BBB), it's handy to have the board on
@@ -18,7 +14,7 @@ This article walks through the steps I followed to get connected. These
 instructions also apply to the BBB wireless variants (i.e., those BBBs with a
 wireless chip).
 
-## Beaglebone Black Wifi Configuration
+# Beaglebone Black Wifi Configuration
 
 The steps below assume use of a supported wifi dongle on an official BBB image.
 **`root` or `sudo` access is required to execute these instructions!**

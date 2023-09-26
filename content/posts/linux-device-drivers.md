@@ -3,10 +3,6 @@ title: "Docker Assisted Driver Dev and LDD3"
 date: 2022-09-18T20:44:17-07:00
 description: "Creating a containerized Linux dev environment with working LDD3 modules."
 tags: ["docker", "linux"]
-toc: true
-cover:
-    image: "/posts/linux-device-drivers/ldd3.jpg"
-    alt: "Linux Device Driver Book Cover"
 ---
 
 Recently, I wanted to learn more about Linux kernel internals. Like most newbies
@@ -20,7 +16,7 @@ at version `5.19`! I figured understanding and fixing API deltas would postively
 add to the challenge. And so began my month long journey into Linux device
 drivers.
 
-## Containerizing the Kernel Dev Environment
+# Containerizing the Kernel Dev Environment
 
 When it comes to setting up a Linux kernel dev environment, you get a couple of
 options:
@@ -48,14 +44,14 @@ Each image feeds into the next with the result being a kernel `bzImage` and
 initramfs `initramfs-busybox-x86.cpio.gz` archive that can be fed straight into
 QEMU.
 
-### A Common Base Image
+# A Common Base Image
 
 There was a lot of overlap in the tools required to build the initramfs and the
 kernel. As a result, I created a common image[^3] built off the latest Debian
 slim release. I also introduce ccache[^4] in this image which helps reduce
 kernel build times significantly[^5].
 
-### The Kernel Build Image
+# The Kernel Build Image
 
 The kernel build image Dockerfile[^6] is straightforward. The magic happens in
 the `kbuild.sh` script (shown below) which executes whenever a kernel build
@@ -136,7 +132,7 @@ container. We want to keep those binary directories on the host otherwise we
 would be building the kernel and modules from scratch everytime we run a new
 build container!
 
-### The initramfs Build Image
+# The initramfs Build Image
 
 As part of running our kernel, we need to hand QEMU a initramfs with a basic
 userland. Creating the initramfs breaks down into a five step process:
@@ -150,7 +146,7 @@ userland. Creating the initramfs breaks down into a five step process:
 The initramfs Dockerfile[^9] implements the above steps. The output of running
 the initramfs container is a `initramfs-busybox-x86.cpio.gz`.
 
-## Custom Kernel Modules in QEMU
+# Custom Kernel Modules in QEMU
 
 With my bzImage and initramfs archive in hand, I was ready to boot my kernel.
 The `run.sh`[^10] script shows the QEMU incantation needed to boot the system
@@ -173,7 +169,7 @@ log messages through `dmesg`.
 With the ability to build modules and test them out in the emulator, I was ready
 to dive into LDD3...
 
-## The LDD3 Experience
+# The LDD3 Experience
 
 I'd say LDD3 was a pleasant read given the subject matter. You'll get the most
 out of this book if you come in with a solid grasp of the C programming
@@ -210,7 +206,7 @@ VM[^13] and break, step, etc. through driver/kernel code[^14]! While it wasn't
 absolutely necessary for working through LDD3, the debugger did come in handy on
 a few occassions making it worth the effort to learn how to set it up.
 
-## Conclusion
+# Conclusion
 
 I'll conclude that LDD3 holds up in 2022. Sure the sample code needs some
 tweaking and a couple of the later chapters may be a bit dated. That said, the

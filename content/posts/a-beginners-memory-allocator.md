@@ -3,10 +3,6 @@ title: "A Beginner's Memory Allocator"
 date: 2023-09-12T13:41:25-07:00
 description: "On creating a crude Linux memory allocator."
 tags: ["c++", "linux"]
-toc: true
-cover:
-    image: "/posts/a-beginners-memory-allocator/ram.jpg"
-    alt: "Random Access Memory"
 ---
 
 While reading through the awesome "Operating Systems: Three Easy Pieces"[^1]
@@ -16,7 +12,7 @@ never considered writing my own allocator. Learning the theory is important, but
 nothing trumps hands on experience. To help demystify the topic further, I
 decided to write a basic Linux memory allocator.
 
-## The Interface
+# The Interface
 
 What kind of API did I want to provide? I decided to essentially keep the API
 identical to the `malloc()`/`free()` specification with two major deviations:
@@ -60,7 +56,7 @@ returned address.
 Lets explore the implementation of `Malloc` starting with construction and the
 `RegionSize()` method.
 
-## Getting Memory
+# Getting Memory
 
 In Linux, there are two options we can explore for acquiring allocator memory:
 
@@ -74,16 +70,7 @@ syscalls with the primary goal being to reduce memory fragmentation. `mmap()`'s
 biggest advantage is its discardability. Freeing an `mmap()`'ed chunk of memory
 basically tells the kernel "these pages, dirty or not, can be re-purposed". In
 the case of `sbrk()`, you can get yourself in a situation where chunks of memory
-can be freed yet the kernel can't know unless the program break is reduced. The
-graphic below illustrates the issue.
-
-[![Blocked Free
-Chunk](/posts/a-beginners-memory-allocator/blocked-free.jpg#center)][2]
-
-Even though the blue "free but blocked chunk" is ready to be collected by the
-kernel, it cannot be reclaimed because it is preceded by two (light orange)
-allocated blocks. The allocated blocks must be freed and the program break moved
-down before that giant chunk can be re-used by the kernel.
+can be freed yet the kernel can't know unless the program break is reduced.
 
 Okay, so what does all that mean for `Malloc`? This is an educational project. I
 ain't sitting here writing a production or fine-tuned allocator. As a such, I
@@ -136,7 +123,7 @@ are process private.
 Now we have a pool of memory from which we can service the user's `Alloc()`
 requests. Let's look at how to do just that.
 
-## Allocate
+# Allocate
 
 There's a number of different strategies out there for managing a pool of free
 memory. For this project, I chose to take the most basic route which is
@@ -175,7 +162,7 @@ strategies look awesome or look terrible.
 Okay, so we got a free list with a first fit allocation strategy in mind. Lets
 look at how to implement this.
 
-### The Data Structures
+# The Data Structures
 
 We'll start with the free list structure:
 
@@ -294,7 +281,7 @@ swaps/arithmetic.
 
 Now, for the next piece of the allocation puzzle: address alignment.
 
-### Address Alignment
+# Address Alignment
 
 Address alignment is important when it comes to performance[^3]. Similar to
 `posix_memalign()`[^4], `Alloc()` returns a `alignment` aligned address where
@@ -386,7 +373,7 @@ uint8_t* alignment_byte_cnt_addr = reinterpret_cast<uint8_t*>(user_ptr) - 1;
 Allocation is just the first half of the story. Lets look at how to free
 allocated memory.
 
-## Free
+# Free
 
 There are two problems to solve when it comes to freeing memory. First, we
 need a means of knowing how much memory to release back to the allocator.
@@ -499,7 +486,7 @@ entire list. You could probably combine them to get a single pass algorithm but
 the increased code complexity wasn't worth it for this "toy"  memory allocator
 implementation.
 
-## Conclusion
+# Conclusion
 
 That's it. With `Alloc()` and `Free()` implemented, we have a complete memory
 allocation utility! I did some unit testing using the GoogleTest framework

@@ -3,10 +3,6 @@ title: "Linux USB Serial Device Name Binding"
 date: 2023-05-06T08:45:42-07:00
 description: "How to set persistent USB serial device names in Linux."
 tags: ["linux"]
-toc: true
-cover:
-    image: "/posts/linux-usb-serial-device-name-binding/linux-usb.webp"
-    alt: "Tux with a USB Stick"
 ---
 
 On a recent project, I was developing an app on Linux that gathered data from a
@@ -19,7 +15,7 @@ To be clear, this article walks through assigning USB **serial devices**
 persistent names. If you have a USB **block device** and would like to give it a
 persistent name, the ArchWiki[^1] has you covered.
 
-## USB Serial Device Name Binding Using *udev*
+# USB Serial Device Name Binding Using *udev*
 
 The instructions below will work on a Linux distro that uses the `udev`[^2]
 device manager which is just about any modern distro. **`root` privileges will

@@ -2,10 +2,10 @@
 {{ .Content }}
 
 <h1>Articles</h1>
-<ul>
+<ul style="list-style-type:none;padding-left:0px;">
   {{ range ( where .Site.RegularPages "Type" "posts" ) }}
   <li>
-    {{ .Date.Format "2006-01-02" }}: <a href="{{ .Permalink }}">{{ .Title }}</a>
+    {{ .Date.Format "2006/01/02" }}: <a href="{{ .Permalink }}">{{ .Title }}</a>
   </li>
   {{ end }}
 </ul>

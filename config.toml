@@ -23,3 +23,5 @@ languageCode = "en"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+    style = "friendly"

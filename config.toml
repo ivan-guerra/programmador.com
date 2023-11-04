@@ -19,10 +19,6 @@ languageCode = "en"
   name = "tags/"
   url = "tags/"
 
-  [[params.navlinks]]
-  name = "rss/"
-  url = "https://programmador.com/index.xml"
-
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

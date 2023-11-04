@@ -9,4 +9,4 @@ generator and gets its look and feel from the open source theme
 
 [1]: https://www.programmador.com
 [2]: https://gohugo.io
-[3]: https://github.com/aleasdev/hugo-theme-console
+[3]: https://github.com/mrmierzejewski/hugo-theme-console

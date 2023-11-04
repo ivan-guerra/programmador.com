@@ -1,6 +1,6 @@
 baseURL = "https://programmador.com/"
 theme = "hugo-theme-console"
-title = "i.e.g."
+title = "ieg"
 languageCode = "en"
 
 [params]

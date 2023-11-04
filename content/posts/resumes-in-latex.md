@@ -1,5 +1,5 @@
 ---
-title: "Resumes in LaTeX"
+title: "Resumes in LaTex"
 date: 2023-06-09T09:42:11-07:00
 description: "A template and tools for writing a resume in LaTeX."
 tags: ["docker", "latex"]
@@ -19,7 +19,7 @@ the advice given in Gayle McDowell's ["This Is What a *GOOD* Resume Should Look
 Like"][2]. I'd like to share that template as well as the tools and workflow I
 use when editing my resume.
 
-# The Template
+# THE TEMPLATE
 
 To be clear, I don't want to advertise this as the golden format. I work in tech
 so my resume's target audience is of course tech recruiters. That said, I
@@ -267,7 +267,7 @@ Here's a capture showing how the LaTeX above looks when compiled into a PDF:
 
 ![Resume as PDF](/posts/resumes-in-latex/resume_pdf.png#center)
 
-# Building the Resume
+# BUILDING THE RESUME
 
 LaTeX source can be compiled into various document formats. One of the most
 popular and appropriate for resumes is PDF. A frustrating aspect of working with
@@ -320,7 +320,7 @@ can call the `pdflatex` program from within the container to transform the
 pdflatex ivan_guerra_resume.tex
 ```
 
-# My Workflow
+# MY WORKFLOW
 
 I'll summarize my workflow in a couple of steps hopefully making it clear how
 the resume edit-compile-view cycle works.
@@ -339,7 +339,7 @@ the resume edit-compile-view cycle works.
    the updates instantly take effect.
 8. Back to (5).
 
-# Conclusion
+# CONCLUSION
 
 Writing a resume can be hard. You can ease the pain of formatting your resume
 using powerful tools such as LaTeX. In this article, I shared my LaTeX resume

@@ -1,5 +1,5 @@
 ---
-title: "Cross-Device Password Mgmt Using pass"
+title: "Cross-device Password Mgmt Using Pass"
 date: 2023-03-31T11:08:58-07:00
 description: "Managing passwords across Linux and Android devices using pass."
 tags: ["gnu", "password-mgmt"]
@@ -10,7 +10,7 @@ I can tell, I haven't been pwned[^1] just yet. That said, I wanted to give
 myself a better chance that if one of my accounts got hijacked, atleast my other
 accounts would be safe. I needed a password manager.
 
-# Finding a Password Manager
+# FINDING A PASSWORD MANAGER
 
 There's no shortage of password managers to choose from[^2]. To narrow down my
 search, I considered what devices I use and what my typical workflow looks like.
@@ -36,7 +36,7 @@ summary of the tool:
 could be met with use of the actively maintained Password Store app (more on
 that later).
 
-# Setting Up a GPG-ID
+# SETTING UP A GPG-ID
 
 [![GnuPG](/posts/cross-device-password-management/gnupg.png#center)][4]
 
@@ -56,7 +56,7 @@ to generate a 4096 bit RSA key:
 
 ![GPG Key Generation](/posts/cross-device-password-management/keygen.png#center)
 
-# Password Database Creation and Git Support
+# PASSWORD DATABASE CREATION AND GIT SUPPORT
 
 To initialize `pass`, call its init function with your public GPG key as the
 argument. You can find your key by running `gpg --list-keys`. In the screenshot
@@ -89,7 +89,7 @@ pass git init
 `pass` will automatically create commits whenever you add, edit, remove, etc.
 passwords via the `pass` CLI!
 
-# Password Generation and Storage
+# PASSWORD GENERATION AND STORAGE
 
 The whole reason I migrated to using `pass` was so I could generate and store
 strong passwords. `pass` has password generation built-in. To generate and store
@@ -147,7 +147,7 @@ Better yet, let `pass` copy the password to your clipboard:
 pass -c PASS_NAME
 ```
 
-# Beyond Passwords
+# BEYOND PASSWORDS
 
 If you take a look at the `.password-store` directory, you'll notice that
 passwords are stored in `*.gpg` files. That is, `pass` is basically encrypting a
@@ -170,7 +170,7 @@ to store secret data:
 pass insert --multiline misc/super_secret
 ```
 
-# Remotely Hosting the Password Database
+# REMOTELY HOSTING THE PASSWORD DATABASE
 
 Of course, before your can access your password database remotely you need to
 host it somewhere. Some people host their own git instances. I personally use
@@ -206,7 +206,7 @@ pass git push origin master
 After executing the above two commands, your remote instance will be synced with
 your local password database.
 
-# *pass* on Android
+# *pass* ON ANDROID
 
 [![Password
 Store](/posts/cross-device-password-management/password_store.png#center)][9]
@@ -256,7 +256,7 @@ Password Store is smart enough to show you not only passwords but any other
 secrets you may have hidden in the store (see [Beyond
 Passwords](#beyond-passwords))!
 
-# Conclusion
+# CONCLUSION
 
 Managing dozens of passwords isn't easy. Password managers are here to make the
 task more... manageable (BA DUM TSSS). You want your password manager to

@@ -1,4 +1,4 @@
-# Ivan Guerra's Website
+# IVAN GUERRA'S WEBSITE
 
 This is my personal website, where I post articles and other stuff, usually
 about coding. All the content you'll find here is extracurricular, so don't be

@@ -15,7 +15,7 @@ To be clear, this article walks through assigning USB **serial devices**
 persistent names. If you have a USB **block device** and would like to give it a
 persistent name, the ArchWiki[^1] has you covered.
 
-# USB Serial Device Name Binding Using *udev*
+# USB SERIAL DEVICE NAME BINDING USING *UDEV*
 
 The instructions below will work on a Linux distro that uses the `udev`[^2]
 device manager which is just about any modern distro. **`root` privileges will

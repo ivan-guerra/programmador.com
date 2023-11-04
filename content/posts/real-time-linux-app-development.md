@@ -1,5 +1,5 @@
 ---
-title: "Real-Time Linux App Development"
+title: "Real-time Linux App Development"
 date: 2023-04-27T22:49:14-07:00
 description: "A checklist for developing real-time applications in Linux."
 tags: ["c", "c++", "linux", "realtime"]
@@ -17,7 +17,7 @@ presentation: "A Checklist for Writing Linux Real-Time Applications"[^12]. We'll
 explore how to optimize a Linux system and application for real-time execution
 using John's handy real-time Linux development checklist.
 
-# Do I need a real-time system?
+# DO I NEED A REAL-TIME SYSTEM?
 
 Before you go down the relatively time consuming path of setting up a real-time
 Linux system, you might want to stop and ask yourself 'do I really need
@@ -60,7 +60,7 @@ kernel is not designed to guarantee deadlines. Ultimately, benchmarking and
 performance monitoring will be critical in knowing if your timing requirements
 are being met.
 
-# RT Kernel Patches
+# RT KERNEL PATCHES
 
 Our first step in standing up an RT Linux system involves applying a set of
 patches to the kernel which among other things makes the kernel fully
@@ -79,7 +79,7 @@ gzip -cd /path/to/patch-4.19.94-rt39.patch.gz | patch -p1 --verbose
 4. Verify there are no `*.rej` files in your linux source tree. The `*.rej`
    files indicate a patch was rejected[^5].
 
-# Kernel Configuration
+# KERNEL CONFIGURATION
 
 Getting the right kernel configuration is critical in reducing latency. Below
 is a table of the configurations you will want to enable/disable. See the config
@@ -99,7 +99,7 @@ option footnotes for more details.
 | `CONFIG_CPU_FREQ_GOV_SCHEDUTIL`        | OFF    | CPU Power Management -> CPU Frequency Scaling -> 'schedutil' cpufreq policy governor        |
 | `CONFIG_DEBUG`[^11]                    | OFF    | Kernel hacking -> *                                                                         |
 
-# Scheduling Policies
+# SCHEDULING POLICIES
 
 [![Linux Scheduling Policies](/posts/real-time-linux-app-development/scheduling.png#center)][13]
 
@@ -159,7 +159,7 @@ This setting cannot be baked into the kernel at compile time. You will have to
 repeat the above command everytime you reboot or write a boot script to clear it
 for you!
 
-# Isolating CPUs
+# ISOLATING CPUS
 
 On multicore systems, you can improve determinism by pinning tasks to specific
 cores. There's a couple ways to do this:
@@ -169,7 +169,7 @@ cores. There's a couple ways to do this:
   (including kernel tasks).
 * Set CPU affinity masks for routing HW interrupt handling.
 
-# Setting CPU Affinities
+# SETTING CPU AFFINITIES
 
 CPU affinities are a bitmask of the CPU(s) a task is allowed to run on. You can
 control CPU affinity down to the thread level. You can use the `taskset` utility
@@ -193,7 +193,7 @@ CPU_SET(1, &set);
 sched_setaffinity(pid, CPU_SETSIZE, &set);
 ```
 
-# Isolation via Kernel Boot Params
+# ISOLATION VIA KERNEL BOOT PARAMS
 
 The kernel provides two boot parameters to regulate CPU utilization:
 
@@ -213,7 +213,7 @@ CPUs. Note the difference between `isolcpus` and `maxcpus` is that in the case
 of `isolcpus`, Linux is still aware of the isolated CPUs and you are able to
 tell Linux to assign tasks to them.
 
-# Hardware Interrupt Affinities
+# HARDWARE INTERRUPT AFFINITIES
 
 When a hardware interrupt enters the system, **any** CPU may service that
 interrupt.  This can cause issues if the CPU your RT task is running on is
@@ -230,7 +230,7 @@ cannot perform this IRQ re-routing. After making a change in `smp_affinity`,
 always check that the setting stuck by querying
 `/proc/irq/<irq-number>/effective_affinity`!**
 
-# Beware of Caching
+# BEWARE OF CACHING
 
 When partitioning your tasks among the different cores, you have to take into
 consideration how caching is handled by your particular CPU. It may be the case
@@ -241,7 +241,7 @@ takeaway here is that you will want to look at the reference manual for your CPU
 to see how caches are utilized by the different cores in order to come up with a
 correct core-to-task assignment.
 
-# Memory Management
+# MEMORY MANAGEMENT
 
 [![Simplistic Virtual Address Space](/posts/real-time-linux-app-development/virtual-addr-space.png#center)][12]
 
@@ -269,7 +269,7 @@ There's a couple of tricks we can employ to avoid page faults:
 
 Lets look at each in a bit more detail.
 
-# Tuning glibc's `malloc`
+# TUNING GLIBC'S `MALLOC`
 
 glibc's `malloc` can request memory in more than one way.  Under the hood,
 `malloc` will by default make `mmap` calls to the kernel to get memory which is
@@ -299,7 +299,7 @@ disable this feature:
 mallopt(M_TRIM_THRESHOLD, -1);
 ```
 
-# Locking Allocated Pages
+# LOCKING ALLOCATED PAGES
 
 It's important that we lock all current and future pages of our processes'
 virtual address space to RAM. We can tell the kernel to do this using the
@@ -310,7 +310,7 @@ virtual address space to RAM. We can tell the kernel to do this using the
 mlockall(MCL_CURRENT | MCL_FUTURE);
 ```
 
-# Prefaulting
+# PREFAULTING
 
 To avoid page faults during runtime, we'll want to take the page faulting "hit"
 early on at application startup. To do that we'll prefault our heap. To do this
@@ -361,7 +361,7 @@ that forms that frame once. When the function returns, the pages that form the
 now 512kb stack space will remain since we previously locked down memory with
 `mlockall`.
 
-# Locking and Synchronization
+# LOCKING AND SYNCHRONIZATION
 
 Locks are important in any application that needs mutual exclusion.  When in
 need of mutual exclusion in an RT Linux app, always go with `pthread_mutex`! You
@@ -397,7 +397,7 @@ pthread_mutex_unlock(&lock);
 pthread_mutex_destroy(&lock);
 ```
 
-# Signaling
+# SIGNALING
 
 When it comes to signaling within or among RT applications, there are two
 approaches to consider:
@@ -451,7 +451,7 @@ pthread_cond_broadcast(&cond);
 pthread_mutex_unlock(&lock);
 ```
 
-# Clocks and Cyclic Tasks
+# CLOCKS AND CYCLIC TASKS
 
 When it comes to clocks in an RT app, you want to stick with the POSIX functions
 that allow clock specification (i.e., the `clock_*` family of functions). There
@@ -505,7 +505,7 @@ void cyclic_task_main(void)
 }
 ```
 
-# Evaluating a Real-Time System
+# EVALUATING A REAL-TIME SYSTEM
 
 Cyclictest[^16] is one of the best tools to use in evaluating your real-time
 system.  What is Cyclictest?
@@ -550,7 +550,7 @@ case latency detected. When interpreting this value, keep in mind that this is
 the worst latency that was **measured**. The measured maximum does not
 necessarily equal the system's worst case latency!
 
-# Conclusion
+# CONCLUSION
 
 In the world of embedded development, some applications have tight timing and
 scheduling requirements that necessitate the use of a real-time system. Linux

@@ -135,7 +135,7 @@ with the free block being reinserted into the list. Below is a graphic
 illustrating the process.
 
 ![First Fit
-Allocation](/posts/a-beginners-memory-allocator/allocation.svg#center)
+Allocation](/posts/a-beginners-memory-allocator/allocation.svg)
 
 In the diagram above, a user requests 99 bytes. The allocator performs a linear
 search through its free list until it finds the first block that can
@@ -199,7 +199,7 @@ makes a request for `n` bytes, we'll have to find space in our free list for
 Let's update our previous allocation drawing to include these new structures:
 
 ![Allocation with
-Metadata](/posts/a-beginners-memory-allocator/allocation-with-metadata.svg#center)
+Metadata](/posts/a-beginners-memory-allocator/allocation-with-metadata.svg)
 
 A couple of points worth noting in this updated drawing. On allocation, the 200
 byte block is now split into a 107 byte allocated block and 93 byte free block.
@@ -302,7 +302,7 @@ void* foo = allocator.Alloc(1024, 8);
 The graphic below shows the internals of the allocated block with alignment
 taken into account:
 
-![Aligned Allocation](/posts/a-beginners-memory-allocator/aligned-allocation.svg#center)
+![Aligned Allocation](/posts/a-beginners-memory-allocator/aligned-allocation.svg)
 
 You have your `MemBlockHeader` at the very tip of the block with address
 `0x7FFF0001`. While `MemBlockHeader` is 8 bytes long which would make you think

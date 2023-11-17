@@ -38,7 +38,7 @@ that later).
 
 # SETTING UP A GPG-ID
 
-[![GnuPG](/posts/cross-device-password-management/gnupg.png#center)][4]
+[![GnuPG](/posts/cross-device-password-management/gnupg.png)][4]
 
 To work with `pass`, you need a gpg-id. I actually had a gpg-id I used to sign
 my git commits, so I went ahead with using that ID. If you need to make an ID,
@@ -54,7 +54,7 @@ to generate a 4096 bit RSA key:
 7. Enter a secure password[^4].
 8. Enter `gpg --list-keys` to view your newly minted key.
 
-![GPG Key Generation](/posts/cross-device-password-management/keygen.png#center)
+![GPG Key Generation](/posts/cross-device-password-management/keygen.png)
 
 # PASSWORD DATABASE CREATION AND GIT SUPPORT
 
@@ -209,7 +209,7 @@ your local password database.
 # *pass* ON ANDROID
 
 [![Password
-Store](/posts/cross-device-password-management/password_store.png#center)][9]
+Store](/posts/cross-device-password-management/password_store.png)][9]
 
 One of my [requirements](#finding-a-password-manager) for a password manager was
 that it have Android support. `pass` is just a Unix password management

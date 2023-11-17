@@ -34,7 +34,7 @@ the output GPIO that drives the LED to an input GPIO on the peer board! Below is
 a sketch of the setup:
 
 
-![High Level Design](/posts/gpio-driven-synchronization/high-level-overview.png#center)
+![High Level Design](/posts/gpio-driven-synchronization/high-level-overview.png)
 
 Each BBB would host two processes: `gtimer` and `gsync`. The `gtimer` process
 monitors an input GPIO. `gtimer` blocks on the GPIO waiting for a rising edge
@@ -42,7 +42,7 @@ event. When the input GPIO goes high, `gtimer` logs the time when the signal
 arrived in shared memory. Here's a flowchart showing how `gtimer` does its
 thing:
 
-![gtimer State Machine](/posts/gpio-driven-synchronization/gtimer-state-machine.png#center)
+![gtimer State Machine](/posts/gpio-driven-synchronization/gtimer-state-machine.png)
 
 `gsync` is what was described above as the blink program. `gsync` runs at a
 configurable rate, in this case 1Hz. `gsync` will immediately signal to its peer
@@ -53,7 +53,7 @@ its next wakeup time. If all goes well, on our next wakeup we'll be closer to
 phase locking with the peer. Here's a flowchart showing how `gsync` works:
 
 
-![gsync State Machine](/posts/gpio-driven-synchronization/gsync-state-machine.png#center)
+![gsync State Machine](/posts/gpio-driven-synchronization/gsync-state-machine.png)
 
 The best&trade; implementation of `gsync` and `gtimer` is not immediately
 obvious.  However, the hardware setup is pretty straighforward so lets look at
@@ -72,7 +72,7 @@ good candidate because
 
 The circuit I built looks like what's shown below:
 
-![Sync Circuit](/posts/gpio-driven-synchronization/gsync-circuit.jpg#center)
+![Sync Circuit](/posts/gpio-driven-synchronization/gsync-circuit.jpg)
 
 I chose `P9_15` as the input GPIO and `P9_23` as the output GPIO. Notice that
 the input and output GPIOs cross. **That is, BBB1's output GPIO is BBB2's input
@@ -288,7 +288,7 @@ of one computer's signal versus the other's. I experimented with a number of
 different rates starting at 1Hz and ramping up to about 500Hz in increments of
 50Hz. Below is a histogram of the time deltas for the 100Hz run:
 
-![100Hz Run](/posts/gpio-driven-synchronization/100hz-0.5.png#center)
+![100Hz Run](/posts/gpio-driven-synchronization/100hz-0.5.png)
 
 With about 20,000 samples, the average delay was ~100 usec. More interesting
 than the average is the absolute maximum delay which was rougly 572 usec. These
@@ -298,7 +298,7 @@ Hertz.
 Beyond the 400Hz run rate, I started to see some oddball results. Below is a
 capture of a 500Hz run:
 
-![500Hz Run](/posts/gpio-driven-synchronization/500hz-0.5.png#center)
+![500Hz Run](/posts/gpio-driven-synchronization/500hz-0.5.png)
 
 The average delta was still roughly 100 usec. The maximum delta saw huge spikes
 around 2.7 ms. Worse yet, these were more than just a few outliers, there were

@@ -82,7 +82,7 @@ struct HuffmanNode {
 
 Here's a picture of a Huffman Tree for the input text `aaaaabbc`:
 
-!["aaaaabbc" Huffman Tree](/posts/huffman-coding/huffman-tree2.png#center)
+!["aaaaabbc" Huffman Tree](/posts/huffman-coding/huffman-tree2.png)
 
 There are two types of nodes in the tree: internal nodes and leaf nodes.  The
 leaf nodes of a Huffman Tree contain an input character and its frequency
@@ -327,7 +327,7 @@ given is a Huffman coded file.
 
 Here's how that header might look like in memory:
 
-![Huffman Header](/posts/huffman-coding/huffman-header.png#center)
+![Huffman Header](/posts/huffman-coding/huffman-header.png)
 
 Below is the header write code in all its glory:
 

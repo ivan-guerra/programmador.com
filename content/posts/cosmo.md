@@ -15,7 +15,7 @@ the world of x86 emulators, NASM assembler, and architecure reference manuals.
 
 # GETTING THE RIGHT RESOURCES
 
-[![Little Book About OS Development](/posts/cosmo/lbaod.png#center)][2]
+[![Little Book About OS Development](/posts/cosmo/lbaod.png)][2]
 
 I knew I wasn't going to get very far without the right references and
 resources. Early on, I found the OSDev wiki[^1]. The OSDev wiki audience is in
@@ -88,7 +88,7 @@ the output binaries to have user/group `root`).
 
 # BOCHS EMULATION
 
-[![Bochs IA-32 Emulator](/posts/cosmo/bochs.png#center)][6]
+[![Bochs IA-32 Emulator](/posts/cosmo/bochs.png)][6]
 
 I needed an emulator in which to run my OS. The OSDev wiki gives a nice summary
 table comparing the different emulators available[^6]. I decided to go with
@@ -203,7 +203,7 @@ Makefile generation was as simple as calling `cmake` with the
 
 # GENERATING AN OS ISO
 
-[![GNU Grub](/posts/cosmo/grub.png#center)][17]
+[![GNU Grub](/posts/cosmo/grub.png)][17]
 
 When we run our OS under Bochs, it's as if we were putting a CD with our OS ISO
 image in a computer. The output of the Cosmo OS build system is a `kernel.elf`

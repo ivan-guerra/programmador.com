@@ -25,7 +25,7 @@ except those occupied by the snake. The snake is made up of one or more adjacent
 tiles with no more than two tiles being adjacent to one another.  Shown below is
 a target (red diamond) and snake made up of 13 tiles.
 
-![Snake Objects](/posts/snake-in-the-terminal/snake-objects.png#center)
+![Snake Objects](/posts/snake-in-the-terminal/snake-objects.png)
 
 To win the game, the snake must cover all tiles that make up the play arena.
 Each time the snake's head intersects or "eats" a target, the snake grows in
@@ -483,7 +483,7 @@ values.
 
 Here's what the start screen looks like when rendered:
 
-![Start Screen](/posts/snake-in-the-terminal/snake.png#center)
+![Start Screen](/posts/snake-in-the-terminal/snake.png)
 
 Nothing fancy. The up/down arrow keys are used to navigate the mode menu. ENTER
 is used to make a selection.
@@ -556,7 +556,7 @@ void DrawGameOverScreen(const snake::game::SnakeGame& game) {
 
 And the final result...
 
-![Game Over Screen](/posts/snake-in-the-terminal/game-over.png#center)
+![Game Over Screen](/posts/snake-in-the-terminal/game-over.png)
 
 # THE GAME SCREEN
 
@@ -619,7 +619,7 @@ void DrawSnakeScreen(const snake::game::SnakeGame& game) {
 
 And the rendering...
 
-![Game Screen](/posts/snake-in-the-terminal/game-screen.png#center)
+![Game Screen](/posts/snake-in-the-terminal/game-screen.png)
 
 # PUTTING IT ALL TOGETHER
 

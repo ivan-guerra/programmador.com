@@ -265,7 +265,7 @@ text editor or LaTeX IDE:
 
 Here's a capture showing how the LaTeX above looks when compiled into a PDF:
 
-![Resume as PDF](/posts/resumes-in-latex/resume_pdf.png#center)
+![Resume as PDF](/posts/resumes-in-latex/resume_pdf.png)
 
 # BUILDING THE RESUME
 

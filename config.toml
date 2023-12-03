@@ -2,6 +2,7 @@ baseURL = "https://programmador.com/"
 theme = "hugo-theme-console"
 title = "ieg"
 languageCode = "en"
+googleAnalytics = "G-XEENY573SL"
 
 [params]
   titleCutting = false

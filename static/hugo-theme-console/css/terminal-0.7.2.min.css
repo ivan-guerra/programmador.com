@@ -55,9 +55,12 @@ h6,
 
 a {
   cursor: pointer;
-  font-weight: bold;
-  color: var(--primary-color);
+  color: #3273dc;
   text-decoration: underline;
+}
+
+a:visited {
+  color: #8b6fcb;
 }
 
 em {

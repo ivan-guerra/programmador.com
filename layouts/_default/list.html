@@ -9,7 +9,7 @@
   <ul>
     {{ range where .Pages "Section" "posts"}}
     <li>
-      {{ .Date.Format "2006-01-02" }}: <a href="{{ .Permalink }}">{{ .Title }}</a>
+      <i>{{ .Date.Format "2006-01-02" }}</i> &emsp; <a href="{{ .Permalink }}">{{ .Title }}</a>
     </li>
     {{ end }}
     {{ range where .Pages "Section" "!=" "posts"}}

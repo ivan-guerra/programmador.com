@@ -1,11 +1,11 @@
 {{ define "main" }}
 {{ .Content }}
 
-<h1>ARTICLES</h1>
+<h1>POSTS</h1>
 <ul style="list-style-type:none;padding-left:0px;">
   {{ range ( where .Site.RegularPages "Type" "posts" ) }}
   <li>
-    {{ .Date.Format "2006/01/02" }}: <a href="{{ .Permalink }}">{{ .Title }}</a>
+    <i>{{ .Date.Format "2006-01-02" }}</i> &emsp; <a href="{{ .Permalink }}">{{ .Title }}</a>
   </li>
   {{ end }}
 </ul>

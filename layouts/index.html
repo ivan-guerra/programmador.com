@@ -1,7 +1,8 @@
 {{ define "main" }}
 {{ .Content }}
 
-<h1>POSTS</h1>
+<hr>
+
 <ul style="list-style-type:none;padding-left:0px;">
   {{ range ( where .Site.RegularPages "Type" "posts" ) }}
   <li>

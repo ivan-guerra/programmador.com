@@ -229,6 +229,10 @@ int main() {
 The main loop continuously draws the screensaver with a delay in between
 updates. If the user presses any key, the application exits.
 
+Here's what the screensaver looks like in action:
+
+![Binary Rain](/posts/binary-rain/neo.gif)
+
 ## Conclusion
 
 Making the `neo` screensaver had its challenges. In particular, this was one of

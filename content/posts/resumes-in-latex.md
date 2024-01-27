@@ -30,12 +30,14 @@ Here's the template in all its glory. Add, remove, and edit as needed in your
 text editor or LaTeX IDE:
 
 ```latex
-\documentclass[10pt,letterpaper]{article}
+\documentclass[11pt,letterpaper]{article}
 
 \usepackage{enumitem}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[paper=letterpaper,margin=1in]{geometry}
 \usepackage{hyperref}
+\usepackage{mathptmx}
+
 \hypersetup{
     pdfcreator={Ivan Guerra},
     pdfproducer={Ivan Guerra},
@@ -48,216 +50,215 @@ text editor or LaTeX IDE:
 }
 
 \begin{document}
-\newgeometry{top=0.25in, bottom=0.25in, right=0.4in, left=0.4in}
+\newgeometry{top=0.25in, bottom=0.25in, right=0.5in, left=0.5in}
 
 \hrule
 \begin{center}
-    \begin{LARGE}
-        \textbf{Ivan Eduardo Guerra}
-    \end{LARGE}
+	\begin{LARGE}
+		\textbf{Ivan Eduardo Guerra}
+	\end{LARGE}
 \end{center}
 \hrule
 
 \medskip
 
-\begin{minipage}[t]{0.53\textwidth}
-    \begin{flushleft}
-        \textbf{Contact Information:}\\
-        3344 S Canfield Ave \#207\\
-        Los Angeles, CA 90034\\
-        Mobile Phone \#: (580) 341-8882\\
-        E-mail:
-            \href{mailto:ivan.eduardo.guerra@gmail.com}{ivan.eduardo.guerra@gmail.com}
-    \end{flushleft}
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{flushleft}
+		\textbf{Contact Information:}\\
+		Location: Los Angeles, CA\\
+		Mobile Phone \#: (580) 341-8882\\
+		E-mail:
+		\href{mailto:ivan.eduardo.guerra@gmail.com}{ivan.eduardo.guerra@gmail.com}
+	\end{flushleft}
 \end{minipage}
-\begin{minipage}[t]{0.44\textwidth}
-    \begin{flushright}
-        \begin{flushleft}
-            \textbf{Social Media:}\\
-            Personal Site: \url{www.programmador.com}\\
-            GitHub: \url{www.github.com/ivan-guerra}\\
-            LinkedIn: \url{www.linkedin.com/in/ivan-guerra}
-        \end{flushleft}
-    \end{flushright}
+\begin{minipage}[t]{0.46\textwidth}
+	\begin{flushright}
+		\begin{flushleft}
+			\textbf{Social Media:}\\
+			Personal Site: \url{www.programmador.com}\\
+			GitHub: \url{www.github.com/ivan-guerra}\\
+			LinkedIn: \url{www.linkedin.com/in/ivan-guerra}
+		\end{flushleft}
+	\end{flushright}
 \end{minipage}
 
 \medskip
 
 \begin{large}
-    \textbf{Professional Experience}
+	\textbf{Professional Experience}
 \end{large}
 
-\smallskip \hrule \smallskip
+\smallskip \hrule \medskip
 
 \begin{minipage}[t]{0.53\textwidth}
-    \begin{flushleft}
-        \textbf{Northrop Grumman - Aeronautics Systems}\\
-        \textbf{\textit{Principal Embedded Software Eng. (Active DoD Secret)}}\\
-    \end{flushleft}
+	\begin{flushleft}
+		\textbf{Northrop Grumman - Aeronautics Systems}\\
+		\textbf{\textit{Principal Software Engineer (Active DoD Secret)}}\\
+	\end{flushleft}
 \end{minipage}
-\begin{minipage}[t]{0.44\textwidth}
-    \begin{flushright}
-        \textbf{September 2019 - Present}
-    \end{flushright}
+\begin{minipage}[t]{0.43\textwidth}
+	\begin{flushright}
+		\textbf{September 2019 - Present}
+	\end{flushright}
 \end{minipage}
 
 \begin{itemize}[noitemsep,topsep=0pt]
-    \setlength\itemsep{0.2em}
-    \item Successfully led a team of four in the development of an Engine
-          Control Unit (ECU) for an Unmanned Air Vehicle.
-    \item Implemented a scalable Cross Channel Data Link on RTLinux providing
-          redundancy on a number of vehicle sensor inputs.
-    \item Created Linux and Windows device drivers for a variety of sensors
-          including IMUs, air data computers, and motor controllers.
-    \item Redesigned the codebase build system to use CMake allowing for
-          cross-platform build and test of product source code.
-    \item Reduced the time to deploy on new hardware by using Docker to
-          containerize common application code.
+	\setlength\itemsep{0.2em}
+	\item Led a team of 3 in the development of a Cross Channel Data Link in
+	      a real-time Linux environment reducing the probability of unmanned
+	      air vehicle loss of control by over 10\%.
+	\item Accelerated the development of multiple vehicles by creating
+	      reusable Linux and Windows device drivers for a variety of sensors
+	      including inertial measurement units, air data computers, and motor
+	      controllers.
+	\item Configured and benchmarked real-time Linux systems on both consumer
+	      and proprietary hardware solutions. Bechmark results drove the
+	      selection of safety critical vehicle components.
+	\item Negotiated with suppliers on the software specifications for the next
+	      generation of flight control computers used in low cost UAV
+	      demonstrators. These UAV demonstrators would drive the capture of
+	      future contracts.
+	\item Designed and implemented a vehicle hardware in the loop testbench
+	      setup reducing flight test risk and providing a means to regression
+	      test the system.
 \end{itemize}
 
 \medskip
 
 \begin{minipage}[t]{0.53\textwidth}
-    \begin{flushleft}
-        \textbf{Raytheon - Space and Airborne Systems}\\
-        \textbf{\textit{Software Engineer II}}\\
-    \end{flushleft}
+	\begin{flushleft}
+		\textbf{Raytheon - Space and Airborne Systems}\\
+		\textbf{\textit{Software Engineer II}}\\
+	\end{flushleft}
 \end{minipage}
-\begin{minipage}[t]{0.44\textwidth}
-    \begin{flushright}
-        \textbf{June 2017 - September 2019}
-    \end{flushright}
+\begin{minipage}[t]{0.43\textwidth}
+	\begin{flushright}
+		\textbf{June 2017 - September 2019}
+	\end{flushright}
 \end{minipage}
 
 \begin{itemize}[noitemsep,topsep=0pt]
-    \setlength\itemsep{0.2em}
-    \item Implemented an air vehicle software instrumentation API in C++
-          that allowed the replay of software events post flight.
-    \item Improved laser deconfliction system by implementing SAT location
-          caching. The average time to detect an unwanted laser intersection
-          with a satellite improved by an order of magnitude.
-    \item Built a Jenkins CI pipeline to isolate faults and give developers
-          early feedback on code changes.
+	\setlength\itemsep{0.2em}
+	\item Reduced the time needed to identify software defects during flight
+	      tests by implementing an air vehicle software instrumentation API in
+	      C++.
+	\item Improved laser deconfliction system by implementing SAT location
+	      caching. The average time to detect an unwanted laser intersection
+	      with a satellite improved by an order of magnitude.
+	\item Built a Jenkins CI pipeline to isolate faults and give developers
+	      early feedback on code changes.
 \end{itemize}
 
 \medskip
 
 \begin{minipage}[t]{0.53\textwidth}
-    \begin{flushleft}
-        \textbf{ExxonMobil - Data and Information Systems}\\
-        \textbf{\textit{Intern Applications Engineer}}\\
-    \end{flushleft}
+	\begin{flushleft}
+		\textbf{ExxonMobil - Data and Information Systems}\\
+		\textbf{\textit{Intern Applications Engineer}}\\
+	\end{flushleft}
 \end{minipage}
-\begin{minipage}[t]{0.44\textwidth}
-    \begin{flushright}
-        \textbf{May 2016 - August 2016}
-    \end{flushright}
+\begin{minipage}[t]{0.43\textwidth}
+	\begin{flushright}
+		\textbf{May 2016 - August 2016}
+	\end{flushright}
 \end{minipage}
 
 \begin{itemize}[noitemsep,topsep=0pt]
-    \setlength\itemsep{0.2em}
-    \item Created a tool for automatically generating optimal chemical cargo
-          configurations.
-    \item Reduced the probability of chemical payload contamination by
-          implementing a cargo management UI to control cargo allocation
-          across multiple vessels.
+	\setlength\itemsep{0.2em}
+	\item Created a tool for automatically generating optimal chemical cargo
+	      configurations.
+	\item Reduced the probability of chemical payload contamination by
+	      implementing a cargo management UI to control cargo allocation
+	      across multiple vessels.
 
 \end{itemize}
 
 \medskip
 
 \begin{large}
-    \textbf{Education}
+	\textbf{Education}
 \end{large}
 
-\smallskip \hrule \smallskip
+\smallskip \hrule \medskip
 
 \begin{minipage}[t]{0.5\textwidth}
-    \begin{flushleft}
-        \textbf{University of Oklahoma: Norman, OK}\\
+	\begin{flushleft}
+		\textbf{University of Oklahoma: Norman, OK}\\
 
-    \end{flushleft}
+	\end{flushleft}
 \end{minipage}
-\begin{minipage}[t]{0.47\textwidth}
-    \begin{flushright}
-        \textbf{Fall 2013 - Spring 2017}
+\begin{minipage}[t]{0.46\textwidth}
+	\begin{flushright}
+		\textbf{Fall 2013 - Spring 2017}
 
-    \end{flushright}
+	\end{flushright}
 \end{minipage}
 \begin{itemize}[topsep=0pt]
-    \setlength\itemsep{0.2em}
-    \item B.S.E. in Computer Science with minors in Mathematics and Spanish;
-          Overall GPA: \textbf{3.95}/{4.00}
-    \item Graduate Coursework: Algorithms;
-                               Advanced Databases;
-                               Computational Complexity;
-                               Cryptography;
-                               Discrete Optimization
+	\setlength\itemsep{0.2em}
+	\item B.S.E. in Computer Science with minors in Mathematics and Spanish;
+	      Overall GPA: \textbf{3.95}/{4.00}
 \end{itemize}
 
 \medskip
 
 \begin{large}
-    \textbf{Technical Projects}
+	\textbf{Languages and Technologies}
 \end{large}
 
-\smallskip \hrule \smallskip
+\smallskip \hrule \medskip
 
 \begin{itemize}[topsep=0pt]
-    \setlength\itemsep{0.2em}
-    \item \textbf{Gsync} (2023). GPIO driven synchronization on a real-time
-                                 Linux system. C/C++, Bash
-    \item \textbf{Cosmo} (2022). Custom x86 operating system written from
-                                 scratch. C/C++, x86 ASM, Bash
-    \item \textbf{Lesion Map Prediction} (2021). A rat brain lesion map
-                                                 prediction tool using neural
-                                                 networks.
-                                                 Python, TensorFlow, Keras
-    \item \textbf{Classification Utils} (2021). Tools for experimenting with
-                                                hyperparameter tuning machine
-                                                learning classification models.
-                                                Python, scikit-learn
+	\setlength\itemsep{0.2em}
+	\item \textbf{Languages}: C/C++ (proficient),
+	      Python (proficient),
+	      Bash (proficient),
+	      Rust (competent)
+	\item \textbf{Tools and Platforms}: Linux,
+	      Realtime Linux,
+	      Embedded ARM,
+	      FreeRTOS,
+	      Docker,
+	      GoogleTest,
+	      CMake,
+	      Git,
+	      Subversion,
+	      Atlassian Stack
+	\item \textbf{Protocols and Standards}: UART,
+	      I2C,
+	      SPI,
+	      CAN,
+	      PWM,
+	      RS422/485,
+	      TCP/UDP,
+	      MIL-1553,
+	      ARINC 429,
+	      WOSA,
+	      STANAG 4586,
+	      UCI
 \end{itemize}
 
 \medskip
 
 \begin{large}
-    \textbf{Additional Experience and Awards}
+	\textbf{Technical Projects}
 \end{large}
 
-\smallskip \hrule \smallskip
+\smallskip \hrule \medskip
 
 \begin{itemize}[topsep=0pt]
-    \setlength\itemsep{0.2em}
-    \item \textbf{Hypercube Scholar Award}: Named a Hypercube Scholar for
-          outstanding undergraduate research in computational biology.
-    \item \textbf{Teaching Assistant} (Spring 2017): Teaching assistant for a
-          graduate course in cryptography; advised 33 students.
-\end{itemize}
-
-\medskip
-
-\begin{large}
-    \textbf{Languages and Technologies}
-\end{large}
-
-\smallskip \hrule \smallskip
-
-\begin{itemize}[topsep=0pt]
-    \setlength\itemsep{0.2em}
-    \item \textbf{Languages}: C/C++ (proficient),
-                              Python (proficient),
-                              Bash (proficient),
-                              Java (competent)
-    \item \textbf{Tools and Platforms}: Linux/RTLinux,
-                                        FreeRTOS,
-                                        Docker,
-                                        Jenkins CI,
-                                        Google Test,
-                                        CMake,
-                                        Git,
-                                        Subversion,
-                                        Atlassian Stack
+	\setlength\itemsep{0.2em}
+	\item \textbf{\href{https://github.com/ivan-guerra/gsync.git}{gsync}}
+	      (2023). GPIO driven synchronization on a real-time Linux system. C/C++,
+	      Bash
+	\item \textbf{\href{https://github.com/ivan-guerra/steganography.git}{steganography}}
+	      (2023). An image based steganography command line tool. C++, Boost
+	\item \textbf{\href{https://github.com/ivan-guerra/cpplox.git}{cpplox}}
+	      (2022). A C++ implementation of the Lox programming language. C++,
+	      Python
+	\item \textbf{
+		      \href{https://github.com/ivan-guerra/cosmo.git}{cosmo}}
+	      (2022). Custom x86 operating system written from scratch. C/C++, x86
+	      ASM, Bash
 \end{itemize}
 
 \end{document}

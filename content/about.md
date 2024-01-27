@@ -1,5 +1,5 @@
 ---
-title: "ABOUT"
+title: "About"
 date: 2022-01-18T23:40:09-07:00
 tags: ["about"]
 ---
@@ -14,7 +14,7 @@ capabilities of an aircraft.
 This blog is about the different development projects I take on in my spare
 time.
 
-# CONTACT
+## Contact
 
 **Email**: [ivan.eduardo.guerra@gmail.com](mailto:ivan.eduardo.guerra@gmail.com)<br>
 **GPG Key**: [ieg.gpg][1]<br>

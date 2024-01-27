@@ -194,6 +194,10 @@ pre code {
   white-space: nowrap;
 }
 
+.terminal-prompt a:visited {
+  color: #3273dc;
+}
+
 .terminal-prompt::before {
   content: "> ";
 }

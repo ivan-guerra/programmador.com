@@ -9,7 +9,7 @@ While developing the `kbhell`[^1] application, I realized I was about 90% of the
 way to writing a keylogger. I decided to finish the job off and write a proper,
 cross platform keylogger that would capture the victim's every keystroke.
 
-# THE REQUIREMENTS
+## The Requirements
 
 So there's the very obvious requirement of capturing user keystrokes. That said,
 once you think about the fact that keyboards have different layouts, there are
@@ -36,7 +36,7 @@ I settled on the following requirements:
 In the next few sections, we'll look at these requirements in more detail and
 discuss their implementation.
 
-# CAPTURING KEYPRESSES
+## Capturing Keypresses
 
 I won't dwell on this topic too long since it is already explained with code
 samples in the "Keyboard Hell"[^1] article. The basic idea is that we can use
@@ -51,7 +51,7 @@ recorded. The latter detail is limiting in that we won't be able to completely
 playback the victim's key history. That said, we can still analyze the output to
 find password, emails, usernames, etc.
 
-# RECORDING MODES
+## Recording Modes
 
 Based on our initial requirements, we want to support two recording modes: text
 and network. Text mode captures character data to a plaintext file on the
@@ -169,7 +169,7 @@ The `NetworkRecorder` uses a wrapper around a Linux/Windows UDP socket to
 transmit data. You can look at the UDP wrapper source[^4] to get the full
 details.
 
-# CONFIGURATION
+## Configuration
 
 My first thought when it came to configuration was to just pass in commandline
 args as usual. However, when you think about the deployment use cases for a
@@ -213,7 +213,7 @@ this value too low and the keylogger might be a bit too noisey (i.e., produce a
 lot of net traffic or disk IO overhead). Set it too high and you won't see
 potentially any data transmitted. The sweet spot is upto the attacker to decide.
 
-# CONCLUSION
+## Conclusion
 
 Below is a demo showing `keylogger` in action on a Linux system.
 

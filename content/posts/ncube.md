@@ -14,7 +14,7 @@ was a good opportunity to learn something new. I settled on developing a simple
 ncurses[^2] application that would render a cube and allow the user to rotate it
 using the arrow keys. Easy enough right...
 
-# PERSPECTIVE PROJECTION AND ROTATION MATRICES
+## Perspective Projection and Rotation Matrices
 
 So how do you take an object in 3D space and visualize it in 2D space? The
 answer is perspective projection. I watched many videos that explained the
@@ -125,7 +125,7 @@ For each point we perform the following steps:
 The output of `RotateAndProject3Dto2D()` is a collection of 2D points that when plotted
 on the screen will show the cube projected and rotated. 
 
-# DRAWING THE LINE
+## Drawing the Line
 
 My cube representation isn't much different than what I had seen others do on
 similar projects (i.e., a collection of 3D points defining the vertices of the
@@ -209,7 +209,7 @@ the image below, I've run the application with the number of edge points set to
 
 Not the prettiest cube in the world, but much easier to make out than before!
 
-# CONCLUSION
+## Conclusion
 
 Below is a demo showing the `ncube` application in action:
 

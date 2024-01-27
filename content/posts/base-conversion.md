@@ -17,7 +17,7 @@ To ease the pain, I decided to write a command line utility that would allow me
 to convert between positive binary, decimal, octal, and hexadecimal numbers of
 arbitrary size.
 
-# THE REQUIREMENTS
+## The Requirements
 
 My use case is simple: take a positive integer in one base and convert it to the
 equivalent value in another base. That's it. I don't want to support negative
@@ -56,7 +56,7 @@ numbers outside the range of a `uint64_t` without breaking a sweat.
 Lets look at how `dhb` meets each of these requirements starting with that
 bignum requirement.
 
-# BIG, HUGE NUMBERS
+## Big, Huge Numbers
 
 If you're familiar with C++, you know the range of positive integers a program
 can work with is finite. There's no standard "big number" library either. To get
@@ -78,7 +78,7 @@ rolling with GMP.
 
 In this next section, we'll get to see GMP in action.
 
-# CONVERSIONS
+## Conversions
 
 The only info we need to perform a conversion is the number, that number's
 current base, and a target base. The conversion API accomodates this spec using
@@ -124,7 +124,7 @@ given an unsupported base argument. I get around that by having the caller
 specify bases using a `NumSystem` type which I know can be cast to one of the
 bases the `mpz_class` constructor supports.
 
-# FORMATTING OUTPUT
+## Formatting Output
 
 Looking back at our requirements, we have two formatting options to implement:
 minimum character width and digit grouping.
@@ -201,7 +201,7 @@ beautiful `std::accumulate` API to concatenate each string in `groups` using a
 single space as a seperator. The concatenated string is the output of the
 function.
 
-# TESTING THE IMPLEMENTATION
+## Testing the Implementation
 
 At this point, we have a working conversion utility! The rest of the
 implementation focuses on command line argument parsing and input validation.
@@ -233,7 +233,7 @@ Nice, looks to be working with big integers too.
 The project includes a more complete suite of tests that exercises all the
 different conversion permutations[^4].
 
-# CONCLUSION
+## Conclusion
 
 The `dhb` utility has been serving me well for the past few days. The process of
 implementing the tool was relatively straightforward. I credit the simplicity to

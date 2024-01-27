@@ -11,7 +11,7 @@ talk about why and how you would go about signing your Git commits. We'll be
 focused on commits but keep in mind that everything that is said equally applies
 to tags.
 
-# WHY SHOULD I SIGN MY COMMITS?
+## Why Should I Sign My Commits?
 
 Good question. The short answer is, signing your commits makes it harder for an
 attacker to impersonate you. Sure, if you work solo on rinky-dink toy projects
@@ -59,7 +59,7 @@ beyond the name, malicious changes can easily make it into a codebase.
 Cryptographic signatures are one way of combating these attacks while not adding
 tons of overhead.
 
-# CREATING A GPG KEY
+## Creating a GPG Key
 
 Convinced you need to sign your commits? Maybe not. Either way, I am now going to
 walk you through the process of minting your very own GPG key.
@@ -104,7 +104,7 @@ key:
 gpg --import private.gpg
 ```
 
-# TELL GIT TO SIGN COMMITS AND TAGS
+## Tell Git to Sign Commits and Tags
 
 Sometimes configuring Git is hard. Luckily, telling Git to sign your
 commits/tags is pretty easy.
@@ -151,7 +151,7 @@ Date:   Sat Jan 20 22:42:32 2024 -0800
     Add a GNU stow dotfile mgmt how to article.
 ```
 
-# ADD YOUR GPG KEY TO GITHUB
+## Add Your GPG Key to Github
 
 Yeah I know, GitHub is owned by the evil Micro$oft these days. That said, it's
 still the most popular code hosting site. If it helps, the steps described here
@@ -185,7 +185,7 @@ It's going to be pretty hard for an impersonator to get that little green
 verified widget to show up on their commits without stealing your private key
 first.
 
-# CONCLUSION
+## Conclusion
 
 Moral of the story, digital signatures make it easier for others to know it was
 really you who made that commit. Setting up a GPG key and associating it with

@@ -15,7 +15,7 @@ many kernel versions offered are variants that have had the `PREEMPT_RT` patches
 already applied! With Robert's build scripts and SD card in hand, I setoff to
 build and deploy my RT kernel for the BBB.
 
-# PREPPING THE SD CARD
+## Prepping the SD Card
 
 First things first, I needed to flash the latest BBB Debian image[^4] onto my SD
 card. I typically go for the latest Debian Console Image though the IoT image
@@ -38,7 +38,7 @@ sudo dd if=*.img of=/dev/sdb
 After mounting the first partition of the SD card, in my case `/dev/sdb1`, an
 `ls` command revealed the newly minted rootfs!
 
-# BUILDING THE KERNEL INSTALLER FILES
+## Building the Kernel Installer Files
 
 As mentioned previously, Robert's [`ti-linux-kernel-dev`][3] project lets us
 build a kernel with the RT patches applied. The output of a build is a
@@ -60,7 +60,7 @@ configuration:
 
 {{< youtube NrjXEaTSyrw >}}
 
-# INSTALLING THE KERNEL ON THE BBB
+## Installing the Kernel On the BBB
 
 Now, all that remains is installing the kernel on the BBB.
 
@@ -98,7 +98,7 @@ bit indicates that we are running a fully preemptible kernel!
 Linux beaglebone 5.10.162-ti-rt-r59 #1xross SMP PREEMPT_RT ...
 ```
 
-# CONCLUSION
+## Conclusion
 
 Depending on the requirements of the application you are developing, you may
 find a real-time kernel is necessary. Linux provides soft real-time capabilities

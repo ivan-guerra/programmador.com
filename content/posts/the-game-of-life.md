@@ -13,7 +13,7 @@ on GoL. The animations there really caught my eye. My AoC solutions along with
 the Wiki page motivated me to create a terminal app that would allow me to
 visualize my own GoL simulations.
 
-# RULES OF THE GAME 
+## Rules of the Game
 
 Step one was making sure I had the rules of the game down. The setup is pretty
 simple. You have an MxN grid of "cells". Each cell is always in one of two
@@ -33,7 +33,7 @@ The initial state of the game board dictates everything. You could have an
 initial configuration that never changes, oscillates between a few different
 shapes, and even ones that produce new shapes infinitely.
 
-# IMPLEMENTATION PLAN
+## Implementation Plan
 
 My goal was to visualize the GoL on my terminal screen. I'd use the entire
 terminal window as my MxN board. Each 1x1 square would represent a cell. An
@@ -55,7 +55,7 @@ screen are live:
 (xN, yN)
 ```
 
-# CORE GAME LOGIC
+## Core Game Logic
 
 There's many different ways of implementing the GoL "tick" function. I went the
 stupid simple route and decided to represent the game board as a 2D array of
@@ -142,7 +142,7 @@ Given the relatively small size of my game board, the algorithms above were
 sufficient for computing the next state of the board without causing any
 noticeable delays or egregious memory consumption on the host PC.
 
-# RENDERING THE BOARD 
+## Rendering the Board
 
 Ncurses made rendering the game board a breeze. The `mvaddchar()` function did
 all the heavy lifting of drawing characters at the appropriate X/Y locations. A
@@ -170,7 +170,7 @@ static void RunDrawLoop(const gol::graphics::ScreenDimension &dim,
 }
 ```
 
-# CONCLUSION
+## Conclusion
 
 Below is a video showing `life` in action. The initial state that's given forms
 what's called a Gosper Glider Gun.

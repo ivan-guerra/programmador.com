@@ -11,7 +11,7 @@ would sound if the encodings were played over my speakers. I then realized that
 I'd never worked with programming audio. The problem inspired me to create a
 Linux command-line utility for converting text to Morse audio/codes.
 
-# THE BASICS
+## The Basics
 
 Given that I've never physically seen a telegraph or played with HAM radios, my
 knowledge of Morse code was relatively limited. Like most my projects, this
@@ -31,7 +31,7 @@ to the discretion of the operator. This is actually a cool feature of Morse
 code. An experienced operator can shorten the duration of a dot which implies
 they can type more words per minute than an operator with a lengthier dot time.
 
-# TEXT TO CODE
+## Text to Code
 
 To kick things off, I first wanted to implement text to code translations. That
 is, given a string of characters, the translator would output the dots and
@@ -104,7 +104,7 @@ output code is appended to the `translation` string one at a time. It's not the
 most computationally efficient implementation, but it works for the primary use
 case of translating smallish (maybe a few kb) messages.
 
-# MAKING SOME NOISE
+## Making Some Noise
 
 My original thought was to be able to *hear* a word or sentence's encoding.
 With a translator of sorts already implemented, I just needed a way to play the
@@ -149,7 +149,7 @@ A complete description of how `Beeper` does its thing is worthy of a seperate
 post. I recommend checking out the original article[^7] if you are interested in
 the implementation details or peruse the `Beeper` implementation files[^8].
 
-# BEEP BEEEEEEP BEEP ...
+## Beep Beeeeeep Beep ...
 
 With all the ingredients in hand, it was time to code up the text to Morse audio
 portion of the translator:
@@ -196,7 +196,7 @@ values given in the [International Morse Code](#the-basics) pic. Each delay
 multiplier is multiplied against the dot duration before a call to `usleep()` is
 made within `Delay()` to insert a pause between sounds.
 
-# THE UI
+## The UI
 
 Surprise surprise, I made this translator another command line interface tool!
 The translator application is called `morse` and has the following usage:
@@ -236,7 +236,7 @@ number near `0`.
 
 {{< video src="/posts/morse-translator/morse.mp4" type="video/mp4" preload="auto" >}}
 
-# CONCLUSION
+## Conclusion
 
 Building a text to Morse code audio/code translator was an adventure. Morse code
 itself is relatively straightforward to understand with not many gotchas or edge

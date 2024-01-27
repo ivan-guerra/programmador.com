@@ -16,7 +16,7 @@ Now I had tried a couple of tools/scripts in the past to help with config
 management. The tools I had experimented with were either overly complicated for
 the simple task at hand and/or required a million dependencies to get installed.
 
-# ENTER GNU STOW
+## Enter GNU Stow
 
 About a year ago while lurking on HackerNews[^2], I came across a comment that
 mentioned GNU Stow[^3] for dotfile management. I took the plunge and decided to

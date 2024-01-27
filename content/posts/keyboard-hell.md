@@ -13,7 +13,7 @@ written to date. The thought was to play a silly soundbite everytime someone
 pressed a key anywhere on the desktop. I'd call this masterpiece Keyboard Hell
 or kbhell for short.
 
-# GETTING STARTED
+## Getting Started
 
 I wanted an app that would run on both Windows and Linux that could play a user
 specified audio file on global keypress events. Despite the simplicity of the
@@ -25,7 +25,7 @@ were two big problems to solve:
 
 Lets look at how to answer these questions starting with cross-platform audio.
 
-# SDL TO THE RESCUE
+## SDL to the Rescue
 
 I've had recent experience[^1] working with the Simple DirectMedia Layer
 (SDL)[^2] library. SDL in conjunction with the SDL_mixer[^3] library provides
@@ -58,7 +58,7 @@ reported as exceptions.
 With `WavPlayer` in hand, I had a cross-platform means of playing soundbites.
 All that remains is capturing global keypress events.
 
-# LISTENING FOR KEYBOARD EVENTS
+## Listening for Keyboard Events
 
 So this is where it got a little tricky. There is no cross-platform way to
 listen for *global* keypress events. Its OS specific. With that in mind, I made
@@ -89,7 +89,7 @@ function.
 
 Lets look at how to implement `RunEventLoop()` on each OS starting with Linux.
 
-# LINUX EVENT LOOP
+## Linux Event Loop
 
 On Linux, a display server program coordinates IO with the many client programs
 running on the desktop. The server is responsible for making the GUI possible.
@@ -173,7 +173,7 @@ trouble was in setting up the right structures so that we could register our
 callback (checkout the complete source linked at the end of the article if you
 are interested in those details). Lets look at how Windows compares.
 
-# WINDOWS EVENT LOOP
+## Windows Event Loop
 
 The Windows event loop was a doozy. The Windows API provides hooks[^6] as a
 mechanism for listening for general system messages including keyboard events.
@@ -269,7 +269,7 @@ While a bit more complicated in design than the Linux side driver, I didn't have
 to battle with finding documentation like I did with X11 making the Windows side
 code less painful to write.
 
-# CONCLUSION
+## Conclusion
 
 Let us bask in the glory of the end result:
 

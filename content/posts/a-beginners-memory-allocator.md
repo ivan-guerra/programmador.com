@@ -12,7 +12,7 @@ never considered writing my own allocator. Learning the theory is important, but
 nothing trumps hands on experience. To help demystify the topic further, I
 decided to write a basic Linux memory allocator.
 
-# THE INTERFACE
+## The Interface
 
 What kind of API did I want to provide? I decided to essentially keep the API
 identical to the `malloc()`/`free()` specification with two major deviations:
@@ -56,7 +56,7 @@ returned address.
 Lets explore the implementation of `Malloc` starting with construction and the
 `RegionSize()` method.
 
-# GETTING MEMORY
+## Getting Memory
 
 In Linux, there are two options we can explore for acquiring allocator memory:
 
@@ -123,7 +123,7 @@ are process private.
 Now we have a pool of memory from which we can service the user's `Alloc()`
 requests. Let's look at how to do just that.
 
-# ALLOCATE
+## Allocate
 
 There's a number of different strategies out there for managing a pool of free
 memory. For this project, I chose to take the most basic route which is
@@ -162,7 +162,7 @@ strategies look awesome or look terrible.
 Okay, so we got a free list with a first fit allocation strategy in mind. Lets
 look at how to implement this.
 
-# THE DATA STRUCTURES
+## The Data Structures
 
 We'll start with the free list structure:
 
@@ -281,7 +281,7 @@ swaps/arithmetic.
 
 Now, for the next piece of the allocation puzzle: address alignment.
 
-# ADDRESS ALIGNMENT
+## Address Alignment
 
 Address alignment is important when it comes to performance[^3]. Similar to
 `posix_memalign()`[^4], `Alloc()` returns a `alignment` aligned address where
@@ -373,7 +373,7 @@ uint8_t* alignment_byte_cnt_addr = reinterpret_cast<uint8_t*>(user_ptr) - 1;
 Allocation is just the first half of the story. Lets look at how to free
 allocated memory.
 
-# FREE
+## Free
 
 There are two problems to solve when it comes to freeing memory. First, we
 need a means of knowing how much memory to release back to the allocator.
@@ -486,7 +486,7 @@ entire list. You could probably combine them to get a single pass algorithm but
 the increased code complexity wasn't worth it for this "toy"  memory allocator
 implementation.
 
-# CONCLUSION
+## Conclusion
 
 That's it. With `Alloc()` and `Free()` implemented, we have a complete memory
 allocation utility! I did some unit testing using the GoogleTest framework

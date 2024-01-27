@@ -16,7 +16,7 @@ the info found in ["An Introduction to Modern CMake"][3]. That article has a lot
 of great info. My post is meant to summarize the bits relevant to using CMake
 with GoogleTest as a quick reference when setting up future projects.
 
-# BEFORE WE DIVE IN...
+## Before we dive in...
 
 I just wanted to share what I am assuming the directory structure of your
 project looks like. Obviously, you can structure your project however you like.
@@ -37,7 +37,7 @@ folders. For those unfamiliar, `extern/` is meant to house any external
 libraries your project includes. `test/` holds your unit tests in this case
 GoogleTest CPP files.
 
-# OPTION 1: SUBMODULE
+## Option 1: Submodule
 
 One way to include GoogleTest in your CMake project is to have it be a project
 submodule. Step one in doing that is settling on a GoogleTest release version
@@ -94,7 +94,7 @@ set_target_properties(gmock PROPERTIES FOLDER extern)
 set_target_properties(gmock_main PROPERTIES FOLDER extern)
 ```
 
-# OPTION 2: `FetchContent()`
+## Option 2: `FetchContent()`
 
 Perhaps a better, more modern way to bring GoogleTest into your CMake project
 is to use the `FetchContent` module introduced in CMake3.11. The advantage of
@@ -122,7 +122,7 @@ endif()
 `FetchContent` can take many additional arguments not shown here. Worth checking
 out the docs[^3] to get the full picture.
 
-# CONCLUSION
+## Conclusion
 
 To summarize, you can use Git submodules or CMake3.11+'s `FetchContent` module
 to smoothly integrate GoogleTest as part of your CMake project. `FetchContent`

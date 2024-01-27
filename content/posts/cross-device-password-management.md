@@ -10,7 +10,7 @@ I can tell, I haven't been pwned[^1] just yet. That said, I wanted to give
 myself a better chance that if one of my accounts got hijacked, atleast my other
 accounts would be safe. I needed a password manager.
 
-# FINDING A PASSWORD MANAGER
+## Finding a Password Manager
 
 There's no shortage of password managers to choose from[^2]. To narrow down my
 search, I considered what devices I use and what my typical workflow looks like.
@@ -36,7 +36,7 @@ summary of the tool:
 could be met with use of the actively maintained Password Store app (more on
 that later).
 
-# SETTING UP A GPG-ID
+## Setting Up a GPG ID
 
 [![GnuPG](/posts/cross-device-password-management/gnupg.png)][4]
 
@@ -56,7 +56,7 @@ to generate a 4096 bit RSA key:
 
 ![GPG Key Generation](/posts/cross-device-password-management/keygen.png)
 
-# PASSWORD DATABASE CREATION AND GIT SUPPORT
+## Password Database Creation and Git Support
 
 To initialize `pass`, call its init function with your public GPG key as the
 argument. You can find your key by running `gpg --list-keys`. In the screenshot
@@ -89,7 +89,7 @@ pass git init
 `pass` will automatically create commits whenever you add, edit, remove, etc.
 passwords via the `pass` CLI!
 
-# PASSWORD GENERATION AND STORAGE
+## Password Generation and Storage
 
 The whole reason I migrated to using `pass` was so I could generate and store
 strong passwords. `pass` has password generation built-in. To generate and store
@@ -147,7 +147,7 @@ Better yet, let `pass` copy the password to your clipboard:
 pass -c PASS_NAME
 ```
 
-# BEYOND PASSWORDS
+## Beyond Passwords
 
 If you take a look at the `.password-store` directory, you'll notice that
 passwords are stored in `*.gpg` files. That is, `pass` is basically encrypting a
@@ -170,7 +170,7 @@ to store secret data:
 pass insert --multiline misc/super_secret
 ```
 
-# REMOTELY HOSTING THE PASSWORD DATABASE
+## Remotely Hosting the Password Database
 
 Of course, before your can access your password database remotely you need to
 host it somewhere. Some people host their own git instances. I personally use
@@ -256,7 +256,7 @@ Password Store is smart enough to show you not only passwords but any other
 secrets you may have hidden in the store (see [Beyond
 Passwords](#beyond-passwords))!
 
-# CONCLUSION
+## Conclusion
 
 Managing dozens of passwords isn't easy. Password managers are here to make the
 task more... manageable (BA DUM TSSS). You want your password manager to

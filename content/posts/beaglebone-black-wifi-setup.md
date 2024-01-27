@@ -14,7 +14,7 @@ This article walks through the steps I followed to get connected. These
 instructions also apply to the BBB wireless variants (i.e., those BBBs with a
 wireless chip).
 
-# BEAGLEBONE BLACK WIFI CONFIGURATION
+## Beaglebone Black Wifi Configuration
 
 The steps below assume use of a supported wifi dongle on an official BBB image.
 **`root` or `sudo` access is required to execute these instructions!**

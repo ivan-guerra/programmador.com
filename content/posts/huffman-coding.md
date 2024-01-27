@@ -12,7 +12,7 @@ one of these or dealt with compression at all when I was in school. I figured
 it would be fun to write a small command line utility to compress/decompress a
 file using Huffman coding.
 
-# BREAKING IT DOWN INTO STEPS
+## Breaking It Down Into Steps
 
 This project started where most of my projects start: Wikipedia. The [Huffman
 Coding][1] wiki article gives a nice general breakdown with examples. In
@@ -28,7 +28,7 @@ structures were necessary in order to implement the big `Compress()` and
 We'll look at how to build up each structure and then discuss how they come
 together to implement `Compress()`/`Decompress()`.
 
-# CONSTRUCTING THE CHARACTER FREQUENCY MAP
+## Constructing the Character Frequency Map
 
 A key aspect of Huffman coding is the derivation of binary codes from the
 frequency of characters in the input file. **The length of a character's binary
@@ -61,7 +61,7 @@ The code above reads character data into the `read_buffer_` buffer in 1 kilobyte
 chunks. The `char_freqs_` map tracks the frequency of each character that is
 read.
 
-# GROWING A HUFFMAN TREE
+## Growing a Huffman Tree
 
 So we have our map of character frequencies. How do we use this frequency map to
 generate binary codes? There's an intermediate step. We need to represent our
@@ -156,7 +156,7 @@ void HuffmanCoding::BuildEncodingTree() {
 When the above routine terminates, `encoding_root_` will point to the root node
 of the Huffman Tree.
 
-# BUILDING A CODEBOOK
+## Building a Codebook
 
 It's the moment we've all been waiting for: code generation. You probably
 already guessed how this works. To generate a character's code, all we need to
@@ -199,7 +199,7 @@ because we can only write in units of bytes to an output file meaning we would
 have to pad the bit string with 5 zeroes on the right in order to form a
 complete second byte (i.e., `11111010 110` -> `11111010 11000000`).
 
-# COMPRESSION
+## Compression
 
 With our codebook in hand, compression boils down to converting an input stream
 into a coded bit stream. We write out the contents of the bit stream
@@ -296,7 +296,7 @@ You might have noticed a call to `WriteHeader()` in the code snippet above.
 We'll talk about what that's all about when we look at decompressing a file
 next.
 
-# DECOMPRESSION
+## Decompression
 
 If we for a moment assume we have the Huffman Tree used to compress a file
 available, decompressing the contents of the file requires only a tree
@@ -312,7 +312,7 @@ to know the following bits of information:
 * How to reconstruct the Huffman Tree.
 * How many characters were in original input file.
 
-# TWO BIRDS WITH ONE STONE
+## Two Birds With One Stone
 
 The easiest thing to do with regard to reconstructing the tree is to simply
 write out the character frequency table to the beginning of the file in a header
@@ -353,7 +353,7 @@ a compressed file's header, we can run our `BuildEncodingTree()` routine just as
 before. A quick sum of the frequencies in the `char_freqs_` maps reveals how
 many characters were in the original input.
 
-# DECODING DATA
+## Decoding Data
 
 I broke my implementation of the `Decompression()` routine into three seperate
 parts:
@@ -451,7 +451,7 @@ RetCode HuffmanCoding::Decompress(const std::string& compressed_filepath,
 }
 ```
 
-# CONCLUSION
+## Conclusion
 
 Putting all the above together, I was able to create a utility capable of
 compressing and decompressing any image, text, executable, etc. using Huffman

@@ -13,7 +13,7 @@ single process that would add two numbers and print the result to the screen.
 With that seemingly humble goal in mind, I set off on a month long journey into
 the world of x86 emulators, NASM assembler, and architecure reference manuals.
 
-# GETTING THE RIGHT RESOURCES
+## Getting the Right Resources
 
 [![Little Book About OS Development](/posts/cosmo/lbaod.png)][2]
 
@@ -34,7 +34,7 @@ links to resources for the topic at hand.
 Armed with these two resources and the power of the Internet, I was ready to get
 started.
 
-# SETTING UP THE TOOLCHAIN
+## Setting Up the Toolchain
 
 Before writing my first line of code, I had to get my toolchain stood up. Early
 on, I settled on developing for the x86 platform. I needed to create an x86 (AKA
@@ -86,7 +86,7 @@ container. The user related option, `-u ...`, is necessary to ensure all
 container writes use the host system's user permissions (i.e., I don't want all
 the output binaries to have user/group `root`).
 
-# BOCHS EMULATION
+## Bochs Emulation
 
 [![Bochs IA-32 Emulator](/posts/cosmo/bochs.png)][6]
 
@@ -119,7 +119,7 @@ com4:            enabled=1, mode=file, dev=./bochs_logs/com4.out
 For more information on `bochsrc` configurations, checkout the Bochs User
 Manual[^8].
 
-# CHOOSING AN ASSEMBLY AND PROGRAMMING LANGUAGE
+## Choosing an Assembly and Programming Language
 
 For my implementation, I rolled with using NASM Assembler[^9] and the C++
 programming language.
@@ -150,7 +150,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS}
         -fno-threadsafe-statics" CACHE INTERNAL "")
 ```
 
-# ON USING CMAKE AND SOURCE CODE ORGANIZATION
+## On Using CMake and Source Code Organization
 
 Stepping into an OS project, it seems implied that everything will be written in
 C and that you will inevitably have to write Makefiles to get it all building.
@@ -201,7 +201,7 @@ With all my target `CMakeLists.txt` scripted and a i686 toolchain in hand,
 Makefile generation was as simple as calling `cmake` with the
 `-DCMAKE_TOOLCHAIN_FILE` option set to point to the `i686-elf-gcc.cmake` script!
 
-# GENERATING AN OS ISO
+## Generating an OS ISO
 
 [![GNU Grub](/posts/cosmo/grub.png)][17]
 
@@ -225,7 +225,7 @@ off of. The tools and scripts are all packaged into the [dev
 container](#setting-up-the-toolchain) so there's no need to install them on the
 host PC.
 
-# PROGRESS REPORT
+## Progress Report
 
 I am sad to say I haven't yet hit my original goal of loading a program that
 adds two numbers and outputs the sum to the console. However, I am getting
@@ -246,7 +246,7 @@ Below is a table listing what has been implemented in Cosmo OS and what remains:
 | Virtual Memory Manager             | N         |
 | User Mode Process                  | N         |
 
-# CONCLUSION
+## Conclusion
 
 Writing your own OS, even a primitive one, is a daunting task. Thankfully, there
 are communities and plenty of resources out there to help get the job done.

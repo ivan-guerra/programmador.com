@@ -20,7 +20,7 @@ pretty good features that sold me:
 Lets review a couple of these points more closely starting with processor
 support.
 
-# PROCESSOR OPTIONS
+## Processor Options
 
 ELDD gives you the choice of developing for one or more ARM processors: NXP
 i.MX7D, Microchip SAMA5D2 and Broadcom BCM2837. However, when you go digging
@@ -45,7 +45,7 @@ implementations vary from processor to processor. There are differences in the
 device tree setup and driver source code. The author does a good job of
 pointing those differences out where they matter.
 
-# TALKING ABOUT THE DEVICE TREE
+## Talking About the Device Tree
 
 There's plenty of content out there online explaining what the device tree is
 and how it roughly gets loaded at boot time. Some good resources I used in
@@ -64,7 +64,7 @@ of if one is in need of a base for a project of their own. The explanation of
 how drivers are linked to nodes given in Chapter 2 is particularly insightful.
 I recommend one read Chapter 2 at least twice!
 
-# LABS USING REAL HARDWARE!
+## Labs Using Real Hardware!
 
 What really makes this book shine are the labs which use real hardware.
 Unlike the Linux Device Drivers book which has you making in software devices,
@@ -100,7 +100,7 @@ the explanation explicitly to the VM implementation on Linux for ARM with links
 to relevant code. He does this for many different topics including interrupts,
 synchronization, and deferred work just to name a few.
 
-# CONCLUSION
+## Conclusion
 
 Linux Driver Development for Embedded Processors is a great option for anyone
 interested in learning how to develop drivers for ARM devices in the modern

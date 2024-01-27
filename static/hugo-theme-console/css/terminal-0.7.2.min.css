@@ -108,7 +108,6 @@ ul,
   margin-bottom: calc(var(--global-space) * 2);
 }
 
-h1,
 .logo {
   position: relative;
   display: inline-block;
@@ -119,28 +118,11 @@ h1,
   font-weight: 600;
 }
 
-h1::after {
-  content: "****************************************************************************************************";
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  display: var(--display-h1-decoration);
-}
-
-h1 + *,
+h1,
 .logo + * {
   margin-top: 0;
 }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
-  position: relative;
-  margin-bottom: var(--global-line-height);
-  font-weight: 600;
-}
 
 blockquote {
   position: relative;
@@ -199,12 +181,6 @@ pre code {
 
 .terminal blockquote,
 .terminal code,
-.terminal h1,
-.terminal h2,
-.terminal h3,
-.terminal h4,
-.terminal h5,
-.terminal h6,
 .terminal strong,
 .terminal .logo {
   font-size: var(--global-font-size);

@@ -1,5 +1,5 @@
 ---
-title: "Resumes in LaTex"
+title: "Resumes in LaTeX"
 date: 2023-06-09T09:42:11-07:00
 description: "A template and tools for writing a resume in LaTeX."
 tags: ["docker", "latex"]

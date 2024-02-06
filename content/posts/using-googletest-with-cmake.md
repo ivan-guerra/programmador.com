@@ -48,7 +48,7 @@ for your project. Visit the [GoogleTest GitHub][1] page, click `Switch
 branches/tags`, and then click `Tags`. Pick a `release-*` version that makes
 sense for your project:
 
-![GoogleTest Release Versions](/posts/using-googletest-with-cmake/gtest-releases.png)
+![GoogleTest Release Versions](/posts/using-googletest-with-cmake/gtest-releases.png#center)
 
 Now add your selected GoogleTest version as a submodule under the `extern/`
 folder. Replace `release-1.12.1` below with the tag name of the version you want

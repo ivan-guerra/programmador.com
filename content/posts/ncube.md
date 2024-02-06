@@ -136,11 +136,11 @@ cube). That said, others were using visualization APIs that allowed them to draw
 lines between points. Take a look at the image below which was snipped from
 "Carl the Person"'s video:
 
-![Cube With Edges](/posts/ncube/cube-with-edges.png#center)
+![Cube With Edges](/posts/ncube/cube-with-edges.png#center#center)
 
 Now compare that with a capture of my cube in a similar orientation:
 
-![Cube Without Edges](/posts/ncube/cube-without-edges.png#center)
+![Cube Without Edges](/posts/ncube/cube-without-edges.png#center#center)
 
 Yeah...eight vertices floating around in space looks like crap. As far as I
 know, ncurses cannot draw anything more than vertical and horizontal lines. So
@@ -164,7 +164,7 @@ midpoint between \\(M_1\\) and end, \\(M_3\\). Continue applying this process
 recursively until you have generated the 7th midpoint, \\(M_7\\). The figure
 below illustrates the process.
 
-![Generating Edge Points](/posts/ncube/generating-edge-points.webp)
+![Generating Edge Points](/posts/ncube/generating-edge-points.webp#center)
 
 A nuance of the algorithm is that the midpoints must be generated in the order
 \\(M_1, M_2, M_3, ..., M_7\\). Put in other words, we need to generate the tree
@@ -208,7 +208,7 @@ the image below, I've run the application with the number of edge points set to
 21:
 
 
-![Cube With Generated Edges](/posts/ncube/cube-with-generated-edges.png)
+![Cube With Generated Edges](/posts/ncube/cube-with-generated-edges.png#center)
 
 Not the prettiest cube in the world, but much easier to make out than before!
 

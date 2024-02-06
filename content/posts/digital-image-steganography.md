@@ -26,7 +26,7 @@ A digital image can contain thousands or more elements called pixels.  Below is
 an image where the enhanced portion shows the individual pixels rendered as
 small squares[^3].
 
-[![Pixels](/posts/digital-image-steganography/pixels.png)][3]
+[![Pixels](/posts/digital-image-steganography/pixels.png#center)][3]
 
 In a color image, a pixel is made up of 3 to 4 channels. There's the classic
 red, green, and blue (RGB) pixel and the cyan, magenta, yellow, and black (CYMK)
@@ -37,7 +37,7 @@ value. Combining the three channels, we're able to represent 2^24 or well over
 16 million different colors. Often, each byte of an RGB color pixel will be
 specified using hexadecimal notation as shown in the table below.
 
-[![RGB Color Palette](/posts/digital-image-steganography/color-palette.gif)][4]
+[![RGB Color Palette](/posts/digital-image-steganography/color-palette.gif#center)][4]
 
 For our purposes, a digital image can be thought of as a two dimensional matrix
 of pixel values. The steganography algorithm discussed here will encode the
@@ -268,7 +268,7 @@ using one of these lossy formats, some pixel data is lost/altered. This is bad
 news for our naive image steganography tool. Just take a look at what happens to
 the poor guinea pig after being merged into a JPEG:
 
-![Mangled Guinea Pig](/posts/digital-image-steganography/mangled.jpg)
+![Mangled Guinea Pig](/posts/digital-image-steganography/mangled.jpg#center)
 
 The steganography tool presented here is meant to support just two image
 formats: JPEG and PNG. **JPEG is a lossy format. PNG is a lossless format.** I

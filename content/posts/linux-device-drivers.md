@@ -193,7 +193,7 @@ drivers. This forced me to navigate the kernel source code and the LWN archives
 in search of answers which often times led me to interesting discussions
 regarding kernel design decisions.
 
-[![Kernel Oops](/posts/linux-device-drivers/kernel_oops.png)][14]
+[![Kernel Oops](/posts/linux-device-drivers/kernel_oops.png#center)][14]
 
 Among the many demystifying chapters in this book, I really enjoyed Chapter 4:
 *Debugging Techniques*. As the title suggests, the authors walk you through a

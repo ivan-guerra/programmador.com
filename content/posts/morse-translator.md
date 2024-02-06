@@ -21,7 +21,7 @@ knowledge of Morse code was relatively limited. Like most my projects, this
 translator started at the Morse code wiki page[^3]. The wiki had a chart that
 sums up the protocol:
 
-[![International Morse Code](/posts/morse-translator/international-morse-code.png)][4]
+[![International Morse Code](/posts/morse-translator/international-morse-code.png#center)][4]
 
 The chart though labeled "International Morse Code" didn't seem very
 international to me. Where were all the accents and punctuations? Turns out

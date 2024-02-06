@@ -49,7 +49,7 @@ git config --global user.email torvalds@linux-foundation.org
 
 Step three, commit super sneaky backdoor code to `linux2.0`:
 
-![Impersonating Linus](/posts/signing-git-commits-with-gpg/impersonation.png)
+![Impersonating Linus](/posts/signing-git-commits-with-gpg/impersonation.png#center)
 
 Of course, the real Linus Torvalds signs his commits with his GPG key. So
 if a contributor on `linux2.0` knew about signed commits and found Linus
@@ -91,7 +91,7 @@ commits and just about any other document:
 7. Enter a secure password[^2].
 8. Enter `gpg --list-keys` to view your newly minted key.
 
-![GPG Key Generation](/posts/signing-git-commits-with-gpg/keygen.png)
+![GPG Key Generation](/posts/signing-git-commits-with-gpg/keygen.png#center)
 
 I highly recommend you export and backup your private key somehwere safe! The
 command to safely export your private key for backup is:
@@ -118,7 +118,7 @@ You'll first want to get your signing key. Run the following command:
 gpg --list-keys --keyid-format SHORT
 ```
 
-![Signkey](/posts/signing-git-commits-with-gpg/signkey.png)
+![Signkey](/posts/signing-git-commits-with-gpg/signkey.png#center)
 
 The output of `--list-keys` should look similar to what's shown above. The
 `rsa4096/XXXXXXXX` part is what we're interested in. The `XXXXXXXX` or
@@ -182,7 +182,7 @@ Now, every commit you make on your local machine will be signed. When you push
 your changes to a remote repository hosted on GitHub, GitHub will automatically
 verify the commit using the GPG key associated with your account.
 
-![Verified Commits](/posts/signing-git-commits-with-gpg/verified.png)
+![Verified Commits](/posts/signing-git-commits-with-gpg/verified.png#center)
 
 It's going to be pretty hard for an impersonator to get that little green
 verified widget to show up on their commits without stealing your private key

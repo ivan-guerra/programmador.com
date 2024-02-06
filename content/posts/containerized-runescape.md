@@ -125,7 +125,7 @@ docker run --rm \
 
 ## Runelite Gremlins...
 
-![Goblins!](/posts/containerized-runescape/goblins.png)
+![Goblins!](/posts/containerized-runescape/goblins.png#center)
 
 No project is free of gremlins. While the RS3 container was working as expected,
 the RuneLite client would seemingly load and then cut out before the login

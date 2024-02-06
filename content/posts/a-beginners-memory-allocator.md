@@ -305,7 +305,7 @@ void* foo = allocator.Alloc(1024, 8);
 The graphic below shows the internals of the allocated block with alignment
 taken into account:
 
-![Aligned Allocation](/posts/a-beginners-memory-allocator/aligned-allocation.svg)
+![Aligned Allocation](/posts/a-beginners-memory-allocator/aligned-allocation.svg#center)
 
 You have your `MemBlockHeader` at the very tip of the block with address
 `0x7FFF0001`. While `MemBlockHeader` is 8 bytes long which would make you think

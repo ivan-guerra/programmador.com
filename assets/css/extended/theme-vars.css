@@ -39,7 +39,7 @@
 
 @font-face {
     font-family: 'Berkeley Mono';
-    src: url('../fonts/BerkeleyMono-Regular.ttf') format('truetype');
+    src: url('/fonts/BerkeleyMono-Regular.woff2') format('woff2');
     font-style: normal;
     font-weight: 400;
     text-rendering: optimizeLegibility;
@@ -47,7 +47,7 @@
 
 @font-face {
     font-family: 'Berkeley Mono';
-    src: url('../fonts/BerkeleyMono-Italic.ttf') format('truetype');
+    src: url('/fonts/BerkeleyMono-Italic.woff2') format('woff2');
     font-style: italic;
     font-weight: 400;
     text-rendering: optimizeLegibility;
@@ -55,7 +55,7 @@
 
 @font-face {
     font-family: 'Berkeley Mono';
-    src: url('../fonts/BerkeleyMono-Bold.ttf') format('truetype');
+    src: url('/fonts/BerkeleyMono-Bold.woff2') format('woff2');
     font-style: normal;
     font-weight: 700;
     text-rendering: optimizeLegibility;
@@ -63,7 +63,7 @@
 
 @font-face {
     font-family: 'Berkeley Mono';
-    src: url('../fonts/BerkeleyMono-BoldItalic.ttf') format('truetype');
+    src: url('/fonts/BerkeleyMono-BoldItalic.woff2') format('woff2');
     font-style: italic;
     font-weight: 700;
     text-rendering: optimizeLegibility;

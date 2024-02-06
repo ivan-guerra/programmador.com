@@ -3,6 +3,9 @@ title: "A CLI Base Converter"
 date: 2023-07-08T11:14:45-07:00
 description: "A command line numerical base conversion utility."
 tags: ["c++", "cli-tools", "gnu"]
+cover:
+    image: /posts/base-conversion/gmp-logo.png
+    alt: GMP Logo
 ---
 
 When debugging an embedded system, I often find myself working with raw data

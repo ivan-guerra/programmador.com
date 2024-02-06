@@ -3,6 +3,9 @@ title: "Morse Translator"
 date: 2023-08-01T20:51:32-07:00
 description: "A text to Morse code translator."
 tags: ["c++", "cli-tools", "sdl"]
+cover:
+    image: /posts/morse-translator/telegraph.jpg
+    alt: Telegraph
 ---
 
 While on a LeetCode[^1] grind, I came across a fun problem involving Morse code:

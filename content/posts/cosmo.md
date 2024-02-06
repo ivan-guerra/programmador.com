@@ -3,6 +3,9 @@ title: "Cosmo: A Hobby x86 OS"
 date: 2022-02-23T11:15:24-07:00
 description: "On developing a hobby x86 OS."
 tags: ["asm", "c++", "docker"]
+cover:
+    image: /posts/cosmo/cosmo.png
+    alt: Cosmo Boot Screen
 ---
 
 I've always been interested in the topic of OS development. At the beginning of

@@ -3,6 +3,9 @@ title: "Real-time Linux App Development"
 date: 2023-04-27T22:49:14-07:00
 description: "A checklist for developing real-time applications in Linux."
 tags: ["c", "c++", "linux", "realtime"]
+cover:
+    image: /posts/real-time-linux-app-development/clock.webp
+    alt: Clock
 ---
 
 If you a are programmer in the embedded space, you have likely touched on the
@@ -169,7 +172,7 @@ cores. There's a couple ways to do this:
   (including kernel tasks).
 * Set CPU affinity masks for routing HW interrupt handling.
 
-## Setting CPU Affinities
+### Setting CPU Affinities
 
 CPU affinities are a bitmask of the CPU(s) a task is allowed to run on. You can
 control CPU affinity down to the thread level. You can use the `taskset` utility
@@ -193,7 +196,7 @@ CPU_SET(1, &set);
 sched_setaffinity(pid, CPU_SETSIZE, &set);
 ```
 
-## CPU Isolation via Kernel Boot Params
+### CPU Isolation via Kernel Boot Params
 
 The kernel provides two boot parameters to regulate CPU utilization:
 
@@ -213,7 +216,7 @@ CPUs. Note the difference between `isolcpus` and `maxcpus` is that in the case
 of `isolcpus`, Linux is still aware of the isolated CPUs and you are able to
 tell Linux to assign tasks to them.
 
-## Hardware Interrupt Affinities
+### Hardware Interrupt Affinities
 
 When a hardware interrupt enters the system, **any** CPU may service that
 interrupt.  This can cause issues if the CPU your RT task is running on is
@@ -230,7 +233,7 @@ cannot perform this IRQ re-routing. After making a change in `smp_affinity`,
 always check that the setting stuck by querying
 `/proc/irq/<irq-number>/effective_affinity`!**
 
-## Beware of Caching
+### Beware of Caching
 
 When partitioning your tasks among the different cores, you have to take into
 consideration how caching is handled by your particular CPU. It may be the case
@@ -269,7 +272,7 @@ There's a couple of tricks we can employ to avoid page faults:
 
 Lets look at each in a bit more detail.
 
-## Tuning glibc's `malloc`
+### Tuning glibc's `malloc`
 
 glibc's `malloc` can request memory in more than one way.  Under the hood,
 `malloc` will by default make `mmap` calls to the kernel to get memory which is
@@ -299,7 +302,7 @@ disable this feature:
 mallopt(M_TRIM_THRESHOLD, -1);
 ```
 
-## Locking Allocated Pages
+### Locking Allocated Pages
 
 It's important that we lock all current and future pages of our processes'
 virtual address space to RAM. We can tell the kernel to do this using the
@@ -310,7 +313,7 @@ virtual address space to RAM. We can tell the kernel to do this using the
 mlockall(MCL_CURRENT | MCL_FUTURE);
 ```
 
-## Prefaulting
+### Prefaulting
 
 To avoid page faults during runtime, we'll want to take the page faulting "hit"
 early on at application startup. To do that we'll prefault our heap. To do this

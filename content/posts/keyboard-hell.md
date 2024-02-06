@@ -3,6 +3,9 @@ title: "Keyboard Hell"
 date: 2023-09-02T12:46:36-07:00
 description: "Play a soundbite on keypress anywhere in the desktop."
 tags: ["c++", "cli-tools", "sdl", "x11", "windows"]
+cover:
+    image: /posts/keyboard-hell/keyboard-on-fire.jpg
+    alt: Keyboard on Fire
 ---
 
 I was talking with a few people at work about mechanical keyboards. We were
@@ -89,7 +92,7 @@ function.
 
 Lets look at how to implement `RunEventLoop()` on each OS starting with Linux.
 
-## Linux Event Loop
+### Linux Event Loop
 
 On Linux, a display server program coordinates IO with the many client programs
 running on the desktop. The server is responsible for making the GUI possible.
@@ -173,7 +176,7 @@ trouble was in setting up the right structures so that we could register our
 callback (checkout the complete source linked at the end of the article if you
 are interested in those details). Lets look at how Windows compares.
 
-## Windows Event Loop
+### Windows Event Loop
 
 The Windows event loop was a doozy. The Windows API provides hooks[^6] as a
 mechanism for listening for general system messages including keyboard events.

@@ -2,6 +2,7 @@
 title: "About"
 date: 2022-01-18T23:40:09-07:00
 tags: ["about"]
+showToc: false
 ---
 
 Hi, my name is Ivan Guerra, I am an embedded software engineer.
@@ -16,8 +17,10 @@ time.
 
 ## Contact
 
-**Email**: [ivan.eduardo.guerra@gmail.com](mailto:ivan.eduardo.guerra@gmail.com)<br>
-**GPG Key**: [ieg.gpg][1]<br>
-**LinkedIn**: [ivan-guerra](https://linkedin.com/in/ivan-guerra)
+**Email**: [ivan.eduardo.guerra@gmail.com][1]<br>
+**GPG Key**: [ieg.gpg][2]<br>
+**LinkedIn**: [ivan-guerra][3]
 
-[1]: https://pgp.mit.edu/pks/lookup?op=get&search=0x7714EAED772DC391
+[1]: mailto:ivan.eduardo.guerra@gmail.com
+[2]: https://pgp.mit.edu/pks/lookup?op=get&search=0x7714EAED772DC391
+[3]: https://linkedin.com/in/ivan-guerra

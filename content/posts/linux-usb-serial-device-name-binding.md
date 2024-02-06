@@ -3,6 +3,7 @@ title: "Linux USB Serial Device Name Binding"
 date: 2023-05-06T08:45:42-07:00
 description: "How to set persistent USB serial device names in Linux."
 tags: ["linux"]
+showToc: false
 ---
 
 On a recent project, I was developing an app on Linux that gathered data from a

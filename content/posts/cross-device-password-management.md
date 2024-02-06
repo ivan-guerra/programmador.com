@@ -3,6 +3,9 @@ title: "Cross-device Password Mgmt Using Pass"
 date: 2023-03-31T11:08:58-07:00
 description: "Managing passwords across Linux and Android devices using pass."
 tags: ["gnu", "password-mgmt"]
+cover:
+    image: /posts/cross-device-password-management/password-store.png
+    alt: Password Store Logo
 ---
 
 I've been guilty of reusing passwords across tons of online services. As far as
@@ -209,7 +212,7 @@ your local password database.
 # *pass* ON ANDROID
 
 [![Password
-Store](/posts/cross-device-password-management/password_store.png)][9]
+Store](/posts/cross-device-password-management/password-store.png)][9]
 
 One of my [requirements](#finding-a-password-manager) for a password manager was
 that it have Android support. `pass` is just a Unix password management

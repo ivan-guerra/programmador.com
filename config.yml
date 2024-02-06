@@ -1,0 +1,118 @@
+baseURL: "https://programmador.com/"
+title: "Ivan Guerra's Website"
+paginate: 5
+theme: "hugo-PaperMod"
+copyright: "All rights reserved, Ivan Eduardo Guerra"
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production
+  title: "programmador.com"
+  description: "Ivan Eduardo Guerra's personal blog and portfolio."
+  keywords: [Blog, Portfolio, PaperMod]
+  author: "Ivan Eduardo Guerra"
+  images: [""]
+  DateFormat: "January 2, 2006"
+  defaultTheme: "auto"
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: false
+  ShowCodeCopyButtons: true
+  ShowWordCount: false
+  ShowRssButtonInSectionTermList: false
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: true
+  showtoc: true
+  tocopen: true
+
+  assets:
+    disableHLJS: true
+    disableFingerprinting: true
+    favicon: "/logo/favicon.ico"
+    favicon16x16: "/logo/favicon-16x16.png"
+    favicon32x32: "/logo/favicon-32x32.png"
+    apple_touch_icon: "/logo/apple_touch_icon.png"
+    safari_pinned_tab: ""
+
+  profileMode:
+    title: "Ivan Eduardo Guerra"
+    subtitle: "My personal collection of tech junk."
+    enabled: true
+    imageUrl: "alien.jpg"
+    imageTitle: "Alien with Microscope"
+    imageWidth: 180
+    imageHeight: 180
+    buttons:
+      - name: Posts
+        url: "/posts"
+      - name: Tags
+        url: "/tags"
+  socialIcons:
+    - name: github
+      url: "https://github.com/ivan-guerra"
+    - name: linkedin
+      url: "https://linkedin.com/in/ivan-guerra"
+    - name: email
+      url: "mailto:ivan.eduardo.guerra@gmail.com"
+    - name: rss
+      url: "https://programmador.com/index.xml"
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+menu:
+  main:
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 10
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 20
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 30
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 40
+
+pygmentsUseClasses: true
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    style: friendly
+
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON

@@ -249,13 +249,14 @@ bool SnakeGame::SnakeWins() const {
 }
 ```
 
-A good ol' `O(n^2)` time complexity double nested loop does the trick.
+A good ol' \\(\mathcal{O}(N^2)\\) time complexity double nested loop does the
+trick.
 
 ### Did I lose?
 
-Yet another `O(n^2)` algorithm can be used to check if the game is lost. In this
-case, the majority of the time is spent checking whether the snake is
-overlapping with itself.
+Yet another \\(\mathcal{O}(N^2)\\) algorithm can be used to check if the game is
+lost. In this case, the majority of the time is spent checking whether the snake
+is overlapping with itself.
 
 ```cpp
 bool SnakeGame::IsGameOver() const {
@@ -325,8 +326,8 @@ void SnakeGame::Tick(const Direction& new_direction) {
 ## UI Design with ncurses
 
 With the game logic and state wrapped in a neat class, it was time to write the
-UI.  I needed to to see what API calls ncurses provides and preferrably examples
-on how folks organize their ncurses programs. There's an aptly named site that
+UI. I needed to to see what API calls ncurses provides and preferrably examples
+of how folks organize their ncurses programs. There's an aptly named site that
 does all those things: [NCURSES Programming HOWTO][3]. I can't recommend this
 site enough. The author walks you through the API all the while providing
 succint examples you can test and mod. The site also has sections explaining the

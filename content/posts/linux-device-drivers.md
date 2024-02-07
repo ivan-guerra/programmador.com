@@ -33,8 +33,8 @@ I went with option #3 with a twist: I wanted to configure and build the kernel
 and required initramfs from within a container. I like the idea that my kernel
 and dev environment is roughly portable to any x86_64 PC running Docker. Plus,
 if I came back at a later date and say wanted to build a different kernel
-    version, I wouldn't have to re-educate myself on the required build
-    dependencies, script calls, etc.
+version, I wouldn't have to re-educate myself on the required build
+dependencies, script calls, etc.
 
 What did the containerization of the initramfs and kernel build process look
 like? Well, I split the task into three seperate images:
@@ -47,22 +47,22 @@ Each image feeds into the next with the result being a kernel `bzImage` and
 initramfs `initramfs-busybox-x86.cpio.gz` archive that can be fed straight into
 QEMU.
 
-## A Common Base Image
+### A Common Base Image
 
 There was a lot of overlap in the tools required to build the initramfs and the
 kernel. As a result, I created a common image[^3] built off the latest Debian
 slim release. I also introduce ccache[^4] in this image which helps reduce
 kernel build times significantly[^5].
 
-## The Kernel Build Image
+### The Kernel Build Image
 
 The kernel build image Dockerfile[^6] is straightforward. The magic happens in
 the `kbuild.sh` script (shown below) which executes whenever a kernel build
 container is launched. `kbuild.sh` carries out the following three tasks:
 
-1. Prompting the User to configure their kernel.
-2. Building the kernel.
-3. Building the LDD3 modules.
+1. Prompt the User to configure their kernel
+2. Building the kernel
+3. Building the LDD3 modules
 
 ```bash
 #!/bin/bash
@@ -135,7 +135,7 @@ container. We want to keep those binary directories on the host otherwise we
 would be building the kernel and modules from scratch everytime we run a new
 build container!
 
-## The initramfs Build Image
+### The initramfs Build Image
 
 As part of running our kernel, we need to hand QEMU a initramfs with a basic
 userland. Creating the initramfs breaks down into a five step process:
@@ -176,8 +176,8 @@ to dive into LDD3...
 
 I'd say LDD3 was a pleasant read given the subject matter. You'll get the most
 out of this book if you come in with a solid grasp of the C programming
-language, moderate knowledge of Linux development, and, perhaps most important,
-good operating systems fundamentals[^11].
+language, moderate knowledge of Linux development, and, perhaps most
+importantly, good operating systems fundamentals[^11].
 
 A strong selling point of this book is that you don't need actual hardware to
 follow along. Throughout the book, you develop different types of Simple

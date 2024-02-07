@@ -95,7 +95,37 @@ After doing some Googling and looking into how programs like Unix's `file`[^5]
 work, I found that PNG/JPEG images each include header info in the first few
 bytes of the file. PNG's start with an 8-byte signature[^6] of
 `0x89504E470D0A1A0A`. All JPEGs start with a 2-byte signature[^7] of `0xFFD8`.
-This was all the information I needed to detect the file format.
+This was all the information I needed to detect the file format:
+
+```cpp
+AsciiGenerator::ImageType AsciiGenerator::GetImageType(
+    const std::string& filename) const {
+    static const uint64_t kPngSignature = 0x89504E470D0A1A0A;
+    static const uint64_t kJpgSignature = 0xFFD8000000000000;
+
+    /* Read the first 8 bytes of the file. */
+    std::ifstream ifs(filename, std::ifstream::binary);
+    if (!ifs.is_open()) {
+        return ImageType::kUnknown;
+    }
+    std::vector<char> buffer(8, 0);
+    ifs.read(&buffer[0], buffer.size());
+
+    /* Construct an unsigned 64-bit word using the 8 bytes in buffer. */
+    uint64_t word = 0;
+    for (const char& c : buffer) {
+        word = (word << 8) | static_cast<uint8_t>(c);
+    }
+
+    /* Check if the word matches a known image file type signature. */
+    if (word == kPngSignature) {
+        return ImageType::kPng;
+    } else if ((word & kJpgSignature) == kJpgSignature) {
+        return ImageType::kJpg;
+    }
+    return ImageType::kUnknown;
+}
+```
 
 ## Conclusion
 

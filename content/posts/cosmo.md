@@ -27,9 +27,9 @@ number of the articles give step-by-steps, sample ASM/C code, and, perhaps most
 importantly, links to other reference material. All that said, I needed a little
 more structure and hand holding to get on the right path.
 
-Luckily, I came across the Little Book About OS Development[^2] (LBAOD).  LBAOD
-is an online book written by two Graduate students at the Royal Institute of
-Technology, Stockholm. The book details the authors' 6 week journey in
+Luckily, I came across the "Little Book About OS Development"[^2] (LBAOD).
+LBAOD is an online book written by two Graduate students at the Royal Institute
+of Technology, Stockholm. The book details the authors' 6 week journey in
 developing a basic x86 OS. The major benefit of the book was that they provide
 an outline and approach to implementing various features of the OS along with
 links to resources for the topic at hand.
@@ -93,13 +93,13 @@ the output binaries to have user/group `root`).
 
 [![Bochs IA-32 Emulator](/posts/cosmo/bochs.png#center)][6]
 
-I needed an emulator in which to run my OS. The OSDev wiki gives a nice summary
-table comparing the different emulators available[^6]. I decided to go with
-Bochs for this project for a few reasons:
+I needed an emulator to test my OS. The OSDev wiki gives a nice summary table
+comparing the different emulators available[^6]. I decided to go with Bochs for
+this project for a few reasons:
 
-1. Simple serial logging feature.
-2. Built in debug features[^7].
-3. Comes with a graphical user interface.
+1. Simple serial logging feature
+2. Built in debug features[^7]
+3. Comes with a graphical user interface
 
 A 12 line configuration script was all I needed to get my OS up and running in
 Bochs:
@@ -160,7 +160,7 @@ C and that you will inevitably have to write Makefiles to get it all building.
 I've never been a big fan of writing Makefiles. As a result, I decided I would
 use CMake to generate the OS build files.
 
-I like the philosphy put forward in An Introduction to Modern CMake[^10]. I
+I like the philosphy put forward in "An Introduction to Modern CMake"[^10]. I
 stuck with the project structure recommended in that article:
 
 ```txt
@@ -233,7 +233,7 @@ host PC.
 I am sad to say I haven't yet hit my original goal of loading a program that
 adds two numbers and outputs the sum to the console. However, I am getting
 pretty damn close. I have implemented all the features leading up to Chapter 11
-of the Little Book About OS Development[^16].
+of the "Little Book About OS Development"[^16].
 
 Below is a table listing what has been implemented in Cosmo OS and what remains:
 

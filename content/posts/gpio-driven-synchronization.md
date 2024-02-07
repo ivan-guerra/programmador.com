@@ -15,9 +15,6 @@ synchronizing seemingly by magic:
 
 {{< youtube QyX-Vs_mwsI >}}
 
-I guess I didn't pay enough attention in physics because everyone and I showed
-this to was aware this was a thing...
-
 The thought occurred to me that two or more computers could likely be
 synchronized using this model. The tricky part would be having the computers
 share a common "fabric". In the clip with the metronomes, the base board is
@@ -64,9 +61,9 @@ that first.
 
 ## Hardware Test Setup
 
-I needed two computers with which to test. Luckily for me, I was able to get my
-hands on two BeagleBone Black[^1] (BBB) single board computers. The BBB is a
-good candidate because
+I needed two computers with which to test. Luckily, I was able to get my hands
+on two BeagleBone Black[^1] (BBB) single board computers. The BBB is a good
+candidate because
 
 1. Its what I had available.
 2. The BBB has a ton of unallocated GPIOs.
@@ -87,8 +84,8 @@ set low.
 Speaking of GPIO configuration, many of the pins on the BBB support multiple
 functions. Chapter 6 of the book "Exploring BeagleBone"[^2] gives nice coverage
 of how to configure the GPIOs on the BBB. I made sure that `P9_15` and `P9_23`
-were unallocated pins configured as GPIO (mux mode 7) with internal pull down
-resistors enabled. **If you choose to use different pins, make sure they are
+were unallocated pins configured as GPIO with internal pull down resistors
+enabled (mux mode 7). **If you choose to use different pins, make sure they are
 configured correctly before powering the circuit!**
 
 ## Doing Things Real-time
@@ -223,7 +220,7 @@ angle \\( \theta \\) in radians. What we find is that
 
 \\[ t = {\theta \over {2 \pi F}} \\]
 
-To go from an angle to time we can solve for \\(\theta\\):
+To go from time to angle we can solve for \\(\theta\\):
 
 \\[ \theta = {2 \pi F t} \\]
 

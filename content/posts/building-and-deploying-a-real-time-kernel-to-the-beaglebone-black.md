@@ -10,13 +10,12 @@ cover:
 ---
 
 Recently, I wanted to develop a low latency app running on my BeagleBone Black
-(BBB)[^1]. My application had timing requirements that are strict enough to
-where it made sense to run the BBB with a `PREEMPT_RT`[^2] kernel. Luckily for
-me, Robert C. Nelson, one of the BeagleBone Black maintainers, maintains a set
-of scripts for building a kernel specifically for BBB devices[^3]. Among the
-many kernel versions offered are variants that have had the `PREEMPT_RT` patches
-already applied! With Robert's build scripts and SD card in hand, I setoff to
-build and deploy my RT kernel for the BBB.
+(BBB)[^1]. The max latency requirement drove me to run the BBB with a
+`PREEMPT_RT`[^2] kernel. Luckily, Robert C. Nelson, one of the BeagleBone Black
+maintainers, maintains a set of scripts for building a kernel specifically for
+the BBB[^3]. Among the many kernel versions offered are variants that have had
+the `PREEMPT_RT` patches already applied! With Robert's build scripts and SD
+card in hand, I had everything necessary to build and deploy my BBB RT kernel.
 
 ## Prepping the SD Card
 
@@ -69,8 +68,8 @@ Now, all that remains is installing the kernel on the BBB.
 
 First, we mount the [rootfs we previously created](#prepping-the-sd-card) onto
 the host filesystem. In my case the rootfs on the SD card has the label
-`/dev/sdb1`. Your SD card may have a different name, use `mount` or `lsblk` to
-find the right device.
+`/dev/sdb1`. Your SD card may have a different name, use `lsblk` to find the
+right device.
 ```bash
 sudo mount /dev/sdb1 /mnt/sd
 ```

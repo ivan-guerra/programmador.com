@@ -292,5 +292,5 @@ path: ["RSCW's Algorithm"][14].
 [^6]: From the SDL Wikipedia page: "SDL is [extensively used][9] in the industry
     in both large and small projects. Over 700 games, 180 applications, and 120
     demos have been posted on the library website."
-[^7]: ["Beep Sound with SDL"][11]
+[^7]: ["Beep Sound with SDL"][10]
 [^8]: [beep.hpp][12] and [beeper.cc][11] implement the `Beeper` class.

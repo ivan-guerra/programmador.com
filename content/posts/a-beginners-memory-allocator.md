@@ -21,10 +21,10 @@ What kind of API did I want to provide? I decided to essentially keep the API
 identical to the `malloc()`/`free()` specification with two major deviations:
 
 1. The pool of memory from which the allocator would serve the running process
-would be defined at compile time.
+   would be defined at compile time.
 2. The allocator would accept an optional alignment argument so that the user
-could retrieve a pointer whose address is byte-aligned to whatever boundary they
-like.
+   could retrieve a pointer whose address is byte-aligned to whatever boundary
+   they like.
 
 With those two requirements in mind, I came up with the following `Malloc`
 template class declaration:
@@ -75,14 +75,12 @@ basically tells the kernel "these pages, dirty or not, can be re-purposed". In
 the case of `sbrk()`, you can get yourself in a situation where chunks of memory
 can be freed yet the kernel can't know unless the program break is reduced.
 
-Okay, so what does all that mean for `Malloc`? This is an educational project. I
-ain't sitting here writing a production or fine-tuned allocator. As a such, I
-decided to use `mmap()` to allocate a compile time specified chunk of memory
-from which the `Alloc()` calls could pull from. The memory requested would be in
-units of the page size meaning if the OS has 4096 byte pages and a user
-requested a pool of 100 bytes, then `Malloc` would request one page of memory
-from the OS. `Malloc` would implement a strategy for the management of this
-pool of memory.
+Okay, so what does all that mean for `Malloc`? To keep things simple, I decided
+to use `mmap()` to allocate a compile time specified chunk of memory from which
+the `Alloc()` calls could pull from. The memory requested would be in units of
+the page size meaning if the OS has 4096 byte pages and a user requested a pool
+of 100 bytes, then `Malloc` would request one page of memory from the OS.
+`Malloc` would implement a strategy for the management of this pool of memory.
 
 The `Malloc` constructor shows the `mmap()` call in action:
 
@@ -150,13 +148,13 @@ block is finally returned to the caller.
 There are many other strategies for free block selection besides the first fit
 approach illustrated above:
 
-* **Worst Fit**: Finds the largest free block that can satisfy the the request.
+* **Worst Fit**: Finds the largest free block that can satisfy the request.
 * **Next Fit**: Same as first fit except subsequent allocations begin their
-search from the location where the last allocation occurred.
+  search from the location where the last allocation occurred.
 * **Buddy Allocation**: Recursively divides free space by two until a block big
-enough to satisfy the request is found and the next split would be too small.
+  enough to satisfy the request is found and the next split would be too small.
 * **Segregated Lists**: Maintain two or more free lists. One list is for general
-allocations. All other lists have blocks sized to accomodate common requests.
+  allocations. All other lists have blocks sized to accomodate common requests.
 
 For each of the above strategies, the perfomance of the approach is dependent on
 the workload. That is, you can make a workload that makes any of the above
@@ -357,12 +355,12 @@ The arguments to `std::align` are interpreted as follows:
 
 * `alignment`: The user supplied alignment argument. Must be a power of two.
 * `total_space - alignment`: This argument tells `std::align` how many bytes we
-have in our buffer to be aligned. The bytes reserved for alignment do not get
-included in the count.
+  have in our buffer to be aligned. The bytes reserved for alignment do not get
+  included in the count.
 * `user_ptr`: The address of the free block.
 * `total_space`: The total amount of space `std::align` has to work with. This
-critically includes our additional alignment bytes. We want `std::align` to
-return an address in the range [`user_ptr`, `user_ptr + alignment`].
+  critically includes our additional alignment bytes. We want `std::align` to
+  return an address in the range [`user_ptr`, `user_ptr + alignment`].
 
 Once `std::align` does its thing, `total_space` will have been decremented by
 the number of bytes used in alignment. The following statements save that
@@ -481,13 +479,13 @@ void Malloc<N>::MergeFreeBlocks() {
 ```
 
 Both the functions are implementations of classic linked list algorithms.
-Unfortunately, both algorithms have linear time complexity (i.e., `O(n)`). This
-means that our `Free()` method has linear time complexity. It's actually a bit
-worse than that, there's a constant of 2 hidden in the big-oh becuase in the
-worst case `InsertFreeMemBlock()` and `MergeFreeBlocks()` both iterate the
-entire list. You could probably combine them to get a single pass algorithm but
-the increased code complexity wasn't worth it for this "toy"  memory allocator
-implementation.
+Unfortunately, both algorithms have linear time complexity (i.e.,
+\\(\mathcal{O}(N)\\)). This means that our `Free()` method has linear time
+complexity. It's actually a bit worse than that, there's a constant of 2 hidden
+in the big-oh becuase in the worst case `InsertFreeMemBlock()` and
+`MergeFreeBlocks()` both iterate the entire list. You could probably combine
+them to get a single pass algorithm but the increased code complexity wasn't
+worth it for this "toy"  memory allocator implementation.
 
 ## Conclusion
 

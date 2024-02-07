@@ -32,17 +32,16 @@ The program usage would look something like
 dhb [OPTION]... SRC_BASE TGT_BASE NUM
 ```
 
-where `SRC_TGT`/`TGT_BASE` are one of `bin`, `dec`, `oct`, or `hex`. `NUM` is
+where `SRC_BASE`/`TGT_BASE` are one of `bin`, `dec`, `oct`, or `hex`. `NUM` is
 some positive integer value.
 
 To make this idea more concrete, I came up with some basic requirements I could
 code to:
 
-1. `dhb` shall support conversions to/from binary, decimal, hexadecimal, and
-   octal.
-2. `dhb` shall include an option for minimum output width.
-3. `dhb` shall include an option to group digits into segments of size N.
-4. `dhb` shall support arbitrarily large positive integers.
+1. Support conversions to/from binary, decimal, hexadecimal, and octal.
+2. Include an option for minimum output width.
+3. Include an option to group digits into segments of size N.
+4. Support arbitrarily large positive integers.
 
 Requirement (1) is self explanatory. Requirement (2) means I can pad the output
 value with zeroes to achieve a minimum width. For example, the binary value

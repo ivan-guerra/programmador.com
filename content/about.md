@@ -3,6 +3,7 @@ title: "About"
 date: 2022-01-18T23:40:09-07:00
 tags: ["about"]
 showToc: false
+hideMeta: true
 ---
 
 Hi, my name is Ivan Guerra, I am an embedded software engineer.

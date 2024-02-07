@@ -8,7 +8,7 @@ cover:
     alt: Raspberry Pi Logo
 ---
 
-After working through the infamous Linux Device Drivers[^1] book back in 2022,
+After working through the infamous "Linux Device Drivers"[^1] book back in 2022,
 I wanted to take another dive into Linux driver development. Specifically, I
 wanted to get a modernish look into Linux driver development for ARM devices.
 After much Googling, I came across a well reviewed book on Amazon: ["Linux
@@ -26,11 +26,11 @@ support.
 ## Processor Options
 
 ELDD gives you the choice of developing for one or more ARM processors: NXP
-i.MX7D, Microchip SAMA5D2 and Broadcom BCM2837. However, when you go digging
-around for dev kits/boards with these processors, you're really only left with
-the BCM2837 unless you're willing to dish out well over a $100 on NXP's or
-Microchip's kit. Luckily the BCM2837 comes in the famous Raspberry Pi. ELDD
-specifically recommends the Raspberry Pi Model 3B+[^2].
+i.MX7D, Microchip SAMA5D2, and the Broadcom BCM2837. However, when you go
+digging around for dev kits/boards with these processors, you're really only
+left with the BCM2837 unless you're willing to dish out well over a $100 on
+NXP's or Microchip's kit. Luckily, the BCM2837 comes in the famous Raspberry Pi.
+ELDD specifically recommends the Raspberry Pi Model 3B+[^2].
 
 [![Raspberry Pi Model 3B+][4]][3]
 
@@ -69,19 +69,18 @@ I recommend one read Chapter 2 at least twice!
 
 ## Labs Using Real Hardware!
 
-What really makes this book shine are the labs which use real hardware.
-Unlike the Linux Device Drivers book which has you making in software devices,
-ELDD focuses on developing basic drivers for a variety of GPIO, I2C, and SPI
-devices.
+What really makes this book shine are the labs which use real hardware. Unlike
+the "Linux Device Drivers" book which has you making in software devices, ELDD
+focuses on developing basic drivers for a variety of GPIO, I2C, and SPI devices.
 
 One gripe I have was that the book does not have an upfront listing of all the
 hardware required so you can buy it before reading. I think the author realized
 this was a problem and added a list of lab hardware[^5] to their GitHub repo.
 Unlike with the processors, *most* of the supporting hardware is affordable. A
-tip if you want to save some money. Don't buy the MikRoe ColorClick and Button
+tip if you want to save some money. Don't buy the MIKROE ColorClick and Button
 R Click devices (a savings of over $50 accounting for shipping). If you have a
 $20 breadboard kit with LEDs, resistors, push buttons, and some jumper wire,
-you can make the circuits required to replace those items. Beyond the Mikroe
+you can make the circuits required to replace those items. Beyond the MIKROE
 products, an STMicroelectronics LED screen is the only other expensive item. I
 chose to skip on the LED screen. All other hardware was readily available on
 Amazon and totaled less than $100 shipping included.
@@ -106,14 +105,14 @@ synchronization, and deferred work just to name a few.
 ## Conclusion
 
 Linux Driver Development for Embedded Processors is a great option for anyone
-interested in learning how to develop drivers for ARM devices in the modern
-day. The book is particularly useful for those who learn through hands on work.
-The many labs included use real hardware and do a lot to reinforce the current
-and previous chapters' lessons. That said, the book is targeted at an audience
-with prior experience in programming, electronics, and Linux usage in general.
-If you're completely new to Linux kernel development, I would recommend reading
-ELDD in parallel to Linux Kernel Development[^6] by Robert Love, the mixture of
-theory and practical application complement each other nicely.
+interested in learning how to develop drivers for ARM devices in the modern day.
+The book is particularly useful for those who learn through hands on work. The
+many labs included use real hardware and do a lot to reinforce the current and
+previous chapters' lessons. That said, the book is targeted at an audience with
+prior experience in programming, electronics, and Linux usage in general. If
+you're completely new to Linux kernel development, I would recommend reading
+ELDD in parallel to "Linux Kernel Development"[^6] by Robert Love, the mixture
+of theory and practical application complement each other nicely.
 
 You can find my ELDD GitHub project with complete source, build instructions,
 usage, etc. on my GitHub page under [eldd][9].

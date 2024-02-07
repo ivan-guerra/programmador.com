@@ -20,13 +20,12 @@ search, I considered what devices I use and what my typical workflow looks like.
 I came up with the following set of basic requirements for a password manager
 (PM):
 
-1. The PM shall have Android support.
-2. The PM shall have Linux support.
-3. The PM shall have a commandline interface.
+1. Android support
+2. Linux support
+3. A commandline interface
 
-With those requirements in mind, it didn't take long to come across a password
-manager which checked all the boxes: [pass][3]. The `pass` homepage has a nice
-summary of the tool:
+After doing some research, I determined [pass][3] was my best option. The `pass`
+homepage has a nice summary of the tool:
 
 > Password management should be simple and follow Unix philosophy. With pass,
 > each password lives inside of a gpg encrypted file whose filename is the title
@@ -121,7 +120,7 @@ pass generate services/gitlab 20
 pass generate email/ivan.eduardo.guerra@gmail.com 20
 ```
 
-Running `pass` at the terminal (or `pass ls`) I'd be met with the following
+Running `pass` at the terminal (or `pass ls`), I'd be met with the following
 printout:
 
 ```text
@@ -198,7 +197,7 @@ between my phone and PC. In my case, convenience of password syncing beat out
 the danger of exposing my password names to GitHub employees or some attacker in
 general.
 
-Whether your self hosting a git instance or using a service like GitHub, the
+Whether you're self hosting a git instance or using a service like GitHub, the
 `pass` commands for syncing a remote database with a local one remain the same:
 
 ```bash
@@ -209,17 +208,16 @@ pass git push origin master
 After executing the above two commands, your remote instance will be synced with
 your local password database.
 
-# *pass* ON ANDROID
+## Android Support
 
-[![Password
-Store](/posts/cross-device-password-management/password-store.png)][9]
+[![Password Store](/posts/cross-device-password-management/password-store.png#center)][9]
 
-One of my [requirements](#finding-a-password-manager) for a password manager was
-that it have Android support. `pass` is just a Unix password management
-commandline utility. Luckily, the Password Store[^7] Android app exists.
-Password Store allows one to sync with a remote server hosting the
-`.password-store` database. Working in conjunction with Password Store is the
-OpenKeychain[^8] app which allows you to store your GPG secret key on mobile.
+One of my  requirements for a password manager was that it have Android support.
+`pass` is just a Unix password management commandline utility. Luckily, the
+Password Store[^7] Android app exists. Password Store allows one to sync with a
+remote server hosting the `.password-store` database. Working in conjunction
+with Password Store is the OpenKeychain[^8] app which allows you to store your
+GPG secret key on mobile.
 
 Transferring your private key to OpenKeychain is the first step. OpenKeychain
 recommends[^9] the following commands be used:

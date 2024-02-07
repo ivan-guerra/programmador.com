@@ -28,13 +28,13 @@ you send data at a fixed frequency?
 
 I settled on the following requirements:
 
-1. The keylogger shall record user keypresses that correspond to printable
-   characters as defined by the currently installed C locale.
-2. The keylogger shall support recording to a plaintext file on the victim PC.
-3. The keylogger shall support recording to a UDP socket.
-4. The keylogger recording mode shall be configurable.
-5. The keylogger shall allow the user to control the frequency of recording via
-   a configurable keypress limit switch.
+1. Record user keypresses that correspond to printable characters as defined by
+   the currently installed C locale.
+2. Support recording to a plaintext file on the victim PC.
+3. Support recording to a UDP socket.
+4. Support a configurable recording mode.
+5. Allow the user to control the frequency of recording via a configurable
+   keypress limit switch.
 
 In the next few sections, we'll look at these requirements in more detail and
 discuss their implementation.
@@ -52,7 +52,7 @@ every keypress, we are pushing characters to a recorder object's character
 buffer. Only printable characters as defined by `std::isprint`[^2] are
 recorded. The latter detail is limiting in that we won't be able to completely
 playback the victim's key history. That said, we can still analyze the output to
-find password, emails, usernames, etc.
+find passwords, emails, usernames, etc.
 
 ## Recording Modes
 
@@ -120,9 +120,8 @@ constructor parameter. The user can add characters to the buffer via the
 `BufferKeyPress()` method. `BufferKeyPress()` implements a policy where if a
 character to be buffered cannot be accomodated, then the buffer is emptied via a
 call to `Transmit()` before the character is inserted into the buffer.
-`Transmit()` is a method implemented by all recorder types that implements the
-writing of buffered data to some recording medium (e.g., a text file or a
-socket).
+`Transmit()` is a method implemented by all recorder types. `Transmit()` writes
+buffered data to some recording medium (e.g., a text file or a socket).
 
 As you might have guessed by now, each recording mode has an associated
 `Recorder` subtype. The text file recorder has the `FileRecorder` type and the

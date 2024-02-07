@@ -49,7 +49,7 @@ Aside from installing the required client dependencies[^8], both images create a
 local `runescape` user. The `runescape` user is made part of the `audio` group.
 Making a user part of the `audio` group is not recommended on desktop
 Ubuntu[^9], however, I found it necessary in order to get audio working along
-with steps in [Audio Setup](#audio-setup).
+with the steps in [Audio Setup](#audio-setup).
 
 ## Cache Persistence
 

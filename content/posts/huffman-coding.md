@@ -462,9 +462,7 @@ coding. The implementation is not the most robust or efficient with regards to
 space/time. The header could be made significantly smaller[^4], additional
 precautions need to be taken in the source to account for massive input/output
 files, etc. That said, the core concepts are there. Playing around with the
-tool, I was able to compress some files down to 50% of their original size! The
-lossless decompression, less like magic now that I know how it works, was
-equally satisfying.
+tool, I was able to compress some files down to 50% of their original size!
 
 You can find the complete project source with build instructions, usage, etc. on
 my GitHub page under [huffman][5].

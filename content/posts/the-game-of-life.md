@@ -176,7 +176,7 @@ static void RunDrawLoop(const gol::graphics::ScreenDimension &dim,
 ## Conclusion
 
 Below is a video showing `life` in action. The initial state that's given forms
-what's called a Gosper Glider Gun.
+what's called a Gosper Glider Gun[^4].
 
 {{< video src="/posts/the-game-of-life/gol-demo.mp4" type="video/mp4" preload="auto" >}}<br>
 
@@ -192,7 +192,9 @@ my GitHub page under [game_of_life][4].
 [2]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 [3]: https://en.wikipedia.org/wiki/Ncurses
 [4]: https://github.com/ivan-guerra/game_of_life
+[5]: https://conwaylife.com/wiki/Gosper_glider_gun
 
 [^1]: [Advent of Code][1]
 [^2]: [Conway's Game of Life][2]
 [^3]: [ncurses][3]
+[^4]: [Gosper Glider Gun][5]

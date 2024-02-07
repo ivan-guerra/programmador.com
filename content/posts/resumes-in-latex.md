@@ -339,8 +339,8 @@ the resume edit-compile-view cycle works.
 6. Compile the `*.tex` file into a PDF from the container shell using
    `pdflatex`.
 7. View the output PDF in a PDF viewer or browser on the host. I actually leave
-   the document open in the my viewer so that everytime I run `pdflatex` I see
-   the updates instantly take effect.
+   the document open in my viewer so that everytime I run `pdflatex` I see the
+   updates instantly take effect.
 8. Back to (5).
 
 ## Conclusion

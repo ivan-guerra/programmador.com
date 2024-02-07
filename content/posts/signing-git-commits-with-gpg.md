@@ -93,7 +93,7 @@ commits and just about any other document:
 
 ![GPG Key Generation](/posts/signing-git-commits-with-gpg/keygen.png#center)
 
-I highly recommend you export and backup your private key somehwere safe! The
+I highly recommend you export and backup your private key somewhere safe! The
 command to safely export your private key for backup is:
 
 ```bash
@@ -109,7 +109,7 @@ gpg --import private.gpg
 
 ## Tell Git to Sign Commits and Tags
 
-Sometimes configuring Git is hard. Luckily, telling Git to sign your
+Sometimes, configuring Git is hard. Luckily, telling Git to sign your
 commits/tags is pretty easy.
 
 You'll first want to get your signing key. Run the following command:
@@ -178,9 +178,9 @@ Just copy and paste the text that is output into GitHub's public key textfield.
 **That includes both the opening `-----BEGIN PGP PUBLIC KEY BLOCK-----` and
 closing `-----END PGP PUBLIC KEY BLOCK-----` lines!**
 
-Now, every commit you make on your local machine will be signed. When you push
-your changes to a remote repository hosted on GitHub, GitHub will automatically
-verify the commit using the GPG key associated with your account.
+Now, when you push your changes to a remote repository hosted on GitHub, GitHub
+will automatically verify the commit using the GPG key associated with your
+account.
 
 ![Verified Commits](/posts/signing-git-commits-with-gpg/verified.png#center)
 

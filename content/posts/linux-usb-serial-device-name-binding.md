@@ -7,10 +7,10 @@ showToc: false
 ---
 
 On a recent project, I was developing an app on Linux that gathered data from a
-number of USB serial devices. One annoyance I came across was that oftentimes
-when the machine was rebooted, the device names would get all mixed up! After
-some searching, I was able to compile the steps needed to bind a custom `/dev`
-name to a USB device.
+number of USB serial devices. One annoyance I came across was that when the
+machine was rebooted, the device names would get all mixed up! After some
+searching, I was able to compile the steps needed to bind a custom `/dev` name
+to a USB device.
 
 To be clear, this article walks through assigning USB **serial devices**
 persistent names. If you have a USB **block device** and would like to give it a
@@ -18,9 +18,9 @@ persistent name, the ArchWiki[^1] has you covered.
 
 ## USB Serial Device Name Binding Using *udev*
 
-The instructions below will work on a Linux distro that uses the `udev`[^2]
-device manager which is just about any modern distro. **`root` privileges will
-be required to execute these instructions!**
+The instructions below will work on a Linux distro that uses `udev`[^2] for
+device management. **`root` privileges will be required to execute these
+instructions!**
 
 1. Plugin the USB serial device.
 2. Identify the `/dev/ttyUSB*` name assigned to your device. There are many ways
@@ -52,9 +52,11 @@ udevadm trigger
 ls -l /dev/mydevice
 ```
 8. On reboot or when the device is plugged in, the new device name will
-   automagically be applied. To bind more device names, simply add rules to
-   `99-usb-serial.rules`. To undo these changes simply delete the device's
-   corresponding rule in `/etc/udev/rules.d/99-usb-serial.rules`.
+   automagically be applied. 
+
+To bind more device names, simply add rules to `99-usb-serial.rules`. To undo
+these changes simply delete the device's corresponding rule in
+`/etc/udev/rules.d/99-usb-serial.rules` and run `udevadm trigger`.
 
 
 [1]: https://wiki.archlinux.org/title/persistent_block_device_naming

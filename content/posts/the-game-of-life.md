@@ -3,9 +3,6 @@ title: "The Game of Life"
 date: 2023-12-01T13:13:04-08:00
 description: "Visualize Conway's Game of Life in your terminal."
 tags: ["cli-tools", "c++", "ncurses"]
-cover:
-    image: /posts/the-game-of-life/gol-demo.webp
-    alt: GoL Demo
 ---
 
 While grinding through some old Advent of Code[^1] problems, I noticed a

@@ -3,9 +3,6 @@ title: "Linux Driver Development for Embedded Processors"
 date: 2023-10-07T17:56:16-07:00
 description: "A short review of \"Linux Driver Development for Embedded Processors\"."
 tags: ["linux", "raspberrypi"]
-cover:
-    image: /posts/linux-driver-development-for-embedded-processors/raspberry-pi-logo.png
-    alt: Raspberry Pi Logo
 ---
 
 After working through the infamous "Linux Device Drivers"[^1] book back in 2022,

@@ -3,9 +3,6 @@ title: "Huffman Coding"
 date: 2023-07-04T20:57:06-07:00
 description: "Data compression using Huffman coding."
 tags: ["c++", "cli-tools", "compression"]
-cover:
-    image: /posts/huffman-coding/huffman-tree.png
-    alt: Huffman Tree
 ---
 
 While reading through an old data structures book, I came across a cool looking

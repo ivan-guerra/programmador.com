@@ -3,9 +3,6 @@ title: "ASCII Art Generator"
 date: 2023-02-26T13:25:04-07:00
 description: "A JPEG/PNG to ASCII Art generator."
 tags: ["ascii-art", "boost", "c++", "cli-tools"]
-cover:
-    image: /posts/ascii-art-generator/asciigen.png
-    alt: ASCII Art
 ---
 
 Who doesn't like ASCII art? If you're like me, you probably thought about making

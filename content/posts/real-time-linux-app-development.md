@@ -3,9 +3,6 @@ title: "Real-time Linux App Development"
 date: 2023-04-27T22:49:14-07:00
 description: "A checklist for developing real-time applications in Linux."
 tags: ["c", "c++", "linux", "realtime"]
-cover:
-    image: /posts/real-time-linux-app-development/clock.webp
-    alt: Clock
 ---
 
 If you a are programmer in the embedded space, you have likely touched on the

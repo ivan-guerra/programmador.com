@@ -3,9 +3,6 @@ title: "keylogger: A Cross-Platform Keylogger"
 date: 2023-11-13T11:04:37-08:00
 description: "How to write a cross platform keylogger."
 tags: ["cli-tools", "c++", "linux", "windows", "x11"]
-cover:
-    image: /posts/keylogger/keylogger-demo.webp
-    alt: keylogger Demo
 ---
 
 While developing the `kbhell`[^1] application, I realized I was about 90% of the

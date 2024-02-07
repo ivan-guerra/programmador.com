@@ -4,9 +4,6 @@ date: 2024-01-20T21:24:43-08:00
 description: "Using GNU stow to manage your dotfiles."
 tags: ["cli-tools", "gnu", "linux"]
 showToc: false
-cover:
-    image: /posts/dotfile-mgmt-with-gnu-stow/gnu-logo.png
-    alt: GNU Logo
 ---
 
 Until just about a year ago, I would manage my dotfiles manually. That is, I

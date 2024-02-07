@@ -3,9 +3,6 @@ title: "Resumes in LaTeX"
 date: 2023-06-09T09:42:11-07:00
 description: "A template and tools for writing a resume in LaTeX."
 tags: ["docker", "latex"]
-cover:
-    image: /posts/resumes-in-latex/latex-logo.png
-    alt: LaTeX Logo
 ---
 
 Writing a resume can be a time consuming task involving many rounds of

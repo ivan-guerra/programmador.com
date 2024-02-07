@@ -9,6 +9,7 @@ enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
+pygmentsUseClasses: true
 
 minify:
   disableXML: true
@@ -32,6 +33,7 @@ params:
   ShowCodeCopyButtons: true
   ShowWordCount: false
   ShowRssButtonInSectionTermList: false
+  ShowPageNums: true
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
@@ -100,7 +102,6 @@ menu:
       url: /search/
       weight: 40
 
-pygmentsUseClasses: true
 markup:
   goldmark:
     renderer:

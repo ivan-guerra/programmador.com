@@ -69,7 +69,17 @@
     text-rendering: optimizeLegibility;
 }
 
-body, input, textarea, code {
-  font-family: 'Berkeley Mono';
-  font-size: 16px;
+.post-content code {
+    margin: auto 4px;
+    padding: 4px 6px;
+    font-family: 'Berkeley Mono';
+    font-size: 14px;
+    line-height: 1.5;
+    background: var(--code-bg);
+    border-radius: 2px;
+}
+
+body, input, textarea {
+    font-family: 'Berkeley Mono';
+    font-size: 16px;
 }

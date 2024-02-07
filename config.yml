@@ -83,9 +83,9 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: search
-      name: Search
-      url: /search/
+    - identifier: about
+      name: About
+      url: /about/
       weight: 10
     - identifier: posts
       name: Posts
@@ -95,9 +95,9 @@ menu:
       name: Tags
       url: /tags/
       weight: 30
-    - identifier: about
-      name: About
-      url: /about/
+    - identifier: search
+      name: Search
+      url: /search/
       weight: 40
 
 pygmentsUseClasses: true

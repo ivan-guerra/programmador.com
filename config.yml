@@ -22,8 +22,8 @@ params:
   author: "Ivan Eduardo Guerra"
   images: [""]
   DateFormat: "January 2, 2006"
-  defaultTheme: "auto"
-  disableThemeToggle: false
+  defaultTheme: "dark"
+  disableThemeToggle: true
 
   ShowReadingTime: true
   ShowShareButtons: false

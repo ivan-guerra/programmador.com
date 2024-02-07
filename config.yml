@@ -3,6 +3,7 @@ title: "~ieg/$_"
 paginate: 5
 theme: "hugo-PaperMod"
 copyright: "All rights reserved, Ivan Eduardo Guerra"
+googleAnalytics: "G-XEENY573SL"
 
 enableRobotsTXT: true
 buildDrafts: false

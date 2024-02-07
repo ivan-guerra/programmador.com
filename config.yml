@@ -109,7 +109,8 @@ markup:
     codeFences: true
     guessSyntax: true
     lineNos: false
-    style: friendly
+    noClasses: false
+    style: dracula
 
 outputs:
     home:

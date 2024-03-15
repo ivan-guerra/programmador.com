@@ -38,7 +38,16 @@ QEMU has three main operating modes[^2]:
 We'll be using the hypervisor support mode. Below is an illustration showing the
 intended setup:
 
-![VM Setup](/posts/linux-kernel-development-using-qemu/vm-setup.png#center)
+```text
++--------------------------------------------+
+| PC                                         |
+|                                            |
+|  +----------+                +-----------+ |
+|  | Host OS  |<------SSH----->|  Guest OS | |
+|  +----------+                +-----------+ |
+|                                            |
++--------------------------------------------+
+```
 
 We want to run a guest OS on our host machine. The guest OS will run a Linux
 distro of our choice along with our custom kernel. From within the guest, we got

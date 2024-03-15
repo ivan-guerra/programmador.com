@@ -30,8 +30,33 @@ How would one computer communicate when it last ran to other? I could connect
 the output GPIO that drives the LED to an input GPIO on the peer board! Below is
 a sketch of the setup:
 
-
-![High Level Design](/posts/gpio-driven-synchronization/high-level-overview.png#center)
+```text
+                +-------------------------------------------+                
+                |BeagleBone Black 1                         |                
+  BBB2_GPIO_OUT |   +----------+               +---------+  | BBB1_GPIO_OUT  
+----------------+-->|  gtimer  |               |  gsync  +--+--------------->
+                |   +----+-----+               +----^----+  |                
+                |        |                          |       |                
+                |        |                          |       |                
+                |   +----v--------------------------+----+  |                
+                |   |            Shared Memory           |  |                
+                |   +------------------------------------+  |                
+                |                                           |                
+                +-------------------------------------------+                
+                                                                             
+                +-------------------------------------------+                
+                |BeagleBone Black 2                         |                
+  BBB1_GPIO_OUT |   +----------+               +---------+  | BBB2_GPIO_OUT  
+----------------+-->|  gtimer  |               |  gsync  +--+--------------->
+                |   +----+-----+               +----^----+  |                
+                |        |                          |       |                
+                |        |                          |       |                
+                |   +----v--------------------------+----+  |                
+                |   |            Shared Memory           |  |                
+                |   +------------------------------------+  |                
+                |                                           |                
+                +-------------------------------------------+
+```
 
 Each BBB would host two processes: `gtimer` and `gsync`. The `gtimer` process
 monitors an input GPIO. `gtimer` blocks on the GPIO waiting for a rising edge
@@ -39,7 +64,14 @@ event. When the input GPIO goes high, `gtimer` logs the time when the signal
 arrived in shared memory. Here's a flowchart showing how `gtimer` does its
 thing:
 
-![gtimer State Machine](/posts/gpio-driven-synchronization/gtimer-state-machine.png#center)
+```text
++------------+     +-----------------+     +----------------------+     +----------------------+
+| Init Shmem +---->| Init Input GPIO +---->| Wait for Rising Edge +---->| Write Wakeup Time to |
++------------+     +-----------------+     |        Event         |     |         Shmem        |
+                                           +----------^-----------+     +----------+-----------+
+                                                      |                            |            
+                                                      +----------------------------+
+```
 
 `gsync` is what was described above as the blink program. `gsync` runs at a
 configurable rate, in this case 1Hz. `gsync` will immediately signal to its peer
@@ -49,8 +81,27 @@ time, `gsync` can run the Kuramoto Model to compute a delta to be applied to
 its next wakeup time. If all goes well, on our next wakeup we'll be closer to
 phase locking with the peer. Here's a flowchart showing how `gsync` works:
 
-
-![gsync State Machine](/posts/gpio-driven-synchronization/gsync-state-machine.png#center)
+```text
++-------------------+       +------------------+      
+| Attached to Shmem +------>| Init Output GPIO |      
++-------------------+       +--------+---------+      
+                                     |                
+                         +-----------v--------------+ 
+                    +----> Get CLOCK_MONOTONIC Time | 
+                    |    +-----------+--------------+ 
+                    |                |                
+                    |   +------------v---------------+
+                    |   | Send Wakeup Signal to Peer |
+                    |   +------------+---------------+
+                    |                |                
+                    |    +-----------v--------------+ 
+                    |    | Compute Next Wakeup Time | 
+                    |    +-----------+--------------+ 
+                    |                |                
+                    |    +-----------v-------------+  
+                    +----+ Sleep Until Next Wakeup |  
+                         +-------------------------+  
+```
 
 The best&trade; implementation of `gsync` and `gtimer` is not immediately
 obvious.  However, the hardware setup is pretty straighforward so lets look at

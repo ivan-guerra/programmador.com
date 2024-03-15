@@ -82,7 +82,35 @@ struct HuffmanNode {
 
 Here's a picture of a Huffman Tree for the input text `aaaaabbc`:
 
-!["aaaaabbc" Huffman Tree](/posts/huffman-coding/huffman-tree2.png#center)
+```text
+                                   ┌───────────────────────────┐                 
+                                   │          Node 1           │                 
+                                   ├───────────────────────────┤                 
+                                   │character = INTERNAL_MARKER│                 
+                                   ├───────────────────────────┤                 
+                                   │count = 8                  │                 
+                                   └─────────────┬─────────────┘                 
+                                                 │                               
+                             ┌─────────0─────────┴───────1──────┐                
+                             │                                  │                
+                ┌────────────▼──────────────┐       ┌───────────▼───────────────┐
+                │          Node 2           │       │          Node 3           │
+                ├───────────────────────────┤       ├───────────────────────────┤
+                │character = INTERNAL_MARKER│       │character = 'a'            │
+                ├───────────────────────────┤       ├───────────────────────────┤
+                │count = 3                  │       │count = 5                  │
+                └─────────────┬─────────────┘       └───────────────────────────┘
+                              │                                                  
+             ┌────────0───────┴───────1───────┐                                  
+             │                                │                                  
+┌────────────▼──────────────┐    ┌────────────▼──────────────┐                   
+│          Node 4           │    │          Node 5           │                   
+├───────────────────────────┤    ├───────────────────────────┤                   
+│character = 'c'            │    │character = 'b'            │                   
+├───────────────────────────┤    ├───────────────────────────┤                   
+│count = 1                  │    │count = 2                  │                   
+└───────────────────────────┘    └───────────────────────────┘                   
+```
 
 There are two types of nodes in the tree: internal nodes and leaf nodes.  The
 leaf nodes of a Huffman Tree contain an input character and its frequency

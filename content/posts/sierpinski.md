@@ -91,7 +91,24 @@ If you were paying attention in your algorithms course, you'd know the time
 complexity of this implementation is not so great. Below is the call tree for a
 `Sierpinski(2)` run.
 
-![Sierpinski Call Stack](/posts/sierpinski/call_stack.png)
+```text
+                                                                              +----------------+                                                                              
+                                                                              | Sierpinski(2)  |                                                                              
+                                                                              +-------+--------+                                                                              
+                                                                                      |                                                                                       
+                           +----------------------------------------------------------+----------------------------------------------------------+                            
+                           |                                                          |                                                          |                            
+                   +-------v--------+                                         +-------v--------+                                                 |                            
+                   | Sierpinski(1)  |                                         | Sierpinski(1)  |                                         +-------v--------+                   
+                   +-------+--------+                                         +-------+--------+                                         | Sierpinski(1)  |                   
+                           |                                                          |                                                  +-------+--------+                   
+                           |                                      +-------------------+-----------------+                                        |                            
+       +-------------------+-----------------+                    |                   |                 |                     +------------------+-----------------+          
+       |                   |                 |                    |                   |                 |                     |                  |                 |          
++------v---------+ +-------v--------+ +------v---------+   +------v---------+ +-------v--------+ +------v---------+   +-------v--------+ +-------v--------+ +------v---------+
+| Sierpinski(0)  | | Sierpinski(0)  | | Sierpinski(0)  |   | Sierpinski(0)  | | Sierpinski(0)  | | Sierpinski(0)  |   | Sierpinski(0)  | | Sierpinski(0)  | | Sierpinski(0)  |
++----------------+ +----------------+ +----------------+   +----------------+ +----------------+ +----------------+   +----------------+ +----------------+ +----------------+
+```
 
 At each node in the tree above we make 3 calls to `Sierpinski()`. The depth of
 this tree is equal to the degree of the top-level `Sierpinski()` call. You can

@@ -6,47 +6,45 @@ tags: ["c++", "cli-tools", "ncurses"]
 ---
 
 Most programmers young and old have seen the cyberpunk sci-fi film The
-Matrix[^1]. When I watched The Matrix as a kid, the scene that stood out the
-most is the closing scene where Neo sees the Matrix when facing off against the
-Agents:
+Matrix[^1]. One of the most outstanding parts of the movie is the closing scene
+where Neo sees the Matrix when battling the Agents:
 
 [![Neo Sees the Matrix](/posts/binary-rain/matrix.jpg#center)][2]
 
-The visual effect with the code running along all the surfaces was really cool.
-Seems other people thought so too to the point that the effect has a name:
-Matrix Digital Rain[^2].
+The visual effect with the code running along all the surfaces is iconic. Seems
+other people thought so too to the point that the effect has a name: Matrix
+Digital Rain[^2].
 
-I thought it would be neat to create a terminal screensaver that mimicked the
-effect seen in the movie.
+Wouldn't it be neat to create a terminal screensaver that mimicked the effect
+seen in the movie?
 
 ## How to Make It Rain
 
-Before coding anything up, I had to better understand how the digital rain
-effect actually works. I studied a few of the compilations put up by fans on
-YouTube:
+Studying a few video compilations helps with understanding the details behind
+the scrolling effect:
 
 {{< youtube E8y3eDUMb4Q >}}
 
-Here are the key features I noted:
+Here are some features that pop out in the video:
 
 * The characters printed on the screen are a mix of Japanese kana and Latin
   letters/numeral characters.
 * Each column or stream has a fixed length with the first character in the
   stream having a bright white color.
 * Character streams spawn at random.
-* Once a stream of characters has begun, a new stream will not begin on that
+* Once a stream of characters has begun, a new stream won't begin on that
   column until all the previous characters have "fallen" off screen.
 
-Fundamentally, we want randomly generated streams of characters scrolling down
-our terminal screen. You can imagine the screen is a two dimensional matrix of
-characters. Each frame of the screensaver will scroll the screen down a single
-row such that the characters at the bottom row "fall off" the screen. The higher
-the framerate, the faster the characters fly down the screen.
+Fundamentally, a stream of characters scrolls down the screen. You can imagine
+the screen is a two dimensional matrix of characters. Each screensaver frame
+tick will scroll the screen down a single row such that the characters at the
+bottom row "fall off" the screen. The higher the framerate, the faster the
+characters fly down the screen.
 
 ## Building a Scrolling Buffer
 
-I came up with a handful of data structures to help implement the scrolling
-buffer effect. The first is the `Char` type:
+A handful of data structures implement the scrolling buffer effect. The first
+is the `Char` type:
 
 ```cpp
 struct Char {
@@ -56,10 +54,10 @@ struct Char {
 ```
 
 `Char` represents a single on-screen character. The only oddity here is the
-boolean `first` field. We'll touch more on the purpose of `first` later.
+boolean `first`. You will see the purpose of the `first` field later.
 
-Next, we represent the individual columns or streams of characters using the
-`CharStream` type:
+The `CharStream` type represents the individual columns or streams of
+characters.
 
 ```cpp
 class CharStream {
@@ -88,16 +86,16 @@ class CharStream {
 };
 ```
 
-`CharStream` is fixed sized container type storing a limited number of non NULL
-`Char` objects. `CharStream` supports two primary operations: insert and remove.
+`CharStream` is a fixed sized container type storing a limited number of non
+NULL `Char` objects. `CharStream` supports two primary operations: insert and
+remove.
 
 `InsertChar()` inserts a `Char` at the beginning of the stream. The caller can
 only add up to `char_limit_` characters to the stream. `RemoveChar()` removes
 the last `Char` in the stream by shifting all elements right a cell.
 
-Below is a sequence of calls to a `CharStream` object showing how the scrolling
-effect can be achieved using the `InsertChar()` and `RemoveChar()` methods of
-the class:
+Below is a sequence of calls to a `CharStream` object demonstrating scrolling
+using the `InsertChar()` and `RemoveChar()` methods of the class:
 
 ```text
 CharStream stream(5, 3) -> [NULL, NULL, NULL, NULL, NULL]
@@ -149,33 +147,32 @@ class ScreenBuffer {
 At its core, `ScreenBuffer` is an array of `CharStream` objects where each
 `CharStream` represents a single screen column. The `ScreenBuffer` constructor
 ensures there are `width` many streams each with capacity and char limit of
-`height`.  `ScreenBuffer`'s API allows updating of the internal screen buffer
-and retrieval of a read-only view of the buffer's contents.
+`height`.  `ScreenBuffer`'s API updates the internal screen buffer
+and retrieves a read-only view of the buffer's contents.
 
 `Update()` is the heavy lifter which performs the following operations:
 
-1. Shifts all rows down by one. This effectively deletes the very bottom row and
-   introduces a new, empty top row.
-2. If a column of characters has not yet met its character limit, `Update()`
-   will insert a character at the very top of that column.
+1. Shifts all rows down by one. This deletes the bottom row and introduces a
+   new, empty top row.
+2. If a column of characters hasn't yet met its character limit, `Update()` will
+   insert a character at the top of that column.
 3. `Update()` will select a random column index and will insert a character only
    if that column is empty.
 
-With the above data structures in place, all that is left to do is render the
+With the data structures in place, all that's left to do is render the
 `ScreenBuffer`'s contents using the ncurses API.
 
 ## Rendering the Screensaver
 
-Since the goal is to create a terminal screensaver, my choices in graphical
-libraries are limited. I went with the time tested ncurses[^3] API.
+The goal is to create a terminal screensaver. This limits your graphical library
+options. Good old ncurses[^3] will do.
 
-I also dumbed down the character set quite a bit. Instead of supporting both
-Japanese and Latin character sets, I decided to keep it simple and print only
-binary digits. This choice removed a lot of headaches and still kept with the
-cyberish theme I was going for.
+For this project, binary digits are the only characters printed to the screen.
+No Japanese or Latin characters as in the original. This choice removed a lot of
+headaches while still keeping with the cyber theme of the original.
 
-With all that in mind, I designed a `ScreenSaver` class that would render the
-`ScreenBuffer` contents in a single ncurses window:
+The `ScreenSaver` class renders the `ScreenBuffer` contents in a single ncurses
+window:
 
 ```cpp
 class ScreenSaver {
@@ -202,16 +199,16 @@ class ScreenSaver {
 
 The `ScreenSaver` API is simple: `Draw()` and `Quit()`.
 
-`Quit()` returns true if the User has pressed any key. It is the mechanism by
-which we can smoothly shutdown the screensaver.
+`Quit()` returns true if the User has pressed any key. It's the mechanism by
+which the user can terminate the screensaver.
 
-`Draw()` renders the `ScreenBuffer`'s contents in the window. All binary digits
-are rendered in green with their dimness being altered at random with the
-exception being the first character in each stream. If a `Char`'s `first` field
-is `true`, then that character is colored white and bolded giving a visual cue
-as to where each stream starts.
+`Draw()` renders the `ScreenBuffer`'s contents in the window. Binary digits
+render in green with their dimness altered at random. The first character in
+each stream is the exception. If a `Char`'s `first` field is `true`, then that
+character is white and rendered in bold giving a visual cue as to where each
+stream starts.
 
-The main screensaver loop ends up being quite simple:
+The main screensaver loop ends up being simple:
 
 ```cpp
 int main() {
@@ -226,8 +223,8 @@ int main() {
 }
 ```
 
-The main loop continuously draws the screensaver with a delay in between
-updates. If the user presses any key, the application exits.
+The main loop continuously draws the screensaver with a delay between updates.
+If the user presses any key, the application exits.
 
 Here's what the screensaver looks like in action:
 
@@ -237,13 +234,13 @@ Here's what the screensaver looks like in action:
 
 Making the `neo` screensaver had its challenges. In particular, this was one of
 those classic problems where if you have the right data structures its simple.
-Well sort of, implementing a tweaked scrolling buffer made me stop and think
-more than once. My setup certainly cuts many corners with respect to efficiency.
+Well sort of, implementing a tweaked scrolling buffer does take some thought.
+The setup presented here certainly cuts many corners with respect to efficiency.
 All that said, the screensaver has been fun to use at home and a great
 conversation piece amongst the Matrix nerds at work.
 
-You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [neo][4].
+The complete project source with build instructions, usage, etc. is available on
+GitHub under [neo][4].
 
 [1]: https://en.wikipedia.org/wiki/The_Matrix
 [2]: https://tinyurl.com/yc7p7285

@@ -5,38 +5,34 @@ description: "Rendering a cube in the terminal."
 tags: ["cli-tools", "c++", "ncurses"]
 ---
 
-While surfing YouTube, I stumbled upon this ASMR programming video[^1] where the
-developer programs a terminal display with a couple of spinning cubes. As I
-watched, I realized I had no idea how 3D objects are rendered on a 2D screen.
-All my life playing video games and I had never given it much thought. I perused
-the code from the video and honestly wasn't able to glean much. I decided this
-was a good opportunity to learn something new. I settled on developing a simple
-ncurses[^2] application that would render a cube and allow the user to rotate it
-using the arrow keys. Easy enough right...
+You ever come across one of those ASMR programming videos? This video[^1] where
+the developer programs a terminal display with a couple of spinning cubes is
+neat. This video is the motivation for the development of a ncurses[^2]
+application that renders a user controlled 3D cube.
 
 ## Perspective Projection and Rotation Matrices
 
 So how do you take an object in 3D space and visualize it in 2D space? The
-answer is perspective projection. I watched many videos that explained the
-technique in detail. The one that "clicked" for me was "Carl the Person"'s
-(cool name by the way) video tutorial:
+answer is perspective projection. Many videos explain the technique in detail.
+One of the better videos is "Carl the Person"'s (cool name by the way) video
+tutorial:
 
-{{< youtube eoXn6nwV694 >}}<br>
+{{< youtube eoXn6nwV694 >}}
 
-I won't try to repeat Carl's derivation of 3D to 2D coordinate transformation. I
-will reveal the secret sauce though. To take a 3D coordinate \\((x,y,z)\\) and
-transform it to its 2D projection \\((x_p, y_p)\\), apply the following formulas:
+No need to repeat Carl's derivation of 3D to 2D coordinate transformation here.
+You just need to apply the secret sauce. To take a 3D coordinate \\((x,y,z)\\)
+and transform it to its 2D projection \\((x_p, y_p)\\), apply the following
+formulas:
 
 \\[ x_p = {x \over {z \tan{\theta \over 2}}} \\]
 \\[ y_p = {y \over {z \tan{\theta \over 2}}} \\]
 
-In the equation above, \\(\theta\\) is the angle in radians of the camera's
-field of view. More on that later.
+In these equations, \\(\theta\\) is the angle in radians of the camera's field
+of view. More on that later.
 
-Okay cool, so we can go from 3D to 2D. What about rotating the object? This part
-wasn't so new to me. I'd seen plenty of rotation matrices in my time developing
-aerospace software. The general 3D rotation matrix that you can copy paste from
-Wikipedia[^3] does the trick:
+Okay cool, so you can go from 3D to 2D. What about rotating the object? The
+general 3D rotation matrix that you can copy paste from Wikipedia[^3] does the
+trick:
 
 \\[
     \begin{bmatrix}
@@ -58,20 +54,19 @@ Wikipedia[^3] does the trick:
 \\] 
 
 Where \\(\alpha\\), \\(\beta\\), and \\(\gamma\\) are the camera's yaw, pitch,
-and roll angles in radians. In this application, I've zeroed the yaw and set the roll
-and pitch angles using a "cursor" location. To explain a bit further, when the
-application starts, an invisible cursor is placed in the center of the screen.
-When the user presses the arrows keys, the application updates the \\((x_{cursor}, y_{cursor})\\)
-location of the cursor accordingly. The cursor location is later used to
-determine the roll and pitch angles using the following formulas:
+and roll angles in radians. You need to zero the yaw and set the roll and pitch
+angles using a "cursor" location. To explain a bit further, when the application
+starts, an invisible cursor sits in the center of the screen. When the user
+presses the arrows keys, the application updates the \\((x_{cursor},
+y_{cursor})\\) location of the cursor accordingly. The cursor location is later
+used to determine the roll and pitch angles using the following formulas:
 
 \\[\beta = {x_{cursor} \over s_{width}} \times \pi\\]
 \\[\gamma = {y_{cursor} \over s_{height}} \times \pi\\]
 
 Where \\(s_{width}\\) and \\(s_{height}\\) are the screen width/height.
 
-Putting all the above together, I developed the following projection/rotation
-function:
+Putting it all together, you get the following projection/rotation function:
 
 ```cpp
 Faces2D RotateAndProject3Dto2D(const Cube &cube, const ViewConfig &conf,
@@ -111,63 +106,59 @@ Faces2D RotateAndProject3Dto2D(const Cube &cube, const ViewConfig &conf,
 }
 ```
 
-`RotateAndProject3Dto2D()` takes as input the cube, current cursor position, and what I
-am calling view configurations (i.e., camera FOV angle, near plane dimensions,
+`RotateAndProject3Dto2D()` takes as input the cube, current cursor position, and
+the view configurations (that is, camera FOV angle, near plane dimensions,
 etc.). The function iterates over each 3D coordinate on each face of the cube.
-For each point we perform the following steps:
+For each point, you perform the following steps:
 
 1. Rotate the point. `Rotate3D()` implements the rotation matrix multiplication.
 2. Apply the perspective projection. `Transform3DTo2D()` is a "generic" version
    of the perspective projection formulas.
-3. Offset the coordinate to account for the fact our 2D coordinate system (the
+3. Offset the coordinate to account for the fact the 2D coordinate system (the
    screen as defined by ncurses) has its origin at the top left of the screen.
 
-The output of `RotateAndProject3Dto2D()` is a collection of 2D points that when plotted
-on the screen will show the cube projected and rotated. 
+The output of `RotateAndProject3Dto2D()` is a collection of 2D points that when
+plotted on the screen will show the cube projected and rotated. 
 
 ## Drawing the Line
 
-My cube representation isn't much different than what I had seen others do on
-similar projects (i.e., a collection of 3D points defining the vertices of the
-cube). That said, others were using visualization APIs that allowed them to draw
-lines between points. Take a look at the image below which was snipped from
-"Carl the Person"'s video:
+You represent a cube as a collection of 3D points defining the vertices of the
+cube. You need a method to draw lines between the vertex points. Some demos use
+a visualization API capable of drawing lines between points. Take a look at the
+image below taken from "Carl the Person"'s video:
 
 ![Cube With Edges](/posts/ncube/cube-with-edges.png#center#center)
 
-Now compare that with a capture of my cube in a similar orientation:
+Now compare that with a capture of your cube in a similar orientation:
 
 ![Cube Without Edges](/posts/ncube/cube-without-edges.png#center#center)
 
-Yeah...eight vertices floating around in space looks like crap. As far as I
-know, ncurses cannot draw anything more than vertical and horizontal lines. So
-what do we do?
+Eight vertices floating around in space looks like crap. ncurses can't draw
+anything more than vertical and horizontal lines. What now?
 
 The solution is to define points along the edges of the cube. How do you do
-that? Well you could do it manually but that's no fun. My StackOverflow searches
-showed plenty of Python examples where interpolation was used to define equally
-spaced points along a line in 3D space[^4]. Cool, but I wasn't about to
-implement that in C++ or integrate a 3rd party library just to solve this little
-problem. 
+that? Well you could do it manually but that's no fun. StackOverflow shows
+plenty of Python examples where you interpolate to define equally spaced points
+along a line in 3D space[^4]. Cool, but you don't want to implement that in C++
+or integrate a 3rd party library just to solve this little problem. 
 
-I came up with a solution[^5] for generating \\(N\\) equidistant points on the
-line between two endpoints in 3D space. The idea is to repeatedly compute
-midpoints until you have generated \\(N\\) midpoints. Lets look at an example.
+There's another solution[^5] for generating \\(N\\) equidistant points on the
+line between two endpoints. The idea is to repeatedly compute midpoints until
+you have generated \\(N\\) midpoints. Here's an example.
 
-Imagine we wanted to generate 7 points between an edge start and end point. We
-can compute the midpoint of the start and end point call it \\(M_1\\). Then we
-could compute the midpoint between the start and \\(M_1\\), \\(M_2\\), and the
+Imagine you wanted to generate 7 points between an edge start and end point. You
+compute the midpoint of the start and end point call it \\(M_1\\). Then you
+compute the midpoint between the start and \\(M_1\\), \\(M_2\\), and the
 midpoint between \\(M_1\\) and end, \\(M_3\\). Continue applying this process
 recursively until you have generated the 7th midpoint, \\(M_7\\). The figure
 below illustrates the process.
 
 ![Generating Edge Points](/posts/ncube/generating-edge-points.webp#center)
 
-A nuance of the algorithm is that the midpoints must be generated in the order
-\\(M_1, M_2, M_3, ..., M_7\\). Put in other words, we need to generate the tree
-above in breadth-first order[^6].
+You want to generate midpoints in the order \\(M_1, M_2, M_3, ..., M_7\\). Put in
+other words, you need to generate the tree in breadth-first order[^6].
 
-Below is my C++ implementation of the algorithm:
+Below is a C++ implementation of the algorithm:
 
 ```cpp
 Face3D Cube::GenPoints(const Point3D a, const Point3D& b,
@@ -195,15 +186,13 @@ Face3D Cube::GenPoints(const Point3D a, const Point3D& b,
 }
 ```
 
-`GenPoints()` implements a straightforward BFS traversal of the "midpoint
-tree". The BFS queue's elements are pairs of 3D points representing the start
-and end point of line segments on the original line. The algorithm terminates
-when `num_points` midpoints have been pushed into the return vector, `points`.
+`GenPoints()` implements a BFS traversal of the "midpoint tree." The BFS queue's
+elements are pairs of 3D points representing the start and end point of line
+segments on the original line. The algorithm terminates when the `points` vector
+has a size of `num_points`.
 
-I made the number of edge points a command line option with a default of 5. In
-the image below, I've run the application with the number of edge points set to
-21:
-
+You can make the number of edge points a command line option. The cube below has
+an edge points count of 21:
 
 ![Cube With Generated Edges](/posts/ncube/cube-with-generated-edges.png#center)
 
@@ -215,15 +204,14 @@ Below is a demo showing the `ncube` application in action:
 
 {{< video src="/posts/ncube/ncube-demo.mp4" type="video/mp4" preload="auto" >}}
 
-My biggest takeaway from this project was learning the purpose, concepts, and
-math behind perspective projection. I also enjoyed coming up with a solution to
-the problem of generating nice-ish looking edges for the cube using a textbook
-CS approach. Amongst the many toy apps I've written, `ncube` is one of my top 5
-maybe because crappy 3D graphics have a special place in my heart.
+The biggest takeaway from this project is learning the purpose, concepts, and
+math behind perspective projection. Bonus points for coming up with a solution
+to the problem of generating nice-ish looking edges for the cube using a
+textbook CS approach. `ncube` is satisfying to run. The crappy 3D graphics are
+something special.
 
-You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [ncube][5].
-
+The complete project source with build instructions, usage, etc. is available on
+GitHub under [ncube][5].
 
 [1]: https://www.youtube.com/watch?v=p09i_hoFdd0
 [2]: https://en.wikipedia.org/wiki/Ncurses
@@ -235,7 +223,6 @@ my GitHub page under [ncube][5].
 [^2]: [ncurses][2]
 [^3]: [General 3D Rotations][3]
 [^4]: [Is there a multi-dimensional version of arange/linspace in numpy?][4]
-[^5]: This method of equidistant point generation is new to me. Chances are it
-    has existed since before I was born and has some technical name.
-[^6]: After over a decade, all that time on LeetCode payed off! I get to
-    encounted a BFS algorithm in the wild! /s
+[^5]: Chances are this algorithm has existed since before the dawn of time.
+[^6]: All that time on LeetCode payed off! You get to encounter a BFS algorithm
+    in the wild!

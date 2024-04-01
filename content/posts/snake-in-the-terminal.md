@@ -5,35 +5,35 @@ description: "An implementation of the classic snake game for the terminal."
 tags: ["c++", "cli-tools", "ncurses", "games"]
 ---
 
-As a text user interface enjoyer, I've always wondered how difficult it is to
-write an [ncurses][1] UI. What better way to find out then to write a little
-program of my own that explores ncurses' API. Of course, we had to keep it
-interesting.  A simple menu app wouldn't do. I landed on implementing a dumbed
-down version of a retro arcade game: [snake][2].
+Are you a text user interface enjoyer? Have you always wondered how difficult is
+it to write an [ncurses][1] UI? What better way to find out than to write a
+program of your own that explores ncurses' API. Of course, you have to keep it
+interesting. Why not implement a scaled down version of a retro arcade game:
+[snake][2].
 
 ## The Rules of Snake
 
-Step one of this project was looking up what the rules for a game of snake were.
-In particular, I was interested in what the play "arena" looked like, how you
-win, and how you lose.
+Step one of this project is to look up what the rules for a game of snake are.
+Specifically, what does the play "arena" look like, how do you win, and how do
+you lose?
 
-The play arena part is simple: it's a 2D rectangle divvied up into 1x1 tiles.
-The arena is static meaning once the game starts the dimensions of the play area
+The play arena is simple: it's a 2D rectangle divvied up into 1x1 tiles. The
+arena is static meaning once the game starts the dimensions of the play area
 don't change. There are two objects in the arena at any given time: a target and
-the snake. The target consumes a single tile and can spawn randomly on any tile
-except those occupied by the snake. The snake is made up of one or more adjacent
-tiles with no more than two tiles being adjacent to one another.  Shown below is
-a target (red diamond) and snake made up of 13 tiles.
+the snake. The target consumes a single tile and spawns randomly on any tile
+except those occupied by the snake. The snake is one or more adjacent tiles with
+no more than two tiles being adjacent to one another. Below is a target (red
+diamond) and snake made up of 13 tiles.
 
 ![Snake Objects](/posts/snake-in-the-terminal/snake-objects.png#center)
 
 To win the game, the snake must cover all tiles that make up the play arena.
 Each time the snake's head intersects or "eats" a target, the snake grows in
 length by a single tile. The player controls the snake and can only move it up,
-down, left, or right. If the player is skilled enough, they can eat enough
-target's until their snake covers the whole play area.
+down, left, or right. If the player manages to cover the whole arena in snake
+tiles, they win.
 
-There's two ways one could lose:
+There's two ways to lose:
 
 1. The snake goes out of the play arena bounds.
 2. The snake tries to eat itself.
@@ -44,11 +44,11 @@ to this game.
 
 ## Implementing the Game
 
-My original goal was to learn about the ncurses library not necessarily
+The key goal here is to learn about the ncurses library not necessarily
 implement the most theoretically space/time efficient version of snake. With
-that in mind, I took the stupid simple approach to implementing the game.
+that in mind, you can take the stupid simple approach to implementing the game.
 
-My core data structure was the `Tile` type:
+The core data structure is the `Tile` type:
 
 ```cpp
 enum class Direction {
@@ -70,9 +70,8 @@ struct Tile {
 };
 ```
 
-The snake itself is a 1D vector of `Tile` objects. Similarly, a 1D array of
-`Tile` objects was used to represent all the possible locations a target could
-spawn:
+The snake itself is a 1D vector of `Tile` objects. Similarly, a 1D vector of
+`Tile` objects represents all the possible locations a target can spawn:
 
 ```cpp
 using Snake = std::vector<Tile>;
@@ -81,26 +80,26 @@ Snake snake_;
 Target targets_;
 ```
 
-With these simple data structures, implementing the core logic of the game was
+With these simple data structures, implementing the core logic of the game is
 relatively straightforward. These next few sections will cover the core
 algorithms and their implementations.
 
 ### Initialization
 
 Initializing the game involves two key steps: generating all possible target
-locations and spawning the snake. I bundle both these steps into a single
-`Reset()` function that can be used to reset the game to a new initial state.
+locations and spawning the snake. You can bundle both these steps into a single
+`Reset()` function that resets the game to its initial state.
 
 Generating all possible targets requires creating a `Tile` object for each 1x1
-tile on the screen. The added twist is that the `targets_` vector that is
-generated is shuffled. The reasoning behind the shuffling is to make the
-selection of a random target tile easier in the main game loop.
+tile on the screen. The added twist is that the `targets_` vector must get
+shuffled. The reasoning behind the shuffling is to make the selection of a
+random target tile easier in the main game loop.
 
 The snake itself initially consists of one `Tile` located in the center of the
-screen with a random direction. One thing to be wary of is that you do not want
+screen with a random direction. One thing to be wary of is that you don't want
 the initial target tile intersecting the snake. Hence the `while` loop that
 updates the current target tile index if it overlaps with the snake's initial
-spawn `Tile`.
+spawn `Tile`:
 
 ```cpp
 void SnakeGame::SpawnSnake() {
@@ -148,10 +147,9 @@ void SnakeGame::Reset() {
 
 ### Moving the Snake
 
-Moving the snake was a little tricky. The snake head `Tile` would update its
-`row` or `col` depending on the value of its `direction` field.  All other
-`Tile` objects would assume the position and values of the `Tile` that precedes
-it.
+Moving the snake is tricky. The snake head `Tile` updates its `row` or `col`
+depending on the value of its `direction` field. All other `Tile` objects assume
+the position and values of the `Tile` that precedes it.
 
 ```cpp
 void SnakeGame::MoveSnake(const Direction& new_direction) {
@@ -183,17 +181,17 @@ void SnakeGame::MoveSnake(const Direction& new_direction) {
 }
 ```
 
-You'll notice there's a copy of the entire `snake_` vector into a temporary vector,
-`tmp`. There's tricks that can be employed to avoid this overhead but, in my
-opinion, they are all overkill considering how lightweight the objects we are
-working with are. This pattern of going with the less computationally efficient
-but more obvious implementation is one you'll see repeating here.
+You'll notice there's a copy of the entire `snake_` vector into a temporary
+vector, `tmp`. There's tricks to avoid this overhead, but they're all overkill
+considering how lightweight the game objects are. This pattern of going with the
+less computationally efficient but more obvious implementation is one you'll see
+repeating here.
 
 ### Snake Extension
 
-I actually had to think a little about how the snake would grow. I knew I wanted
-to extend from the tail. The question was, in which direction? The solution I
-went with was to add the new tile just one tile *opposite* the current tail.
+Growing the snake is funky as well. You technically want to extend from the
+tail. The question is, in which direction? One approach is to add a new tile
+just one tile *opposite* the current tail.
 
 ```cpp
 void SnakeGame::ExtendSnake() {
@@ -221,9 +219,9 @@ void SnakeGame::ExtendSnake() {
 }
 ```
 
-### Did I win?
+### Winning
 
-To win, the snake must cover every possible arena tile. Since my `targets_`
+To win, the snake must cover every possible arena tile. Since the `targets_`
 vector has every possible arena `Tile` contained within it, checking for a win
 means checking whether the `snake_` vector equals the `targets_` vector.
 
@@ -246,14 +244,14 @@ bool SnakeGame::SnakeWins() const {
 }
 ```
 
-A good ol' \\(\mathcal{O}(N^2)\\) time complexity double nested loop does the
+This good old \\(\mathcal{O}(N^2)\\) time complexity double nested loop does the
 trick.
 
-### Did I lose?
+### Losing
 
-Yet another \\(\mathcal{O}(N^2)\\) algorithm can be used to check if the game is
-lost. In this case, the majority of the time is spent checking whether the snake
-is overlapping with itself.
+Another \\(\mathcal{O}(N^2)\\) algorithm determines whether a player lost. In
+this case, the majority of the time goes into checking whether the snake is
+overlapping with itself.
 
 ```cpp
 bool SnakeGame::IsGameOver() const {
@@ -279,16 +277,16 @@ bool SnakeGame::IsGameOver() const {
 ```
 
 You might have noticed a `border_` value in the bounds checks. The game arena
-can optionally include a border. If a border is included, the snake cannot make
+can optionally include a border. With the border included, the snake can't make
 contact with the border else the game is over. Hence why the `border_` variable
-is included in the bounds check logic.
+is part of the bounds check logic.
 
-### Tick Tick Tick...
+### The Game Tick
 
 This version of snake operates using game ticks. On a single game tick the snake
 will move and logic will execute to determine whether the player has won, lost,
-ate a target, etc. The only input that can be given to the `Tick()` method is a
-`Direction` value indicating the direction the player commanded the snake.
+ate a target, etc. The `Tick()` method only accepts a `Direction` value
+indicating the direction the player commanded the snake to move.
 
 ```cpp
 void SnakeGame::Tick(const Direction& new_direction) {
@@ -320,30 +318,28 @@ void SnakeGame::Tick(const Direction& new_direction) {
 }
 ```
 
-## UI Design with ncurses
+## User Interface Design with ncurses
 
-With the game logic and state wrapped in a neat class, it was time to write the
-UI. I needed to to see what API calls ncurses provides and preferrably examples
-of how folks organize their ncurses programs. There's an aptly named site that
-does all those things: [NCURSES Programming HOWTO][3]. I can't recommend this
-site enough. The author walks you through the API all the while providing
-succint examples you can test and mod. The site also has sections explaining the
-use of related ncurses libraries for menus, forms, and more.
+With the game logic and state wrapped in a neat class, it's time to write the
+UI. You need to see what API calls ncurses provides and examples of how folks
+organize their ncurses programs. There's an aptly named site that does all those
+things: [NCURSES Programming HOWTO][3]. The articles provides an API walk
+through with clear examples you can test and mod. The site also has sections
+explaining the use of related ncurses libraries for menus, forms, and more.
 
-My first impression of ncurses is that it provides a simple to use C API that
-like most C APIs is very unforgiving when you get it wrong. RTFM really applies
-when using just about any function in this library. To keep things manageable, I
-decided to split my game into three primary views: start screen, game screen,
-game over screen.
+Ncurses provides a C API that like most C APIs is unforgiving when you get it
+wrong. RTFM applies when using just about any function in this library. To keep
+things manageable, split the game into three primary views: start screen, game
+screen, game over screen.
 
 ### Start Screen
 
-A simple game should have simple start menu. In the case of terminal snake, I
-decided to go with a nice ASCII art title banner followed by a menu from which
-the player could select one of three difficulty modes. ncurses can certainly
-handle drawing banner and prompt text. However, to implement the mode menu, I
-used the `menu` library to make my life easier. The `menu` library extends
-ncurses and provides wrapper functions that simplify menu creation.
+A simple game should have a simple start menu. An ASCII art title banner
+followed by a menu from which the player selects one of three difficulty modes
+seems fitting. Ncurses can certainly handle drawing banner and prompt text.
+However, to implement the mode menu, you should use `menu` library. The `menu`
+library extends ncurses and provides wrapper functions that simplify menu
+creation.
 
 Here's the code that displays the game start screen:
 
@@ -477,23 +473,22 @@ GameMode PromptForGameMode() {
 
 It's a bit of an abomination, but the steps should be obvious enough from the
 comments. The `menu` API is a little cumbersome to use. The menu itself is a
-window in ncurses terminology. The menu window is embedded in `stdscr` (i.e.,
-the top-level window). Getting the menu to position properly such that it
-wouldn't hide banner text in the parent window involved finagling row/col
-values.
+window in ncurses terminology. The menu window embeds in `stdscr` (that is, the
+top-level window). Getting the menu to position such that it doesn't hide banner
+text in the parent window involves finagling row/col values.
 
 Here's what the start screen looks like when rendered:
 
 ![Start Screen](/posts/snake-in-the-terminal/snake.png#center)
 
-Nothing fancy. The up/down arrow keys are used to navigate the mode menu. ENTER
-is used to make a selection.
+Nothing fancy. The up/down arrow keys navigate the mode menu. ENTER triggers
+selection.
 
-### Gameover Screen
+### Game Over Screen
 
-After writing the start screen, the game over screen was a walk in the park. The
-game over screen only needed to display a banner along with text showing the
-player's score. An exit prompt was also added to assist with program exit.
+After writing the start screen, the game over screen is a walk in the park. The
+game over screen only needs to display a banner along with text showing the
+player's score. An exit prompt assists with program exit.
 
 ```cpp
 void DrawGameOverScreen(const snake::game::SnakeGame& game) {
@@ -555,17 +550,17 @@ void DrawGameOverScreen(const snake::game::SnakeGame& game) {
 }
 ```
 
-And the final result...
+And the final result:
 
 ![Game Over Screen](/posts/snake-in-the-terminal/game-over.png#center)
 
 ### The Game Screen
 
-Finally, we get to the most satisfying of the three screens: the game screen. In
-the game screen, we need to draw the snake, target, and the border around the
-arena. I chose to render the target as a single red diamond. The snake head is
-an angle bracket whose pointy end tells the player the direction the snake is
-moving. As the snake grows, its body parts are represented by the 'O' character.
+Finally, you get to the most exciting of the three screens: the game screen. In
+the game screen, you need to draw the snake, target, and the border around the
+arena. You render the target as a single red diamond. The snake head is an angle
+bracket whose pointy end tells the player the direction the snake is moving.
+Character 'O' represents the snake's body.
 
 ```cpp
 static void DrawTarget(const snake::game::SnakeGame& game) {
@@ -618,7 +613,7 @@ void DrawSnakeScreen(const snake::game::SnakeGame& game) {
 }
 ```
 
-And the rendering...
+And the rendering:
 
 ![Game Screen](/posts/snake-in-the-terminal/game-screen.png#center)
 
@@ -650,7 +645,7 @@ int main() {
 ```
 
 The program prompts the user to select their difficulty, runs a game loop which
-terminates when the game is won or lost, and then renders the game over screen
+terminates when the player wins or loses, and then renders the game over screen
 before exiting.
 
 Here's `RunGameLoop()`'s implementation:
@@ -689,21 +684,21 @@ void RunGameLoop(snake::game::SnakeGame& game,
 }
 ```
 
-Difficulty is adjusted by altering the input delay. The longer the delay, the
-longer the player has to provide an input before the next game tick is executed.
-If the player fails to provide an input, the snake will continue to move in the
+Adjust difficulty by altering the input delay. The longer the delay, the longer
+the player has to provide an input before the next game tick executes. If the
+player fails to provide an input, the snake will continue to move in the
 direction it's currently facing.
 
 ## Conclusion
 
-It was fun learning the ncurses API. I got lucky in that I stumbled across an
-excellent resource with plenty of examples early on in the project. Implementing
-the game logic was a good challenge but the most satisfying part was designing
-the various views. Watching my crudely animated snake move across the screen was
-a 10/10 feeling.
+Ncurses is a solid library. It's not the most straightforward API out there but
+there are excellent resources with plenty of examples to get you going.
+Implementing the snake game logic is a good exercise. That said, the most
+satisfying part of this project is design of the various views and displays.
+Watching a crudely animated snake move across the screen never loses its luster.
 
-You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [snake][4].
+The complete project source with build instructions, usage, etc. is available on
+GitHub under [snake][4].
 
 [1]: https://en.wikipedia.org/wiki/Ncurses
 [2]: https://en.wikipedia.org/wiki/Snake_(video_game_genre)

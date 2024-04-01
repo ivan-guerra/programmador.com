@@ -6,32 +6,23 @@ tags: ["cli-tools", "gnu", "linux"]
 showToc: false
 ---
 
-Until just about a year ago, I would manage my dotfiles manually. That is, I
-maintained a GitHub repo[^1] with all my dotfiles so that I could gain the
-benefits of a VCS, but, whenever I upgraded my machine, I would manually go and
-place my dotfiles in the right spots in my home directory. Definitely not the
-way to go when you have a nontrivial amount of configs and there's sometimes
-years between config reinstallations...
-
-Now I had tried a couple of tools/scripts in the past to help with config
-management. The tools I had experimented with were either overly complicated for
-the simple task at hand and/or required a million dependencies to get installed.
+Do you have a bunch of dotfiles? Do you maintain a GitHub repo[^1] with all your
+dotfiles? Whenever you upgrade your machine, do you find yourself manually
+placing the dotfiles in the right spots in your home directory? If you answered
+yes to these questions, read on.
 
 ## Enter GNU Stow
 
-About a year ago while lurking on HackerNews[^2], I came across a comment that
-mentioned GNU Stow[^3] for dotfile management. I took the plunge and decided to
-try yet another dotfile management tool. I do not regret my decision.
-
-Stow had all the makings of a varsity athlete[^4]:
+GNU Stow[^2] is a dotfile management utility. Stow has all the makings of a
+varsity athlete[^3]:
 
 * Stow is small (a 32KB Perl script).
 * Stow is simple to use with a solid manpage.
 * Stow doesn't get in the way of version controlling dotfiles.
 
 Real world Stow usage is pretty simple and best explained with an example.
-Imagine you had your i3wm and Bash configurations stored in your home
-directory. The layout might look something like this:
+Imagine you had your i3wm and Bash configurations stored in your home directory.
+The layout might look something like this:
 
 ```text
 home/
@@ -46,7 +37,7 @@ home/
 ```
 
 To organize the configs into something Stow can work with, make a dotfiles
-directory (e.g., `mydotfiles/`) that has a directory per tool you wish to
+directory (for example, `mydotfiles/`) that has a directory per tool you wish to
 manage:
 
 ```text
@@ -97,19 +88,10 @@ stow -D bash
 
 Doesn't get much easier than that. 
 
-I've been using Stow for over a year now across 5 different Linux systems. No
-hiccups or BS. 10/10 I recommend you check it out.
-
 [1]: https://github.com/ivan-guerra/dotfiles
-[2]: https://news.ycombinator.com/
-[3]: https://linux.die.net/man/8/stow
-[4]: https://www.youtube.com/watch?v=-fjztq3SwW4
+[2]: https://linux.die.net/man/8/stow
+[3]: https://www.youtube.com/watch?v=-fjztq3SwW4
 
-[^1]: In case you wanted to see those dotfiles I was talking about:
-    [dotfiles][1].
-[^2]: The orange site or [HackerNews][2] is a fun place to read about new and
-    old tech when contributors aren't to busy arguing about AI taking over the
-    world.
-[^3]: [RTFM][3]. Just kidding but not really. The Stow manpage is a short,
-    worthwhile read. Check it out.
-[^4]: Bet you didn't expect to find a [Sopranos][4] reference here.
+[^1]: [dotfiles][1]
+[^2]: [RTFM][2]. The Stow manpage is a short, worthwhile read. Check it out.
+[^3]: Bet you didn't expect to find a [Sopranos][3] reference here.

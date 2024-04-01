@@ -1,5 +1,5 @@
 ---
-title: "Beaglebone Black Wifi Setup"
+title: "Beaglebone Black WiFi Setup"
 date: 2023-05-14T12:07:51-07:00
 description: "How to configure wifi on the Beaglebone Black."
 tags: ["beaglebone", "wifi"]
@@ -8,44 +8,44 @@ showToc: false
 
 When developing on the Beaglebone Black (BBB), it's handy to have the board on
 the network for when you want to SSH into it, install packages, etc. That said,
-I don't always want to run an Ethernet cable from the BBB to a switch. Luckily,
-the BBB has support for a number of wifi adapters[^1]. I purchased the EDIMAX
-EQ-7811UN[^2] adapter and set about trying to connect my BBB to my home network.
-This article walks through the steps I followed to get connected. These
-instructions also apply to the BBB wireless variants (i.e., those BBBs with a
+you may not want to run an Ethernet cable from the BBB to a switch. Luckily, the
+BBB has support for a number of WiFi adapters[^1]. I purchased the EDIMAX
+EQ-7811UN[^2] adapter and set about trying to connect a BBB to my local network.
+This article walks through the steps required to get connected. These
+instructions also apply to the BBB wireless variants (that is, those BBBs with a
 wireless chip).
 
-## Beaglebone Black Wifi Configuration
+## Beaglebone Black WiFi Configuration
 
-The steps below assume use of a supported wifi dongle on an official BBB image.
-**`root` or `sudo` access is required to execute these instructions!**
+The steps below assume use of a supported WiFi dongle on an official BBB image
+and require `root` access.
 
-1. Boot the BBB with the wifi adapter plugged into the USB port. The official
+1. Boot the BBB with the WiFi adapter plugged into the USB port. The official
    BBB site recommends running off DC power when utilizing the adapter due the
    adapter's current requirements.
 
-2. Run the commandline network manager:
+2. Run the command line network manager:
 ```bash
 sudo connmanctl
 ```
-You can safely ignore the `Error getting VPN connections: The name
-net.connman.vpn was not provided by any .service files` message.
+You can ignore the `Error getting VPN connections: The name net.connman.vpn was
+not provided by any .service files` message.
 
-3. Enable wifi:
+3. Enable WiFi:
 ```bash
 connmanctl> enable wifi
 ```
 
-4. Scan for wifi networks:
+4. Scan for WiFi networks:
 ```bash
 connmanctl> scan wifi
 ```
 
-5. Show available wifi services:
+5. Show available WiFi services:
 ```bash
 connmanctl> services
 ```
-If you don't see any services, you can disable wifi tethering and try again:
+If you don't see any services, you can disable WiFi tethering and try again:
 ```bash
 connmanctl> tether wifi off
 connmanctl> services
@@ -56,18 +56,18 @@ connmanctl> services
 connmanctl> agent on
 ```
 
-7. Connect to your wifi/service. Replace `WIFI_HASH` with the string prefixed
-   with `wifi_` from step 5 that corresponds to your wifi network:
+7. Connect to your WiFi/service. Replace `WIFI_HASH` with the string from step 5
+   that corresponds to your WiFi network:
 ```bash
 connmanctl> connect WIFI_HASH
 ```
 
-8. Enter your wifi password:
+8. Enter your WiFi password:
 ```bash
 Passphrase?
 ```
 
-9. Check that the network is set for auto-connect:
+9. Verify you have autoconnect enabled:
 ```bash
 connmanctl> services
 ```

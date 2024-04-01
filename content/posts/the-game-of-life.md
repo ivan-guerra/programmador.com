@@ -5,23 +5,20 @@ description: "Visualize Conway's Game of Life in your terminal."
 tags: ["cli-tools", "c++", "ncurses"]
 ---
 
-While grinding through some old Advent of Code[^1] problems, I noticed a
-particular style of problem crop up more than once. In the Reddit solution
-threads, people kept referring to their solutions to these problems as
-variations on Conway's Game of Life[^2] (GoL). I went to Wikipedia and read up
-on GoL. The animations there really caught my eye. My AoC solutions along with
-the Wiki page motivated me to create a terminal app that would allow me to
-visualize my own GoL simulations.
+If you grind old Advent of Code[^1] problems, you might notice a particular
+style of problem crop up more than once. The people of Reddit refer to their
+solutions as a variation of Conway's Game of Life[^2] (GoL). Wikipedia has a
+great article on GoL. The animations are eye catching. The Wiki serves as
+motivation for a terminal app that visualizes GoL simulations.
 
 ## Rules of the Game
 
-Step one was making sure I had the rules of the game down. The setup is pretty
-simple. You have an MxN grid of "cells". Each cell is always in one of two
-states: live or dead. The grid transitions through states in what are called
-ticks. At each tick, the following rules are applied: 
+What are the GoL rules? The setup is simple. You have an MxN grid of "cells."
+Each cell is always in one of two states: live or dead. The grid transitions
+through states on a frame tick. You apply the following rule at each tick.
 
 1. Any live cell with fewer than two live neighbours dies, as if by
-   underpopulation.
+   under population.
 2. Any live cell with two or three live neighbours lives on to the next
    generation.
 3. Any live cell with more than three live neighbours dies, as if by
@@ -35,17 +32,17 @@ shapes, and even ones that produce new shapes infinitely.
 
 ## Implementation Plan
 
-My goal was to visualize the GoL on my terminal screen. I'd use the entire
-terminal window as my MxN board. Each 1x1 square would represent a cell. An
-empty square is a dead cell a live square would be populated with some marker
-character. The program would run a game loop at a configurable speed. At each
-cycle, the GoL rules would be applied to the current game board. All of the
-above is achievable using ncurses[^3] and vanilla C++.
+The goal is to visualize the GoL on the terminal screen. You use the entire
+terminal window as an MxN board. Each 1x1 square represents a cell. An empty
+square is a dead cell. You mark a live square with a special character. The
+program runs a game loop at a configurable speed. At each cycle, you apply the
+GoL rules to the current game board. This process is achievable using
+ncurses[^3] and vanilla C++.
 
 The one piece that's missing is configuration. Specifically, how does one tell
-the game what the initial state of the game board is? My solution was to have
-the user pass the program a text file defining the initial state on startup. The
-configuration file would be a list of 2D coordinates defining which cells on the
+the game what the initial state of the game board is? A solution is to have the
+user pass the program a text file defining the initial state on startup. The
+configuration file can be a list of 2D coordinates defining which cells on the
 screen are live:
 
 ```text
@@ -57,13 +54,13 @@ screen are live:
 
 ## Core Game Logic
 
-There's many different ways of implementing the GoL "tick" function. I went the
-stupid simple route and decided to represent the game board as a 2D array of
-booleans. Those cells marked `true` are considered live. At each tick, the rules
-are applied *simultaneously* to all cells. The easiest way to simulate the
-simultaneous update is to copy the game board, perform updates on the copy while
-using the original board as reference, and then overwrite the original board
-with the updated copy. Below is my implementation:
+There's many different ways of implementing the GoL "tick" function. The stupid
+simple route is to represent the game board as a 2D array of booleans. Those
+cells marked `true` are live. At each tick, the rules execute *simultaneously*
+across all cells. The easiest way to simulate the simultaneous update is to copy
+the game board. You perform updates on the copy while using the original board
+as reference, and then overwrite the original board with the updated copy. Below
+is an implementation:
 
 ```cpp
 void GameOfLifeBoard::Tick() noexcept {
@@ -94,13 +91,13 @@ void GameOfLifeBoard::Tick() noexcept {
 }
 ```
 
-If the game board, labeled `state_` in the code above, has \\(M\\) rows and
-\\(N\\) columns, the algorithm above has a time complexity of
-\\(\mathcal{O}(MN)\\). There's actually a constant of 2 hidden in that big-oh
-due to the copy of `state_` to `tmp`. We don't copy but move the resources of
-`tmp` to `state_` at the end, otherwise the constant would be 3! My analysis
-above assumes that the `CountLiveNeighbors()` function has a time complexity of
-\\(\mathcal{O}(1)\\). Luckily, it does. Checkout the implementation:
+If the game board, labeled `state_`, has \\(M\\) rows and \\(N\\) columns, the
+algorithm has a time complexity of \\(\mathcal{O}(MN)\\). There's actually a
+constant of 2 hidden in that big-oh due to the copy of `state_` to `tmp`. You
+don't copy but move the resources of `tmp` to `state_` at the end, otherwise the
+constant would be 3! This analysis assumes that the `CountLiveNeighbors()`
+function has a time complexity of \\(\mathcal{O}(1)\\). Luckily, it does.
+Checkout the implementation:
 
 ```cpp
 int GameOfLifeBoard::CountLiveNeighbors(std::size_t row,
@@ -134,26 +131,26 @@ The algorithm takes as input a source `row` and `col`. It counts the number of
 adjacent, live neighbors to `state_[row][col]`. Despite having a loop, the
 number of iterations is always constant and equal to the size of `kDirections`.
 
-The algorithm certainly isn't particularly space efficient with a space
-complexity of \\(\mathcal{O}(MN)\\). This is due to the copy of `state_` to
-`tmp_`.
+The state update algorithm certainly isn't particularly space efficient with a
+space complexity of \\(\mathcal{O}(MN)\\). This is due to the copy of `state_`
+to `tmp_`.
 
-Given the relatively small size of my game board, the algorithms above were
-sufficient for computing the next state of the board without causing any
-noticeable delays or egregious memory consumption on the host PC.
+Since the game board is small, this algorithm is sufficient for computing the
+next state of the board without causing any noticeable delay. Program memory
+usage is also kept at a reasonable level.
 
 ## Rendering the Board
 
-Ncurses made rendering the game board a breeze. The `mvaddchar()` function did
+Ncurses makes rendering the game board a breeze. The `mvaddchar()` function does
 all the heavy lifting of drawing characters at the appropriate X/Y locations. A
-simple wrapper function that iterated over the game board calling `mvaddchar()`
-to draw the live cells was sufficient.
+simple wrapper function that iterates over the game board calling `mvaddchar()`
+to draw the live cells is sufficient.
 
-There are use cases for playing the simulation slow and fast. I made the
-simulation speed a command line option by adding a `--update-rate-ms` option to
-allow for simulation speed up/slow down. 
+There are use cases for playing the simulation slow and fast. You adjust
+simulation speed via a command line option. Add the `--update-rate-ms <RATE_MS>`
+option to speed up/slow down the simulation. 
 
-The complete game loop is shown below:
+Here's the complete game loop:
 
 ```cpp
 static void RunDrawLoop(const gol::graphics::ScreenDimension &dim,
@@ -175,15 +172,15 @@ static void RunDrawLoop(const gol::graphics::ScreenDimension &dim,
 Below is a video showing `life` in action. The initial state that's given forms
 what's called a Gosper Glider Gun[^4].
 
-{{< video src="/posts/the-game-of-life/gol-demo.mp4" type="video/mp4" preload="auto" >}}<br>
+{{< video src="/posts/the-game-of-life/gol-demo.mp4" type="video/mp4" preload="auto" >}}
 
-Implementing the Game of Life was a fun mini project. I kept it pretty simple
-and barebones so there weren't too many hurdles when it came to implementing the
-core game logic. The rendering was made dead simple by the perfect match between
-my main game data structure, a 2D board, and ncurses' window model.
+Implementing the Game of Life is a fun mini project. Keeping the data structures
+simple makes it so there aren't too many hurdles when it comes to implementing
+the core game logic. Rendering is dead simple considering the perfect match
+between the main game data structure, a 2D board, and ncurses' window model.
 
-You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [game_of_life][4].
+The complete project source with build instructions, usage, etc. is available on
+GitHub under [game_of_life][4].
 
 [1]: https://adventofcode.com/
 [2]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life

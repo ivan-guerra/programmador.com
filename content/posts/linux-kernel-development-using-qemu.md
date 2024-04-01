@@ -6,16 +6,16 @@ tags: ["linux", "qemu"]
 ---
 
 This article gives an overview of how to setup a Linux kernel development
-environment that leverages QEMU. Why bother with this setup? There are plenty of
-reasons, but here are my top three:
+environment that leverages QEMU. Why should you bother with this setup? Here are
+the highlights:
 
 * Make changes to core kernel code or modules without the risk of loading buggy
   kernel code onto real hardware.
 * Up the speed of the edit, build, run cycle while developing kernel code.
-* The ability to test code across different architectures (e.g., aarch64,
+* The ability to test code across different architectures (for example, aarch64,
   x86_64, etc.).
 
-What is QEMU? According to Wikipedia[^1]:
+What's QEMU? According to Wikipedia[^1]:
 
 > QEMU (Quick Emulator) is a free and open-source emulator. It emulates a
 > computer's processor through dynamic binary translation and provides a set of
@@ -27,15 +27,15 @@ What is QEMU? According to Wikipedia[^1]:
 
 QEMU has three main operating modes[^2]:
 
-* **User-mode Emulation**: Allows one to run a single program that was compiled
-  with a different instruction set than that of the host machine.
-* **System Emulation**: Emulates an entire computer system, including
-  peripherals. This is what most people mean when they say "virtual machine".
+* **User-mode Emulation**: Run a single program compiled with a different
+  instruction set than that of the host machine.
+* **System Emulation**: Emulate an entire computer system, including
+  peripherals. This is what most people mean when they say "virtual machine."
 * **Hypervisor Support**: As the name suggests, this mode has QEMU leverage a
-  hypervisor (e.g., Linux Kernel-based Virtual Machine or KVM). This is the most
-  performant option.
+  hypervisor (for example, Linux Kernel-based Virtual Machine or KVM). This is
+  the most performant option.
 
-We'll be using the hypervisor support mode. Below is an illustration showing the
+This article demos hypervisor support mode. Below is an illustration showing the
 intended setup:
 
 ```text
@@ -49,19 +49,18 @@ intended setup:
 +--------------------------------------------+
 ```
 
-We want to run a guest OS on our host machine. The guest OS will run a Linux
-distro of our choice along with our custom kernel. From within the guest, we got
-all the comforts of a full fledged Linux system and can poke and prod without
-any fear. We establish an SSH connection just to make our lives easier in case
-we want to transfer some files to/from the guest.
+The goal is to run a guest OS on your host machine. The guest OS will run a
+Linux distro of your choice along with your custom kernel. From within the
+guest, you got all the comforts of a full fledged Linux system and can poke and
+prod without any fear. The SSH connection makes it easy to transfer some files
+to/from the guest.
 
 ## Install QEMU and OpenSSH
 
-First, we need to download and install QEMU and OpenSSH on the host machine.
+First, download and install QEMU and OpenSSH on the host machine.
 
-The following install commands are meant for and were tested on a Fedora 38
-machine. **If you are using another distro, adjust the package manager and
-package names!**
+The following install commands work on a Fedora 38 machine. **If you are using
+another distro, adjust the package manager and package names!**
 
 ```bash
 sudo dnf install qemu qemu-image openssh
@@ -69,23 +68,22 @@ sudo dnf install qemu qemu-image openssh
 
 ## Create an Image
 
-We'll need a virtual disk image in order to install our guest OS. We can create
-an image using `qemu-img`:
+You'll need a virtual disk image to install the guest OS. You can create an
+image using `qemu-img`:
 
 ```bash
 qemu-img create -f raw <MY_IMAGE> 4G
 ```
 
 You can change `4G` to whatever size in gigabytes you can afford. Worth
-mentioning is the alternative `qcow2` image format. At the price of being a
-little bit slower than a `raw` formatted image, the `qcow2` format allows the
-image size to increase during VM usage setting a limit of as many gigabytes were
-specified at creation.
+mentioning is the alternative `qcow2` image format. While slower than a `raw`
+formatted image, the `qcow2` image size increases during VM usage. You set a
+limit in gigabytes on the size of the `qcow2` image during creation.
 
 ## Install a Distro 
 
-The world is your oyster when it comes to distros. It doesn't really matter what
-distro you use. I recommend Arch Linux since a base install is pretty barebones.
+The world is your oyster when it comes to distros. It doesn't matter what distro
+you use. Arch Linux is a solid choice since a base install is pretty bare bones.
 Plus, you can tell everyone you use Arch[^3]. Download the [latest ISO][4] and
 follow the steps below to get started with the install.
 
@@ -111,41 +109,39 @@ Lets take a moment to breakdown these options:
 | `-drive`      | Specifies a drive on the system. We tell QEMU about our previously created image file and its format. |
 | `-m`          | Tell QEMU the size of RAM. The more the better.                                                       |
 
-A quick sidenote on KVM support. It's possible though very unlikely your PC does
-not have KVM support. If you try to run the above command and QEMU complains
-about a lack of KVM support try the following:
+A quick side note on KVM support. It's possible though unlikely your PC doesn't
+have KVM support. If you try to run the command and QEMU complains about a lack
+of KVM support try the following:
 
-* Check that virtualization is enabled on the host processor. Run `lscpu | grep
+* Verify the host processor has virtualization enabled. Run `lscpu | grep
   Virtualization`. If you are on an Intel machine with virtualization enabled,
-  the output will be `Virtualization: VT-x`. If your output does not match,
+  the output will be `Virtualization: VT-x`. If your output doesn't match,
   enable virtualization in the BIOS menu.
 * Some distros require your user be part of a KVM group. You can add yourself to
   such a group using the command: `sudo usermod -aG kvm $USER`. Replace `kvm`
   with name of the KVM group on your system.
 * Most mainstream distros ship a Linux kernel with KVM features enabled. If that
-  is not the case for you, then you may have to tweak your kernel's commandline
+  isn't the case for you, then you may have to tweak your kernel's command line
   args or install a kernel with `kvm_guest.config`[^5] applied.
 
-After running the `qemu-system-x86_64` command above, you will be met with a
-QEMU window that has the Arch Installer running:
+After running the `qemu-system-x86_64` command, you will see a QEMU window that
+has the Arch Installer running:
 
 ![QEMU Arch Installer](/posts/linux-kernel-development-using-qemu/arch-install.png#center)
 
-If I was one of those RTFM[^4] guys, I'd tell you to go checkout the Arch wiki's
-installation guide. Since you're not really setting up an Arch environment for
-personal usage, I think it's best to take some shortcuts and use the
-`archinstaller` script to do the heavy lifting for you. The following YouTube
-video has all the details on how to do just that (you can skip to the `2:16`
-mark):
+You can now go RTFM[^4] (that is, the Arch wiki installation guide). The
+alternative is to use the `archinstaller` script to do the heavy lifting for
+you. The following Youtube video has all the details on how to do just that (you
+can skip to the `2:16` mark):
 
 {{< youtube d5rquFPwh-Y >}}
 
 ## Building the Kernel 
 
-If you are following this guide, I assume you know how to build and configure a
-Linux kernel so I won't bore you with too many details in this section. 
+This section assumes you know how to build and configure a Linux kernel. There
+are plenty of videos and tutorials online if you need a refresher.
 
-Below are the commands that I use to prep a kernel meant to run in a QEMU VM:
+Below are the commands for preparing a kernel meant to run in a QEMU VM:
 
 ```bash
 make O=/my/build/dir defconfig
@@ -154,24 +150,23 @@ make O=/my/build/dir nconfig # Optionally configure additional kernel params
 make O=/my/build/dir -j$(nproc)
 ```
 
-The only oddity is perhaps the addition of the `kvm_guest.config`[^5]. Building
-this config enables a number of Kernel-based Virtual Machine (KVM) options
-allowing the kernel to boot as a KVM guest. Also, re-directing the output of the
-build using the `O=` option to `make` is not strictly necessary but I do find it
-handy to not muck up my kernel source tree.
+The only oddity is perhaps the addition of `kvm_guest.config`[^5]. Building this
+config enables a number of Kernel-based Virtual Machine (KVM) options allowing
+the kernel to boot as a KVM guest. Also, re-directing the output of the build
+using the `O=` option to `make` isn't necessary but does keep your kernel source
+tree clean.
 
-As was alluded to in the intro, you can cross-compile the kernel for your
-architecture of choice. You can then run the appropriate `qemu-system-*` binary
-to emulate that architecture on the host. However, **you cannot use the KVM
-features across platforms**. For example, if I am on an x86_64 host and cross
-compile and run a aarch64 kernel using QEMU, then I cannot leverage the
-`-enable-kvm` switch to enable KVM features. In this example, you would have to
-run QEMU in system emulation mode not hypervisor mode.
+You can cross-compile the kernel for your architecture of choice. You can then
+run the appropriate `qemu-system-*` binary to emulate that architecture on the
+host. However, **you can't use the KVM features across platforms**. For example,
+if you're on an x86_64 host and cross compile and run a aarch64 VM, then you
+can't leverage the `-enable-kvm` switch to enable KVM features. In this example,
+you would have to run QEMU in system emulation mode not hypervisor mode.
 
-## Boot the VM
+## Boot the Virtual Machine
 
-Moment of truth. Time to boot the VM. I wrote a simple bash script to capture
-the QEMU incantation:
+Moment of truth. Time to boot the VM. This bash script gives the QEMU
+incantation:
 
 ```bash
 #!/bin/bash
@@ -191,7 +186,7 @@ qemu-system-x86_64 \
     -display none
 ```
 
-Once again, this is command-line soup. Lets look at what each switch is doing.
+Once again, this is command line soup. Lets look at what each switch is doing.
 
 | Option        | Description                                                                                         |
 |---------------|-----------------------------------------------------------------------------------------------------|
@@ -205,8 +200,8 @@ Once again, this is command-line soup. Lets look at what each switch is doing.
 | `-append`     | This is the kernel commandline. We tell the kernel where the rootfs is and setup the console.       |
 | `-display`    | Selects the type of display to use. The `none` arg makes it so no video output is displayed.        |
 
-After running the script, you should be dropped into a VM terminal. You can
-verify your kernel is running via the `uname -a` command:
+After running the script, you will see a VM terminal. You can verify your kernel
+is running via the `uname -a` command:
 
 ![QEMU VM Boot](/posts/linux-kernel-development-using-qemu/vm-boot.png#center)
 
@@ -216,13 +211,13 @@ last thing left to do: setup SSH.
 ## SSH Setup
 
 While you won't be developing directly on the VM, you might want to transfer a
-number of files between the host and VM (e.g., loadable modules). SSH and the
-`scp` utility are perfect for that.
+number of files between the host and VM (for example, loadable modules). SSH and
+the `scp` utility are perfect for that.
 
 ### SSH'ing as `root`
 
-I personally don't mind using the `root` account in the VM. If you feel the same
-way, you can follow these steps to login as `root` on the VM over SSH:
+If you don't mind using the `root` account in the VM, follow these steps to
+login as `root` on the VM over SSH:
 
 1. Login to the VM as `root`.
 2. Install `openssh`:
@@ -262,13 +257,11 @@ ssh -p 2222 my_user@localhost
 ## Conclusion
 
 If you do a lot of kernel development, a workflow that uses QEMU may be for you.
-I personally find it much easier to make and deploy kernel changes when using a
-VM versus most target hardware that I've worked with. Plus, there's the added
-benefit that if I yeet the system, I can patch my changes and just fire up a
-fresh VM. Also, keep in mind that QEMU can do a lot more than what I've shown
-here. Definitely take a look at other QEMU tutorials and experiment a bit to see
-if this workflow makes sense for you.
-
+Using a VM makes it easier to make and deploy kernel changes when compared to
+most target hardware setups. Plus, there's the added benefit that if/when you
+yeet the system, you can patch your changes and just fire up a fresh VM. Also,
+keep in mind that QEMU can do a lot more than what's shown here. Definitely take
+a look at other QEMU tutorials and experiment a bit. 
 
 [1]: https://en.wikipedia.org/wiki/QEMU
 [2]: https://en.wikipedia.org/wiki/QEMU#Operating_modes

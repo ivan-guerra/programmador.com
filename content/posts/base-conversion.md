@@ -5,23 +5,21 @@ description: "A command line numerical base conversion utility."
 tags: ["c++", "cli-tools", "gnu"]
 ---
 
-When debugging an embedded system, I often find myself working with raw data
-that has me converting between decimal, hexadecimal, binary, and (sometimes)
-octal number systems. I have yet to find a Linux equivalent to the Windows
-Calculator app in programming mode. It doesn't help that the systems I use have
-no GUI. I've been resorting to using the Python REPL and `printf` shell utility
-though I find using either tool tedious for the simple task of base conversion.
+When debugging an embedded system, it's common to work with raw data requiring
+conversion between decimal, hexadecimal, binary, and sometimes octal number
+systems. The Python REPL and `printf` shell utility do the job but are tedious
+to use for the simple task of base conversion.
 
-I wanted to drop the overhead of format specifiers and fear of numerical limits.
-To ease the pain, I decided to write a command line utility that would allow me
-to convert between positive binary, decimal, octal, and hexadecimal numbers of
-arbitrary size.
+It would be nice to drop the overhead of format specifiers and fear of
+numerical limits. To ease the pain, I decided to write a command line utility
+that made conversion between positive binary, decimal, octal, and hexadecimal
+numbers of arbitrary size.
 
 ## The Requirements
 
-My use case is simple: take a positive integer in one base and convert it to the
-equivalent value in another base. That's it. I don't want to support negative
-values, figure out floating point representations, none of that.
+The use case is simple: take a positive integer in one base and convert it to
+the equivalent value in another base. That's it. Support for negative values and
+floating point values is out of scope.
 
 The program usage would look something like
 
@@ -32,25 +30,23 @@ dhb [OPTION]... SRC_BASE TGT_BASE NUM
 where `SRC_BASE`/`TGT_BASE` are one of `bin`, `dec`, `oct`, or `hex`. `NUM` is
 some positive integer value.
 
-To make this idea more concrete, I came up with some basic requirements I could
-code to:
+Below are the requirements:
 
 1. Support conversions to/from binary, decimal, hexadecimal, and octal.
 2. Include an option for minimum output width.
 3. Include an option to group digits into segments of size N.
 4. Support arbitrarily large positive integers.
 
-Requirement (1) is self explanatory. Requirement (2) means I can pad the output
-value with zeroes to achieve a minimum width. For example, the binary value
-`1111` can be padded to 8-bits and output as `00001111`. Requirement (3) is
+Requirement (1) is self explanatory. Requirement (2) means you can pad the
+output value with zeroes to achieve a minimum width. For example, pad the binary
+value `1111` to 8-bits leading to an output of `00001111`. Requirement (3) is
 handy when you want to visualize binary or hex codes in groups of 4, 8, etc.
-digits. Taking the previous binary value of `00001111`, maybe we want to group
+digits. Taking the previous binary value of `00001111`, maybe you want to group
 the bits into nibbles `0000 1111` or into 2 digits codes `00 00 11 11`.
-Requirement (4) seems a bit extra but it has its value. Often, I want to
-visualize a large stream of hex values in binary. If I am not careful and just
-copy the hex number into a tool, I might exceed the max integer limit for the
-system and the program prints gobbledegook. This `dhb` tool should handle
-numbers outside the range of a `uint64_t` without breaking a sweat.
+Requirement (4) seems a bit extra but it has its value. Visualizing a large
+stream of hex values in binary is a common task. Exceeding the max integer limit
+for the system/program is also a common occurrence. This `dhb` tool should
+handle numbers outside the range of a `uint64_t` without breaking a sweat.
 
 Lets look at how `dhb` meets each of these requirements starting with that
 bignum requirement.
@@ -58,12 +54,11 @@ bignum requirement.
 ## Big, Huge Numbers
 
 If you're familiar with C++, you know the range of positive integers a program
-can work with is finite. There's no standard "big number" library either. To get
-around this limitation, I needed some third party help.
+can work with is finite. There's no standard "big number" library either.
 
-I Googled around for big number libraries and hit on a lot of dead ends and
-unmaintained header-only implementations. Eventually, I came across a post
-recommending the GNU MP Bignum Library (GMP)[^1]. To quote the GMP homepage:
+Google search revealed a number of big number libraries. Most of the libraries
+are unmaintained, header-only libraries. The best option was the GNU MP Library
+(GMP)[^1]. To quote the GMP homepage:
 
 > GMP is a free library for arbitrary precision arithmetic, operating on signed
 > integers, rational numbers, and floating-point numbers. There is no practical
@@ -71,16 +66,14 @@ recommending the GNU MP Bignum Library (GMP)[^1]. To quote the GMP homepage:
 > machine GMP runs on. GMP has a rich set of functions, and the functions have a
 > regular interface.
 
-Even better, there is a GMP C++ class based interface I could use. The docs
-for how to use the C++ bindings[^2] were a good read and enough to get me
-rolling with GMP.
-
-In this next section, we'll get to see GMP in action.
+GMP has a convenient C++ class based interface. The docs for how to use the C++
+bindings[^2] and for GNU MP in general are solid. GMP is a perfect fit for this
+project.
 
 ## Conversions
 
-The only info we need to perform a conversion is the number, that number's
-current base, and a target base. The conversion API accomodates this spec using
+The only info needed to perform a conversion is the number, that number's
+current base, and a target base. The conversion API accommodates this spec using
 one function and an enum:
 
 ```cpp
@@ -111,21 +104,21 @@ std::string ConvertBase(const std::string& num, const NumSystem src, const NumSy
 The algorithm for conversion is the usual change of base[^3] method which uses
 modulo and integer division to compute the digits of the output number
 one-by-one. The `mpz_class` is a GMP C++ wrapper class used to construct and
-manipulate big integral values. You can see `mpz_class` overloads the arithmetic
-operators such that the code doesn't look much different than had we limited
-ourselves to the built-in types.
+manipulate big integral values. You can see `mpz_class` overloads the
+arithmetic operators such that the code doesn't look much different than if one
+were to use the C/C++ built-in types.
 
-One really neat feature of GMP employed above is the ability to construct an
-`mpz_class` object from a number represented as a string and its base. That
-feature made my life way easier because I didn't have to massage the input into
-a format GMP understands. This constructor does throw `std::invalid_arg` if
-given an unsupported base argument. I get around that by having the caller
-specify bases using a `NumSystem` type which I know can be cast to one of the
-bases the `mpz_class` constructor supports.
+One neat feature of GMP is the ability to construct an `mpz_class` object from
+a number represented as a string and its base. That feature makes
+implementation easier because you don't have to massage the input into a format
+GMP understands. The constructor does throw `std::invalid_arg` if given an
+unsupported base argument. To avoid exceptions, the caller specifies the base
+using a `NumSystem` type which limits the caller to the bases known to the
+`mpz_class` constructor.
 
 ## Formatting Output
 
-Looking back at our requirements, we have two formatting options to implement:
+Looking back at the requirements, there's two formatting options to implement:
 minimum character width and digit grouping.
 
 The minimum character width function was trivial to implement using a
@@ -144,8 +137,8 @@ std::string SetWidth(const std::string& num, int width) {
 }
 ```
 
-Not much to be said here. The stream object will just slap zeroes onto the front
-of the number until it meets the `width` argument.
+Not much to say here. The stream object will just slap zeroes onto the front of
+the number until it meets the `width` argument.
 
 Segmenting the output's digits into groups was a bit of a CS101 exercise:
 
@@ -186,23 +179,23 @@ std::string GroupDigits(const std::string& num, int grouping) {
 }
 ```
 
-I use a stack to process the digits in the number from right to left. The
-algorithm pops characters off the stack into a `group` string. When that `group`
-string hits the `grouping` limit, we save it off in the `groups` vector and
-reset `group`. Rinse and repeat.
+A stack processes the digits in the number from right to left. The algorithm
+pops characters off the stack into a `group` string. When that `group` string
+hits the `grouping` limit, it's saved off in the `groups` vector and `group` is
+reset. Rinse and repeat.
 
-Since we process from right to left, there's a reversal that needs to happen for
-each `group` string and for the entire `groups` vector, otherwise, the digits
-would be backwards in the output.
+Processing happens from right to left meaning there's a reversal that needs to
+happen for each `group` string and for the entire `groups` vector. Without this
+reversal, the digits come out backwards in the output.
 
-C++ doesn't have a nice `join()` method like Python. Instead, we get to use the
+C++ doesn't have a nice `join()` method like Python. Instead, you get to use the
 beautiful `std::accumulate` API to concatenate each string in `groups` using a
-single space as a seperator. The concatenated string is the output of the
+single space as a separator. The concatenated string is the output of the
 function.
 
 ## Testing the Implementation
 
-At this point, we have a working conversion utility! The rest of the
+At this point, you have a working conversion utility! The rest of the
 implementation focuses on command line argument parsing and input validation.
 You can check out the full source linked at the end of this article if you're
 interested in those bits.
@@ -217,7 +210,7 @@ dhb -g 4 dec hex 3735928559 --> DEAD BEEF
 dhb -g 4 -w 12 dec hex 3735928559 --> 0000 DEAD BEEF
 ```
 
-So far so good. Lets use a massive number like `2^64 * 12345` (aka
+So far so good. Lets use a massive number like `2^64 * 12345` (AKA
 `227725055589944414699520`). The tool should be able to handle that:
 
 ```bash
@@ -234,13 +227,13 @@ different conversion permutations[^4].
 
 ## Conclusion
 
-The `dhb` utility has been serving me well for the past few days. The process of
-implementing the tool was relatively straightforward. I credit the simplicity to
-identifying early on the primary use cases and not tacking on too many bells and
-whistles along the way.
+The `dhb` utility has been of great use. The process of implementing the tool
+was relatively straightforward. I credit the simplicity to identifying early on
+the primary use cases and not tacking on too many bells and whistles along the
+way.
 
-You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [dhb][5].
+The complete project source with build instructions, usage, etc. is available on 
+GitHub under [dhb][5].
 
 [1]: https://gmplib.org
 [2]: https://gmplib.org/manual/C_002b_002b-Class-Interface
@@ -250,6 +243,6 @@ my GitHub page under [dhb][5].
 
 [^1]: [The GNU Multiple Precision Arithmetic Library][1]
 [^2]: [GMP: C++ Class Interface][2]
-[^3]: A clear and oddly philosophical explanation of how to convert a number
-    from one base to another can be found on the [CS StackExchange][3].
+[^3]: For a clear explanation of how to convert a number from one base to
+    another, checkout this StackOverflow post: [CS StackExchange][3].
 [^4]: [`ConvertBase()` Unit Tests][4]

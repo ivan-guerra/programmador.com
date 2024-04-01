@@ -5,61 +5,58 @@ description: "How to write a cross platform keylogger."
 tags: ["cli-tools", "c++", "linux", "windows", "x11"]
 ---
 
-While developing the `kbhell`[^1] application, I realized I was about 90% of the
-way to writing a keylogger. I decided to finish the job off and write a proper,
-cross platform keylogger that would capture the victim's every keystroke.
+If you're familiar with the kbhell[^1] application, you might realize that
+kbhell is about 90% of the way to being a keylogger. Why not finish the job and
+write a proper, cross platform keylogger that captures a victim's every
+keystroke (for science reasons, of course)?
 
 ## The Requirements
 
-So there's the very obvious requirement of capturing user keystrokes. That said,
-once you think about the fact that keyboards have different layouts, there are
-different language sets, etc., it's suddenly not so simple to define what it is
-we're recording.
+So there's the obvious requirement of capturing user keystrokes. When you think
+about the fact that keyboards have different layouts, there are different
+language sets, etc., the task becomes challenging.
 
 Another interesting issue that comes up is how do you record the keystrokes? You
 could write it to a hidden file on the victim's PC. Yeah that works but then
-you'd need a way of getting that file off the PC. Another idea is to transmit
+you'd need a way of getting that file off their PC. Another idea is to transmit
 the data over the network. If sending data over the network, what should trigger
 packet transmission? Do you send when you hit some packet size threshold or do
 you send data at a fixed frequency?
 
-I settled on the following requirements:
+As an answer to these questions, this keylogger will adhere to the following
+requirements:
 
-1. Record user keypresses that correspond to printable characters as defined by
+1. Record user keystrokes that correspond to printable characters as defined by
    the currently installed C locale.
 2. Support recording to a plaintext file on the victim PC.
 3. Support recording to a UDP socket.
 4. Support a configurable recording mode.
-5. Allow the user to control the frequency of recording via a configurable
-   keypress limit switch.
+5. Support a configurable capture frequency.
 
-In the next few sections, we'll look at these requirements in more detail and
-discuss their implementation.
+The next sections discuss the implementation of these requirements.
 
-## Capturing Keypresses
+## Capturing Keystrokes
 
-I won't dwell on this topic too long since it is already explained with code
-samples in the "Keyboard Hell"[^1] article. The basic idea is that we can use
-the X11 event system on Linux and global hooks on Windows to intercept
+The "Keyboard Hell"[^1] article gives coverage of this topic. The basic idea is
+that the X11 event system on Linux and global hooks on Windows intercept
 keystrokes without any noticeable effect on the rest of the system. 
 
-The same code that was employed in `kbhell` was used in `keylogger`'s
-implementation. The only difference is that instead of playing a sound bite on
-every keypress, we are pushing characters to a recorder object's character
-buffer. Only printable characters as defined by `std::isprint`[^2] are
-recorded. The latter detail is limiting in that we won't be able to completely
-playback the victim's key history. That said, we can still analyze the output to
-find passwords, emails, usernames, etc.
+You can use the `kbhell` keystroke capture code in `keylogger`'s implementation.
+The only difference is that instead of playing a sound bite on every keystroke,
+you're pushing characters to a recorder object's character buffer. You only push
+printable characters as defined by `std::isprint`[^2]. The latter detail is
+limiting in that you won't be able to completely playback the victim's key
+history. That said, you can still analyze the output to find passwords, emails,
+usernames, etc.
 
 ## Recording Modes
 
-Based on our initial requirements, we want to support two recording modes: text
+Based on the initial requirements, you want to support two recording modes: text
 and network. Text mode captures character data to a plaintext file on the
 victim's PC. Network mode transmits the character data over the network as UDP
-packets from the victim PC to the attacker's server. 
+packets from the victim's PC to the attacker's server. 
 
-Each mode is implemented as a recorder type object implementing the `Recorder`
-interface:
+Each mode has a recorder type object implementing the `Recorder` interface:
 
 ```cpp
 /*!
@@ -111,14 +108,13 @@ class Recorder {
 };
 ```
 
-`Recorder` types all maintain a fixed sized `char` buffer called `keys_`. On
+`Recorder` types all maintain a fixed size `char` buffer called `keys_`. On
 construction, the user specifies the size of the buffer via the `key_limit`
 constructor parameter. The user can add characters to the buffer via the
-`BufferKeyPress()` method. `BufferKeyPress()` implements a policy where if a
-character to be buffered cannot be accomodated, then the buffer is emptied via a
-call to `Transmit()` before the character is inserted into the buffer.
-`Transmit()` is a method implemented by all recorder types. `Transmit()` writes
-buffered data to some recording medium (e.g., a text file or a socket).
+`BufferKeyPress()` method. When the buffer is full, `BufferKeyPress()` calls
+`Transmit()` and then inserts the new character. `Transmit()` is a method
+implemented by all recorder types. `Transmit()` writes buffered data to some
+recording medium (for example, a text file or a socket).
 
 As you might have guessed by now, each recording mode has an associated
 `Recorder` subtype. The text file recorder has the `FileRecorder` type and the
@@ -158,10 +154,10 @@ void NetworkRecorder::Transmit() {
 
 You'll notice that `FileRecorder::Transmit()` opens and closes the file handle
 each time its called. Not the most efficient method of performing file IO.
-However, the comment in the code explains the reasoning. If the keylogger is
-suddently halted, there's no guaranteee that the data sent via the stream will
-have been flushed to the file. Explicitly closing the file handle flushes the
-stream contents. In retrospect, this would have been a good use case for using
+However, the comment in the code explains the reasoning. When you halt the
+keylogger, there's no guarantee that the data sent via the stream gets written
+to the file. Explicitly closing the file handle flushes the stream contents. In
+retrospect, this would have been a good use case for using
 `std::ostream::flush`[^3].
 
 The `NetworkRecorder` uses a wrapper around a Linux/Windows UDP socket to
@@ -170,12 +166,11 @@ details.
 
 ## Configuration
 
-My first thought when it came to configuration was to just pass in commandline
-args as usual. However, when you think about the deployment use cases for a
-keylogger, having to inject your keylogger's binary plus a bunch of CLI args
-doesn't sound very appealing. As a result, I went with making `keylogger`
-compile time configurable. The configuration options are shown in the main
-program snippet below:
+You might expect to pass configuration via command line args. However, when you
+think about the deployment use cases for a keylogger, having to inject your
+keylogger's binary plus a bunch of CLI args doesn't sound appealing. To solve
+this issue, `keylogger` is compile time configurable. Below are the
+configuration options:
 
 ```cpp
 enum RecorderType {
@@ -203,14 +198,14 @@ enum RecorderType {
 
 The keylogger user can select their recording mode and then set options specific
 to that mode. One can edit the `keylogger.cpp` file directly or pass the
-relevant options to the compiler (e.g., `-DRECORDER_KEY_LIMIT=256`).
+relevant options to the compiler (for example, `-DRECORDER_KEY_LIMIT=256`).
 
-Regardless of the mode selected, the `RECORDER_KEY_LIMIT` option must always be
-set. `RECORDER_KEY_LIMIT` controls how many keypresses are buffered prior to
-transmission. A value for `RECORDER_KEY_LIMIT` must be carefully selected. Set
-this value too low and the keylogger might be a bit too noisey (i.e., produce a
-lot of net traffic or disk IO overhead). Set it too high and you won't see
-potentially any data transmitted. The sweet spot is upto the attacker to decide.
+Regardless of the mode selected, you must always set `RECORDER_KEY_LIMIT`.
+`RECORDER_KEY_LIMIT` controls the size of the keystroke buffer and therefore the
+frequency of transmission. Set this value too low and the keylogger might be a
+bit too noisey (that is, produces a lot of net traffic or disk IO overhead). Set
+it too high and you might not see any data transmitted. The sweet spot is up to
+the attacker to decide.
 
 ## Conclusion
 
@@ -218,20 +213,17 @@ Below is a demo showing `keylogger` in action on a Linux system.
 
 {{< video src="/posts/keylogger/keylogger-demo.mp4" type="video/mp4" preload="auto" >}}
 
-I've included a script, `key_capture.py`, that prints captured key data from a
-remote keylogger running in network mode. You can see that script in action
-during the demo as it captures my keypresses in the NeoVim editor.
+The project includes `key_capture.py`, a script that prints captured key data
+from a remote keylogger running in network mode. During the demo, the script
+captures keystrokes from the NeoVim editor.
 
 The toughest part of developing the keylogger is by far the capture of global
-keypresses which is highly dependent on the OS and display technology in use.
-Beyond that, the choices you are left with are how and when to log keypresses.
-While I don't have plans to deploy my keylogger in the wild anytime soon, it has
-been fun running the tool on my own PC and looking back at some of the silly
-searches and things I type into my computer.
+keystrokes which is highly dependent on the OS and display technology in use.
+Beyond that, you have to decide how to record keystrokes. Be responsible with
+how you use this or any keylogger!
 
-You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [keylogger][7].
-
+The complete project source with build instructions, usage, etc. is available on
+GitHub under [keylogger][7].
 
 [1]: https://programmador.com/posts/keyboard-hell/
 [2]: https://en.cppreference.com/w/cpp/string/byte/isprint

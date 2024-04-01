@@ -7,23 +7,21 @@ tags: ["docker", "latex"]
 
 Writing a resume can be a time consuming task involving many rounds of
 proofreading, recollection, and wordsmithing. Alongside the content, the format
-of a resume carries a lot of weight. Like most, the first drafts of my resume
-were written using Microsoft Word. As my resume evolved, I found myself fiddling
-with a lot of the settings buried deep within Words' menus. It was tedious to
-get small deviations in format that applied to one section but not the others.
+of a resume carries a lot of weight. Many people start out writing their resume
+in Microsoft Word. As their resume evolves, they begin to fiddle with settings
+buried deep within Words' menus. It can become tedious.
 
-In college, I came across [LaTeX][1]. LaTeX gave me the fine-grained control I
-was searching for in a way that was easier to grok than clicking through a
-series of nested menus. Overtime, I developed a LaTeX resume template following
-the advice given in Gayle McDowell's ["This Is What a *GOOD* Resume Should Look
-Like"][2]. I'd like to share that template as well as the tools and workflow I
-use when editing my resume.
+You may have heard of [LaTeX][1]. LaTeX gives you fine-grained control that, at
+least for a programmer, may be easier to grok than clicking through a series of
+nested menus. This article takes a look at a LaTeX resume template in the style
+of Gayle McDowell's ["This Is What a *GOOD* Resume Should Look Like"][2]. You'll
+also see the tools and workflow that simplify resume development in LaTeX.
 
 ## The Template
 
-To be clear, I don't want to advertise this as the golden format. I work in tech
-so my resume's target audience is of course tech recruiters. That said, I
-believe anyone in STEM can modify this template to suit their particular
+To be clear, the template given here isn't golden but it's a solid starting
+point for many. This resume template's target audience is tech recruiters. That
+said, most STEM folks can modify this template to suit their particular
 audience.
 
 Here's the template in all its glory. Add, remove, and edit as needed in your
@@ -107,20 +105,25 @@ text editor or LaTeX IDE:
 	\item Led a team of 3 in the development of a Cross Channel Data Link in
 	      a real-time Linux environment reducing the probability of unmanned
 	      air vehicle loss of control by over 10\%.
+	\item Tuned real-time Linux systems on both consumer and proprietary
+	      hardware solutions in an effort to reduce worst case latencies.
+	      Results drove the selection of safety critical vehicle components.
+	\item Deployed and benchmarked autocoded Simulink flight models to
+	      various embedded ARM devices including NXP's iMX6 and Xilinx's Zynq
+	      UltraScale+ MPSoC.
+	\item Employed oscilliscopes, multimeters, and other hardware when
+	      debugging and benchmarking avionics software.
 	\item Accelerated the development of multiple vehicles by creating
 	      reusable Linux and Windows device drivers for a variety of sensors
 	      including inertial measurement units, air data computers, and motor
 	      controllers.
-	\item Configured and benchmarked real-time Linux systems on both consumer
-	      and proprietary hardware solutions. Bechmark results drove the
-	      selection of safety critical vehicle components.
+	\item Designed and implemented a vehicle hardware in the loop testbench
+	      reducing flight test risk and providing a means to regression
+	      test the system.
 	\item Negotiated with suppliers on the software specifications for the next
 	      generation of flight control computers used in low cost UAV
 	      demonstrators. These UAV demonstrators would drive the capture of
 	      future contracts.
-	\item Designed and implemented a vehicle hardware in the loop testbench
-	      setup reducing flight test risk and providing a means to regression
-	      test the system.
 \end{itemize}
 
 \medskip
@@ -147,30 +150,6 @@ text editor or LaTeX IDE:
 	      with a satellite improved by an order of magnitude.
 	\item Built a Jenkins CI pipeline to isolate faults and give developers
 	      early feedback on code changes.
-\end{itemize}
-
-\medskip
-
-\begin{minipage}[t]{0.53\textwidth}
-	\begin{flushleft}
-		\textbf{ExxonMobil - Data and Information Systems}\\
-		\textbf{\textit{Intern Applications Engineer}}\\
-	\end{flushleft}
-\end{minipage}
-\begin{minipage}[t]{0.43\textwidth}
-	\begin{flushright}
-		\textbf{May 2016 - August 2016}
-	\end{flushright}
-\end{minipage}
-
-\begin{itemize}[noitemsep,topsep=0pt]
-	\setlength\itemsep{0.2em}
-	\item Created a tool for automatically generating optimal chemical cargo
-	      configurations.
-	\item Reduced the probability of chemical payload contamination by
-	      implementing a cargo management UI to control cargo allocation
-	      across multiple vessels.
-
 \end{itemize}
 
 \medskip
@@ -264,20 +243,20 @@ text editor or LaTeX IDE:
 \end{document}
 ```
 
-Here's a capture showing how the LaTeX above looks when compiled into a PDF:
+Here's a capture showing how the LaTeX source looks when compiled into a PDF:
 
-![Resume as PDF](/posts/resumes-in-latex/resume_pdf.png#center)
+![Resume as PDF](/posts/resumes-in-latex/resume_pdf.jpg#center)
 
 ## Building the Resume
 
-LaTeX source can be compiled into various document formats. One of the most
+You can compile LaTeX source into various document formats. One of the most
 popular and appropriate for resumes is PDF. A frustrating aspect of working with
 LaTeX is the sheer number of packages required to get a working distribution
 capable of taking a vanilla `*.tex` and transforming it into a PDF.
 
-I like Docker and the idea of containerizing software. In this case, I didn't
-want to have to install well over 1GB of dependencies on my PC in order to build
-my resume. To that end, I created the following Dockerfile:
+Docker can prove useful when containerizing a toolchain. Containerizing the over
+1GB in dependencies LaTeX requires is a good idea. The following Dockerfile does
+just that:
 
 ```bash
 FROM ubuntu:latest
@@ -294,7 +273,7 @@ RUN mkdir -p /mnt/resume
 WORKDIR /mnt/resume
 ```
 
-You can build a LaTeX image with the following command:
+You can build a LaTeX Docker image with the following command:
 
 ```bash
 docker build . -t latex
@@ -312,21 +291,20 @@ docker run \
     latex:latest
 ```
 
-The command above will drop you in a Bash shell within the container. The
-command assumes your `*.tex` files(s) are in your current working directory. You
-can call the `pdflatex` program from within the container to transform the
-`*.tex` source into a PDF:
+This command will drop you in a Bash shell within the container. The command
+assumes your `*.tex` file is in your current working directory. You call the
+`pdflatex` program from within the container to transform the `*.tex` source
+into a PDF:
 
 ```bash
 pdflatex ivan_guerra_resume.tex
 ```
 
-## My Workflow
+## The Workflow
 
-I'll summarize my workflow in a couple of steps hopefully making it clear how
-the resume edit-compile-view cycle works.
+Below is a summary of the resume edit-compile-view cycle:
 
-1. Place the `*.tex` file(s) and the Dockerfile in a common directory.
+1. Place the `*.tex` file and the Dockerfile in a common directory.
 2. Build the `latex` Docker image.
 3. Launch a `latex` container with the directory containing your LaTeX source
    files mounted as a volume (see the `docker run` command in the previous
@@ -335,19 +313,20 @@ the resume edit-compile-view cycle works.
 5. Edit the document.
 6. Compile the `*.tex` file into a PDF from the container shell using
    `pdflatex`.
-7. View the output PDF in a PDF viewer or browser on the host. I actually leave
-   the document open in my viewer so that everytime I run `pdflatex` I see the
+7. View the output PDF in a PDF viewer or browser on the host. You can leave the
+   document open in your viewer so that when you run `pdflatex` you see the
    updates instantly take effect.
 8. Back to (5).
 
 ## Conclusion
 
 Writing a resume can be hard. You can ease the pain of formatting your resume
-using powerful tools such as LaTeX. In this article, I shared my LaTeX resume
-template along with the tools and process I use to push updates.
+using powerful tools such as LaTeX. This article provides you with a template
+resume and workflow for building your next resume in LaTeX. Hope this helps in
+your next job search!
 
 You can find this template along with many of the scripts and sources referenced
-in this article on my GitHub page under [resume][3].
+in this article on GitHub under [resume][3].
 
 [1]: https://en.wikipedia.org/wiki/LaTeX
 [2]: https://www.careercup.com/resume

@@ -5,84 +5,77 @@ description: "A checklist for developing real-time applications in Linux."
 tags: ["c", "c++", "linux", "realtime"]
 ---
 
-If you a are programmer in the embedded space, you have likely touched on the
-topic of real-time operating systems (RTOS). There are plenty of commercial
-RTOSes available on the market: VxWorks, Integrity, DeOS, Helix, the list goes
-on. Of course, as a hobbyist, you don't have thousands of dollars to spend
-paying for commercial licenses. Real-time Linux can potentially fill the void by
-providing a path to a soft real-time system.
+If you're an embedded systems programmer, you have likely touched on the topic
+of real-time operating systems (RTOS). There are plenty of commercial RTOSes
+available on the market: VxWorks, Integrity, DeOS, Helix, the list goes on. As a
+hobbyist, you may not have thousands of dollars to spend paying for commercial
+licenses. Real-time Linux can fill the void by providing a path to a soft
+real-time system.
 
 This post takes a tour through the advice given in John Ogness's 2020
-presentation: "A Checklist for Writing Linux Real-Time Applications"[^12]. We'll
-explore how to optimize a Linux system and application for real-time execution
-using John's handy real-time Linux development checklist.
+presentation: "A Checklist for Writing Linux Real-Time Applications"[^12].
+You'll explore how to optimize a Linux system and application for real-time
+execution using John's real-time Linux development checklist.
 
-## Do I Need a Real-time System?
+## Who Needs a Real-time System
 
-Before you go down the relatively time consuming path of setting up a real-time
-Linux system, you might want to stop and ask yourself 'do I really need
-real-time capabilities'. To help answer that question, consider what an RTOS
-provides:
+Setting up and tuning a Linux real-time system is a time consuming task. Before
+diving in, consider what an RTOS provides:
 
 1. **Low Latency**: Latency is a measure of the delay from when you tell the
    system to perform an action until the system actually starts executing that
    action.
 2. **Determinism**: An RTOS provides deterministic scheduling policies. You can
-   orchestrate software components such that they run within specific
-   timeframes.
+   orchestrate software components such that they run within specific time
+   frames.
 
-If you can look at the requirements for your application and can confidently say
-you need features (1) and (2), then the time investment in standing up a
-real-time system may be justified.
+If your application requires (1) and (2), then it's a worthy endeavor to setup a
+real-time system.
 
-Now, you must ask yourself another question: 'do I need a soft or a hard
-real-time system'. What's the difference? It all relates to the application's
-deadlines.
+Now, do you need a soft or a hard real-time system? What's the difference? It
+all relates to the application's deadlines.
 
 [![Soft vs Hard RT](/posts/real-time-linux-app-development/soft-vs-hard-rt.jpg#center)][2]
 
-In hard real-time systems, **task deadlines must be met otherwise the system may
-fail or fault**. In soft real-time systems, **the system is resilient to task
-overruns and will not fail if a deadline is not met**.
+In hard real-time systems, **the OS must meet task deadlines otherwise the
+system may fail or fault**. In soft real-time systems, **the system is resilient
+to task overruns and won't fail if a deadline isn't met**.
 
 Many control systems require hard real-time execution. For example, a flight
-control application which continuously misses its deadlines could potentially
-accumulate enough error to cause loss of control. In contrast, some applications
-need only soft real-time. Take for example a weather station application
-sampling an array of unsynchronized sensors at a steady interval. Missing a
-deadline in this situation is not catastrophic as long as the sample time is
-"close enough" to the other sensor samples. Again, you have to look at your
-application requirements and decide which real-time variant makes sense.
+control application which continuously misses its deadlines can accumulate
+enough error to cause loss of control. In contrast, some applications need only
+soft real-time. Take for example a weather station application sampling an array
+of unsynchronized sensors at a steady interval. Missing a deadline in this
+situation isn't catastrophic as long as the sample time is "close enough" to the
+other sensor samples. Again, you have to look at your application requirements
+and decide which real-time variant makes sense.
 
-In this post, we'll be aiming for a near optimal soft real-time Linux system.
-Achieving hard real-time is, to my knowledge, not possible given that the Linux
-kernel is not designed to guarantee deadlines. Ultimately, benchmarking and
-performance monitoring will be critical in knowing if your timing requirements
-are being met.
+The aim of this post is to provide tips for the setup of a near optimal soft
+real-time Linux system. Achieving hard real-time isn't possible given that the
+Linux kernel isn't designed to guarantee deadlines. Benchmarking and performance
+monitoring are critical in verifying timing requirements on RT Linux system.
 
-## RT Kernel Patches
+## Real-time Kernel Patches
 
-Our first step in standing up an RT Linux system involves applying a set of
-patches to the kernel which among other things makes the kernel fully
-preemptible[^2]. You can apply the `PREEMPT_RT` patches to your kernel using the
-steps listed below:
+The first step to setting up a RT Linux system is to make the kernel fully
+preemptible[^2] via the real-time kernel patches. You can apply the `PREEMPT_RT`
+patches to your kernel using the steps listed below:
 
-1. Make note of the X.Y.Z kernel version you are interested in building.
-   Typically, the git branch name will include the version number.
+1. Make note of your kernel's X.Y.Z version number. Typically, the git branch
+   name will include the version number.
 2. Go to kernel.org[^4] and download the `*.gz` containing the patch files for
    your particular kernel version.
-3. Apply the patches:
-```bash
-cd linux/
-gzip -cd /path/to/patch-4.19.94-rt39.patch.gz | patch -p1 --verbose
+3. Apply the patches: 
+```bash 
+cd linux/ gzip -cd
+/path/to/patch-4.19.94-rt39.patch.gz | patch -p1 --verbose 
 ```
-4. Verify there are no `*.rej` files in your linux source tree. The `*.rej`
-   files indicate a patch was rejected[^5].
+4. Verify there are no `*.rej` files in your Linux source tree[^5].
 
 ## Kernel Configuration
 
-Getting the right kernel configuration is critical in reducing latency. Below
-is a table of the configurations you will want to enable/disable. See the config
+Getting the right kernel configuration is critical in reducing latency. Below is
+a table of the configurations you will want to enable/disable. See the config
 option footnotes for more details.
 
 | Config                                 | ON/OFF | Location                                                                                    |
@@ -111,14 +104,14 @@ Linux provides three real-time scheduling policies.
 * **`SCHED_RR`**: The same as `SCHED_FIFO` with the added twist that if two
   tasks have the same priority, then they will execute in round robin fashion
   using a configurable timeslice.
-* **`SCHED_DEADLINE`**: Each task is associated with a budget Q (aka runtime),
-  and a period P, corresponding to a declaration to the kernel that Q time units
-  are required by that task every P time units, on any processor.
+* **`SCHED_DEADLINE`**: Each task gets a budget Q (AKA runtime) and a period P
+  telling the kernel that the task requires Q time units every P time units on
+  any processor.
 
-**RT scheduling policies only apply to RT tasks!** All other tasks typically use
-`SCHED_OTHER` and can have their CPU time controlled via nice values and/or
-cgroups. A scheduling policy can be set in one of two ways: programmatically or
-using the `chrt` utility.
+**RT scheduling policies only apply to RT tasks!** All other tasks use
+`SCHED_OTHER` and have their CPU time controlled via nice values. You set an RT
+the scheduling policy in one of two ways: programmatically or using the `chrt`
+utility.
 
 If you prefer setting the scheduling policy from your boot or run scripts,
 `chrt` is the way to go:
@@ -141,23 +134,23 @@ param.sched_priority = 80;
 sched_setscheduler(0, SCHED_FIFO, &param);
 ```
 
-`SCHED_FIFO` is, in my experience, the most common and easiest to reason about
-policy. You'll want to be careful with any of the priority based policies to
-**never set a task's priority to 99**. You don't want your application taking
-time away from critical kernel threads.
+`SCHED_FIFO` is the most common and easy to reason about policy. You'll want to
+be careful with any of the priority based policies to **never set a task's
+priority to 99**. You don't want your application taking time away from critical
+kernel threads.
 
-Another thing to be aware of is by default the Linux kernel limits the amount of
-time all real-time tasks are allowed to use the CPU. **If the total CPU time of
-all RT tasks exceeds 95% of a second, then for the remaining 5% of that second
-no RT task is allowed to run!** This is equivalent to some really bad priority
-inversion and is guaranteed to break a real-time system. You can disable this
-policy by writing -1 to `/proc/sys/kernel/sched_rt_runtime_us`:
+By default the Linux kernel limits the amount of time all real-time tasks get on
+the CPU. **If the total CPU time of all RT tasks exceeds 95% of a second, then
+for the remaining 5% of that second no RT task runs!** This is equivalent to bad
+priority inversion and breaks a real-time system. You can disable this policy by
+writing -1 to `/proc/sys/kernel/sched_rt_runtime_us`: 
+
 ```bash
 echo "-1" > /proc/sys/kernel/sched_rt_runtime_us
 ```
-This setting cannot be baked into the kernel at compile time. You will have to
-repeat the above command everytime you reboot or write a boot script to clear it
-for you!
+
+This setting isn't a kernel configuration option. You have to repeat the command
+every time you reboot or write a boot script to clear it for you!
 
 ## Isolating CPUs
 
@@ -171,15 +164,19 @@ cores. There's a couple ways to do this:
 
 ### Setting CPU Affinities
 
-CPU affinities are a bitmask of the CPU(s) a task is allowed to run on. You can
-control CPU affinity down to the thread level. You can use the `taskset` utility
-to set affinities from your scripts:
+A task's CPU affinity is a bitmask specifying what CPU cores the scheduler can
+put the task on. You can control CPU affinity down to the thread level. You can
+use the `taskset` utility to set affinities from your scripts: 
+
+
 ```text
-taskset [options] mask command [arg]...
-taskset [options] -p [mask] pid
-```
-You can also set affinities programmatically:
-```c
+taskset [options] mask command [arg]... 
+taskset [options] -p [mask] pid 
+``` 
+
+You can also set affinities programmatically: 
+
+```c 
 /* Need to define _GNU_SOURCE since sched_setaffinity() is not part of POSIX but
 implemented in glibc. */
 #define _GNU_SOURCE
@@ -193,107 +190,102 @@ CPU_SET(1, &set);
 sched_setaffinity(pid, CPU_SETSIZE, &set);
 ```
 
-### CPU Isolation via Kernel Boot Params
+### CPU Isolation via Kernel Boot Parameters
 
 The kernel provides two boot parameters to regulate CPU utilization:
 
 1. **`maxcpus=n`**: Limits the kernel to bring up N CPUs.
 2. **`isolcpus=cpulist`**: Specifies the CPUs to isolate from disturbances.
 
-`maxpus` tells the kernel to at most use N CPUs. As an example, suppose you had
-a 4 core system. With `maxcpus=2`, Linux would take two CPUs for itself and
+`maxcpus` tells the kernel to at most use N CPUs. As an example, suppose you
+have a 4 core system. With `maxcpus=2`, Linux would take two CPUs for itself and
 leave the other two completely alone. This feature is useful when one wants to
 run bare metal applications on the "reserved" CPUs that can communicate with the
 processes running on the cores used by Linux.
 
-`isolcpus` allows you to tell the kernel to be aware of the CPUs you specify in
-the argument `cpulist`, but do not schedule any tasks including kernel tasks on
-those CPUs. You can later tell Linux to schedule your RT tasks on those isolated
-CPUs. Note the difference between `isolcpus` and `maxcpus` is that in the case
-of `isolcpus`, Linux is still aware of the isolated CPUs and you are able to
-tell Linux to assign tasks to them.
+`isolcpus` tells the kernel to be aware of the CPUs you specify in the argument
+`cpulist`, but don't schedule any tasks including kernel tasks on those CPUs.
+You can later tell Linux to schedule your RT tasks on those isolated CPUs.
 
 ### Hardware Interrupt Affinities
 
 When a hardware interrupt enters the system, **any** CPU may service that
-interrupt.  This can cause issues if the CPU your RT task is running on is
-chosen to service the interrupt. So how do you re-route interrupts to CPUs not
-running your RT tasks?
+interrupt. This can cause latency increases if the CPU your RT task is running
+on services the interrupt. So how do you re-route interrupts to CPUs not running
+your RT tasks?
 
-As a first step, you can set the default CPU affinity for HW interrupt handling
-when new interrupt handlers are registered. You can view and configure these
-settings via `/proc/irq/default_smp_affinity`.
+As a first step, set the default CPU affinity for HW interrupt handling on
+interrupt handler registration. You can view and configure these settings via
+`/proc/irq/default_smp_affinity`.
 
-For those interrupts that have already been registered, you can update their
-affinities via `/proc/irq/<irq-number>/smp_affinity`. **Be aware, some hardware
-cannot perform this IRQ re-routing. After making a change in `smp_affinity`,
-always check that the setting stuck by querying
-`/proc/irq/<irq-number>/effective_affinity`!**
+For registered interrupts, you can update their affinities via
+`/proc/irq/<irq-number>/smp_affinity`. **Be aware, some hardware can't perform
+this IRQ re-routing. After making a change in `smp_affinity`, always check that
+the setting stuck by querying `/proc/irq/<irq-number>/effective_affinity`!**
 
 ### Beware of Caching
 
-When partitioning your tasks among the different cores, you have to take into
-consideration how caching is handled by your particular CPU. It may be the case
-that two or more cores share a number of caches. If you isolate RT and non-RT
-tasks on cores that share a cache, you could experience some adverse side
-effects on the RT side as the non-RT processes may invalidate the cache! The
-takeaway here is that you will want to look at the reference manual for your CPU
-to see how caches are utilized by the different cores in order to come up with a
-correct core-to-task assignment.
+When partitioning your tasks among the different cores, take into consideration
+caches and their layout. Two or more cores may share a number of caches. You may
+experience adverse side effects on the RT side as the non-RT processes
+invalidate portions of the cache! You want to look at the reference manual for
+your CPU to see the cache layout. Afterward, create a core-to-task assignment
+that reduces cache contention.
 
 ## Memory Management
 
 [![Simplistic Virtual Address Space](/posts/real-time-linux-app-development/virtual-addr-space.png#center)][12]
 
 How an RT application manages memory deserves some attention. Going back to
-college and your OS course, you may remember that processes often are given
-memory in 4kb chunks called pages. When the process requests memory or accesses
-a page not currently in memory, a page fault is generated that must be serviced
-by the OS's page fault handler routine to load that page from disk. This is a
-very expensive operation and one we need to tightly control in our RT app.
+college and your OS course, you may remember that processes work with memory in
+chunks called pages. When a process requests memory or accesses a page not
+currently in memory, a page fault occurs. The OS's page fault handler services
+the fault by loading the missing page to memory. This is an expensive operation
+and one you want to avoid in a RT application.
 
-You might ask, what are all the sources of a page fault our applications may
-encounter? There are many memory accesses that may trigger page faults:
+What are all the sources of a page fault your applications may encounter? There
+are many memory accesses that may trigger page faults:
 
 * Text Segment
 * Initialized Data Segment
 * Uninitialized Data Segment
-* Stack(s)
+* Stack
 * Heap
 
-There's a couple of tricks we can employ to avoid page faults:
+There's a couple of tricks you can employ to avoid page faults:
 
 1. Tuning glibc's `malloc`
 2. Locking Allocated Pages
 3. Prefaulting
 
-Lets look at each in a bit more detail.
+The following sections look at each strategy in more detail.
 
 ### Tuning glibc's `malloc`
 
-glibc's `malloc` can request memory in more than one way.  Under the hood,
+glibc's `malloc` can request memory in more than one way. Under the hood,
 `malloc` will by default make `mmap` calls to the kernel to get memory which is
-**not** part of the processes' heap. This is bad for the simple reason that when
-this memory is released it **cannot be reused**.
+**not** part of the processes' heap. When this `mmap`'ed memory gets released,
+it's not immediately available for reuse by the process.
 
-Luckily for us, `malloc` is configurable via `mallopt`. We can disable memory
-allocation via `mmap` by clearing the `M_MMAP_MAX` option:
-```c
+Luckily, `malloc` is configurable via `mallopt`. You can disable memory
+allocation via `mmap` by clearing the `M_MMAP_MAX` option: 
+
+```c 
 #include <malloc.h>
 
 mallopt(M_MMAP_MAX, 0);
 ```
-The above setting will tell `malloc` to never call `mmap` and instead always
-allocate memory to the processes' heap. The memory in this heap area will be
-available for reuse even when `free` is called during the processes' runtime.
 
-There's one more glibc `malloc` behavior we want to disable and that is heap
-trimming. By default, `malloc` will look at the heap and if there is a large
-enough contiguous block of free memory, it will release that memory back to the
-kernel effectively trimming down the size of the processes' heap. We don't want
-to be losing page sized chunks of memory we previously payed to allocate.  To
-disable this feature:
-```c
+This setting will tell `malloc` to never call `mmap` and instead always allocate
+memory using the processes' heap. The memory in this heap area will be available
+for reuse even after a call to `free`.
+
+There's one more glibc `malloc` behavior you want to disable and that's heap
+trimming. `malloc` will look at the heap and trim large contiguous blocks of
+free memory. You don't want to be losing page sized chunks of memory you
+previously payed the page fault tax to access. To disable this feature: 
+
+```c 
 #include <malloc.h>
 
 mallopt(M_TRIM_THRESHOLD, -1);
@@ -301,9 +293,10 @@ mallopt(M_TRIM_THRESHOLD, -1);
 
 ### Locking Allocated Pages
 
-It's important that we lock all current and future pages of our processes'
-virtual address space to RAM. We can tell the kernel to do this using the
+It's important that you lock all current and future pages of your processes'
+virtual address space to RAM. you can tell the kernel to do this using the
 `mlockall` sys call:
+
 ```c
 #include <sys/mman.h>
 
@@ -312,10 +305,11 @@ mlockall(MCL_CURRENT | MCL_FUTURE);
 
 ### Prefaulting
 
-To avoid page faults during runtime, we'll want to take the page faulting "hit"
-early on at application startup. To do that we'll prefault our heap. To do this
+To avoid page faults during runtime, you'll want to take the page faulting "hit"
+early on at application startup. To do that you prefault the heap. To do this
 correctly, you'll need to calculate your application's worst case space usage.
 Here's how you prefault the heap:
+
 ```c
 #include <stdlib.h>
 #include <unistd.h>
@@ -335,13 +329,15 @@ void prefault_heap(int size)
     free(dummy);
 }
 ```
-Notice that we write to each page guaranteeing that a page fault is triggered
-and that the page is actually loaded into RAM. In combination with our previous
-`malloc` tuning and memory page locking, we can be confident all the heap memory
-we'll need will be sitting in RAM ready for use by our app.
 
-But wait, there's more! We need to similarly prefault the stack. Here's a
+Notice the write to each page. The write guarantees that a page fault gets
+triggered and that the page is actually loaded into RAM. The combination of
+`malloc` tuning and memory page locking ensures all the heap memory your
+application needs will be sitting in RAM.
+
+But wait, there's more! You should similarly prefault the stack. Here's a
 routine to do just that:
+
 ```c
 #include <unistd.h>
 
@@ -356,30 +352,31 @@ void prefault_stack(void)
         dummy[i] = 1;
 }
 ```
+
 This function creates a massive 512kb stack frame and then touches each page
 that forms that frame once. When the function returns, the pages that form the
-now 512kb stack space will remain since we previously locked down memory with
+now 512kb stack space will remain since you previously locked down memory with
 `mlockall`.
 
 ## Locking and Synchronization
 
-Locks are important in any application that needs mutual exclusion.  When in
-need of mutual exclusion in an RT Linux app, always go with `pthread_mutex`! You
-might ask, 'well can't I also use semaphores'? Semaphores shouldn't be used
-because semaphores are objects that do not have a notion of ownership. In
-contrast, the kernel knows when a lower priority task owns/holds a
-`pthread_mutex` and can temporarily boost the task's priority so that it may run
-and free the lock when that lock is required by some higher priority task. This
-is what's known as priority boosting or inheritance and it is how Linux resolves
-the priority inversion problem[^14]. The image below illustrates this concept.
-You can imagine Resource A is a lock under contention.
+Locks are important in any application that needs mutual exclusion. When in need
+of mutual exclusion in an RT Linux app, always go with `pthread_mutex`! What
+about semaphores? Semaphores are a no go since they don't have a notion of
+ownership. In contrast, the kernel knows when a lower priority task owns/holds a
+`pthread_mutex`. The kernel temporarily boosts the task's priority so that it
+runs and frees the lock allowing a higher priority task to acquire the lock.
+This is what's known as priority boosting or inheritance and it's how Linux
+resolves the priority inversion problem[^14]. The image below illustrates this
+concept. You can imagine Resource A is a lock under contention.
 
 [![Priority Inheritance](/posts/real-time-linux-app-development/priority-inheritance.png#center)][15]
 
-To get `pthread_mutex` to behave as described above, we have to tell the kernel
-to employ priority inheritance. The latter can be done by setting the
-`PTHREAD_PRIO_INHERIT`[^13] option via the `pthread_mutexattr_setprotocol` sys
-call. Here's a basic example of how to setup and use your mutex:
+To get `pthread_mutex` to behave as described, you have to tell the kernel to
+employ priority inheritance. Set the `PTHREAD_PRIO_INHERIT`[^13] option via the
+`pthread_mutexattr_setprotocol` system call. Here's an example of how to setup
+and use your mutex:
+
 ```c
 #include <pthread.h>
 
@@ -402,25 +399,25 @@ pthread_mutex_destroy(&lock);
 When it comes to signaling within or among RT applications, there are two
 approaches to consider:
 
-* **Standard Signals[^15]**: These are the signals in the `SIG*` family that can
-  be caught and handled by an application using `sigaction`.
+* **Standard Signals[^15]**: These are the signals in the `SIG*` family that get
+  caught by an application using `sigaction`.
 * **`pthread_cond` Signals**: These are condition objects typically associated
-  with a `pthread_mutex` that are used to provide synchronized notification
-  between threads/processes.
+  with a `pthread_mutex` that synchronize notification between
+  threads/processes.
 
-**Standard signals should never be used in an RT application**. Why? The context
-when a signal handler is triggered is very hard or near impossible to predict.
-Are you holding a lock? Are you priority boosted? Worse yet, there are
-differences in behavior among the different glibc implementations. Avoid signals
-in your RT application.
+**Avoid standard signals in an RT application**. Why? The context when a signal
+handler executes is hard or near impossible to predict. Are you holding a lock?
+Are you priority boosted? Worse yet, there are differences in behavior among the
+different glibc implementations. Avoid signals in your RT application.
 
-`pthread_cond` condition variables are perfectly safe to use in your RT app. The
-only caveat is that you make sure to notify waiting threads/processes **before**
-releasing a lock! As an example of why it is important to notify waiters before
+`pthread_cond` condition variables are safe to use in your RT app. The only
+caveat is that you make sure to notify waiting threads/processes **before**
+releasing a lock! As an example of why it's important to notify waiters before
 releasing locks, consider this scenario on a uniprocessor system:
 
-1. Task 1 priority 50 is scheduled and acquires a shared lock.
-2. Task 2 priority 60 is scheduled (Task 1 is descheduled due to lower prio).
+1. Task 1 priority 50 gets scheduled and acquires a shared lock.
+2. Task 2 priority 60 gets scheduled (Task 1 gets descheduled due to lower
+   priority).
 3. Task 2 requests the lock.
 3. Kernel boosts Task 1 priority to 60 and schedules it.
 4. Task 1 completes its critical section and releases the lock.
@@ -429,8 +426,8 @@ releasing locks, consider this scenario on a uniprocessor system:
 7. Task 2 waits forever on a signal that will never come from Task 1!
 
 To avoid this scenario, **always notify receivers before releasing a lock when
-working with POSIX condition variables**. Here's a short code snippet
-illustrating proper signaling:
+working with POSIX condition variables**. Here's a code snippet illustrating
+proper signaling:
 
 ```c
 #include <pthread.h>
@@ -454,12 +451,12 @@ pthread_mutex_unlock(&lock);
 ## Clocks and Cyclic Tasks
 
 When it comes to clocks in an RT app, you want to stick with the POSIX functions
-that allow clock specification (i.e., the `clock_*` family of functions). There
-are a number of clock types that are supported:
+for clock specification (that is, the `clock_*` family of functions). There are
+a number of clock types:
 
-* `CLOCK_REALTIME`: System-wide realtime clock.
-* `CLOCK_MONOTONIC`: Clock that cannot be set and represents monotonic time
-  since some unspecified starting point.
+* `CLOCK_REALTIME`: System-wide real-time clock.
+* `CLOCK_MONOTONIC`: Clock representing monotonic time since some unspecified
+  starting point.
 * `CLOCK_PROCESS_CPUTIME_ID`: High-resolution per-process timer from the CPU.
 * `CLOCK_THREAD_CPUTIME_ID`: Thread-specific CPU-time clock.
 
@@ -508,7 +505,7 @@ void cyclic_task_main(void)
 ## Evaluating a Real-time System
 
 Cyclictest[^16] is one of the best tools to use in evaluating your real-time
-system.  What is Cyclictest?
+system. What's Cyclictest?
 
 > Cyclictest accurately and repeatedly measures the difference between a
 > thread's intended wake-up time and the time at which it actually wakes up in
@@ -517,9 +514,8 @@ system.  What is Cyclictest?
 Here are a couple key points to keep in mind when working with Cyclictest:
 
 * **Test parameters matter.** The parameters you pass to Cyclictest determine
-  the latencies that are being measured by the test. Read the manpage, checkout
-  examples, and make sure you understand what latency(s) you are interested in
-  measuring.
+  the latencies measured by the test. Read the manpage, checkout examples, and
+  make sure you understand what latencies get measured.
 * **Reduce the "observer effect" as much as you can.** The execution of
   Cyclictest itself can affect the latencies measured. There's ways to combat
   this issue such as isolating the Cyclictest main thread to a unused CPU. See
@@ -539,28 +535,27 @@ generate a histogram plot of latencies as shown below.
 
 [![Latency Histogram](/posts/real-time-linux-app-development/latency-plot.png#center)][23]
 
-If you choose to use the OSADL script, **make sure you update cyclictest
+If you choose to use the OSADL script, **make sure you update Cyclictest
 parameters so that you are testing for the right latencies on your system!**
 OSADL latency plots include the parameters used to run Cyclictest on the
 platform under test. You can take those parameters and try them out on your
 system to see how one platform compares to another.
 
-Ultimately, the value of interest that Cyclictest outputs is the maximum worst
-case latency detected. When interpreting this value, keep in mind that this is
-the worst latency that was **measured**. The measured maximum does not
-necessarily equal the system's worst case latency!
+The value of interest that Cyclictest outputs is the maximum worst case latency
+detected. When interpreting this value, keep in mind that this is the worst
+latency that was **measured**. The measured maximum doesn't necessarily equal
+the system's worst case latency!
 
 ## Conclusion
 
 In the world of embedded development, some applications have tight timing and
 scheduling requirements that necessitate the use of a real-time system. Linux
 provides a path to a soft real-time system via its `PREEMPT_RT` patches which
-make the kernel fully preemptible. However, the story doesn't end there. In this
-quest to reduce latencies and improve determinism, one must carefully configure
-the kernel and their application to avoid pitfalls which could lead to system
-failure. Luckily, folks like John Ogness have outlined strategies such as the
-ones I have summarized here in this post to help us navigate setting up a
-realiable real-time application in Linux.
+make the kernel fully preemptible. In the quest to reduce latencies and improve
+determinism, one must configure the kernel and their application to avoid
+pitfalls which could lead to system failure. Luckily, there are plenty of
+techniques, tools, and resources to help you standup a RT Linux system that
+meets your needs.
 
 [1]: https://beagleboard.org/black
 [2]: https://techdifferences.com/difference-between-hard-and-soft-real-time-systems.html
@@ -593,8 +588,7 @@ realiable real-time application in Linux.
 [^3]: [Building and Deploying a Real-Time Kernel to the BeagleBone Black][4]
 [^4]: You have to be careful to download patches that match your kernel version
     number exactly! This sometimes mean you have to dig into the folder labeled
-    "older" under one of the X.Y folders in order to get the right patch (Z)
-    number.
+    "older" under one of the X.Y folders to get the right patch (Z) number.
 [^5]: If you see rejected patches, double check that you downloaded a patch set
     that *exactly* matches your kernel version.
 [^6]: See the [CONFIG_LOCKUP_DETECTOR][6] for more info on this option.
@@ -610,8 +604,7 @@ realiable real-time application in Linux.
     you find to be most critical on.
 [^12]: John's 48min presentation is the inspiration for this post. His final
     slide is particularly handy as a checklist for anyone developing a real-time
-    app on Linux. I recommend watching his video on [YouTube][11] before reading
-    this post.
+    app on Linux. Watch his video on [Youtube][11] before reading this post.
 [^13]: Checkout the [manpage][14] for `pthread_mutexattr_setprotocol` option
     descriptions.
 [^14]: See [priority inversion problem][16]. Priority inheritance is the
@@ -620,8 +613,8 @@ realiable real-time application in Linux.
     wouldn't recommend the use of real-time signals given that the behavior is
     at least in part implementation dependent.
 [^16]: The [Cyclictest][18] homepage provides an overview of the tool, its use
-    cases, and more.  The [FAQ][19] page is also worth a read.
+    cases, and more. The [FAQ][19] page is also worth a read.
 [^17]: [hackbench][20] is a benchmark and a stress test for the kernel scheduler
-    that is part of the rt-tests suite.
+    that's part of the rt-tests suite.
 [^18]: [Worst Case Latency Test Scenarios][21]
-[^19]: [Create a latency plot from cyclictest histogram data][24]
+[^19]: [Create a latency plot from Cyclictest histogram data][24]

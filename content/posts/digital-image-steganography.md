@@ -5,65 +5,63 @@ description: "How to embed an image within another."
 tags: ["c++", "boost", "cli-tools"]
 ---
 
-While on a computerphile[^1] marathon, I came a across a pretty neat video of
-theirs covering steganography[^2]. In the video, Mike Pound talks about a
-technique for steganography on digital images: least significant bit
-substitution. I found the simplicity of the technique to be cool given how
-effective it is (atleast to the human eye). This seemed like a fun weekend
-project so I set out to write a command line tool for embedding one image within
-another.
+There's a neat Computerphile[^1] video discussing the topic of
+steganography[^2]. In the video, Mike Pound talks about a technique for
+steganography on digital images: least significant bit substitution (LSBS). The
+effectiveness of LSBS in concealing a secret image is surprising. This article
+puts least significant bit substitution to use in a command line tool for
+embedding one image within another.
 
 ## A Little Background on Digital Images
 
-No fancy image manipulation techniques are needed to make this steganography
-tool work. That said, we do need to know a little bit about how a digital image
-is represented in our machine.
+You don't need fancy image manipulation techniques to make this steganography
+tool work. That said, you do need to know a little bit about how the machine
+represents a digital image.
 
-A digital image can contain thousands or more elements called pixels.  Below is
-an image where the enhanced portion shows the individual pixels rendered as
-small squares[^3].
+A digital image can contain thousands of pixels. Below is an image where the
+enhanced portion shows the pixels rendered as small squares[^3].
 
 [![Pixels](/posts/digital-image-steganography/pixels.png#center)][3]
 
-In a color image, a pixel is made up of 3 to 4 channels. There's the classic
-red, green, and blue (RGB) pixel and the cyan, magenta, yellow, and black (CYMK)
-pixel. We'll be focusing on three channel or RGB pixels.
+3 to 4 channels describe each pixel in an image. There's the classic red, green,
+and blue (RGB) pixel and the cyan, magenta, yellow, and black (CYMK) pixel. This
+articles focuses on three channel or RGB pixels.
 
 Each channel of an RGB pixel specifies the intensity of the color using an 8-bit
-value. Combining the three channels, we're able to represent 2^24 or well over
-16 million different colors. Often, each byte of an RGB color pixel will be
-specified using hexadecimal notation as shown in the table below.
+value. Combining the three channels, you're able to represent 2^24 or well over
+16 million different colors. Often, hexadecimal numbers describe each byte of an
+RGB color pixel as shown in the table below.
 
 [![RGB Color Palette](/posts/digital-image-steganography/color-palette.gif#center)][4]
 
-For our purposes, a digital image can be thought of as a two dimensional matrix
-of pixel values. The steganography algorithm discussed here will encode the
-pixel data of one secret image in the pixel data of another cover image using a
-reversible process.
+A digital image is a two dimensional matrix of pixel values. The steganography
+algorithm discussed here will encode the pixel data of one secret image in the
+pixel data of another cover image using a reversible process.
 
 ## Least Significant Bit Substitution
 
-Least signifcant bit substitution works on the principal that the most
-significant bits (MSBs) of a number have a much larger impact on the numerical
-value than the least signifcant bits (LSBs). As an example, imagine you had the
-16-bit value **1101010101001000** which in decimal is **54600**. If you flipped
-the MSB, the binary number would be **0101010101001000** or **21832** decimal.
-That's approximately a 60% difference from changing a single bit! Now say you
-went crazy and flipped the lowest 8 bits producing **1101010110110111** or
-**54711**.  Despite flipping 7 more bits, we only see an approximately 0.002%
-difference in the numerical value.
+LSB substitution works on the principal that the most significant bits (MSBs) of
+a number have a much larger impact on the numerical value than the least
+significant bits (LSBs). As an example, imagine you had the 16-bit value
+**1101010101001000** which in decimal is **54600**. If you flipped the MSB, the
+binary number would be **0101010101001000** or **21832** decimal. That's
+approximately a 60% difference from changing a single bit! Now say you went
+crazy and flipped the lowest 8 bits producing **1101010110110111** or **54711**.
+Despite flipping 7 more bits, you only see an approximately 0.002% difference in
+the numerical value.
 
-So how does this apply to image steganography? We can hide the MSBs of our
-secret image's pixels in the LSBs of our cover image. We apply this process to
+So how does this apply to image steganography? You can hide the MSBs of your
+secret image's pixels in the LSBs of your cover image. You apply this process to
 each color channel in the pixel. If the cover image is a noisy one, then the
-change will be unnoticeable to the human eye. We simply reverse the process to
-extract the secret image: make the LSBs of the merged image the MSBs of the new
-unmerged image with the lower bits zeroed out. The unmerged image will be
-recognizable albeit some LSB info is lost in the merge/unmerge process.
+change will be unnoticeable to the human eye. You simply reverse the process to
+recreate the secret image: make the LSBs of the merged image the MSBs of the new
+unmerged image with the lower bits zeroed out. You lose information in this
+merge/unmerge process. The loss is sometimes obvious in the unmerged image as
+you will see in a later example.
 
 Here's an example using the 4 least significant bits of each color channel.
 
-Suppose we had a cover image pixel with the following RGB values represented in
+Suppose you had a cover image pixel with the following RGB values represented in
 hexadecimal:
 
 | Channel | Value |
@@ -72,7 +70,7 @@ hexadecimal:
 | G       | 0x1B  |
 | B       | 0xC9  |
 
-Our corresponding secret pixel might look something like:
+Your corresponding secret pixel might look something like:
 
 | Channel | Value |
 |---------|-------|
@@ -80,10 +78,10 @@ Our corresponding secret pixel might look something like:
 | G       | 0x78  |
 | B       | 0xFF  |
 
-The merge operation would have us take the most significant hex digit (i.e.,
+The merge operation has you take the most significant hex digit (that is,
 4-bits) of the secret pixel and place them as the **least significant** hex
-digit of the cover image (the highlighted hex digits in the table below). The
-merged pixel would then look like:
+digit of the cover image (highlighted below). The merged pixel would then look
+like:
 
 | Channel | Value     |
 |---------|-----------|
@@ -91,7 +89,7 @@ merged pixel would then look like:
 | G       | 0x1**7**  |
 | B       | 0xC**F**  |
 
-To retrieve the secret pixel from a merge pixel, we take the least significant 4
+To retrieve the secret pixel from a merge pixel, you take the least significant 4
 bits of the merged pixel and concatenate it with zeroes on the right:
 
 | Channel | Value     |
@@ -100,18 +98,16 @@ bits of the merged pixel and concatenate it with zeroes on the right:
 | G       | 0x**7**0  |
 | B       | 0x**F**0  |
 
-How many bits should we use to conceal our image? I chose to use 4-bits. I'd say
-4-bits is the upper limit, beyond that you can see some artifacts in the merged
-image which make it obvious that it has been tampered with. I experimented with
-going as low as 2-bits and still got half decent results. The examples and code
-presented in this article use the 4 LSBs of each channel but the code can easily
-be modified to work with different LSB counts.
+How many bits should you use to conceal your image? That depends on the cover
+and secret image. 4-bits is a rough upper limit. Using more than 4-bits often
+leads to artifacts in the merged image. The examples and code presented in this
+article use the 4 LSBs of each channel. It's straightforward to modify the code
+to work with different LSB counts.
 
 ## Making It Happen
 
 The idea is to have a command line tool that could merge and unmerge two images.
-That is, I expected the program take in a command with arguments and spit out an
-image. Program usage would look something like:
+Program usage looks something like:
 
 ```bash
 $ steganography merge cover.jpg secret.jpg out.png
@@ -119,8 +115,8 @@ $ steganography merge cover.jpg secret.jpg out.png
 $ steganography unmerge out.png secret.jpg
 ```
 
-If we ignore all the argument processing and error checking code, the program
-boiled down to implementing two functions: `Merge()` and `Unmerge()`.
+If you ignore all the argument processing and error checking code, the program
+boils down to implementing two functions: `Merge()` and `Unmerge()`.
 
 ## Merging
 
@@ -170,21 +166,20 @@ RetCode Merge(const std::string& cover, const std::string& secret,
 }
 ```
 
-You can see the `Merge()` function iterates over the `output_view` which is
-initialized to be a mutable Boost GIL image view into a deep copy of
-`cover_img`. For each pixel in `output_view`, we call `MergePixels()` which
-applies the 4-bit merge operation previously described to each of the three
-color channels.
+You can see the `Merge()` function iterates over the `output_view`.
+`output_view` is a mutable Boost GIL image view into a deep copy of `cover_img`.
+For each pixel in `output_view`, you call `MergePixels()` which applies the
+4-bit merge operation previously described to each of the three color channels.
 
-Since our secret image may be smaller in dimension than our cover image,
-whenever a pixel in `output_view` is out of range of `secret_view`, we merge
+Since your secret image may be smaller in dimension than your cover image,
+whenever a pixel in `output_view` is out of range of `secret_view`, you merge
 `output_view`'s pixel with a black pixel. This means that when the secret
-image's dimensions are less than that of the cover image, the image that is
-later unmerged will have a black border.
+image's dimensions are less than that of the cover image, the image that's later
+unmerged will have a black border.
 
 Below are three images showing the output of a merge command. From left to right
-we have the cover image, secret image, and merged image. You can view the actual
-image files [here][5] if you're interested.
+you have the cover image, secret image, and merged image. You can view the
+actual image files [here][5].
 
 <div class="row" style="display:flex">
   <div class="column">
@@ -237,14 +232,14 @@ RetCode Unmerge(const std::string& secret, const std::string& outfile) {
 ```
 
 Not too much to harp on here. This is the inverse of the `Merge()` function. The
-key is that we know how many bits formed the secret during merging so that we
-can pop the proper bits from the LSBs of the merged image to the MSBs of the
-output image.
+key is that you know how many bits formed the secret during merging. Now you can
+pop the proper bits from the LSBs of the merged image to the MSBs of the output
+image.
 
 Below is the original secret image on the left and the unmerged image on the
-right. Notice how some quality is lost in the unmerged image. This happens
-because we lost the 4 LSBs of each pixels' color channels when performing the
-merge operation.
+right. Notice the loss in quality in the unmerged image. This happens because
+you lost the 4 LSBs of each pixels' color channels when performing the merge
+operation.
 
 <div class="row" style="display:flex">
   <div class="column">
@@ -259,32 +254,29 @@ merge operation.
 
 ## A Note on Image Formats
 
-While implementing this tool, I ran into a fun a little bug. It turns out some
-image formats are lossy. What this means is that when you format your image data
-using one of these lossy formats, some pixel data is lost/altered. This is bad
-news for our naive image steganography tool. Just take a look at what happens to
-the poor guinea pig after being merged into a JPEG:
+There's a fun file format related bug worth discussing. It turns out some image
+formats are lossy. What this means is that when you format your image data using
+one of these lossy formats, you lose or alter pixel data. This is bad news for
+this naive image steganography tool. Just take a look at what happens to the
+poor guinea pig after a merge to JPEG:
 
 ![Mangled Guinea Pig](/posts/digital-image-steganography/mangled.jpg#center)
 
-The steganography tool presented here is meant to support just two image
-formats: JPEG and PNG. **JPEG is a lossy format. PNG is a lossless format.** I
-took the easy route and required that the output of a merge command always be a
-PNG which in turn means the input to an unmerge command is always a PNG. The
-output of an unmerge command can be either format.
+The steganography tool presented here supports just two image formats: JPEG and
+PNG. **JPEG is a lossy format. PNG is a lossless format.** The easy solution is
+to require that the output of a merge command always be a PNG. This implies the
+input to an unmerge command is always a PNG. The output of an unmerge command
+can be either format.
 
 ## Conclusion
 
-The least significant bit substitution method proved simple to implement and did
-not disappoint in its effectiveness in secretly embedding one image within
-another. There were lessons to be learned in how digital images are represented,
-differences in image formats, and struggles undocumented here using C++ image
-libraries. If you find yourself getting serious about steganography but aren't
-too keen on reinventing the wheel, I recommend checking out a free and open
-source tool such as steghide[^4].
+The least significant bit substitution method proved simple to implement and
+doesn't disappoint in its effectiveness in secretly embedding one image within
+another. Interested in a more serious steganography tool? Highly recommend
+checking out a free and open source tool such as steghide[^4].
 
-You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [steganography][8].
+The complete project source with build instructions, usage, etc. is available on
+GitHub under [steganography][8].
 
 [1]: https://www.youtube.com/@Computerphile
 [2]: https://www.youtube.com/watch?v=TWEXCYQKyDc
@@ -298,8 +290,8 @@ my GitHub page under [steganography][8].
 [^1]: If you tend to like learning about computer science stuff, the videos
     produced by the [computerphile][1] channel are a goldmine.
 [^2]: In their [steganography][2] video, computerphile talks about the technique
-    implemented in this article. They go on to show that this technique is not
-    very effective if one's goal is to go undetected!
+    implemented in this article. They go on to show that this technique isn't
+    effective if one's goal is to go undetected!
 [^3]: [Pixel - Wikipedia][3]
-[^4]: From the manpage: [Steghide][7] is a steganography program that is able to
-    hide data in various kinds of image- and audio-files.
+[^4]: From the manpage: [Steghide][7] is a steganography program that's able to
+    hide data in various kinds of image and audio files.

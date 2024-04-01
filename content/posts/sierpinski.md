@@ -5,32 +5,26 @@ description: "Visualizing Sierpinski's triangle in your terminal."
 tags: ["cli-tools", "c++", "ncurses"]
 ---
 
-Do you remember when you first learned about recursion? I asked myself this
-question the other day. The thought triggered a memory from my CS101 Java course
-back in 2013. I remembered reading the textbook and seeing some fractal triangle
-thing the author generated with something like 20 lines of code. I also remember
-being confused and not "getting it" at the time. It has been over a decade now.
-I like to believe I understand the concept of recursion much better these day.
-That said, the memory still bothered me so I decided to look up what that
-program was about.
+Do you remember when you first learned about recursion? The thought triggered a
+memory from an old CS101 Java course. The textbook had some fractal triangle
+thing made with only 20 lines of code. At the time, it was a confusing 20 lines
+of code.
 
-A quick search on Google for "fractal triangle recursion" led me straight to the
-Sierpinski triangle[^1]. After skimming the wiki page, I figured writing a
-Sierpinski triangle generator would be a fun afternoon task. Hell, I could even
-redeem 2013 me a little bit by making a pretty terminal visualization using
-ncurses.
+A quick search on Google for "fractal triangle recursion" led straight to the
+Sierpinski triangle[^1]. A Sierpinski triangle generator with an ncurses
+visualization is a fun afternoon project.
 
 ## The Recursive Approach
 
-The classic Sierpinski triangle algorithm shown on Wikipedia is what I remember
-reading in my textbook:
+Here's the description of the Sierpinski triangle algorithm straight from
+Wikipedia:
 
 1. Start with an equilateral triangle.
 2. Subdivide it into four smaller congruent equilateral triangles and remove the
    central triangle.
 3. Repeat step 2 with each of the remaining smaller triangles infinitely.
 
- A possible implementation of this algorithm is shown below:
+Below is one possible implementation of the algorithm:
 
 ```cpp
 struct Point2D {
@@ -73,22 +67,21 @@ void Sierpinski(const Triangle& tri, int degree) noexcept {
 }
 ```
 
-The code above implements a `Triangle` type where a `Triangle` is an array of
-three vertices in 2D space. The `Midpoint()` function calculates the midpoint of
-two 2D points. `Sierpinski()` is the recursive function where the magic happens.
-The `degree` parameter controls the number of iterations of the algorithm we
-perform. At each iteration, we subdivide the previous iteration's triangles into
-three smaller triangles using the midpoint of each side of the "parent"
-triangle. Each subtriangle then calls `Sierpinski()` with a reduced `degree`.
-The base case is `degree = 0` where the input triangle is printed before exit.
+The code implements a `Triangle` type where a `Triangle` is an array of three
+vertices in 2D space. The `Midpoint()` function calculates the midpoint of two
+2D points. `Sierpinski()` is the recursive function where the magic happens. The
+`degree` parameter controls the number of algorithm iterations. At each
+iteration, you subdivide the previous iteration's triangles into three smaller
+triangles using the midpoint of each side of the "parent" triangle. Each
+subtriangle then calls `Sierpinski()` with a reduced `degree`. `degree = 0` is
+the base case. In the base case, you print the input triangle before returning.
 
-If you have some experience with recursive algorithms, the above implementation
-is not too hard to grok. If you are a newbie as I was 14 years ago, do a run on
-paper with a small `degree`. You will quickly get a feel for how the execution
-plays out. 
+If you have some experience with recursive algorithms, the implementation isn't
+too hard to grok. If you are a newbie, do a run on paper with a small `degree`.
+You'll get a feel for how the execution plays out. 
 
 If you were paying attention in your algorithms course, you'd know the time
-complexity of this implementation is not so great. Below is the call tree for a
+complexity of this implementation isn't so great. Below is the call tree for a
 `Sierpinski(2)` run.
 
 ```text
@@ -110,24 +103,22 @@ complexity of this implementation is not so great. Below is the call tree for a
 +----------------+ +----------------+ +----------------+   +----------------+ +----------------+ +----------------+   +----------------+ +----------------+ +----------------+
 ```
 
-At each node in the tree above we make 3 calls to `Sierpinski()`. The depth of
-this tree is equal to the degree of the top-level `Sierpinski()` call. You can
-imagine for higher degree values, the tree just blows up. In fact, we can deduce
-the `Sierpinski()` implementation has an exponential time complexity of
+At each node in the tree you make 3 calls to `Sierpinski()`. The depth of this
+tree is equal to the degree of the top-level `Sierpinski()` call. You can
+imagine for higher degree values, the tree just blows up. In fact, you can
+deduce the `Sierpinski()` implementation has an exponential time complexity of
 \\(\\mathcal{O}(3^{degree})\\). Ouch.
 
-In comparison, the space complexity is \\(\\mathcal{O}(degree)\\) due to the
-depth of
-the call stack scaling linearly with the degree.
+The space complexity is \\(\\mathcal{O}(degree)\\) due to the depth of the call
+stack scaling linearly with the degree.
 
 ## Randomization to the Rescue
 
 An exponential algorithm just isn't going to work. At \\(N = 10\\), the
-algorithm took well over 5 seconds to finish on a PC with an Intel i5 processor.
-So what can we do? Well, scroll a little further down that Wikipedia page and
-you find a section labeled "Chaos Game"[^2]. You can read the wiki to get a
-technical description of the algo. I find the for dummies version they provided
-more enlightening:
+algorithm takes well over 5 seconds to finish on a PC with an Intel i5
+processor. So what can you do? Well, scroll a little further down that Wikipedia
+page and you'll find a section labeled "Chaos Game"[^2]. You can read the wiki
+to get a technical description of the algorithm. Here's the for dummies version:
 
 1. Take three points in a plane to form a triangle.
 2. Randomly select any point inside the triangle and consider that your current
@@ -137,7 +128,7 @@ more enlightening:
 5. Plot the current position.
 6. Repeat from step 3.
 
-My implementation of the "chaos" approach is shown below:
+Here's an implementation of the "chaos" approach:
 
 ```cpp
 static void DrawSierpinskiTriangles(
@@ -168,31 +159,28 @@ static void DrawSierpinskiTriangles(
 }
 ```
 
-A couple of notes on the code above. The initial base triangle has its vertices
-set to the edges of the terminal screen in an upside down orientation. The
-implementation follows the steps outlined above but with added `max_iterations`
-and `refresh_rate_usec` parameters. `max_iterations` controls how many points
-will be drawn to the screen. `refresh_rate_usec` controls the speed at which
-points are added to the screen. Using these two parameters you can control how
-"full" the triangle looks as well as the speed at which the triangle is
-generated (in case you wanted to slow it down for dramatic effect).
+A couple of notes on the code. The initial base triangle has its vertices set to
+the edges of the terminal screen in an upside down orientation. The
+implementation follows the steps outlined previously with the addition of
+`max_iterations` and `refresh_rate_usec` parameters. You control the total
+number of points via `max_iterations`. You control the draw speed via
+`refresh_rate_usec`.
 
-The chaos game approach is *fast*. Assuming we can generate random numbers in
+The chaos game approach is *fast*. Assuming you can generate random numbers in
 \\(\\mathcal{O}(1)\\) time, the time complexity of `DrawSierpinskiTriangles()`
 is \\(\\mathcal{O}(max\\_iterations)\\). A linear algorithm that scales with a
-tunable iteration count is much nicer than the exponential we previously
+tunable iteration count is much nicer than the exponential previously
 encountered. The space complexity is also optimal here coming in at
 \\(\\mathcal{O}(1)\\).
 
 ## Visualization Using ncurses
 
-I am not going to dwell too long on the visualization aspect of this project.
-The setup was pretty straightforward. Assume the screen is a quadrant of the 2D
-coordinate plane. Everytime you generate a new point, draw it on the screen
+The setup is mostly straightforward. Assume the screen is a quadrant of the 2D
+coordinate plane. Every time you generate a new point, draw it on the screen
 using some marker symbol such as an asterisk. To make it look nice, bold the
 character and randomly assign it a color.
 
-Below is the relevant draw snippet:
+Below is the relevant ncurses draw snippet:
 
 ```cpp
 void DrawChar(const sierpinski::common::Point2D& pos, char symbol,
@@ -206,7 +194,7 @@ void DrawChar(const sierpinski::common::Point2D& pos, char symbol,
 ```
 
 If you're interested in more of the gritty details of using ncurses, checkout
-some of my other posts[^3] where I dive into more details.
+this other post[^3] that dives into the details.
 
 ## Conclusion
 
@@ -215,25 +203,22 @@ The end result looks pretty neat:
 {{< video src="/posts/sierpinski/sierpinski.mp4" type="video/mp4" preload="auto" >}}
 
 Generating the Sierpinski triangle was a problem with surprising complexity (pun
-intended). I feel as if I got some redemption after all these years. I
-implemented the naive solution and analyzed it's time/space complexity.
-Following the analysis, I found an algorithm description which led me to a much
-better solution using randomization as a technique to reduce complexity
-significantly. To top it off, I got to flex on the original textbook's
-`system.println()` triangle by making a ncurses based visualization.
+intended). The naive solution is easy to implement but has impractical
+time/space complexity. Randomization saved the day, reducing the complexity
+significantly making it possible to generate higher degree triangles in a
+reasonable amount of time. It's also nice to flex on the original textbook's
+`System.out.println()` triangle by making a ncurses based visualization.
 
-You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [sierpinski][4].
-
+The complete project source with build instructions, usage, etc. is available on
+GitHub under [sierpinski][4].
 
 [1]: https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle#
 [2]: https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle#Chaos_game
 [3]: https://programmador.com/posts/snake-in-the-terminal/
 [4]: https://github.com/ivan-guerra/sierpinski 
 
-[^1]: As always, Wikipedia has all the details: ["Sierpinski triangle"][1].
+[^1]: As always, Wikipedia has all the details: ["Sierpinski triangle"][1]
 [^2]: This algorithm is worth implementing just based off the name along:
     ["Chaos Game"][2].
-[^3]: I implemented the game Snake using ncurses not too long ago. That
-    [post][3] is worth checking out if you want to learn more about ncurses
-    itself.
+[^3]: Checkout this [Snake][3] implementation using ncurses. That article covers
+    a few of the nuisances of using ncurses.

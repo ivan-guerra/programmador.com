@@ -5,40 +5,38 @@ description: "Data compression using Huffman coding."
 tags: ["c++", "cli-tools", "compression"]
 ---
 
-While reading through an old data structures book, I came across a cool looking
-tree structure called a Huffman Tree[^1]. A Huffman Tree is a type of binary
-tree that can be used to compress an arbitrary data file. I never implemented
-one of these or dealt with compression at all when I was in school. I figured
-it would be fun to write a small command line utility to compress/decompress a
-file using Huffman coding.
+Implementing a Huffman Tree[^1] is a fun afternoon project for anyone interested
+in learning about data compression. A Huffman Tree is a type of binary tree that
+sees use in the compression of an arbitrary data file. Developing a command line
+utility to compress/decompress a file using Huffman coding is a good CS101
+challenge.
 
 ## Breaking It Down Into Steps
 
-This project started where most of my projects start: Wikipedia. The [Huffman
-Coding][1] wiki article gives a nice general breakdown with examples. In
-particular, the "Basic Technique"[^2] section covers the algorithms for
-compression and decompression. What I gathered was that three key data
-structures were necessary in order to implement the big `Compress()` and
-`Decompress()` routines:
+This project starts where many do: Wikipedia. The [Huffman Coding][1] wiki
+article gives a nice breakdown with examples of the data structure and
+associated algorithms. In particular, the "Basic Technique"[^2] section covers
+the algorithms for compression and decompression. You need three key data
+structures to implement the big `Compress()` and `Decompress()` routines:
 
 1. A map mapping characters to their frequency in the input.
 2. A Huffman Tree used to generate an encoding map.
 3. An encodings map mapping characters to their binary code.
 
-We'll look at how to build up each structure and then discuss how they come
+The next sections build up each structure and then discuss how they come
 together to implement `Compress()`/`Decompress()`.
 
 ## Constructing the Character Frequency Map
 
 A key aspect of Huffman coding is the derivation of binary codes from the
-frequency of characters in the input file. **The length of a character's binary
-code is determined by the frequency of that character in the input.** The higher
-the character frequency the shorter the binary code and vice versa.
+frequency of characters in the input file. **The frequency of a character in the
+input drives the length of a character's binary code.** The higher the character
+frequency the shorter the binary code and vice versa.
 
-So how do we track character frequency? A regular old map does the trick. The
+So how do you track character frequency? A regular old map does the trick. The
 keys of the map are the characters in the input and the mapped to values are the
-character's frequency. Below is a snippet of code showing how such a map can
-be constructed:
+character's frequency. Below is a snippet of code showing how to construct a
+frequency map:
 
 ```cpp
 using CharFreqMap = std::map<char, uint32_t>;
@@ -57,19 +55,18 @@ RetCode HuffmanCoding::CountCharFrequencies(const std::string& infile) {
 }
 ```
 
-The code above reads character data into the `read_buffer_` buffer in 1 kilobyte
-chunks. The `char_freqs_` map tracks the frequency of each character that is
-read.
+The code reads character data into the `read_buffer_` buffer in 1 kilobyte
+chunks. The `char_freqs_` map tracks the frequency of each character.
 
 ## Growing a Huffman Tree
 
-So we have our map of character frequencies. How do we use this frequency map to
-generate binary codes? There's an intermediate step. We need to represent our
-character frequencies in a way where we can later generate optimal codes. This
-is where the infamous Huffman Tree comes into play.
+You now have a map of character frequencies. How do you use this frequency map
+to generate binary codes? There's an intermediate step. You need to represent
+your character frequencies in a way that you can later use to generate optimal
+codes. This is where the infamous Huffman Tree comes into play.
 
 A Huffman Tree is a binary tree. The nodes of a Huffman Tree often have a
-structure similar to what is shown below:
+structure like this:
 
 ```cpp
 struct HuffmanNode {
@@ -112,22 +109,22 @@ Here's a picture of a Huffman Tree for the input text `aaaaabbc`:
 └───────────────────────────┘    └───────────────────────────┘                   
 ```
 
-There are two types of nodes in the tree: internal nodes and leaf nodes.  The
+There are two types of nodes in the tree: internal nodes and leaf nodes. The
 leaf nodes of a Huffman Tree contain an input character and its frequency
-(denoted as `count` above). The internal nodes of a Huffman Tree often replace
-the `character` with some special marker value and contain a `count` value equal
-to the sum of the `count` values of its subtrees. By convention, the left
-subtree is often labeled `zero` and the right subtree is labeled `one`.
+(denoted as `count` in the image). The internal nodes of a Huffman Tree often
+replace the `character` with some special marker value and contain a `count`
+value equal to the sum of the `count` values of its subtrees. By convention, the
+edge to the left subtree has a label of `zero` and the edge to the right subtree
+has a label of `one`.
 
 Notice how the root to leaf path for the highest frequency character, `a`, is
 shorter than the root to leaf paths for the lower frequency chars. This is no
-coincidence. As you'll see in the next section on code generation, an optimally
-constructed Huffman Tree can be traversed to obtain character to binary string
-mappings where the most frequent characters have the most compact
+coincidence. You traverse a Huffman Tree such that you obtain character to
+binary string mappings where the most frequent characters have the most compact
 representation.
 
-So how do we build the tree from the frequency map? The wiki
-article provides an algorithm for constructing an optimal Huffman Tree:
+So how do you build the tree from the frequency map? The wiki article provides
+an algorithm for constructing an optimal Huffman Tree:
 
 > 1. Start with as many leaves as there are symbols.
 > 2. Enqueue all leaf nodes into the first queue (by probability in increasing
@@ -141,9 +138,7 @@ article provides an algorithm for constructing an optimal Huffman Tree:
 >    - Enqueue the new node into the rear of the second queue.
 > 4. The remaining node is the root node; the tree has now been generated.
 
-Below is a C++ implementation of the above algorithm description. I use a
-priority queue in place of the wiki's double queues but it all essentially works
-the same:
+Below is a C++ implementation of the algorithm description:
 
 ```cpp
 using HuffmanNodePtr = std::shared_ptr<HuffmanNode>;
@@ -181,19 +176,19 @@ void HuffmanCoding::BuildEncodingTree() {
 }
 ```
 
-When the above routine terminates, `encoding_root_` will point to the root node
-of the Huffman Tree.
+When `BuildEncodingTree()` terminates, `encoding_root_` will point to the root
+node of the Huffman Tree.
 
 ## Building a Codebook
 
-It's the moment we've all been waiting for: code generation. You probably
-already guessed how this works. To generate a character's code, all we need to
-do is traverse the Huffman Tree. As we walk down from the root to each leaf, we
-bookkeep the path taken using `0`'s to indicate left subtree traversals and
-`1`'s for the right subtree traversals. When we hit a leaf node, we save off the
+It's the moment you've been waiting for: code generation. You probably
+already guessed how this works. To generate a character's code, all you need to
+do is traverse the Huffman Tree. As you walk down from the root to each leaf,
+you bookkeep the path taken using `0`'s to indicate left subtree traversals and
+`1`'s for the right subtree traversals. When you hit a leaf node, you save off the
 node's `character` value and the bit string generated up to that node.
 
-Here's a snippet showing how we can recursively construct character encodings:
+Here's a snippet showing how to recursively construct character encodings:
 
 ```cpp
 using EncodingMap = std::map<char, std::string>;
@@ -221,19 +216,19 @@ given in the previous section, the `encodings_` map would look like
 | c             | 10           |
 
 The original text required one byte per character or 8 bytes of storage. Using
-the above codebook, we could store the text string using the code `11111010110`.
-This would require only two bytes to store the same information. I say two bytes
-because we can only write in units of bytes to an output file meaning we would
-have to pad the bit string with 5 zeroes on the right in order to form a
-complete second byte (i.e., `11111010 110` -> `11111010 11000000`).
+this codebook, you could store the text string using the code `11111010110`.
+This would require only two bytes to store the same information. Why two bytes?
+Because you can only write in units of bytes to an output file meaning you have
+to pad the bit string with 5 zeroes on the right (for example, `11111010 110` ->
+`11111010 11000000`).
 
 ## Compression
 
-With our codebook in hand, compression boils down to converting an input stream
-into a coded bit stream. We write out the contents of the bit stream
-byte-by-byte to an output file.
+With codebook in hand, compression boils down to converting an input stream into
+a coded bit stream. Then, write out the contents of the bit stream byte-by-byte
+to an output file.
 
-The `Compress()` routine looks like the following:
+Here is an implementation of the `Compress()` routine:
 
 ```cpp
 RetCode HuffmanCoding::Compress(const std::string& uncompressed_filepath,
@@ -260,8 +255,7 @@ RetCode HuffmanCoding::Compress(const std::string& uncompressed_filepath,
 
 You can see that `Compress()` just does some file checks and then builds up the
 data structures previously discussed. `Encode()` is where the actual translation
-happens. The code I came up with for `Encode()` is stupid simple albeit a bit
-ugly:
+happens. The code for `Encode()` is a bit ugly:
 
 ```cpp
 void HuffmanCoding::Encode(const std::string& infile,
@@ -311,30 +305,28 @@ void HuffmanCoding::Encode(const std::string& infile,
 }
 ```
 
-The code above reads the input file in 1kb chunks. The the binary code for each
-character is then fetched from the `encodings_` codebook. The code is iterated
-over bit-by-bit. Each bit is appended to a variable `currbyte`. When
-`currbyte`'s bitcount hits 8, we write `currbyte` out to file. The process
-repeats until we've exhausted all characters in the input. The `if (bitcount)`
-clause at the end handles the edge case previously discussed where we need to
-append a couple of zeroes to a binary code in order to make it a complete byte
-before writing to the file.
+`Encode()` reads the input file in 1kb chunks. The `encodings_` codebook makes
+it possible to find each character's binary code. You iterate each binary code
+bit-by-bit appending each bit to the variable `currbyte`. When `currbyte`'s
+bitcount hits 8, you write `currbyte` out to file. This process repeats until
+you have processed all characters in the input. The `if (bitcount)` clause at
+the end handles the edge case previously discussed where you need to append a
+couple of zeroes to a binary code to make it a complete byte before writing to
+the file.
 
-You might have noticed a call to `WriteHeader()` in the code snippet above.
-We'll talk about what that's all about when we look at decompressing a file
-next.
+You might have noticed a call to `WriteHeader()`. You'll see the purpose of
+`WriteHeader()` in the next section.
 
 ## Decompression
 
-If we for a moment assume we have the Huffman Tree used to compress a file
-available, decompressing the contents of the file requires only a tree
-traversal.  Imagine the compressed file is a bit stream. We can navigate the
-tree from the root using the current bit in the stream to guide whether we step
-into the left subtree (0 bit) or right subtree (1 bit). When we encounter a leaf
-node, we write the character of that node to an output file and then reset
-ourselves to the root of the tree.
+Assuming you have the Huffman Tree used to compress a file available,
+decompressing the contents of the file requires only a tree traversal. Imagine
+the compressed file is a bit stream. You can navigate the tree from the root
+using the current bit in the stream to guide whether you step into the left
+subtree or right subtree. When you encounter a leaf node, write the character of
+that node to an output file and then reset to the root of the tree.
 
-As always, the devils in the details. For this tree traversal to work, we need
+As always, the devils in the details. For this tree traversal to work, you need
 to know the following bits of information:
 
 * How to reconstruct the Huffman Tree.
@@ -342,22 +334,21 @@ to know the following bits of information:
 
 ## Two Birds With One Stone
 
-The easiest thing to do with regard to reconstructing the tree is to simply
-write out the character frequency table to the beginning of the file in a header
-section. Writing the whole table is not particularly efficient for very small
-input files given that the header will be significantly larger than the
-compressed data. However, as the input grows, the overhead of the header becomes
-negligible.
+An easy way of reconstructing the tree is to write out the character frequency
+table to the beginning of the file in a header section. Writing the whole table
+isn't particularly efficient for small input files given that the header will be
+significantly larger than the compressed data. However, as the input grows, the
+overhead of the header becomes negligible.
 
 Included in the header is a magic number[^3]. That magic number forms the first
-few bytes of the compressed file and helps us know whether the input file we are
-given is a Huffman coded file.
+few bytes of the compressed file and helps identify a file as a Huffman coded
+file.
 
 Here's how that header might look like in memory:
 
 ![Huffman Header](/posts/huffman-coding/huffman-header.png#center)
 
-Below is the header write code in all its glory:
+Below is the header generation code in all its glory:
 
 ```cpp
 void HuffmanCoding::WriteHeader(std::ofstream& os) const {
@@ -374,30 +365,26 @@ void HuffmanCoding::WriteHeader(std::ofstream& os) const {
 }
 ```
 
-The header code above solves the two problems we encountered earlier when
-thinking about decompression: how to reconstruct the tree and how many
-characters were in the uncompressed file. Using the frequency table parsed from
-a compressed file's header, we can run our `BuildEncodingTree()` routine just as
-before. A quick sum of the frequencies in the `char_freqs_` maps reveals how
-many characters were in the original input.
+`WriteHeader()` solves the problems encountered earlier: how to reconstruct the
+tree and how many characters were in the uncompressed file. Using the frequency
+table parsed from a compressed file's header, you can run the
+`BuildEncodingTree()` routine just as before. A quick sum of the frequencies in
+the `char_freqs_` maps reveals how many characters were in the original input.
 
 ## Decoding Data
 
-I broke my implementation of the `Decompression()` routine into three seperate
-parts:
+You can decompose the `Decompression()` routine into three separate parts:
 
 1. Reading the header.
 2. Building the encoding tree.
 3. Decoding the input bit stream.
 
-We already looked at how to write the header. The function that reads the
-header in is nearly identical just replace stream writes with reads. Once we
-read the header, building the encoding tree is as simple as calling our
-`BuildEncodingTree()` routine. Decoding the bit stream is the only new thing
-here.
+You already have a routine to write the header. The function that reads the
+header in is nearly identical. Just replace stream writes with reads. Once you
+read the header, building the encoding tree requires calling
+`BuildEncodingTree()`. Decoding the bit stream is the only new thing here.
 
-We already described the algorithm for decoding the bit stream
-[earlier](#decompression). Here's the code that implements the concept:
+Here's the code that implements the concept:
 
 ```cpp
 void HuffmanCoding::DecodeStream(const std::vector<bool>& bitstream,
@@ -426,12 +413,12 @@ void HuffmanCoding::DecodeStream(const std::vector<bool>& bitstream,
 ```
 
 One weak aspect of this code is that `DecodeStream()` expects the *entire* input
-bit stream to be fed in at once. That is, we buffer all the bits (represented as
-`bool` types) in the input file. If the file is large enough, the `bitstream`
-vector may well not fit in memory. For this project, I considered it reasonable
-to keep it simple and not worry about multi gigabyte files. A better approach
-would be to read the data, perhaps in page sized chunks, and create a parser
-object that tracks where in the decoding process it is.
+bit stream at once. That is, all bits (represented as `bool` types) are in
+memory and buffered. If the file is large enough, the `bitstream` vector may
+well not fit in memory. For this project, it's reasonable to keep it simple and
+not worry about multi gigabyte files. A better approach would be to read the
+data, perhaps in page sized chunks, and create a parser object that tracks where
+in the decoding process it is.
 
 Similar to `Compress()`, the `Decompress()` routine is a wrapper around the
 `Decode()` routine:
@@ -481,16 +468,16 @@ RetCode HuffmanCoding::Decompress(const std::string& compressed_filepath,
 
 ## Conclusion
 
-Putting all the above together, I was able to create a utility capable of
-compressing and decompressing any image, text, executable, etc. using Huffman
-coding. The implementation is not the most robust or efficient with regards to
-space/time. The header could be made significantly smaller[^4], additional
-precautions need to be taken in the source to account for massive input/output
-files, etc. That said, the core concepts are there. Playing around with the
-tool, I was able to compress some files down to 50% of their original size!
+Putting it all together, you have a utility capable of compressing and
+decompressing any image, text, executable, etc. using Huffman coding. The
+implementation isn't the most robust or efficient with regards to space/time.
+The header could be significantly smaller[^4]. You probably shouldn't pass in
+any files that don't fit in memory. That said, the core concepts are there.
+Playing around with the tool, you'll find some files compress down to 50% of
+their original size!
 
-You can find the complete project source with build instructions, usage, etc. on
-my GitHub page under [huffman][5].
+The complete project source with build instructions, usage, etc. is available on
+GitHub under [huffman][5].
 
 [1]: https://en.wikipedia.org/wiki/Huffman_coding
 [2]: https://en.wikipedia.org/wiki/Huffman_coding#Basic_technique
@@ -499,7 +486,7 @@ my GitHub page under [huffman][5].
 [5]: https://github.com/ivan-guerra/huffman
 
 [^1]: This posts title image shows a Huffman Tree generated from the text "this
-    is an example of a huffman tree". The source of the image is of course
+    is an example of a Huffman tree". The source of the image is of course
     [Wikipedia][1].
 [^2]: ["Huffman Coding: Basic Technique"][2]
 [^3]: Like with most things in computing, magic number has multiple meanings.
@@ -507,6 +494,6 @@ my GitHub page under [huffman][5].
     one referenced here: "A constant numerical or text value used to identify a
     file format or protocol".
 [^4]: Checkout ["Canonical Huffman Codes"][4] to learn about a coding strategy
-    that could lead to significantly smaller headers. We're talking 1 bit per
+    that could lead to significantly smaller headers. Up to 1 bit per
     Huffman node, 8-bits per character. That's a big savings over writing out
     the whole frequency table.

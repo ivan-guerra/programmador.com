@@ -10,7 +10,7 @@ This is the second [installment][1] in a series of posts where I share notes
 taken while reading an interesting book or article.
 
 This post includes the notes made while reading ["Linux Driver Development for
-Embedded Processors"][1] by Alberto Liberal de los Rios. Notes weren't taken for
+Embedded Processors"][2] by Alberto Liberal de los Rios. Notes weren't taken for
 every chapter so keep in mind that the book actually covers more topics than
 what's shown here.
 

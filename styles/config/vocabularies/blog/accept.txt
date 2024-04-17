@@ -31,8 +31,10 @@ BST
 busybox
 bzImage
 Cachegrind
+caesar_cipher
 Callgrind
 ccache
+[Cc]iphertext
 [Cc][Mm]ake
 [Cc]odebook
 [Cc]omputerphile
@@ -176,9 +178,9 @@ PGP
 PID
 pinctrl
 pixel(s)?
-plaintext
 PNG
 POSIX
+[Pp]laintext
 [Pp]refault
 preemptible
 prefetch(s)?
@@ -257,6 +259,7 @@ VCS
 VFS
 virtualiz[(es)(ing)]
 vruntime(s)?
+vszzc
 WAV
 WAVE
 WiFi

@@ -182,6 +182,7 @@ PNG
 POSIX
 [Pp]laintext
 [Pp]refault
+[Pp]rimality
 preemptible
 prefetch(s)?
 preprogrammed
@@ -218,6 +219,7 @@ SSH('ing)?
 [Ss]ierpinski
 [Ss]ignkey
 [Ss]teghide
+Stanislaw
 steganography
 STEM
 STL('s)?
@@ -241,6 +243,7 @@ UDP
 uevent(s)?
 UID(s)?
 UIO
+Ulam
 Ulrich
 uncached
 uncomment

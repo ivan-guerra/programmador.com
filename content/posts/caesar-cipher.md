@@ -321,7 +321,6 @@ attack is trivial. In the case of the dictionary attack, you need a valid
 dictionary to perform look ups on. The frequency analysis attack depends on
 knowledge of the expected distribution of alphabet characters. Regardless of its
 utility, the Caesar Cipher remains a fun algorithm to explore.
-`Ryzo*y*oxtyon*~ro*k|~smvo+`
 
 The complete project source with build instructions, usage, etc. is available on
 GitHub under [caesar_cipher][11].

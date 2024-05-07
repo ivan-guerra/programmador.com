@@ -308,7 +308,7 @@ frequency distribution of the ciphertext post decryption using the key 86.
 ![Frequency Plot](/posts/caesar-cipher/frequency-plot.png#center)
 
 The distributions match up well. If you were to decrypt using the key 86, you
-would indeed get the correct plaintext! Why is the decryption 86 and not 42?
+would indeed get the correct plaintext! Why is the decryption key 86 and not 42?
 Recall that to decrypt you take the negative of the encryption key **modulo the
 size of the alphabet**. In this case, \\(-42 \mod 128 = 86\\).
 

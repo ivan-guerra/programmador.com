@@ -20,7 +20,6 @@ params:
   title: "programmador.com"
   description: "Ivan Eduardo Guerra's personal blog and portfolio."
   keywords: [Blog, Portfolio, PaperMod]
-  author: "Ivan Eduardo Guerra"
   images: [""]
   DateFormat: "January 2, 2006"
   defaultTheme: "dark"

@@ -111,7 +111,7 @@ markup:
     guessSyntax: true
     lineNos: false
     noClasses: false
-    style: dracula
+    style: fruity
 
 outputs:
     home:

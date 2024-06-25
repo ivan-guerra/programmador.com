@@ -6,18 +6,18 @@ Black."
 tags: ["beaglebone", "docker", "realtime"]
 ---
 
-Not long ago, a project that involved a low latency app running on a Beaglebone
-Black (BBB)[^1] came up at work. The minimal latency requirement drove the
-decision to run the BBB with a `PREEMPT_RT`[^2] patched kernel. Luckily, Robert
+Not long ago, a project that involved a low latency app running on a [Beaglebone
+Black (BBB)][1] came up at work. The minimal latency requirement drove the
+decision to run the BBB with a [`PREEMPT_RT`][2] patched kernel. Luckily, Robert
 C. Nelson, one of the Beaglebone Black maintainers, maintains a set of scripts
-for building a kernel specifically for the BBB[^3]. Among the many kernel
-versions offered are variants that have had the `PREEMPT_RT` patches already
-applied! The goal is simple: flash the BBB with the latest console image rootfs
-and Linux kernel (RT patches included).
+for building a kernel specifically for the BBB. Among the many kernel versions
+offered are variants that have had the `PREEMPT_RT` patches already applied! The
+goal is simple: flash the BBB with the latest console image rootfs and Linux
+kernel (RT patches included).
 
 ## Prepping the SD Card
 
-First things first, flash the latest BBB Debian image[^4] onto an SD card. The
+First things first, flash the [latest][4] BBB Debian image onto an SD card. The
 latest Debian Console Image is the best choice unless there is a solid reason to
 use the much larger IoT image:
 
@@ -48,7 +48,7 @@ packages on the BBB using `dpkg`.
 
 Robert's scripts require that the host system have a number of libraries and
 utilities installed in order for the kernel build to succeed. To ease the
-process, I created the [`bbb_kernel_builder`][5][^5] project that launches a
+process, I created the [`bbb_kernel_builder`][5] project that launches a
 docker container which runs the build scripts on your behalf. The docker
 container will prompt you to configure the kernel, but, beyond that, the process
 is hands off. A successful container run copies `*.deb` kernel packages to the
@@ -119,13 +119,3 @@ application for ideal RT performance.
 [4]: https://beagleboard.org/latest-images
 [5]: https://github.com/ivan-guerra/bbb_kernel_builder
 [6]: https://github.com/ivan-guerra/bbb_kernel_builder/blob/master/README.md
-
-[^1]: The [Beaglebone Black][1] is a low-cost, community-supported development
-    platform for developers and hobbyists.
-[^2]: ["Intro to Real-Time Linux for Embedded Developers"][2] gives a nice
-    overview of what the `PREEMPT_RT` patches bring to the table.
-[^3]: Checkout Robert Nelson's [`ti-linux-kernel-dev`][3] project on GitHub.
-[^4]: Go to the [BeagleBoard][4] site to download the latest Debian image.
-[^5]: Checkout the [`bbb_kernel_builder`][5] project on GitHub. This project may
-    save you time when using the `ti-linux-kernel-dev` projects' scripts since
-    you won't have to hunt for missing build dependencies.

@@ -6,7 +6,7 @@ tags: ["docker", "linux"]
 ---
 
 Where does a newbie start their journey into the Linux kernel? Device drivers is
-the most common answer. Despite its age, Linux Device Drivers 3rd Edition[^1]
+the most common answer. Despite its age, [Linux Device Drivers 3rd Edition][1]
 (LDD3) remains one of the best options for learning about device drivers. There
 are challenges in using such an old text. LDD3's code examples target the
 `2.6.10` kernel. At the time of this writing, the kernel is at version `5.19`!
@@ -22,7 +22,7 @@ a Linux kernel dev environment, you get a couple of options:
 1. Develop and test the dev kernel on a single dev machine (can be risky).
 2. Develop on a dev machine and test the dev kernel on some target hardware.
 3. Develop on a dev machine and test the dev kernel within an emulator such as
-   QEMU[^2].
+   [QEMU][3].
 
 For LDD3 development, option #3 is the best choice. This project adds the twist
 of containerizing the toolchain using Docker. Containerization has the added
@@ -42,13 +42,13 @@ initramfs `initramfs-busybox-x86.cpio.gz` archive that work directly with QEMU.
 ### A Common Base Image
 
 There is a lot of overlap in the tools required to build the initramfs and the
-kernel. A common image[^3] built off the latest Debian slim release acts as a
-base for the other images. The common image also includes ccache[^4] which helps
-reduce kernel build times significantly[^5].
+kernel. A [common image][4] built off the latest Debian slim release acts as a
+base for the other images. The common image also includes [ccache][5] which
+helps reduce kernel build times [significantly][6].
 
 ### The Kernel Build Image
 
-The kernel build Dockerfile[^6] is straightforward. The magic happens in the
+The kernel build [Dockerfile][10] is straightforward. The magic happens in the
 `kbuild.sh` script (shown below) which executes whenever a kernel build
 container launches. `kbuild.sh` carries out the following three tasks:
 
@@ -122,28 +122,28 @@ Main
 You might notice there are a lot of environment variables. Where are they
 defined? The environment variables are arguments to the container. The variables
 each point to binary or source directories on the host system. Those
-binary/source directories are also mounted as volumes[^7] in the container. You
-want to keep those binary directories on the host otherwise you'd be building
-the kernel and modules from scratch every time!
+binary/source directories are also mounted as [volumes][11] in the container.
+You want to keep those binary directories on the host otherwise you'd be
+building the kernel and modules from scratch every time!
 
 ### The initramfs Build Image
 
 QEMU a requires an initramfs with a basic userland. Creating the initramfs
 breaks down into a five step process:
 
-1. Generate basic userland utilities using a tool like busybox[^8].
+1. Generate basic userland utilities using a tool like [busybox][7].
 2. Create the skeleton of the rootfs.
 3. Copy over your utilities from (1) into (2).
 4. Copy over the `init` script and custom module kobjects into (2).
 5. Use `cpio` to package the filesystem up.
 
-The initramfs Dockerfile[^9] implements the steps. The output of running
+The initramfs [Dockerfile][8] implements the steps. The output of running
 the initramfs container is a `initramfs-busybox-x86.cpio.gz`.
 
 ## Custom Kernel Modules In QEMU
 
 With the bzImage and initramfs archive in hand, you are ready to boot the
-kernel. The `run.sh`[^10] script shows the QEMU incantation needed to boot the
+kernel. The [`run.sh`][12] script shows the QEMU incantation needed to boot the
 system and get dropped into a terminal at the root:
 
 ```bash
@@ -167,8 +167,8 @@ ready to dive into LDD3.
 
 LDD3 is a pleasant read given the subject matter. You'll get the most out of
 this book if you come in with a solid grasp of the C programming language.
-Moderate knowledge of Linux development and good operating systems
-fundamentals[^11] are critical.
+Moderate knowledge of Linux development and good [operating systems
+fundamentals][13] are critical.
 
 A strong selling point of this book is that you don't need actual hardware to
 follow along. Throughout the book, you develop different types of Simple
@@ -187,15 +187,15 @@ Among the many demystifying chapters in this book, Chapter 4 stands out:
 *Debugging Techniques*. As the title suggests, the authors walk you through a
 number of driver debug techniques ranging from looking at system log messages to
 firing up a kernel debugger. They even talk about how to decode the dreaded
-kernel oops[^12] messages:
+[kernel oops][16] messages:
 
 [![Kernel Oops](/posts/linux-device-drivers/kernel_oops.png#center)][14]
 
 The ability to debug kernel code using a tool like GDB just as you would a
 userland program feels like magic. The project includes support for debugging
 the kernel and modules using GDB. Given a kernel built with the right debug
-configurations, you can attach a GDB session to the QEMU VM[^13] and break,
-step, etc. through driver/kernel code[^14]! It isn't absolutely necessary for
+configurations, you can attach a GDB session to the [QEMU VM][15] and break,
+step, etc. through driver/kernel code! It isn't absolutely necessary for
 working through LDD3. That said, the debugger did come in handy on a few
 occasions making it worth the effort to learn how to set it up.
 
@@ -208,7 +208,7 @@ having to buy any specialty hardware to follow along with the examples in the
 text is a big bonus. Highly recommend LDD3 in 2022!
 
 The complete project source with build instructions, usage, etc. is available on
-GitHub under [linux_device_drivers][16].
+GitHub under [linux_device_drivers][17].
 
 [1]: https://lwn.net/Kernel/LDD3/
 [2]: https://lwn.net/Archives/
@@ -224,23 +224,6 @@ GitHub under [linux_device_drivers][16].
 [12]: https://github.com/ivan-guerra/linux_device_drivers/blob/master/scripts/run.sh
 [13]: https://pages.cs.wisc.edu/~remzi/OSTEP/
 [14]: https://www.linuxjournal.com/content/oops-debugging-kernel-panics-0
-[15]: https://www.starlab.io/blog/using-gdb-to-debug-the-linux-kernel
-[16]: https://github.com/ivan-guerra/linux_device_drivers
-[17]: https://en.wikipedia.org/wiki/Linux_kernel_oops
-
-[^1]: View the [Linux Device Drivers Third Edition][1] text on the web or
-    download the PDF.
-[^2]: See the [QEMU][3] project page.
-[^3]: [Dockerfile][4] of the kernel/initramfs build images.
-[^4]: See the [ccache][5] project page.
-[^5]: [Speeding Up Linux Kernel Builds With ccache][6]
-[^6]: [Dockerfile][10] of the kernel build image.
-[^7]: See Docker's [Volumes][11] docs for the full details on volumes in Docker.
-[^8]: See the [busybox][7] project page.
-[^9]: [Dockerfile][8] of the initramfs build image.
-[^10]: [`runs.sh`][12]
-[^11]: [OSTEP][13] is great resource to refresh yourself on OS theory.
-[^12]: [Linux kernel oops][17]
-[^13]: You can find more details in the "GDB Support" section of the project
-    [README][16].
-[^14]: [StarLabs][15] gives a great guide on how setup a kernel debug session.
+[15]: https://github.com/ivan-guerra/linux_device_drivers?tab=readme-ov-file#gdb-support
+[16]: https://en.wikipedia.org/wiki/Linux_kernel_oops
+[17]: https://github.com/ivan-guerra/linux_device_drivers.git

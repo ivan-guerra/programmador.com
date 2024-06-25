@@ -6,8 +6,8 @@ tags: ["cmake", "c++"]
 ---
 
 If you've worked in a large C++ codebase within the last couple of years, you've
-probably come across the GoogleTest[^1] unit testing framework. Chances are
-you've also encountered everyone's favorite build generator: CMake[^2]. In this
+probably come across the [GoogleTest][1] unit testing framework. Chances are
+you've also encountered everyone's favorite build generator: [CMake][2]. In this
 article, you will see two options for integrating GoogleTest into your next
 CMake project.
 
@@ -116,7 +116,7 @@ endif()
 ```
 
 `FetchContent` can take many additional arguments not shown here. Worth checking
-out the docs[^3] to get the full picture.
+out the [docs][4] to get the full picture.
 
 ## Conclusion
 
@@ -132,10 +132,3 @@ test and accompanying `CMakeLists.txt`.
 [3]: https://cliutils.gitlab.io/modern-cmake/
 [4]: https://cmake.org/cmake/help/latest/module/FetchContent.html
 [5]: https://google.github.io/googletest/quickstart-cmake.html
-
-[^1]: [GoogleTest][1] is arguably the most popular C++ unit testing framework
-    around. It's well documented and featureful. Check it out.
-[^2]: [CMake][2] gets a bad wrap in the C/C++ community. While it's a complex
-    tool, it's one the best out there and the documentation is high quality.
-[^3]: [FetchContent Docs][4]. Be sure to select the right CMake version from the
-    drop down menu in the top left of the screen!

@@ -14,8 +14,8 @@ out it's not all that bad and set to write a ASCII art CLI tool.
 ## Project Goals
 
 The goal is simple: write a JPEG/PNG to ASCII art generator. I came across a
-great Youtube tutorial by Raphson[^1] which shows how to construct the generator
-in Python:
+great Youtube tutorial by [Raphson][1] which shows how to construct the
+generator in Python:
 
 {{< youtube 2fZBLPk-T2Y >}}
 
@@ -35,17 +35,17 @@ project.
 When it comes to C++ image libraries, you have limited options:
 
 * Use `libpng` and `libjpeg` directly.
-* C++ Template Image Processing Library[^2] (AKA CImg)
-* Boost Generic Image Library[^3] (GIL)
+* [C++ Template Image Processing Library][2] (AKA CImg)
+* [Boost Generic Image Library (GIL)][3]
 
 Using the raw PNG/JPEG image libraries seemed unnecessary given two good image
 libraries that handle `libpng`/`libjpeg` exist. CImg was a header-only library
 with great documentation. However, project compilation time with CImg was
-astronomical. CImg compile time woes are a known issue within the community[^4].
-That leaves Boost's GIL.  GIL's not a bad option since its community is active,
-there's plenty of docs, and it's easy to integrate into a CMake project. Most
-importantly, GIL supports PNG/JPEG file formats and image scaling out of the
-box.
+astronomical. CImg compile time woes are a [known issue][4] within the
+community. That leaves Boost's GIL.  GIL's not a bad option since its community
+is active, there's plenty of docs, and it's easy to integrate into a CMake
+project. Most importantly, GIL supports PNG/JPEG file formats and image scaling
+out of the box.
 
 ## Mapping Pixel Data to ASCII Characters
 
@@ -82,10 +82,10 @@ valid way of identifying file formats since you could add any extension you
 like. Calling an external program to query for file info also seemed like
 overkill.
 
-Unix's `file`[^5] manpage provided useful notes. Turns out PNG/JPEG images each
+Unix's `file` manpage provided useful notes. Turns out PNG/JPEG images each
 include header info in the first few bytes of the file. PNG's start with an
-8-byte signature[^6] of `0x89504E470D0A1A0A`. All JPEGs start with a 2-byte
-signature[^7] of `0xFFD8`. That's all the information needed to detect the file
+8-byte signature of `0x89504E470D0A1A0A`. All JPEGs start with a 2-byte
+signature of `0xFFD8`. That's all the information needed to detect the file
 format:
 
 ```cpp
@@ -128,7 +128,7 @@ result (sweet ASCII images) with just a handful of insights and a number of open
 source libraries.
 
 The complete source with build instructions, usage, etc. is available on GitHub
-under [ascii_art_gen][8]. For those familiar with Docker, included with the
+under [ascii_art_gen][5]. For those familiar with Docker, included with the
 project are step-by-step instructions on how to run `asciigen` from within a
 Docker container.
 
@@ -136,17 +136,4 @@ Docker container.
 [2]: https://cimg.eu/
 [3]: https://www.boost.org/doc/libs/1_76_0/libs/gil/doc/html/index.html
 [4]: https://github.com/GreycLab/CImg/issues/169
-[5]: https://linux.die.net/man/1/file
-[6]: https://en.wikipedia.org/wiki/PNG#File_format
-[7]: https://en.wikipedia.org/wiki/JPEG#Syntax_and_structure
-[8]: https://github.com/ivan-guerra/ascii_art_gen
-
-[^1]: Checkout [Raphson][1] on Youtube.
-[^2]: See [The CImg Library][2] project page.
-[^3]: See the [Boost GIL][3] docs.
-[^4]: There was an [issue][4] submitted to the CImg project regarding compile
-    times. The reply wasn't satisfying and boiled down to turning down/off
-    optimizations and reducing code complexity in the client code.
-[^5]: Good ole manpages: [file][5].
-[^6]: Wikipedia provides a summary of the [PNG File Format][6].
-[^7]: Wikipedia provides a summary of the [JPEG File Format][7].
+[5]: https://github.com/ivan-guerra/ascii_art_gen

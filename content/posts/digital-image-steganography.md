@@ -5,8 +5,8 @@ description: "How to embed an image within another."
 tags: ["c++", "boost", "cli-tools"]
 ---
 
-There's a neat Computerphile[^1] video discussing the topic of
-steganography[^2]. In the video, Mike Pound talks about a technique for
+There's a neat [Computerphile][1] video discussing the topic of
+[steganography][2]. In the video, Mike Pound talks about a technique for
 steganography on digital images: least significant bit substitution (LSBS). The
 effectiveness of LSBS in concealing a secret image is surprising. This article
 puts least significant bit substitution to use in a command line tool for
@@ -19,7 +19,7 @@ tool work. That said, you do need to know a little bit about how the machine
 represents a digital image.
 
 A digital image can contain thousands of pixels. Below is an image where the
-enhanced portion shows the pixels rendered as small squares[^3].
+enhanced portion shows the pixels rendered as small squares.
 
 [![Pixels](/posts/digital-image-steganography/pixels.png#center)][3]
 
@@ -273,7 +273,7 @@ can be either format.
 The least significant bit substitution method proved simple to implement and
 doesn't disappoint in its effectiveness in secretly embedding one image within
 another. Interested in a more serious steganography tool? Highly recommend
-checking out a free and open source tool such as steghide[^4].
+checking out a free and open source tool such as [steghide][7].
 
 The complete project source with build instructions, usage, etc. is available on
 GitHub under [steganography][8].
@@ -286,12 +286,3 @@ GitHub under [steganography][8].
 [6]: https://github.com/ivan-guerra/steganography/blob/master/resources/unmerged.jpg
 [7]: https://steghide.sourceforge.net/documentation/manpage.php
 [8]: https://github.com/ivan-guerra/steganography/tree/master
-
-[^1]: If you tend to like learning about computer science stuff, the videos
-    produced by the [computerphile][1] channel are a goldmine.
-[^2]: In their [steganography][2] video, computerphile talks about the technique
-    implemented in this article. They go on to show that this technique isn't
-    effective if one's goal is to go undetected!
-[^3]: [Pixel - Wikipedia][3]
-[^4]: From the manpage: [Steghide][7] is a steganography program that's able to
-    hide data in various kinds of image and audio files.

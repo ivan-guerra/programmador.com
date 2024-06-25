@@ -11,17 +11,17 @@ popular MMOs. The game has evolved significantly over the past 20-ish
 years of its existence and continues to have one of the most active online
 communities of any MMO.
 
-There's two main forks of the game: Old School Runescape[^1] (OSRS) and
-Runescape 3[^2] (RS3).[^3][^4] Both versions of Runescape have game clients.
-There's a Java based, free, and open source client called RuneLite[^5] for OSRS.
-Runescape 3 has the C++ NXT Client[^6]. I like to play both versions of the game
-on a Fedora box. It would be nice not to have to install a plethora of
+There's two main forks of the game: [Old School Runescape][1] (OSRS) and
+[Runescape 3][2] (RS3). Both versions of Runescape have game clients. There's a
+Java based, free, and open source client called [RuneLite][3] for OSRS.
+Runescape 3 has the C++ [NXT Client][4]. I like to play both versions of the
+game on a Fedora box. It would be nice not to have to install a plethora of
 dependencies to support either client (one of which is only officially supported
 on Debian based distributions).
 
 ## Project Goals
 
-Recent experiences with Docker[^7] suggested that containerizing the game
+Recent experiences with [Docker][5] suggested that containerizing the game
 clients would be a worthy endeavor. A couple of questions came up during a
 brainstorming session:
 
@@ -39,16 +39,16 @@ host distro doesn't matter much since the client runs in the JVM. However, the
 NXT C++ client only has official support on Debian based distros with most Linux
 users happy running the client on Ubuntu machines.
 
-Aside from installing the required client dependencies[^8], both images create a
+Aside from installing the required client dependencies, both images create a
 local `runescape` user. The `runescape` user belongs to the `audio` group.
-Making a user part of the `audio` group isn't recommended on desktop Ubuntu[^9].
-That said, it's necessary to get audio working along with the steps in
+Making a user part of the `audio` group [isn't recommended][14] on desktop
+Ubuntu. That said, it's necessary to get audio working along with the steps in
 [Audio Setup](#audio-setup).
 
 ## Cache Persistence
 
 This issue was actually easy to tackle. Docker has support for what it calls
-volumes[^10]. With a Docker volume you mount a folder on the host filesystem to
+[volumes][7]. With a Docker volume you mount a folder on the host filesystem to
 the container filesystem. When the container shutdowns, any data written to the
 volume by the container will persist. Volumes fit the use case well. A per
 client container launch script includes a `*_CACHE` variable that makes the
@@ -59,7 +59,7 @@ cache name and location customizable.
 Running a GUI from a Docker container is a pain in the ass. That said, there's
 plenty of docs you can slog through to piece together a solution. The display
 server technology matters here. There are two mainstream Linux display server
-implementations out there: X11[^11] and Wayland[^12]. Most distros stick with
+implementations out there: [X11][8] and [Wayland][9]. Most distros stick with
 X11. The scripts developed for this project target compatibility with X11.
 
 Here's a summary of the steps required to get a GUI running in a container to
@@ -67,12 +67,12 @@ display on the host system running an X11 server:
 
 * Verify the container has `xorg-server` installed.
 * Share the host X11 server socket with the container.
-* Generate and share a .Xauthority[^13] file with the container.
+* Generate and share a [.Xauthority][10] file with the container.
 * Set the container's `DISPLAY` environment variable to match the `DISPLAY`
   value on the host system.
 
-Below is a snippet from the launch.sh[^14] file used to launch a RuneLite client
-container:
+Below is a snippet from the [launch.sh][11] file used to launch a RuneLite
+client container:
 
 ```bash
 # Credit to this SO post that shows a method for generating an Xauthority file on the fly.
@@ -92,10 +92,10 @@ docker run --rm \
 
 ## Audio Setup
 
-Luckily, there is a great article explaining container to host audio pass
-through[^15]. Similar to the X11 versus Wayland display server discussion, there
+Luckily, there is a great article explaining container to host [audio pass
+through][12]. Similar to the X11 versus Wayland display server discussion, there
 are different audio servers in Linux. PulseAudio seems to be the defacto audio
-server with PipeWire[^16] the other contender of note.
+server with [PipeWire][13] the other contender of note.
 
 There are two ingredients to get the container to host audio working:
 
@@ -181,25 +181,3 @@ under [containerized_runescape][20].
 [18]: https://github.com/ivan-guerra/containerized_runescape/blob/master/rs3/Dockerfile
 [19]: https://www.youtube.com/watch?v=tg2PD-dwsIw
 [20]: https://github.com/ivan-guerra/containerized_runescape
-
-[^1]: [Old School Runescape][1]
-[^2]: [Runescape 3][2]
-[^3]: The [OSRS Wikipedia page][15] has a good summary of why there's two
-    version of Runescape.
-[^4]: If you have never player Runescape and are curious what it's and which
-    version to play, [J1mmy's][16] video might help you decide.
-[^5]: See the [RuneLite Client][3] project page.
-[^6]: See the [Runescape 3 NXT Client][4] project page.
-[^7]: New to Docker? Luckily, [Docker][5] has great docs and tutorial to get you
-    started.
-[^8]: Checkout the [RuneLite][17] and [NXT][18] Dockerfiles to see the
-    dependencies required by each client.
-[^9]: See this link for the details: [TheAudioGroup][14].
-[^10]: See the [Volumes][7] docs for the full details on volumes in Docker.
-[^11]: See the [X11][8] Wikipedia page.
-[^12]: See the [Wayland][9] project page.
-[^13]: The [X Window authorization][10] wiki gives a good explanation of
-    `.Xauthority` and its function.
-[^14]: RuneLite [`launch.sh`][11]
-[^15]: [Passing audio into docker container][12]
-[^16]: See the [PipeWire][13] project page.

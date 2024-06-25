@@ -5,7 +5,7 @@ description: "On creating a crude Linux memory allocator."
 tags: ["c++", "linux"]
 ---
 
-While reading through the awesome "Operating Systems: Three Easy Pieces"[^1]
+While reading through the awesome ["Operating Systems: Three Easy Pieces"][1]
 book, I came across the topic of memory allocators. While always having an
 inkling of how functions like `malloc()` and `free()` work under the hood, I
 never considered writing a custom allocator. To help demystify the topic, I
@@ -60,7 +60,7 @@ In Linux, there are two options to explore for acquiring allocator memory:
 * Request that the kernel map pages of memory into the process's virtual address
   space using the `mmap()` system call.
 
-Which option's better? It depends[^2]. Some allocators use a combination of
+Which option's better? It depends. Some allocators use a combination of
 both syscalls with the primary goal of reducing memory fragmentation. Freeing
 an `mmap()`'ed chunk of memory basically tells the kernel "these pages, dirty
 or not, can be re-purposed." In the case of `sbrk()`, it's possible to free
@@ -264,8 +264,8 @@ Now, for the next piece of the allocation puzzle: address alignment.
 
 ## Address Alignment
 
-Address alignment is important when it comes to performance[^3]. Similar to
-`posix_memalign()`[^4], `Alloc()` returns a `alignment` aligned address where
+Address alignment is important when it comes to performance. Similar to
+`posix_memalign()`, `Alloc()` returns a `alignment` aligned address where
 `alignment` is a power of two. The allocator takes a negligible amount of extra
 memory to meet the desired alignment. The strategy used by `Malloc` is to
 request an extra `alignment + 1` bytes per request. The `+1` byte stores the
@@ -296,8 +296,8 @@ the caller. Before returning, place 7, the number of bytes used in alignment, in
 the byte preceding the return address.
 
 How do you find the next aligned address? C++ provides a nice utility for doing
-just that: `std::align`[^5]. `std::align` has a tricky interface in the sense
-that two of its arguments are in/out parameters. Below is the snippet of code in
+just that: `std::align`. `std::align` has a tricky interface in the sense that
+two of its arguments are in/out parameters. Below is the snippet of code in
 `Alloc()` that performs alignment using `std::align`:
 
 ```cpp
@@ -479,21 +479,7 @@ to mention the many tradeoffs you can make with regards to data structures and
 algorithms.
 
 You can find the complete project source with build instructions, usage, etc.
-on GitHub under [malloc][6].
+on GitHub under [malloc][2].
 
 [1]: https://pages.cs.wisc.edu/~remzi/OSTEP/
-[2]: https://www.linuxjournal.com/article/6390
-[3]: https://developer.ibm.com/articles/pa-dalign/
-[4]: https://linux.die.net/man/3/posix_memalign
-[5]: https://en.cppreference.com/w/cpp/memory/align
-[6]: https://github.com/ivan-guerra/malloc
-
-[^1]: [Operating Systems: Three Easy Pieces][1] is a digestible beginner's OS
-    book. The authors' conversational writing style mixed with the practical
-    labs and exercises makes an often dry subject fun. Highly recommend this text 
-    if you are a student or someone looking to brush up on OS concepts.
-
-[^2]: ["Advanced Memory Allocation"][2]
-[^3]: ["Data alignment: Straighten up and fly right"][3]
-[^4]: [`posix_memalign`][4]
-[^5]: [`std::align`][5]
+[2]: https://github.com/ivan-guerra/malloc

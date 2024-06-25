@@ -5,7 +5,7 @@ description: "My collection of notes on Drepper's 2007 LWN article on memory."
 tags: ["c", "c++", "linux", "notes"]
 ---
 
-This is the first [installment][1] in a series of posts where I share notes
+This is the first [installment][5] in a series of posts where I share notes
 taken while reading an interesting book or article.
 
 This post includes the notes made while reading a series of articles by Ulrich
@@ -197,14 +197,14 @@ Compile the code with `-fms-extensions` on the command line.
 ## Part 7: Memory Performance Tools
 
 This section is a bit outdated. Probably the most relevant tool mentioned is
-Cachegrind[^1]. Couple notes about Cachegrind:
+[Cachegrind][2]. Couple notes about Cachegrind:
 
 * Cachegrind simulates the CPU caches whilst running your program (that is, a
   run of your program through Cachegrind can be many times slower than normal).
 * The default cache setup used by Cachegrind is dependent on the system hosting
   the Cachegrind run.
 * You can tune the cache setup using a number of Cachegrind options.
-* KCachegrind[^2] is a tool that can help you visualize the output of a
+* [KCachegrind][4] is a tool that can help you visualize the output of a
   Cachegrind run.
 
 [1]: https://lwn.net/Articles/250967/
@@ -212,9 +212,3 @@ Cachegrind[^1]. Couple notes about Cachegrind:
 [3]: https://valgrind.org/docs/manual/cl-manual.html
 [4]: https://kcachegrind.sourceforge.net/html/Home.html
 [5]: https://programmador.com/tags/notes/ 
-
-[^1]: [Cachegrind][2] is part of the larger Valgrind tool suite. Also of
-    interest with respect to CPU usage is [Callgrind][3]. Check both tools out.
-[^2]: Cachegrind produces an output file that's pretty hard to grok. To get the
-    most out of Cachegrind's output, it's recommended you use [KCachegrind][3]
-    to visualize the output.

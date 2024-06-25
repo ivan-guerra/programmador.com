@@ -5,15 +5,15 @@ description: "A Matrix inspired terminal screensaver."
 tags: ["c++", "cli-tools", "ncurses"]
 ---
 
-Most programmers young and old have seen the cyberpunk sci-fi film The
-Matrix[^1]. One of the most outstanding parts of the movie is the closing scene
+Most programmers young and old have seen the cyberpunk sci-fi film [The
+Matrix][1]. One of the most outstanding parts of the movie is the closing scene
 where Neo sees the Matrix when battling the Agents:
 
 [![Neo Sees the Matrix](/posts/binary-rain/matrix.jpg#center)][2]
 
 The visual effect with the code running along all the surfaces is iconic. Seems
-other people thought so too to the point that the effect has a name: Matrix
-Digital Rain[^2].
+other people thought so too to the point that the effect has a name: [Matrix
+Digital Rain][3].
 
 Wouldn't it be neat to create a terminal screensaver that mimicked the effect
 seen in the movie?
@@ -165,7 +165,7 @@ With the data structures in place, all that's left to do is render the
 ## Rendering the Screensaver
 
 The goal is to create a terminal screensaver. This limits your graphical library
-options. Good old ncurses[^3] will do.
+options. Good old ncurses will do.
 
 For this project, binary digits are the only characters printed to the screen.
 No Japanese or Latin characters as in the original. This choice removed a lot of
@@ -246,9 +246,3 @@ GitHub under [neo][4].
 [2]: https://tinyurl.com/yc7p7285
 [3]: https://en.wikipedia.org/wiki/Matrix_digital_rain
 [4]: https://github.com/ivan-guerra/neo
-[5]: https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/
-
-[^1]: Say what you want about the sequels, but [The Matrix][1] is a classic and
-    a must watch for anyone interested in the cyberpunk subgenre.
-[^2]: [Matrix Digital Rain][3]
-[^3]: [ncurses][5]

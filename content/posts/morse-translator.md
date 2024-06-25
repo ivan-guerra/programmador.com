@@ -5,14 +5,14 @@ description: "A text to Morse code translator."
 tags: ["c++", "cli-tools", "sdl"]
 ---
 
-While on a LeetCode[^1] grind, I came across a fun problem involving Morse code:
-Unique Morse Code Words[^2]. You might wonder what the encodings sound like.
-With a little programming magic you can find out by creating a command line
-utility for converting text to Morse code audio.
+While on a [LeetCode][1] grind, I came across a fun problem involving Morse
+code: [Unique Morse Code Words][2]. You might wonder what the encodings sound
+like. With a little programming magic you can find out by creating a command
+line utility for converting text to Morse code audio.
 
 ## The Basics
 
-The journey starts at the Morse code wiki page[^3]. The wiki had a chart that
+The journey starts at the Morse code [wiki page][3]. The wiki had a chart that
 sums up the protocol:
 
 [![International Morse Code](/posts/morse-translator/international-morse-code.webp#center)][4]
@@ -20,7 +20,7 @@ sums up the protocol:
 The chart though labeled "International Morse Code" seems basic. Where are all
 the accents and punctuations? Turns out there's an organization, International
 Telecommunication Union, which has documents defining the complete set of
-supported characters[^4].
+supported characters.
 
 The International Morse Code chart covers the character set. What about timing
 requirements? The wiki mentions you measure time in "dots" where a dot's
@@ -43,7 +43,7 @@ output:
 * Separate words by a forward slash surrounded by single spaces.
 
 What's a valid input char? You could support the entire alphabet defined in the
-ITU[^4] documents. Better to keep it simple and add support for the subset of
+ITU documents. Better to keep it simple and add support for the subset of
 characters shown in the wiki's Morse table. More specifically, the translator
 considers letters `A-Z` (case insensitive) and digits `0-9` to be valid
 characters. Ignore extraneous white space characters and punctuation.
@@ -114,15 +114,15 @@ duration. That means translations will always play at a constant speed dictated
 by the duration of the audio file. The alternative is then to create the audio
 on the fly.
 
-This is a problem where the Simple DirectMedia Layer (SDL)[^5] library comes in
+This is a problem where the [Simple DirectMedia Layer (SDL)][8] library comes in
 handy. SDL is a cross-platform library for managing video, audio, networking,
 and more. SDL is old, it's been around since 1998, and has seen plenty of use in
-the gaming and multimedia domains[^6]. Sure enough, SDL has an API capable of
+the [gaming and multimedia domains][9]. Sure enough, SDL has an API capable of
 making the computer make beeping noises.
 
-Just because SDL can make noises doesn't mean it's easy to do. This article[^7]
-from 2010 explains how to make a "beeper" class. The article's examples inspired
-the API shown below:
+Just because SDL can make noises doesn't mean it's easy to do. [This
+article][10] from 2010 explains how to make a "beeper" class. The article's
+examples inspired the API shown below:
 
 ```cpp
 class Beeper {
@@ -142,8 +142,8 @@ beep sound. The `Beeper` object plays sounds by order of registration.
 completion.
 
 A complete description of how `Beeper` does its thing is worthy of a separate
-post. You can find the article from which this code derives here[^7] or checkout
-the `Beeper` source code[^8].
+post. You can find the article from which this code derives here or checkout
+the `Beeper` [source code][11].
 
 ## Translating to Beeps
 
@@ -262,21 +262,3 @@ Algorithm"][14].
 [12]: https://github.com/ivan-guerra/morse/blob/master/include/audio/beeper.hpp
 [13]: https://github.com/ivan-guerra/morse/tree/master
 [14]: http://www.pa3fwm.nl/software/rscw/algorithm.html
-
-[^1]: The bane of many freshly graduated CS students' existence, [LeetCode][1]
-    is a site where one can brush up on their algorithm and data structures
-    skills by solving problems of varying difficulty.
-[^2]: Every now and then when grinding LeetCode, you come across a problem that
-    teaches some extracurricular knowledge. This [Morse Code][2] problem is one
-    of those.
-[^3]: [Morse code][3]
-[^4]: To quote the awesome [morsecode.world][5] site: "The definitive references
-    for International Morse code are [Recommendation ITU-R M.1677-1][6] which
-    tabulates the characters but doesn't include most accented characters, nor some
-    punctuation (see notes in the tables for the exceptions) and [Recommendation
-    ITU-R M.1172][7] which tabulates abbreviations."
-[^5]: [Simple DirectMedia Layer][8]
-[^6]: From the SDL Wikipedia page: "SDL is [extensively used][9] in the industry
-    in both large and small projects."
-[^7]: ["Beep Sound with SDL"][10]
-[^8]: [beep.hpp][12] and [beeper.cc][11] implement the `Beeper` class.

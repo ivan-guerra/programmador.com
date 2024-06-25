@@ -57,8 +57,8 @@ If you're familiar with C++, you know the range of positive integers a program
 can work with is finite. There's no standard "big number" library either.
 
 Google search revealed a number of big number libraries. Most of the libraries
-are unmaintained, header-only libraries. The best option was the GNU MP Library
-(GMP)[^1]. To quote the GMP homepage:
+are unmaintained, header-only libraries. The best option was the [GNU MP Library
+(GMP)][1]. To quote the GMP homepage:
 
 > GMP is a free library for arbitrary precision arithmetic, operating on signed
 > integers, rational numbers, and floating-point numbers. There is no practical
@@ -66,8 +66,8 @@ are unmaintained, header-only libraries. The best option was the GNU MP Library
 > machine GMP runs on. GMP has a rich set of functions, and the functions have a
 > regular interface.
 
-GMP has a convenient C++ class based interface. The docs for how to use the C++
-bindings[^2] and for GNU MP in general are solid. GMP is a perfect fit for this
+GMP has a convenient C++ class based interface. The docs for how to use the [C++
+bindings][2] and for GNU MP in general are solid. GMP is a perfect fit for this
 project.
 
 ## Conversions
@@ -101,12 +101,12 @@ std::string ConvertBase(const std::string& num, const NumSystem src, const NumSy
 }
 ```
 
-The algorithm for conversion is the usual change of base[^3] method which uses
+The algorithm for conversion is the usual [change of base][3] method which uses
 modulo and integer division to compute the digits of the output number
 one-by-one. The `mpz_class` is a GMP C++ wrapper class used to construct and
-manipulate big integral values. You can see `mpz_class` overloads the
-arithmetic operators such that the code doesn't look much different than if one
-were to use the C/C++ built-in types.
+manipulate big integral values. You can see `mpz_class` overloads the arithmetic
+operators such that the code doesn't look much different than if one were to use
+the C/C++ built-in types.
 
 One neat feature of GMP is the ability to construct an `mpz_class` object from
 a number represented as a string and its base. That feature makes
@@ -223,7 +223,7 @@ dhb --grouping 8 hex bin --> 110000 00111001 00000000 00000000 00000000 00000000
 Nice, looks to be working with big integers too.
 
 The project includes a more complete suite of tests that exercises all the
-different conversion permutations[^4].
+different conversion permutations.
 
 ## Conclusion
 
@@ -233,16 +233,9 @@ the primary use cases and not tacking on too many bells and whistles along the
 way.
 
 The complete project source with build instructions, usage, etc. is available on 
-GitHub under [dhb][5].
+GitHub under [dhb][4].
 
 [1]: https://gmplib.org
 [2]: https://gmplib.org/manual/C_002b_002b-Class-Interface
 [3]: https://cs.stackexchange.com/questions/10318/the-math-behind-converting-from-any-base-to-any-base-without-going-through-base
-[4]: https://github.com/ivan-guerra/dhb/blob/master/tests/base_conversions/base_conversions_test.cc
-[5]: https://github.com/ivan-guerra/dhb/tree/master
-
-[^1]: [The GNU Multiple Precision Arithmetic Library][1]
-[^2]: [GMP: C++ Class Interface][2]
-[^3]: For a clear explanation of how to convert a number from one base to
-    another, checkout this StackOverflow post: [CS StackExchange][3].
-[^4]: [`ConvertBase()` Unit Tests][4]
+[4]: https://github.com/ivan-guerra/dhb/tree/master

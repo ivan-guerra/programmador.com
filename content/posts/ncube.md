@@ -5,9 +5,9 @@ description: "Rendering a cube in the terminal."
 tags: ["cli-tools", "c++", "ncurses"]
 ---
 
-You ever come across one of those ASMR programming videos? This video[^1] where
+You ever come across one of those ASMR programming videos? [This video][1] where
 the developer programs a terminal display with a couple of spinning cubes is
-neat. This video is the motivation for the development of a ncurses[^2]
+neat. This video is the motivation for the development of a [ncurses][2]
 application that renders a user controlled 3D cube.
 
 ## Perspective Projection and Rotation Matrices
@@ -31,7 +31,7 @@ In these equations, \\(\theta\\) is the angle in radians of the camera's field
 of view. More on that later.
 
 Okay cool, so you can go from 3D to 2D. What about rotating the object? The
-general 3D rotation matrix that you can copy paste from Wikipedia[^3] does the
+general 3D rotation matrix that you can copy paste from [Wikipedia][3] does the
 trick:
 
 \\[
@@ -138,13 +138,13 @@ anything more than vertical and horizontal lines. What now?
 
 The solution is to define points along the edges of the cube. How do you do
 that? Well you could do it manually but that's no fun. StackOverflow shows
-plenty of Python examples where you interpolate to define equally spaced points
-along a line in 3D space[^4]. Cool, but you don't want to implement that in C++
-or integrate a 3rd party library just to solve this little problem. 
+plenty of [Python examples][4] where you interpolate to define equally spaced
+points along a line in 3D space. Cool, but you don't want to implement that in
+C++ or integrate a 3rd party library just to solve this little problem. 
 
-There's another solution[^5] for generating \\(N\\) equidistant points on the
-line between two endpoints. The idea is to repeatedly compute midpoints until
-you have generated \\(N\\) midpoints. Here's an example.
+There's another solution for generating \\(N\\) equidistant points on the line
+between two endpoints. The idea is to repeatedly compute midpoints until you
+have generated \\(N\\) midpoints. Here's an example.
 
 Imagine you wanted to generate 7 points between an edge start and end point. You
 compute the midpoint of the start and end point call it \\(M_1\\). Then you
@@ -155,8 +155,8 @@ below illustrates the process.
 
 ![Generating Edge Points](/posts/ncube/generating-edge-points.webp#center)
 
-You want to generate midpoints in the order \\(M_1, M_2, M_3, ..., M_7\\). Put in
-other words, you need to generate the tree in breadth-first order[^6].
+You want to generate midpoints in the order \\(M_1, M_2, M_3, ..., M_7\\). Put
+in other words, you need to generate the tree in breadth-first order.
 
 Below is a C++ implementation of the algorithm:
 
@@ -218,11 +218,3 @@ GitHub under [ncube][5].
 [3]: https://en.wikipedia.org/wiki/Rotation_matrix#General_3D_rotations
 [4]: https://stackoverflow.com/questions/32208359/is-there-a-multi-dimensional-version-of-arange-linspace-in-numpy
 [5]: https://github.com/ivan-guerra/ncube
-
-[^1]: ["ASMR Programming - Spinning Cube"][1]
-[^2]: [ncurses][2]
-[^3]: [General 3D Rotations][3]
-[^4]: [Is there a multi-dimensional version of arange/linspace in numpy?][4]
-[^5]: Chances are this algorithm has existed since before the dawn of time.
-[^6]: All that time on LeetCode payed off! You get to encounter a BFS algorithm
-    in the wild!

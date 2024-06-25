@@ -12,11 +12,11 @@ by binding a custom `/dev` name to a USB device. This post shows you how.
 
 To be clear, this article walks through assigning USB **serial devices**
 persistent names. If you have a USB **block device** and would like to give it a
-persistent name, the ArchWiki[^1] has you covered.
+persistent name, the [ArchWiki][1] has you covered.
 
 ## USB Serial Device Name Binding Using *udev*
 
-The instructions below will work on a Linux distro that uses `udev`[^2] for
+The instructions below will work on a Linux distro that uses [`udev`][2] for
 device management. **You will need `root` privileges to follow these
 instructions!**
 
@@ -57,7 +57,3 @@ these changes, delete the device's corresponding rule in
 
 [1]: https://wiki.archlinux.org/title/persistent_block_device_naming
 [2]: https://en.wikipedia.org/wiki/Udev
-
-[^1]: ["Persistent block device naming"][1]
-[^2]: The [`udev` Wikipedia page][2] gives a nice overview of the history and
-    purpose of the tool.

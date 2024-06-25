@@ -6,15 +6,15 @@ tags: ["cli-tools", "gnu", "linux"]
 showToc: false
 ---
 
-Do you have a bunch of dotfiles? Do you maintain a GitHub repo[^1] with all your
-dotfiles? Whenever you upgrade your machine, do you find yourself manually
+Do you have a bunch of dotfiles? Do you maintain a GitHub repo with all your
+[dotfiles][1]? Whenever you upgrade your machine, do you find yourself manually
 placing the dotfiles in the right spots in your home directory? If you answered
 yes to these questions, read on.
 
 ## Enter GNU Stow
 
-GNU Stow[^2] is a dotfile management utility. Stow has all the makings of a
-varsity athlete[^3]:
+[GNU Stow][2] is a dotfile management utility. Stow has all the makings of a
+[varsity athlete][3]:
 
 * Stow is small (a 32KB Perl script).
 * Stow is simple to use with a solid manpage.
@@ -91,7 +91,3 @@ Doesn't get much easier than that.
 [1]: https://github.com/ivan-guerra/dotfiles
 [2]: https://linux.die.net/man/8/stow
 [3]: https://www.youtube.com/watch?v=-fjztq3SwW4
-
-[^1]: [dotfiles][1]
-[^2]: [RTFM][2]. The Stow manpage is a short, worthwhile read. Check it out.
-[^3]: Bet you didn't expect to find a [Sopranos][3] reference here.

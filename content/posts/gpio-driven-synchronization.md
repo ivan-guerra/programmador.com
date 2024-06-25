@@ -107,9 +107,9 @@ first.
 
 ## Hardware Test Setup
 
-You need two computers with which to test. The Beaglebone Black[^1] (BBB) single
-board computer is a good choice. The BBB is a good candidate for the following
-reasons:
+You need two computers with which to test. The [Beaglebone Black][2] (BBB)
+single board computer is a good choice. The BBB is a good candidate for the
+following reasons:
 
 1. High availability.
 2. The BBB has a ton of unallocated GPIOs.
@@ -128,7 +128,7 @@ in case the GPIOs mistakenly are both outputs with one side set high and the
 other set low.
 
 Speaking of GPIO configuration, many of the pins on the BBB support multiple
-functions. Chapter 6 of the book "Exploring BeagleBone"[^2] gives nice coverage
+functions. Chapter 6 of the book ["Exploring BeagleBone"][3] gives nice coverage
 of how to configure the GPIOs on the BBB. Verify `P9_15` and `P9_23` are free.
 You must configure the pins as GPIO with internal pull down resistors enabled
 (mux mode 7). **If you choose to use different pins, make sure you configure
@@ -269,7 +269,7 @@ To go from time to angle you can solve for \\(\theta\\):
 \\[ \theta = {2 \pi F t} \\]
 
 Note, the \\( t \\) is in units of seconds. The `gsync` implementation tracks
-time in units of nanoseconds. The conversion equations used in [the code][9]
+time in units of nanoseconds. The conversion equations used in [the code][6]
 account for the units change.
 
 ## The Wakeup Delta
@@ -358,30 +358,12 @@ synchronization is achievable for rates below 500Hz on bargain hardware using
 free and open source software.
 
 The complete project source with build instructions, usage, etc. is available on
-GitHub under [gsync][10].
+GitHub under [gsync][7].
 
 [1]: https://en.wikipedia.org/wiki/Kuramoto_model
 [2]: https://beagleboard.org/black
 [3]: https://www.amazon.com/Exploring-BeagleBone-Techniques-Building-Embedded/dp/1118935128#:~:text=Exploring%20BeagleBone%20provides%20a%20reader,and%20modules%2C%20with%20practical%20examples
 [4]: https://github.com/ivan-guerra/bbb_kernel_builder
 [5]: https://programmador.com/posts/real-time-linux-app-development/
-[6]: http://www.lartmaker.nl/lartware/port/devmem2.c
-[7]: https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/
-[8]: https://github.com/brgl/libgpiod
-[9]: https://github.com/ivan-guerra/gsync/blob/master/src/sync/sync.cc
-[10]: https://github.com/ivan-guerra/gsync
-
-[^1]: The [Beaglebone Black][2] (BBB) is a low cost (~$60), ARM board capable of
-    running Linux. The BBB has a ton of configurable GPIOs and so is
-    suited in that regard for this project.
-[^2]: ["Exploring Beaglebone"][3] is an awesome book not only for understanding
-    all the ins and outs of the BBB, but in general as an introduction to
-    development on an embedded platform. Chapter 6 is especially useful if you
-    find yourself needing to configure the BBB's GPIOs.
-[^3]: [libgpiod][7] development now lives at [kernel.org](kernel.org). That
-    said, you will find the old [GitHub][8] repo easier to browse. Just be wary
-    when looking at the GH repo, you're looking at outdated code!
-[^4]: Well that's kinda BS. You could control the pins [directly in memory][6].
-    I thought about trying that before learning about `libgpiod`. However, the
-    complexity added by this optimization didn't seem necessary for the task of
-    toggling a GPIO at a 1Hz rate.
+[6]: https://github.com/ivan-guerra/gsync/blob/master/src/sync/sync.cc
+[7]: https://github.com/ivan-guerra/gsync

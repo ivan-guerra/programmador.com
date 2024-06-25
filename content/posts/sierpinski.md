@@ -11,7 +11,7 @@ thing made with only 20 lines of code. At the time, it was a confusing 20 lines
 of code.
 
 A quick search on Google for "fractal triangle recursion" led straight to the
-Sierpinski triangle[^1]. A Sierpinski triangle generator with an ncurses
+[Sierpinski triangle][1]. A Sierpinski triangle generator with an ncurses
 visualization is a fun afternoon project.
 
 ## The Recursive Approach
@@ -117,7 +117,7 @@ stack scaling linearly with the degree.
 An exponential algorithm just isn't going to work. At \\(N = 10\\), the
 algorithm takes well over 5 seconds to finish on a PC with an Intel i5
 processor. So what can you do? Well, scroll a little further down that Wikipedia
-page and you'll find a section labeled "Chaos Game"[^2]. You can read the wiki
+page and you'll find a section labeled ["Chaos Game"][2]. You can read the wiki
 to get a technical description of the algorithm. Here's the for dummies version:
 
 1. Take three points in a plane to form a triangle.
@@ -194,7 +194,7 @@ void DrawChar(const sierpinski::common::Point2D& pos, char symbol,
 ```
 
 If you're interested in more of the gritty details of using ncurses, checkout
-this other post[^3] that dives into the details.
+this [other post][3] that dives into the details.
 
 ## Conclusion
 
@@ -216,9 +216,3 @@ GitHub under [sierpinski][4].
 [2]: https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle#Chaos_game
 [3]: https://programmador.com/posts/snake-in-the-terminal/
 [4]: https://github.com/ivan-guerra/sierpinski 
-
-[^1]: As always, Wikipedia has all the details: ["Sierpinski triangle"][1]
-[^2]: This algorithm is worth implementing just based off the name along:
-    ["Chaos Game"][2].
-[^3]: Checkout this [Snake][3] implementation using ncurses. That article covers
-    a few of the nuisances of using ncurses.

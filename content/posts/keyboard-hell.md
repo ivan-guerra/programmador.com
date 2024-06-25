@@ -24,12 +24,12 @@ Lets look at how to answer these questions starting with cross-platform audio.
 
 ## SDL to the Rescue
 
-You might recall the Simple DirectMedia Layer (SDL)[^2] library from a previous
-article[^1]. SDL in conjunction with the SDL_mixer[^3] library provides one with
-the ability to play WAV, MP3, FLAC, and ton of other audio formats. More
-importantly, the SDL/SDL_mixer libraries are portable. You could write a audio
-player utility that uses these libraries and it will work without modification
-on Windows and Linux.
+You might recall the [Simple DirectMedia Layer (SDL)][2] library from a
+[previous article][1]. SDL in conjunction with the [SDL_mixer][3] library
+provides one with the ability to play WAV, MP3, FLAC, and ton of other audio
+formats. More importantly, the SDL/SDL_mixer libraries are portable. You could
+write a audio player utility that uses these libraries and it will work without
+modification on Windows and Linux.
 
 To keep things simple, kbhell will support only the WAVE/WAV audio file format.
 The WAV format is arguably the most commonly used, lossless uncompressed audio
@@ -95,8 +95,8 @@ display servers: X11 and Wayland. You can find endless debates online over which
 one's better than the other. Given X11 is the most popular display server
 technology, kbhell's keystroke capture routine uses X11's API.
 
-X11 is an ancient, complex beast. The X Record Extensions Library[^4] makes it
-possible to capture *global* key events. Luckily, an example[^5] demoing how to
+X11 is an ancient, complex beast. The [X Record Extensions Library][4] makes it
+possible to capture *global* key events. Luckily, an [example][5] demoing how to
 pickup on global keystrokes using the record extension was available. The Linux
 `RunEventLoop()` implementation is an adaptation of the example:
 
@@ -163,7 +163,7 @@ That's it on the Linux side. How does Windows compare?
 
 ### Windows Event Loop
 
-The Windows event loop is a doozy. The Windows API provides hooks[^6] as a
+The Windows event loop is a doozy. The Windows API provides [hooks][6] as a
 mechanism for listening for general system messages including keyboard events.
 Similar to the X11 Record extension, the Windows API has you register a
 callback. The callback gets triggered every time a global keyboard event occurs.
@@ -277,16 +277,3 @@ GitHub under [kbhell][7].
 [5]: https://github.com/nibrahim/showkeys/blob/master/tests/record-example.c
 [6]: https://learn.microsoft.com/en-us/windows/win32/winmsg/hooks
 [7]: https://github.com/ivan-guerra/kbhell/tree/master
-
-[^1]: Checkout this [text to Morse code translator][1] which uses the SDL
-    library under the hood to generate the Morse dit/dah sound effects.
-[^2]: [Simple DirectMedia Layer][2] (SDL) has been around since the 90s. SDL
-    provides low level access to not just audio but the keyboard, mouse,
-    joystick, and graphics hardware as well. Their keyboard functionality didn't
-    make sense for kbhell given that you want to capture key event info from
-    *anywhere* on the desktop, not just the running app window.
-[^3]: Checkout the [SDL_mixer][3] project on GitHub.
-[^4]: [X Record Extension Library][4]
-[^5]: Bless this man for demoing how to use the X11 record extension:
-    [record-example.c][5].
-[^6]: Microsoft's [Hooks][6] documentation doesn't disappoint.

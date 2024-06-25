@@ -5,17 +5,17 @@ description: "Data compression using Huffman coding."
 tags: ["c++", "cli-tools", "compression"]
 ---
 
-Implementing a Huffman Tree[^1] is a fun afternoon project for anyone interested
-in learning about data compression. A Huffman Tree is a type of binary tree that
-sees use in the compression of an arbitrary data file. Developing a command line
-utility to compress/decompress a file using Huffman coding is a good CS101
-challenge.
+Implementing a [Huffman Tree][1] is a fun afternoon project for anyone
+interested in learning about data compression. A Huffman Tree is a type of
+binary tree that sees use in the compression of an arbitrary data file.
+Developing a command line utility to compress/decompress a file using Huffman
+coding is a good CS101 challenge.
 
 ## Breaking It Down Into Steps
 
 This project starts where many do: Wikipedia. The [Huffman Coding][1] wiki
 article gives a nice breakdown with examples of the data structure and
-associated algorithms. In particular, the "Basic Technique"[^2] section covers
+associated algorithms. In particular, the ["Basic Technique"][2] section covers
 the algorithms for compression and decompression. You need three key data
 structures to implement the big `Compress()` and `Decompress()` routines:
 
@@ -340,7 +340,7 @@ isn't particularly efficient for small input files given that the header will be
 significantly larger than the compressed data. However, as the input grows, the
 overhead of the header becomes negligible.
 
-Included in the header is a magic number[^3]. That magic number forms the first
+Included in the header is a [magic number][3]. That magic number forms the first
 few bytes of the compressed file and helps identify a file as a Huffman coded
 file.
 
@@ -471,7 +471,7 @@ RetCode HuffmanCoding::Decompress(const std::string& compressed_filepath,
 Putting it all together, you have a utility capable of compressing and
 decompressing any image, text, executable, etc. using Huffman coding. The
 implementation isn't the most robust or efficient with regards to space/time.
-The header could be significantly smaller[^4]. You probably shouldn't pass in
+The header could be [significantly smaller][4]. You probably shouldn't pass in
 any files that don't fit in memory. That said, the core concepts are there.
 Playing around with the tool, you'll find some files compress down to 50% of
 their original size!
@@ -484,16 +484,3 @@ GitHub under [huffman][5].
 [3]: https://en.wikipedia.org/wiki/Magic_number_(programming)#:~:text=In%20computer%20programming%2C%20a%20magic,see%20List%20of%20file%20signatures
 [4]: https://en.wikipedia.org/wiki/Canonical_Huffman_code
 [5]: https://github.com/ivan-guerra/huffman
-
-[^1]: This posts title image shows a Huffman Tree generated from the text "this
-    is an example of a Huffman tree". The source of the image is of course
-    [Wikipedia][1].
-[^2]: ["Huffman Coding: Basic Technique"][2]
-[^3]: Like with most things in computing, magic number has multiple meanings.
-    The second definition in the ["Magic number (programming)"][3] wiki is the
-    one referenced here: "A constant numerical or text value used to identify a
-    file format or protocol".
-[^4]: Checkout ["Canonical Huffman Codes"][4] to learn about a coding strategy
-    that could lead to significantly smaller headers. Up to 1 bit per
-    Huffman node, 8-bits per character. That's a big savings over writing out
-    the whole frequency table.

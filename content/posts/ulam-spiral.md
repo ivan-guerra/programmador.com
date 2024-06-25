@@ -6,7 +6,7 @@ tags: ["c++", "cli-tools"]
 ---
 
 The Ulam spiral is a graphical depiction of a set of prime numbers devised by
-the mathematician Stanislaw Ulam[^1]. To quote the Wiki, it's constructed by
+the mathematician [Stanislaw Ulam][1]. To quote the Wiki, it's constructed by
 writing the positive integers in a square spiral and specially marking the prime
 numbers. The outcome is a square with distinct diagonal, horizontal, and
 vertical lines. This post will walk through the development of a Ulam spiral
@@ -26,9 +26,9 @@ Take a look at the 4x4 Ulam spiral below:
 In this spiral, the composite numbers are output as zero and the prime numbers
 are output as themselves. The spiral grows counter clockwise from the center.
 
-How do you programmatically generate this spiral? GeeksForGeeks[^2] suggests two
-methods: generation via simulation and generation via dividing the matrix into
-cycles.
+How do you programmatically generate this spiral? [GeeksForGeeks][2] suggests
+two methods: generation via simulation and generation via dividing the matrix
+into cycles.
 
 Below is a C++ implementation of the simulation approach:
 
@@ -156,7 +156,7 @@ space.
 
 ## Checking Primality
 
-According to Wikipedia[^3], a prime number (or a prime) is a natural number
+According to [Wikipedia][3], a prime number (or a prime) is a natural number
 greater than 1 that's not a product of two smaller natural numbers. You can test
 for primality in polynomial time. 
 
@@ -180,7 +180,7 @@ bool IsPrime(int n) {
 ```
 
 There is a more efficient \\(\mathcal{O}(\sqrt{N})\\) method. Below is the
-algorithm description from GeeksForGeeks[^4]:
+algorithm description from [GeeksForGeeks][4]:
 
 > Iterate through all numbers from 2 to ssquare root of n and for every number
 > check if it divides n [because if a number is expressed as n = xy and any of
@@ -204,7 +204,7 @@ bool IsPrime(int n) {
 
 Given the upper limit of the numbers in the Ulam spiral is \\(N^2\\), you can
 use a third approach to reduce the overall time complexity of
-`GenerateUlamSpiral()`. A modified Sieve of Eratosthenes[^5] generates the set
+`GenerateUlamSpiral()`. A modified [Sieve of Eratosthenes][5] generates the set
 of prime numbers less than \\(N\\) in \\(\mathcal{O}(N)\\) time and
 \\(\mathcal{O}(N)\\) space:
 
@@ -260,7 +260,7 @@ color composite numbers' pixels white and prime numbers' pixels black. The
 output is an image with the expected diagonal, vertical, and horizontal lines
 characteristic of the Ulam Spiral. 
 
-The Boost Generic Image Library[^6] provides all the tools you need to write a
+The [Boost Generic Image Library][6] provides all the tools you need to write a
 Ulam Spiral to a grayscale PNG:
 
 ```cpp
@@ -290,7 +290,7 @@ Below is 1024x1024 Ulam spiral grayscale image:
 
 ![Ulam Spiral 1024](/posts/ulam-spiral/uspiral-1024.png#center)
 
-Wikipedia[^7] has a digestible explanation of the meaning behind the lines you
+[Wikipedia][7] has a digestible explanation of the meaning behind the lines you
 see in the image.
 
 ## Conclusion
@@ -313,11 +313,3 @@ GitHub under [ulam_spiral][8].
 [6]: https://www.boost.org/doc/libs/1_76_0/libs/gil/doc/html/index.html
 [7]: https://en.wikipedia.org/wiki/Ulam_spiral#Explanation
 [8]: https://github.com/ivan-guerra/ulam_spiral
-
-[^1]: [Wikipedia: "Ulam Spiral"][1]
-[^2]: [GeeksForGeeks: "Print a given matrix in spiral form"][2]
-[^3]: [Wikipedia: "Prime Number"][3]
-[^4]: [GeeksForGeeks: "Prime Numbers"][4]
-[^5]: [GeeksForGeeks: "Sieve of Eratosthenes in 0(n) time complexity"][5]
-[^6]: ["Boost GIL"][6]
-[^7]: [Wikipedia: "Ulam Spiral: Explanation"][7]

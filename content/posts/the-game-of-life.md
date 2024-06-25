@@ -5,9 +5,9 @@ description: "Visualize Conway's Game of Life in your terminal."
 tags: ["cli-tools", "c++", "ncurses"]
 ---
 
-If you grind old Advent of Code[^1] problems, you might notice a particular
+If you grind old [Advent of Code][1] problems, you might notice a particular
 style of problem crop up more than once. The people of Reddit refer to their
-solutions as a variation of Conway's Game of Life[^2] (GoL). Wikipedia has a
+solutions as a variation of [Conway's Game of Life][2] (GoL). Wikipedia has a
 great article on GoL. The animations are eye catching. The Wiki serves as
 motivation for a terminal app that visualizes GoL simulations.
 
@@ -37,7 +37,7 @@ terminal window as an MxN board. Each 1x1 square represents a cell. An empty
 square is a dead cell. You mark a live square with a special character. The
 program runs a game loop at a configurable speed. At each cycle, you apply the
 GoL rules to the current game board. This process is achievable using
-ncurses[^3] and vanilla C++.
+[ncurses][3] and vanilla C++.
 
 The one piece that's missing is configuration. Specifically, how does one tell
 the game what the initial state of the game board is? A solution is to have the
@@ -170,7 +170,7 @@ static void RunDrawLoop(const gol::graphics::ScreenDimension &dim,
 ## Conclusion
 
 Below is a video showing `life` in action. The initial state that's given forms
-what's called a Gosper Glider Gun[^4].
+what's called a [Gosper Glider Gun][5].
 
 {{< video src="/posts/the-game-of-life/gol-demo.mp4" type="video/mp4" preload="auto" >}}
 
@@ -187,8 +187,3 @@ GitHub under [game_of_life][4].
 [3]: https://en.wikipedia.org/wiki/Ncurses
 [4]: https://github.com/ivan-guerra/game_of_life
 [5]: https://conwaylife.com/wiki/Gosper_glider_gun
-
-[^1]: [Advent of Code][1]
-[^2]: [Conway's Game of Life][2]
-[^3]: [ncurses][3]
-[^4]: [Gosper Glider Gun][5]

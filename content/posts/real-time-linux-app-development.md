@@ -13,7 +13,7 @@ licenses. Real-time Linux can fill the void by providing a path to a soft
 real-time system.
 
 This post takes a tour through the advice given in John Ogness's 2020
-presentation: "A Checklist for Writing Linux Real-Time Applications"[^12].
+presentation: ["A Checklist for Writing Linux Real-Time Applications"][11].
 You'll explore how to optimize a Linux system and application for real-time
 execution using John's real-time Linux development checklist.
 
@@ -57,20 +57,20 @@ monitoring are critical in verifying timing requirements on RT Linux system.
 
 ## Real-time Kernel Patches
 
-The first step to setting up a RT Linux system is to make the kernel fully
-preemptible[^2] via the real-time kernel patches. You can apply the `PREEMPT_RT`
+The first step to setting up a RT Linux system is to make the kernel [fully
+preemptible][3] via the real-time kernel patches. You can apply the `PREEMPT_RT`
 patches to your kernel using the steps listed below:
 
 1. Make note of your kernel's X.Y.Z version number. Typically, the git branch
    name will include the version number.
-2. Go to kernel.org[^4] and download the `*.gz` containing the patch files for
+2. Go to kernel.org and download the `*.gz` containing the patch files for
    your particular kernel version.
 3. Apply the patches: 
 ```bash 
 cd linux/ gzip -cd
 /path/to/patch-4.19.94-rt39.patch.gz | patch -p1 --verbose 
 ```
-4. Verify there are no `*.rej` files in your Linux source tree[^5].
+4. Verify there are no `*.rej` files in your Linux source tree.
 
 ## Kernel Configuration
 
@@ -80,17 +80,17 @@ option footnotes for more details.
 
 | Config                                 | ON/OFF | Location                                                                                    |
 |----------------------------------------|--------|---------------------------------------------------------------------------------------------|
-| `CONFIG_PREEMPT_RT_FULL`               | ON     | General Setup -> Preemption Model -> Fully Preemptible Kernel (RT)                          |
-| `CONFIG_SOFTLOCKUP_DETECTOR`[^6]       | OFF    | Kernel hacking -> Debug Lockups and Hangs -> Detect Soft Lockups                            |
-| `CONFIG_DETECT_HUNG_TASK`[^7]          | OFF    | Kernel hacking -> Debug Lockups and Hangs -> Detect Hung Tasks                              |
-| `HZ_1000`[^8]                          | ON     | Kernel Features -> Timer frequency -> 1000 Hz                                               |
-| `CONFIG_NO_HZ_FULL`[^9]                | ON     | General Setup -> Timers subsystem -> Timer tick handling -> Full dynticks system (tickless) |
-| `CONFIG_CPU_FREQ_GOV_PERFORMANCE`[^10] | ON     | CPU Power Management -> CPU Frequency Scaling -> 'performance' governor                     |
-| `CONFIG_CPU_FREQ_GOV_POWERSAVE`        | OFF    | CPU Power Management -> CPU Frequency Scaling -> 'powersave' governor                       |
-| `CONFIG_CPU_FREQ_GOV_ONDEMAND`         | OFF    | CPU Power Management -> CPU Frequency Scaling -> 'ondemand' cpufreq governor                |
-| `CONFIG_CPU_FREQ_GOV_CONSERVATIVE`     | OFF    | CPU Power Management -> CPU Frequency Scaling -> 'conservative' cpufreq governor            |
-| `CONFIG_CPU_FREQ_GOV_SCHEDUTIL`        | OFF    | CPU Power Management -> CPU Frequency Scaling -> 'schedutil' cpufreq policy governor        |
-| `CONFIG_DEBUG`[^11]                    | OFF    | Kernel hacking -> *                                                                         |
+| `CONFIG_PREEMPT_RT_FULL`                | ON     | General Setup -> Preemption Model -> Fully Preemptible Kernel (RT)                          |
+| [`CONFIG_SOFTLOCKUP_DETECTOR`][6]       | OFF    | Kernel hacking -> Debug Lockups and Hangs -> Detect Soft Lockups                            |
+| [`CONFIG_DETECT_HUNG_TASK`][7]          | OFF    | Kernel hacking -> Debug Lockups and Hangs -> Detect Hung Tasks                              |
+| [`HZ_1000`][8]                          | ON     | Kernel Features -> Timer frequency -> 1000 Hz                                               |
+| [`CONFIG_NO_HZ_FULL`][9]                | ON     | General Setup -> Timers subsystem -> Timer tick handling -> Full dynticks system (tickless) |
+| [`CONFIG_CPU_FREQ_GOV_PERFORMANCE`][10] | ON     | CPU Power Management -> CPU Frequency Scaling -> 'performance' governor                     |
+| `CONFIG_CPU_FREQ_GOV_POWERSAVE`         | OFF    | CPU Power Management -> CPU Frequency Scaling -> 'powersave' governor                       |
+| `CONFIG_CPU_FREQ_GOV_ONDEMAND`          | OFF    | CPU Power Management -> CPU Frequency Scaling -> 'ondemand' cpufreq governor                |
+| `CONFIG_CPU_FREQ_GOV_CONSERVATIVE`      | OFF    | CPU Power Management -> CPU Frequency Scaling -> 'conservative' cpufreq governor            |
+| `CONFIG_CPU_FREQ_GOV_SCHEDUTIL`         | OFF    | CPU Power Management -> CPU Frequency Scaling -> 'schedutil' cpufreq policy governor        |
+| `CONFIG_DEBUG`                          | OFF    | Kernel hacking -> *                                                                         |
 
 ## Scheduling Policies
 
@@ -367,13 +367,13 @@ ownership. In contrast, the kernel knows when a lower priority task owns/holds a
 `pthread_mutex`. The kernel temporarily boosts the task's priority so that it
 runs and frees the lock allowing a higher priority task to acquire the lock.
 This is what's known as priority boosting or inheritance and it's how Linux
-resolves the priority inversion problem[^14]. The image below illustrates this
+resolves the [priority inversion problem][16]. The image below illustrates this
 concept. You can imagine Resource A is a lock under contention.
 
 [![Priority Inheritance](/posts/real-time-linux-app-development/priority-inheritance.png#center)][15]
 
 To get `pthread_mutex` to behave as described, you have to tell the kernel to
-employ priority inheritance. Set the `PTHREAD_PRIO_INHERIT`[^13] option via the
+employ priority inheritance. Set the [`PTHREAD_PRIO_INHERIT`][14] option via the
 `pthread_mutexattr_setprotocol` system call. Here's an example of how to setup
 and use your mutex:
 
@@ -399,11 +399,10 @@ pthread_mutex_destroy(&lock);
 When it comes to signaling within or among RT applications, there are two
 approaches to consider:
 
-* **Standard Signals[^15]**: These are the signals in the `SIG*` family that get
-  caught by an application using `sigaction`.
+* **[Standard Signals][17]**: These are the signals in the `SIG*` family that
+get caught by an application using `sigaction`.
 * **`pthread_cond` Signals**: These are condition objects typically associated
-  with a `pthread_mutex` that synchronize notification between
-  threads/processes.
+with a `pthread_mutex` that synchronize notification between threads/processes.
 
 **Avoid standard signals in an RT application**. Why? The context when a signal
 handler executes is hard or near impossible to predict. Are you holding a lock?
@@ -504,7 +503,7 @@ void cyclic_task_main(void)
 
 ## Evaluating a Real-time System
 
-Cyclictest[^16] is one of the best tools to use in evaluating your real-time
+[Cyclictest][18] is one of the best tools to use in evaluating your real-time
 system. What's Cyclictest?
 
 > Cyclictest accurately and repeatedly measures the difference between a
@@ -522,15 +521,15 @@ Here are a couple key points to keep in mind when working with Cyclictest:
   the [FAQ][19] for more details.
 * **System load matters.** You are going to want to test with a representative
   system load. Representative in this case means simulating CPU use, memory use,
-  I/O, network use, etc. There are tools like hackbench[^17] and existing
-  strategies[^18] that can assist you in crafting realistic loads.
+  I/O, network use, etc. There are tools like [hackbench][20] and [existing
+  strategies][21] that can assist you in crafting realistic loads.
 
 A resource worth mentioning is the [OSADL website][22].
 
 > OSADL (Open Source Automation Development Lab) uses Cyclictest to continuously
 > monitor the latencies of several systems.
 
-On the OSADL site, they share a script[^19] that you can run on your system to
+On the OSADL site, they share a [script][24] that you can run on your system to
 generate a histogram plot of latencies as shown below.
 
 [![Latency Histogram](/posts/real-time-linux-app-development/latency-plot.png#center)][23]
@@ -581,40 +580,3 @@ meets your needs.
 [22]: https://www.osadl.org/Continuous-latency-monitoring.qa-farm-monitoring.0.html
 [23]: https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script
 [24]: https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script
-
-[^1]: The [BeagleBone Black][1] is a relatively affordable (~$60) development
-    platform for hobbyists. The hardware and the software is open source!
-[^2]: [Kernel Preemption][3]
-[^3]: [Building and Deploying a Real-Time Kernel to the BeagleBone Black][4]
-[^4]: You have to be careful to download patches that match your kernel version
-    number exactly! This sometimes mean you have to dig into the folder labeled
-    "older" under one of the X.Y folders to get the right patch (Z) number.
-[^5]: If you see rejected patches, double check that you downloaded a patch set
-    that *exactly* matches your kernel version.
-[^6]: See the [CONFIG_LOCKUP_DETECTOR][6] for more info on this option.
-[^7]: See the [CONFIG_DETECT_HUNG_TASK][7] for more info on this option.
-[^8]: ["Low Latency Linux for Industrial Embedded Systems"][8] gives good
-    coverage on why you would want to configure the timer to 1000 Hz.
-[^9]: You must specify which CPUs will be tickless via the `no_hz_full` boot
-    parameter. There are also additional gotchas with this option. See the
-    kernel's [NO_HZ][9] docs for all the details.
-[^10]: The kernel docs give an overview of each of the CPU frequency governors
-    and their behavior: ["CPUFreq Governors"][10].
-[^11]: You'll want to parse through the debug options and leave only those that
-    you find to be most critical on.
-[^12]: John's 48min presentation is the inspiration for this post. His final
-    slide is particularly handy as a checklist for anyone developing a real-time
-    app on Linux. Watch his video on [Youtube][11] before reading this post.
-[^13]: Checkout the [manpage][14] for `pthread_mutexattr_setprotocol` option
-    descriptions.
-[^14]: See [priority inversion problem][16]. Priority inheritance is the
-    solution Linux implements, there are many other approaches!
-[^15]: The [Linux Programmer's Manual's page on signals][17] is worth a read. I
-    wouldn't recommend the use of real-time signals given that the behavior is
-    at least in part implementation dependent.
-[^16]: The [Cyclictest][18] homepage provides an overview of the tool, its use
-    cases, and more. The [FAQ][19] page is also worth a read.
-[^17]: [hackbench][20] is a benchmark and a stress test for the kernel scheduler
-    that's part of the rt-tests suite.
-[^18]: [Worst Case Latency Test Scenarios][21]
-[^19]: [Create a latency plot from Cyclictest histogram data][24]

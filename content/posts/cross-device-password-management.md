@@ -6,14 +6,14 @@ tags: ["gnu", "password-mgmt"]
 ---
 
 Who hasn't been guilty of reusing passwords across multiple online services. If
-you make a habit out of reusing passwords, it's pretty easy to get pwned[^1] not
-for just one service but many all at once. The modern day solution is to use a
-password manager. This article walks you through setting up password management
-across Linux and Android devices.
+you make a habit out of reusing passwords, it's pretty easy to [get pwned][1]
+not for just one service but many all at once. The modern day solution is to use
+a password manager. This article walks you through setting up password
+management across Linux and Android devices.
 
 ## Finding a Password Manager
 
-There's no shortage of password managers to choose from[^2]. Your choice of
+There's no shortage of [password managers][2] to choose from. Your choice of
 password manager is dependent on what devices you use and what your typical
 workflow looks like. Here's what a set of basic password manager requirements
 looks like:
@@ -42,8 +42,8 @@ to the next section.
 
 [![GnuPG](/posts/cross-device-password-management/gnupg.png#center)][4]
 
-To work with `pass`, you need a gpg-id. If you need to make an ID, the GNU
-Privacy Guard Manual[^1] has you covered. Here's a quick summary of how to
+To work with `pass`, you need a gpg-id. If you need to make an ID, the [GNU
+Privacy Guard Manual][5] has you covered. Here's a quick summary of how to
 generate a 4096 bit RSA key:
 
 1. Open a terminal.
@@ -52,7 +52,7 @@ generate a 4096 bit RSA key:
 4. At the prompt, specify a key size of `4096` and press `Enter`.
 5. Press `Enter` to select the default of no expiration date.
 6. Follow the prompts to enter your ID info.
-7. Enter a secure password[^4].
+7. Enter a [secure password][6].
 8. Enter `gpg --list-keys` to view your newly minted key.
 
 ![GPG Key Generation](/posts/cross-device-password-management/keygen.png#center)
@@ -60,10 +60,9 @@ generate a 4096 bit RSA key:
 ## Password Database Creation and Git Support
 
 To initialize `pass`, call its init function with your public GPG key as the
-argument. You can find your key by running `gpg --list-keys`. In the
-[screenshot](#setting-up-a-gpg-id), the public key is
-`EBAA65BDAF7BF5D770070F013BE52220A00B08A9`. Here's how you initialize the `pass`
-database:
+argument. You can find your key by running `gpg --list-keys`. In the previous
+screenshot, the public key is `EBAA65BDAF7BF5D770070F013BE52220A00B08A9`. Here's
+how you initialize the `pass` database:
 
 ```bash
 pass init EBAA65BDAF7BF5D770070F013BE52220A00B08A9
@@ -101,8 +100,8 @@ pass generate [--no-symbols, -n] [--clip, -c] [--force, -f] PASS_NAME PASS_LEN
 
 Some websites only accept alphanumeric passwords in which case the
 `--no-symbols` option comes in handy. The `--clip` option is useful if you want
-to generate and simultaneously copy to the clipboard the new password[^5].
-Password insertion, removal, and editing are all supported. See the manpage[^6]
+to generate and simultaneously [copy to the clipboard][7] the new password.
+Password insertion, removal, and editing are all supported. See the [manpage][8]
 for the details.
 
 `pass` gives a lot of flexibility in how you organize your passwords. For
@@ -173,8 +172,8 @@ pass insert --multiline misc/super_secret
 Of course, before your can access your password database remotely you need to
 host it somewhere. Some people host their own git instances others may use
 online hosting services like GitHub. You might ask, is your password database
-safe if it's at all reachable from the Internet? To quote the Password Store[^7]
-wiki:
+safe if it's at all reachable from the Internet? To quote the [Password Store
+wiki][9]:
 
 > Yes and no. The password themselves are safe, since they are stored in an
 > encrypted fashion. They are secure as long as your GPG key's secret part is
@@ -208,14 +207,13 @@ These two commands sync your remote instance with your local password database.
 [![Password Store](/posts/cross-device-password-management/password-store.png#center)][9]
 
 Android support was one of the original requirements. `pass` is just a Unix
-password management command line utility. Luckily, the Password Store[^7]
-Android app exists. With Password Store, you can sync with a remote server
-hosting the `.password-store` database. Working in conjunction with Password
-Store is the OpenKeychain[^8] app with which you can store your GPG secret key
-on mobile.
+password management command line utility. Luckily, the Password Store Android
+app exists. With Password Store, you can sync with a remote server hosting the
+`.password-store` database. Working in conjunction with Password Store is the
+[OpenKeychain app][10] with which you can store your GPG secret key on mobile.
 
 Transferring your private key to OpenKeychain is the first step. OpenKeychain
-recommends[^9] you use the following commands:
+[recommends][11] you use the following commands:
 
 ```bash
 export GPG_TTY=$(tty)
@@ -244,7 +242,7 @@ Here are the steps:
 4. In the *Authentication Mode* section, select your mode of authentication. If
    using GitHub, select the SSH key option.
 5. Follow the prompts to generate an SSH key. Upload the public portion of the
-   key to your GitHub account[^10].
+   key to your GitHub account.
 
 That's it. You should see your password database appear in the app. When you
 select a password, Password Store will prompt you for your GPG key passphrase.
@@ -271,16 +269,3 @@ meets the need on Android and Linux.
 [10]: https://www.openkeychain.org/
 [11]: https://www.openkeychain.org/faq/#what-is-the-best-way-to-transfer-my-own-key-to-openkeychain
 [12]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
-
-[^1]: Have you been [pwned][1]?
-[^2]: [Wikipedia][2] lists over 20 password managers!
-[^3]: The GNU Privacy Handbook shows how to [generate a new keypair][5].
-[^4]: The Arch Linux Wiki has some good advice on [choosing secure passwords][6]
-[^5]: `pass` uses [xclip][7] to carry out copies to the clipboard. `xclip` is
-    available in the package repository of most Linux distros.
-[^6]: `pass`'s [manpage][8] has some nice usage examples that show how to
-    generate, insert, remove, and edit passwords.
-[^7]: See the [Password Store][9] project page.
-[^8]: See the [OpenKeychain][10] project page.
-[^9]: ["What's the best way to transfer my own key to OpenKeychain?"][11]
-[^10]: [Adding a new SSH key to your GitHub account][12]

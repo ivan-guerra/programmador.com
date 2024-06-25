@@ -17,13 +17,13 @@ get remotely close.
 [![Little Book About OS Development](/posts/cosmo/lbaod.png#center)][2]
 
 It's difficult to get started without the right references and resources. The
-OSDev wiki[^1] is one of those gems. The OSDev wiki audience is in large part
+[OSDev wiki][1] is one of those gems. The OSDev wiki audience is in large part
 hobbyist like myself looking to get started with their own OS. A number of the
 articles give step-by-steps, example ASM/C code, and, perhaps most importantly,
 links to other reference material. That said, more structure and hand holding
 than what OSDev provides can be useful when starting out.
 
-The "Little Book About OS Development"[^2] (LBAOD) is yet another treasure.
+The ["Little Book About OS Development"][2] (LBAOD) is yet another treasure.
 LBAOD is an online book written by two Graduate students at the Royal Institute
 of Technology, Stockholm. The book details the authors' 6 week journey in
 developing a basic x86 OS. The benefit of the book was that they provide an
@@ -36,7 +36,7 @@ Wikis and guides in hand, it's time to begin the journey.
 
 Step number one, get the toolchain stood up. This project targets the x86
 platform. You build many of the cross compilation tools from source since
-various tools require specific compile time flags[^3].
+various tools require [specific compile time flags][3].
 
 Containerizing the toolchain is a worthwhile endeavor. Included in the container
 image is an [x86 emulator](#bochs-emulation). The key idea here is that you
@@ -44,9 +44,9 @@ launch a dev container with the OS source code on the host system mounted as a
 volume. From within the container, you call the build/run scripts all the while
 editing the source code using your IDE on the host.
 
-The Dockerfile[^4] produces an image with the necessary toolchain and emulator.
+The [Dockerfile][4] produces an image with the necessary toolchain and emulator.
 Even with `make`'s multiple job support, the image takes upwards of 30 minutes
-to build on a 4 core Intel i5! Downloading a prebuilt image from DockerHub[^5]
+to build on a 4 core Intel i5! Downloading a prebuilt image from [DockerHub][5]
 saves some time.
 
 The script below shows how to launch the dev container:
@@ -85,11 +85,11 @@ you don't want all the output binaries to have user/group `root`).
 [![Bochs IA-32 Emulator](/posts/cosmo/bochs.png#center)][6]
 
 An emulator makes it convenient to test the OS. The OSDev wiki gives a nice
-summary table comparing the different emulators available[^6]. I decided to go
+[summary table][7] comparing the different emulators available. I decided to go
 with Bochs for this project for a few reasons:
 
 1. Simple serial logging feature
-2. Built in debug features[^7]
+2. Built in [debug features][9]
 3. Comes with a graphical user interface
 
 The Bochs configuration script below loads the OS and enables logging to four
@@ -110,12 +110,12 @@ com3:            enabled=1, mode=file, dev=./bochs_logs/com3.out
 com4:            enabled=1, mode=file, dev=./bochs_logs/com4.out
 ```
 
-For more information on `bochsrc` configurations, checkout the Bochs User
-Manual[^8].
+For more information on `bochsrc` configurations, checkout the [Bochs User
+Manual][10].
 
 ## Choosing an Assembly and Programming Language
 
-NASM Assembly[^9] and C++ are the programming languages of choice.
+[NASM Assembly][11] and C++ are the programming languages of choice.
 
 When it came time to choosing an assembly language, there looked to be two front
 runners: NASM Assembly (NASM) and GNU Assembly (GAS). What's the primary
@@ -148,7 +148,7 @@ Most OS tutorials assume you will being using C and writing Makefiles. Makefiles
 can become tedious to write. As a result, Cosmo uses CMake to generate the OS
 build files.
 
-The philosophy put forward in "An Introduction to Modern CMake"[^10] is
+The philosophy put forward in ["An Introduction to Modern CMake"][12] is
 interesting and worth a read. I stuck with the project structure recommended in
 that article:
 
@@ -179,15 +179,15 @@ Here's a table describing what each folder contains:
 
 The usual `CMakeLists.txt` files define the recipe for building each target.
 Each OS feature including `libc` is its own target under `src/`. `kernel/` is
-where the OS ELF lives. The `kernel.elf` target's CMakeLists.txt[^11] was the
+where the OS ELF lives. The `kernel.elf` target's [CMakeLists.txt][13] was the
 trickiest to get right since you need kernel loading assembly and custom linker
 options and scripts.
 
 Toolchain definition is important since you want CMake to be aware of your cross
-compilation tools. Many articles walks through how to write a toolchain file for
-cross compilation[^12]. Combining the information in the toolchain tutorial
-along with the OSDev Bare Bones[^13] kernel guide makes writing the toolchain
-script a less daunting task[^14].
+compilation tools. Many articles walk through how to write a [toolchain file for
+cross compilation][14]. Combining the information in the toolchain tutorial
+along with the [OSDev Bare Bones][15] kernel guide makes writing the [toolchain
+script][16] a less daunting task.
 
 Makefile generation is now as simple as calling `cmake` with the
 `-DCMAKE_TOOLCHAIN_FILE` option set to point to the `i686-elf-gcc.cmake` script!
@@ -211,7 +211,7 @@ ISO generation requires the following tools:
   mounting them. Another `grub-mkrescue` dependency.
 
 `grub-mkrescue` combined with the `grub.cfg` and `kernel.elf` create the
-`cosmo.iso` that Bochs can boot off of. `generate_iso.sh`[^15] gives the
+`cosmo.iso` that Bochs can boot off of. [`generate_iso.sh`][18] gives the
 details. The tools and scripts are all packaged into the [dev
 container](#setting-up-the-toolchain) so there's no need to install them on the
 host PC.
@@ -219,8 +219,8 @@ host PC.
 ## Progress Report
 
 Cosmo has yet to load a program that adds two numbers and outputs the sum to the
-console. However, it's close. All the features leading up to Chapter 11 of the
-"Little Book About OS Development"[^16] exist:
+console. However, it's close. All the features leading up to [Chapter 11][19] of
+the "Little Book About OS Development" exist:
 
 | Feature                            | Completed |
 |------------------------------------|-----------|
@@ -267,27 +267,3 @@ GitHub under [cosmo][20].
 [18]: https://github.com/ivan-guerra/cosmo/blob/master/scripts/generate_iso.sh
 [19]: https://littleosbook.github.io/#user-mode
 [20]: https://github.com/ivan-guerra/cosmo
-
-[^1]: [OSDev Wiki][1]
-[^2]: [Little Book About OS Development][2]
-[^3]: The OSDev Wiki's [GCC Cross Compiler][3] wiki shows the compiler flags you
-    would want to enable.
-[^4]: [Cosmo OS Dev Image Dockerfile][4]
-[^5]: In place of building the Cosmo OS dev image from the Dockerfile in the
-    repo, you can also download the latest build from DockerHub:
-    [iguerra130154/cosmo][5]
-[^6]: [Emulator Comparison][7]
-[^7]: [Chapter 8][9] of the Bochs User Manual goes in-depth on the internal
-    debugger.
-[^8]: [Section 4.3][10] of the Bochs User Manual covers the `bochsrc`
-    configuration options in detail.
-[^9]: [Netwide Assembler (NASM)][11].
-[^10]: CMake is infamous for not having an official source showing the "right"
-    way of writing CMake scripts. [An Introduction to Modern CMake][12] is the
-    pretty close to that.
-[^11]: The `kernel.elf` target's [CMakeLists.txt][13].
-[^12]: [How to cross-compile for embedded with CMake like a champ][14]
-[^13]: [Bare Bones - Implementing the Kernel][15]
-[^14]: [`i686-elf-gcc.cmake`][16]
-[^15]: [`generate_iso.sh`][18]
-[^16]: [Chapter 11: User Mode][19]

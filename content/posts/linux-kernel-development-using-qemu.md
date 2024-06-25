@@ -15,7 +15,7 @@ the highlights:
 * The ability to test code across different architectures (for example, aarch64,
   x86_64, etc.).
 
-What's QEMU? According to Wikipedia[^1]:
+What's QEMU? According to [Wikipedia][1]:
 
 > QEMU (Quick Emulator) is a free and open-source emulator. It emulates a
 > computer's processor through dynamic binary translation and provides a set of
@@ -25,7 +25,7 @@ What's QEMU? According to Wikipedia[^1]:
 > also do emulation for user-level processes, allowing applications compiled for
 > one architecture to run on another.
 
-QEMU has three main operating modes[^2]:
+QEMU has three main [operating modes][2]:
 
 * **User-mode Emulation**: Run a single program compiled with a different
   instruction set than that of the host machine.
@@ -84,7 +84,7 @@ limit in gigabytes on the size of the `qcow2` image during creation.
 
 The world is your oyster when it comes to distros. It doesn't matter what distro
 you use. Arch Linux is a solid choice since a base install is pretty bare bones.
-Plus, you can tell everyone you use Arch[^3]. Download the [latest ISO][4] and
+Plus, you can [tell everyone you use Arch][3]. Download the [latest ISO][4] and
 follow the steps below to get started with the install.
 
 You'll first want to load the Arch installer by telling QEMU to boot off an
@@ -122,14 +122,14 @@ of KVM support try the following:
   with name of the KVM group on your system.
 * Most mainstream distros ship a Linux kernel with KVM features enabled. If that
   isn't the case for you, then you may have to tweak your kernel's command line
-  args or install a kernel with `kvm_guest.config`[^5] applied.
+  args or install a kernel with [`kvm_guest.config`][6] applied.
 
 After running the `qemu-system-x86_64` command, you will see a QEMU window that
 has the Arch Installer running:
 
 ![QEMU Arch Installer](/posts/linux-kernel-development-using-qemu/arch-install.png#center)
 
-You can now go RTFM[^4] (that is, the Arch wiki installation guide). The
+You can now go [RTFM][5] (that is, the Arch wiki installation guide). The
 alternative is to use the `archinstaller` script to do the heavy lifting for
 you. The following Youtube video has all the details on how to do just that (you
 can skip to the `2:16` mark):
@@ -269,9 +269,3 @@ a look at other QEMU tutorials and experiment a bit.
 [4]: https://archlinux.org/download/
 [5]: https://en.wikipedia.org/wiki/RTFM#:~:text=RTFM%20is%20an%20initialism%20and,forum%2C%20software%20documentation%20or%20FAQ.
 [6]: https://github.com/torvalds/linux/blob/master/kernel/configs/kvm_guest.config
-
-[^1]: [Wikipedia: QEMU][1]
-[^2]: [Wikipedia: QEMU - Operating Modes][2]
-[^3]: Time for some sick [Arch Memes][3].
-[^4]: [Wikipedia: RTFM][5]
-[^5]: [`kvm_guest.config`][6]

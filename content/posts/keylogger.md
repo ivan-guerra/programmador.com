@@ -5,7 +5,7 @@ description: "How to write a cross platform keylogger."
 tags: ["cli-tools", "c++", "linux", "windows", "x11"]
 ---
 
-If you're familiar with the kbhell[^1] application, you might realize that
+If you're familiar with the [kbhell][1] application, you might realize that
 kbhell is about 90% of the way to being a keylogger. Why not finish the job and
 write a proper, cross platform keylogger that captures a victim's every
 keystroke (for science reasons, of course)?
@@ -37,14 +37,14 @@ The next sections discuss the implementation of these requirements.
 
 ## Capturing Keystrokes
 
-The "Keyboard Hell"[^1] article gives coverage of this topic. The basic idea is
+The ["Keyboard Hell"][1] article gives coverage of this topic. The basic idea is
 that the X11 event system on Linux and global hooks on Windows intercept
 keystrokes without any noticeable effect on the rest of the system. 
 
 You can use the `kbhell` keystroke capture code in `keylogger`'s implementation.
 The only difference is that instead of playing a sound bite on every keystroke,
 you're pushing characters to a recorder object's character buffer. You only push
-printable characters as defined by `std::isprint`[^2]. The latter detail is
+printable characters as defined by [`std::isprint`][2]. The latter detail is
 limiting in that you won't be able to completely playback the victim's key
 history. That said, you can still analyze the output to find passwords, emails,
 usernames, etc.
@@ -158,10 +158,10 @@ However, the comment in the code explains the reasoning. When you halt the
 keylogger, there's no guarantee that the data sent via the stream gets written
 to the file. Explicitly closing the file handle flushes the stream contents. In
 retrospect, this would have been a good use case for using
-`std::ostream::flush`[^3].
+[`std::ostream::flush`][3].
 
 The `NetworkRecorder` uses a wrapper around a Linux/Windows UDP socket to
-transmit data. You can look at the UDP wrapper source[^4] to get the full
+transmit data. You can look at the UDP wrapper [source][4] to get the full
 details.
 
 ## Configuration
@@ -232,8 +232,3 @@ GitHub under [keylogger][7].
 [5]: https://github.com/ivan-guerra/keylogger/blob/master/src/io/udp/linux_udp_socket.cpp
 [6]: https://github.com/ivan-guerra/keylogger/blob/master/src/io/udp/windows_udp_socket.cpp
 [7]: https://github.com/ivan-guerra/keylogger.git
-
-[^1]: [Keyboard Hell][1]
-[^2]: [`std::isprint`][2]
-[^3]: [`std::ostream::flush`][3]
-[^4]: [udp_socket.h][4], [linux_udp_socket.cpp][5], [windows_udp_socket.cpp][6]

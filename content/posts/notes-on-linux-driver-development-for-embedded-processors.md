@@ -14,8 +14,8 @@ Embedded Processors"][2] by Alberto Liberal de los Rios. Notes weren't taken for
 every chapter so keep in mind that the book actually covers more topics than
 what's shown here.
 
-If you are considering buying the book, you might want to checkout this
-review[^1] before buying.
+If you are considering buying the book, you might want to checkout [this
+review][3] before buying.
 
 ## Character Drivers
 
@@ -186,5 +186,3 @@ review[^1] before buying.
 [2]: https://www.amazon.com/Linux-Driver-Development-Embedded-Processors/dp/1729321828
 [3]: https://programmador.com/posts/linux-driver-development-for-embedded-processors/
 [4]: https://unix.stackexchange.com/questions/715801/what-populates-the-sys-and-dev-directories
-
-[^1]: ["Linux Driver Development for Embedded Processors"][3]

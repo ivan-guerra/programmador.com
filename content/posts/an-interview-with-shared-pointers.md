@@ -141,7 +141,7 @@ Here are the key features starting from the top:
   the originally wrapped object via a `Reset()` call.
 
 You'll notice a friend `Swap()` method towards the end of the declaration.
-`Swap()` implements the copy-and-swap[^1] idiom. `Swap()` simplifies the
+`Swap()` implements the [copy-and-swap idiom][1]. `Swap()` simplifies the
 implementation of copy assignment and move construction/assignment. More on that
 later.
 
@@ -312,5 +312,3 @@ GitHub under [shared_ptr][2].
 
 [1]: https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom
 [2]: https://github.com/ivan-guerra/shared_ptr 
-
-[^1]: ["What's the copy-and-swap idiom?"][1]

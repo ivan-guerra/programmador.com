@@ -5,11 +5,11 @@ description: "Creating Caesar Cipher encode, decode, and cracking utils."
 tags: ["c++", "cli-tools"]
 ---
 
-The Caesar Cipher[^1] (CC) is a classic symmetric key[^2] algorithm dating back
-to the time of Julius Caesar. If you are new to cryptography, the Caesar Cipher
-is a great first crypto algorithm to learn. This post will walk through the
-details of implementing a CC encrypt/decrypt function. You'll then get a look at
-the internals of a CC code cracker.
+The [Caesar Cipher][1] (CC) is a classic [symmetric key][2] algorithm dating
+back to the time of Julius Caesar. If you are new to cryptography, the Caesar
+Cipher is a great first crypto algorithm to learn. This post will walk through
+the details of implementing a CC encrypt/decrypt function. You'll then get a
+look at the internals of a CC code cracker.
 
 ## Algorithm Description
 
@@ -54,7 +54,7 @@ key. To decrypt the message, your friends apply the same shifting process but in
 reverse. For example, the letter "c" in the ciphertext decrypts to \\((2 - 14)
 \mod 26 = 14\\) which maps to the letter "o."
 
-In general, the encryption and decryption formulas[^3] are:
+In general, the encryption and decryption formulas are:
 
 \\[E_{n}(x) = (x + n) \mod |\Sigma|\\]
 
@@ -67,12 +67,12 @@ the key, and \\(|\Sigma|\\) is the size of the alphabet.
 
 You can apply the CC encryption/decryption algorithm to any character set as
 long as you map each character to a unique integral value. In the world of
-computers and text, the ASCII[^4] character set is a perfect CC candidate. ASCII
-includes 128 characters each mapped to an integer in the range \\([0, 127]\\).
-The table below defines the ASCII character set. Only 95 out of 128 characters
-are printable.
+computers and text, the [ASCII character set][3] is a perfect CC candidate.
+ASCII includes 128 characters each mapped to an integer in the range \\([0,
+127]\\). The table below defines the ASCII character set. Only 95 out of 128
+characters are printable.
 
-[![ASCII Table](/posts/caesar-cipher/ascii-table.jpg#center)][5]
+[![ASCII Table](/posts/caesar-cipher/ascii-table.jpg#center)][4]
 
 Below is a C++ CC implementation that works with the ASCII alphabet:
 
@@ -183,8 +183,8 @@ KeyScoreMap AsciiDictionaryAttack(std::istream& is, std::istream& dict_is) {
 ```
 
 There's a lot to talk about here. Lets start with the types `WordSet` and
-`KeyScoreMap`. `WordSet` is a set of strings representing the most popular
-English words[^5] in lowercase form. Why a set? Using a set, you can determine
+`KeyScoreMap`. `WordSet` is a set of strings representing the [most popular
+English words][5] in lowercase form. Why a set? Using a set, you can determine
 whether a string is an English word with an average time complexity of
 \\(\mathcal{O}(1)\\).
 
@@ -215,15 +215,15 @@ in each translation as a percent value. The shift that produces the distribution
 closest to the expected distribution is the decryption key.
 
 How do you know the distribution of ASCII characters in English? Someone has
-already done the hard part[^7]. The linked project analyzes the Reuters-21578
-corpus[^8] to produce a table of ASCII frequencies[^9]. Note, some characters
+already done the [hard part][6]. The linked project analyzes the [Reuters-21578
+corpus][7] to produce a table of [ASCII frequencies][8]. Note, some characters
 aren't included in the table. You can assume the missing ASCII characters have a
 frequency of 0.
 
 How do you compare distributions? There are a number of ways. One method is to
 treat the frequency distribution as a vector. In this case, the vector has 128
 dimensions (one per ASCII character) where each dimension is a frequency
-represented as a percent value. You can compute the Manhattan Distance[^10]
+represented as a percent value. You can compute the [Manhattan Distance][9]
 between to vectors to get a measure of how similar they are. The formula looks
 like this:
 
@@ -323,26 +323,15 @@ knowledge of the expected distribution of alphabet characters. Regardless of its
 utility, the Caesar Cipher remains a fun algorithm to explore.
 
 The complete project source with build instructions, usage, etc. is available on
-GitHub under [caesar_cipher][11].
+GitHub under [caesar_cipher][10].
 
 [1]: https://en.wikipedia.org/wiki/Caesar_cipher#
 [2]: https://en.wikipedia.org/wiki/Symmetric-key_algorithm
-[3]: https://en.wikipedia.org/wiki/Caesar_cipher#Example
-[4]: https://en.wikipedia.org/wiki/ASCII
-[5]: https://en.wikipedia.org/wiki/ASCII#/media/File:USASCII_code_chart.png
-[6]: https://github.com/dolph/dictionary
-[7]: https://github.com/piersy/ascii-char-frequency-english?tab=readme-ov-file
-[8]: https://www.daviddlewis.com/resources/testcollections/reuters21578/
-[9]: https://github.com/piersy/ascii-char-frequency-english/blob/main/ascii_freq.txt
-[10]: https://simple.wikipedia.org/wiki/Manhattan_distance
-[11]: https://github.com/ivan-guerra/caesar_cipher
-
-[^1]: ["Caesar Cipher"][1]
-[^2]: ["Symmetric-key Algorithm"][2]
-[^3]: ["Caesar Cipher - Example"][3]
-[^4]: ["ASCII"][4]
-[^5]: ["List of the Most Common English Words"][6]
-[^7]: ["ASCII Character Frequencies in English"][7]
-[^8]: ["Reuters-21578"][8]
-[^9]: [ascii_freq.txt][9]
-[^10]: ["Manhattan Distance"][10]
+[3]: https://en.wikipedia.org/wiki/ASCII
+[4]: https://en.wikipedia.org/wiki/ASCII#/media/File:USASCII_code_chart.png
+[5]: https://github.com/dolph/dictionary
+[6]: https://github.com/piersy/ascii-char-frequency-english?tab=readme-ov-file
+[7]: https://www.daviddlewis.com/resources/testcollections/reuters21578/
+[8]: https://github.com/piersy/ascii-char-frequency-english/blob/main/ascii_freq.txt
+[9]: https://simple.wikipedia.org/wiki/Manhattan_distance
+[10]: https://github.com/ivan-guerra/caesar_cipher

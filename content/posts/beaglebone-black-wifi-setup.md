@@ -9,8 +9,8 @@ showToc: false
 When developing on the Beaglebone Black (BBB), it's handy to have the board on
 the network for when you want to SSH into it, install packages, etc. That said,
 you may not want to run an Ethernet cable from the BBB to a switch. Luckily, the
-BBB has support for a number of WiFi adapters[^1]. I purchased the EDIMAX
-EQ-7811UN[^2] adapter and set about trying to connect a BBB to my local network.
+BBB has support for a number of [WiFi adapters][1]. I purchased the [EDIMAX
+EQ-7811UN][2] adapter and set about trying to connect a BBB to my local network.
 This article walks through the steps required to get connected. These
 instructions also apply to the BBB wireless variants (that is, those BBBs with a
 wireless chip).
@@ -78,7 +78,7 @@ You should see `*AO` or `*AR` next to your network's name.
 connmanctl> quit
 ```
 
-11. Verify you're connected. Try pinging [gnu.org][3]:
+11. Verify you're connected. Try pinging `gnu.org`:
 ```bash
 ping gnu.org
 ```
@@ -93,10 +93,3 @@ connmanctl> config WIFI_HASH --ipv4 manual IP_ADDR SUBNET_MASK GATEWAY_ADDR
 
 [1]: https://elinux.org/Beagleboard:BeagleBoneBlack#WIFI_Adapters
 [2]: https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY
-[3]: https://www.gnu.org/
-
-[^1]: [BBB elinux.org][1] has a table summarizing what dongle/distro combos are
-    officially supported. I have used the [EDIMAX EW-7811UN][2] adapter with
-    success.
-[^2]: The [EDIMAX EW-7811UN][2] might be a little hard to come by these days. At
-    the time of this writing, there's still a couple up for sale on Amazon.

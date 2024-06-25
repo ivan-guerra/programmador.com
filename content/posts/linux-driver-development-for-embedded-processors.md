@@ -5,7 +5,7 @@ description: "A short review of \"Linux Driver Development for Embedded Processo
 tags: ["linux", "raspberrypi"]
 ---
 
-If you've already read through "Linux Device Drivers"[^1], it may be worth your
+If you've already read through ["Linux Device Drivers"][1], it may be worth your
 time to read a more focused Linux driver development textbook. ARM driver
 development has been popular for some time now and remains relevant today.
 ["Linux Driver Development for Embedded Processors"][2] (ELDD for short) gives a
@@ -24,8 +24,8 @@ This article dives into the details starting with processor support.
 ELDD gives you the choice of developing for one or more ARM processors: NXP
 iMX7D, Microchip SAMA5D2, and the Broadcom BCM2837. Unless you're willing to
 dish out well over $100, you will end up developing for the BCM2837. The BCM2837
-comes in the famous Raspberry Pi. ELDD specifically recommends the Raspberry Pi
-Model 3B+[^2].
+comes in the famous Raspberry Pi. ELDD specifically recommends the [Raspberry Pi
+Model 3B+][3].
 
 [![Raspberry Pi Model 3B+][4]][3]
 
@@ -47,8 +47,8 @@ those differences out where they matter.
 
 There's plenty of content out there online explaining what the device tree is
 and the role it plays in the kernel. Some good resources you can use in
-conjunction with ELDD are eLinux's "Device Tree Usage"[^3] wiki and Thomas
-Petazzoni's 2013 presentation "Device Tree for Dummies"[^4]. Petazzoni's
+conjunction with ELDD are eLinux's ["Device Tree Usage"][5] wiki and Thomas
+Petazzoni's 2013 presentation ["Device Tree for Dummies"][6]. Petazzoni's
 presentation is in particular worth the watch:
 
 {{< youtube m_NyYEBxfn8 >}}
@@ -68,8 +68,8 @@ Drivers" book which has you making in software devices, ELDD focuses on
 developing basic drivers for a variety of GPIO, I2C, and SPI devices.
 
 One gripe is that the book doesn't have an upfront listing of all the hardware
-required so you can buy it before reading. This issue is now fixed. A list of
-lab hardware[^5] exists on the book's GitHub repo. Unlike with the processors,
+required so you can buy it before reading. This issue is now fixed. A [list of
+lab hardware][7] exists on the book's GitHub repo. Unlike with the processors,
 *most* of the supporting hardware is affordable. A tip if you want to save some
 money. Don't buy the MIKROE ColorClick and Button R Click devices (a savings of
 over $50 after shipping). Using a $20 breadboard kit with LEDs, resistors, push
@@ -103,8 +103,8 @@ The book is particularly useful for those who learn through hands on work. The
 many labs included use real hardware and do a lot to reinforce the previous
 chapters' lessons. That said, this book is for an audience with prior experience
 in programming, electronics, and Linux usage in general. For those completely
-new to Linux kernel development, read ELDD in parallel to "Linux Kernel
-Development"[^6] by Robert Love. The mixture of theory and practical application
+new to Linux kernel development, read ELDD in parallel to ["Linux Kernel
+Development"][8] by Robert Love. The mixture of theory and practical application
 complement each other.
 
 You can find the ELDD project with complete source, build instructions, usage,
@@ -119,12 +119,3 @@ etc. on GitHub under [eldd][9].
 [7]: https://github.com/ALIBERA/linux_book_2nd_edition/blob/master/Practical_labs_hardware.pdf
 [8]: https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468
 [9]: https://github.com/ivan-guerra/eldd/tree/master
-
-[^1]: [Docker Assisted Driver Dev and LDD3][1]
-[^2]: [Raspberry Pi Model 3B+][3]
-[^3]: [Device Tree Usage][5]
-[^4]: [Device Tree for Dummies! - Thomas Petazzoni, Free Electrons][6]. Note,
-    Petazzoni has more modern videos and slides published through Bootlin.
-    You might consider checking those resources out first.
-[^5]: [Practical Labs Hardware][7]
-[^6]: [Linux Kernel Development][8]

@@ -67,7 +67,7 @@ that message/file signatures are one of GPG's many functions.
 Most Linux installations come with GPG pre-installed as a command-line (CLI)
 tool. Some distributions come with `gpg2` not `gpg`. With respect to key
 generation, `gpg2` is identical to `gpg`. If you care to learn about the
-differences between the two, see the FAQ[^1].
+differences between the two, see the [FAQ][1].
 
 What follows is a step-by-step on generating a RSA key pair you can use to sign
 commits and just about any other document:
@@ -78,7 +78,7 @@ commits and just about any other document:
 4. At the prompt, specify a key size of 4096 and press `Enter`.
 5. Press `Enter` to select the default of no expiration date.
 6. Follow the prompts to enter your ID info.
-7. Enter a secure password[^2].
+7. Enter a [secure password][2].
 8. Enter `gpg --list-keys` to view your newly minted key.
 
 ![GPG Key Generation](/posts/signing-git-commits-with-gpg/keygen.png#center)
@@ -189,8 +189,3 @@ isn't besmirched by some online hooligan, start signing your commits.
 [1]: https://www.gnupg.org/faq/whats-new-in-2.1.html
 [2]: https://wiki.archlinux.org/title/security#Choosing_secure_passwords
 [3]: https://github.com/settings/keys
-
-[^1]: If you're curious what's new in GPG2 versus GPG, the [GnuPG FAQ][1] has
-    you covered.
-[^2]: The Arch Linux Wiki has some good advice on [choosing secure
-    passwords][2].

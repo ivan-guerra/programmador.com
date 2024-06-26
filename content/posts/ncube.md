@@ -153,7 +153,17 @@ midpoint between \\(M_1\\) and end, \\(M_3\\). Continue applying this process
 recursively until you have generated the 7th midpoint, \\(M_7\\). The figure
 below illustrates the process.
 
-![Generating Edge Points](/posts/ncube/generating-edge-points.webp#center)
+```text 
+Start                                 M_1                                        End
+  -------------------------------------O------------------------------------------- 
+                                       |                                            
+                 M_2                   |                     M_3                    
+                  ---------------------+-----------------------                     
+                  O                                           O                     
+       M_4        |      M_5                       M_6        |       M_7           
+        ----------+--------                         ----------+---------            
+        O                 O                         O                  O
+```
 
 You want to generate midpoints in the order \\(M_1, M_2, M_3, ..., M_7\\). Put
 in other words, you need to generate the tree in breadth-first order.

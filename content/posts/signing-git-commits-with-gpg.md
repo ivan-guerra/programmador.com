@@ -81,7 +81,15 @@ commits and just about any other document:
 7. Enter a [secure password][2].
 8. Enter `gpg --list-keys` to view your newly minted key.
 
-![GPG Key Generation](/posts/signing-git-commits-with-gpg/keygen.png#center)
+```text
+> gpg --list-keys 
+[keyboxd]
+---------
+pub   rsa4096 2022-01-04 [SC]
+      EA76D0964E4D26EEB24CCBC57714EAED772DC391
+uid           [ultimate] Ivan Eduardo Guerra <ivan.eduardo.guerra@gmail.com>
+sub   rsa4096 2022-01-04 [E]
+```
 
 Highly recommend you export and backup your private key somewhere safe! The
 command to export your private key for backup is:
@@ -108,10 +116,18 @@ You'll first want to get your signing key. Run the following command:
 gpg --list-keys --keyid-format SHORT
 ```
 
-![Signkey](/posts/signing-git-commits-with-gpg/signkey.png#center)
+The output of `--list-keys` should look similar to what's shown below:
 
-The output of `--list-keys` should look similar to what's in the screenshot. The
-`rsa4096/XXXXXXXX` part is what you're interested in. The `XXXXXXXX` or
+```text
+[keyboxd]
+---------
+pub   rsa4096/772DC391 2022-01-04 [SC]
+      EA76D0964E4D26EEB24CCBC57714EAED772DC391
+uid         [ultimate] Ivan Eduardo Guerra <ivan.eduardo.guerra@gmail.com>
+sub   rsa4096/F54E5449 2022-01-04 [E]
+```
+
+The `rsa4096/XXXXXXXX` part is what you're interested in. The `XXXXXXXX` or
 `772DC391` in this example is the important bit. It's what Git refers to as your
 signkey.
 

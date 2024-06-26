@@ -113,7 +113,7 @@ etc. on GitHub under [eldd][9].
 [1]: https://programmador.com/posts/linux-device-drivers/
 [2]: https://www.amazon.com/Linux-Driver-Development-Embedded-Processors/dp/1729321828
 [3]: https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/
-[4]: /posts/linux-driver-development-for-embedded-processors/raspberry-pi-3b-plus.avif
+[4]: /posts/linux-driver-development-for-embedded-processors/raspberry-pi-3b-plus.avif#center
 [5]: https://elinux.org/Device_Tree_Usage 
 [6]: https://www.youtube.com/watch?v=m_NyYEBxfn8
 [7]: https://github.com/ALIBERA/linux_book_2nd_edition/blob/master/Practical_labs_hardware.pdf

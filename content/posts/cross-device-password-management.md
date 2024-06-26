@@ -40,8 +40,6 @@ to the next section.
 
 ## Setting Up a GPG Key
 
-[![GnuPG](/posts/cross-device-password-management/gnupg.png#center)][4]
-
 To work with `pass`, you need a gpg-id. If you need to make an ID, the [GNU
 Privacy Guard Manual][5] has you covered. Here's a quick summary of how to
 generate a 4096 bit RSA key:
@@ -55,7 +53,15 @@ generate a 4096 bit RSA key:
 7. Enter a [secure password][6].
 8. Enter `gpg --list-keys` to view your newly minted key.
 
-![GPG Key Generation](/posts/cross-device-password-management/keygen.png#center)
+```text
+> gpg --list-keys 
+[keyboxd]
+---------
+pub   rsa4096 2022-01-04 [SC]
+      EA76D0964E4D26EEB24CCBC57714EAED772DC391
+uid           [ultimate] Ivan Eduardo Guerra <ivan.eduardo.guerra@gmail.com>
+sub   rsa4096 2022-01-04 [E]
+```
 
 ## Password Database Creation and Git Support
 
@@ -260,7 +266,6 @@ meets the need on Android and Linux.
 [1]: https://haveibeenpwned.com/
 [2]: https://en.wikipedia.org/wiki/List_of_password_managers
 [3]: https://www.passwordstore.org/
-[4]: https://gnupg.org/
 [5]: https://www.gnupg.org/gph/en/manual/c14.html
 [6]: https://wiki.archlinux.org/title/security#Choosing_secure_passwords
 [7]: https://linux.die.net/man/1/xclip

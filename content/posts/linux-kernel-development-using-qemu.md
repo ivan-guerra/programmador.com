@@ -150,7 +150,7 @@ make O=/my/build/dir nconfig # Optionally configure additional kernel params
 make O=/my/build/dir -j$(nproc)
 ```
 
-The only oddity is perhaps the addition of `kvm_guest.config`[^5]. Building this
+The only oddity is perhaps the addition of `kvm_guest.config`. Building this
 config enables a number of Kernel-based Virtual Machine (KVM) options allowing
 the kernel to boot as a KVM guest. Also, re-directing the output of the build
 using the `O=` option to `make` isn't necessary but does keep your kernel source

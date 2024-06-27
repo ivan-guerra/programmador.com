@@ -228,13 +228,12 @@ running at 1Hz but if you ever decide to up the rate, repeated file IO is going
 to hurt performance.
 
 So what's the best way of controlling GPIOs from userspace these days? The
-answer is `libgpiod`[^3]. `libgpiod` uses the character device interface to the
+answer is `libgpiod`. `libgpiod` uses the character device interface to the
 GPIOs. You don't lose any of the functionality you had with the sysfs API and
 you don't have to deal with the ioctl-based kernel-userpace interaction
 directly. It even gets bonus points for coming with C++ bindings and a set of
 useful examples. It's hard to misuse the API since it throws exceptions for
-every imaginable error. The time efficiency in toggling a GPIO is also
-optimal[^4].
+every imaginable error. The time efficiency in toggling a GPIO is also optimal.
 
 ## The Kuramoto Model
 

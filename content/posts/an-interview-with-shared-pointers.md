@@ -282,7 +282,7 @@ void SharedPtr<T>::Reset(T* data) {
 }
 ```
 
-The copy-and-swap[^1] idiom helps implement copy/move assignment and the move
+The copy-and-swap idiom helps implement copy/move assignment and the move
 constructor. Critical to the use of this idiom is the implementation of a
 `Swap()` function that can swap the state of two `SharedPtr` objects:
 

@@ -1,9 +1,10 @@
 ---
-title: "Notes On \"Linux Driver Development for Embedded Processors\""
+title: Linux Driver Development for Embedded Processors 2nd Edition
 date: 2024-02-15T21:16:49-08:00
 description: "My collection of notes on Rio's \"Linux Driver Development for
 Embedded Processors\"."
 tags: ["c", "c++", "linux", "notes"]
+series: ["notes"]
 ---
 
 This is the second [installment][1] in a series of posts where I share notes
@@ -182,7 +183,7 @@ review][3] before buying.
   expiry timers.
 
 
-[1]: https://programmador.com/tags/notes/ 
+[1]: https://programmador.com/series/notes/ 
 [2]: https://www.amazon.com/Linux-Driver-Development-Embedded-Processors/dp/1729321828
 [3]: https://programmador.com/posts/linux-driver-development-for-embedded-processors/
 [4]: https://unix.stackexchange.com/questions/715801/what-populates-the-sys-and-dev-directories

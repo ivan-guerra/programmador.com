@@ -1,8 +1,9 @@
 ---
-title: "Notes On \"What Every Programmer Should Know About Memory\""
+title: What Every Programmer Should Know About Memory
 date: 2024-02-14T20:47:58-08:00
 description: "My collection of notes on Drepper's 2007 LWN article on memory."
 tags: ["c", "c++", "linux", "notes"]
+series: ["notes"]
 ---
 
 This is the first [installment][5] in a series of posts where I share notes
@@ -211,4 +212,4 @@ This section is a bit outdated. Probably the most relevant tool mentioned is
 [2]: https://valgrind.org/docs/manual/cg-manual.html
 [3]: https://valgrind.org/docs/manual/cl-manual.html
 [4]: https://kcachegrind.sourceforge.net/html/Home.html
-[5]: https://programmador.com/tags/notes/ 
+[5]: https://programmador.com/series/notes/ 

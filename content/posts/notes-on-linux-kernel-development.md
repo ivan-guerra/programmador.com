@@ -1,8 +1,9 @@
 ---
-title: "Notes On \"Linux Kernel Development\""
+title: Linux Kernel Development 3rd Edition
 date: 2024-04-04T07:37:02-07:00
 description: "My collection of notes on Robert Love's \"Linux Kernel Development\"."
 tags: ["c", "linux", "notes"]
+series: ["notes"]
 ---
 
 This is the third [installment][1] in a series of posts where I share notes
@@ -723,5 +724,5 @@ Linux kernel development:
 * Always assume and program for an SMP/preempt/highmem system. This keeps you
   safe in any kernel/HW configuration.
 
-[1]: https://programmador.com/tags/notes/ 
+[1]: https://programmador.com/series/notes/ 
 [2]: https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468

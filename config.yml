@@ -62,6 +62,8 @@ params:
     buttons:
       - name: Posts
         url: "/posts"
+      - name: Series
+        url: "/series"
       - name: Tags
         url: "/tags"
   socialIcons:

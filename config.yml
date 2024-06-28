@@ -42,6 +42,10 @@ params:
   showtoc: true
   tocopen: true
 
+  mainSections:
+    - posts
+    - series
+
   assets:
     disableHLJS: true
     disableFingerprinting: true

@@ -1,6 +1,6 @@
 baseURL: "https://programmador.com/"
 title: "@ieg"
-paginate: 5
+paginate: 10
 theme: "hugo-PaperMod"
 copyright: "All rights reserved, Ivan Eduardo Guerra"
 googleAnalytics: "G-XEENY573SL"

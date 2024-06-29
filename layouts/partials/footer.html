@@ -1,10 +1,34 @@
-{{- if not (.Param "hideFooter") }}
-<footer class="footer">
+{{- if not ( .Param "hideFooter") }}
+<!-- Added fixed padding -->
+<footer class="footer" style="padding-top: 18px; padding-bottom: 18px">
+    <!-- No social icons in footer of profile mode homepage (icons are already in page content) -->
+    {{- if not (and site.Params.profileMode.enabled .IsHome) }}
+    {{- partial "social_icons.html" site.Params.socialIcons -}}
+    {{- end }}
+
     {{- if site.Copyright }}
     <span>{{ site.Copyright | markdownify }}</span>
     {{- else }}
     <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
     {{- end }}
+
+    <!-- Don't display Powered by Hugo & PaperMod on homepage -->
+    {{- if not .IsHome }}
+    <span>
+        <!-- Add separator character -->
+        •
+        Powered by
+        <!-- Remove target="_blank", which opens in new window or tab.
+        Also remove rel="noopener noreferrer" -->
+        <a href="https://gohugo.io/">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/">PaperMod</a>
+    </span>
+    {{- end }}
+    <!-- Add Privacy Policy link on every page -->
+    <span>
+        •
+        <a href="/privacy">Privacy Policy</a>
+    </span>
 </footer>
 {{- end }}
 
@@ -16,6 +40,7 @@
 </a>
 {{- end }}
 
+{{ partial "math.html" . }}
 {{- partial "extend_footer.html" . }}
 
 <script>
@@ -127,7 +152,6 @@
         }
     });
 </script>
-
-{{ partial "math.html" . }}
-
 {{- end }}
+
+{{/* End ToC Scroll */}}

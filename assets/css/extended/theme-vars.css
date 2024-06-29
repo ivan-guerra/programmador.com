@@ -1,110 +1,112 @@
 :root {
-    --gap: 24px;
-    --content-gap: 20px;
-    --nav-width: 1024px;
-    --main-width: 720px;
-    --header-height: 60px;
-    --footer-height: 60px;
-    --radius: 8px;
-    --theme: rgb(255, 255, 255);
-    --entry: rgb(255, 255, 255);
-    --primary: rgb(30, 30, 30);
-    --secondary: rgb(108, 108, 108);
-    --tertiary: rgb(214, 214, 214);
-    --content: rgb(31, 31, 31);
-    --hljs-bg: rgb(28, 29, 33);
-    --code-bg: rgb(245, 245, 245);
-    --border: rgb(238, 238, 238);
+  --gap: 24px;
+  --content-gap: 20px;
+  --nav-width: 1024px;
+  --main-width: 720px;
+  --header-height: 60px;
+  --footer-height: 60px;
+  --radius: 8px;
+  --theme: rgb(255, 255, 255);
+  --entry: rgb(255, 255, 255);
+  --primary: rgb(30, 30, 30);
+  --secondary: rgb(108, 108, 108);
+  --tertiary: rgb(214, 214, 214);
+  --content: rgb(31, 31, 31);
+  --hljs-bg: rgb(28, 29, 33);
+  --code-bg: rgb(245, 245, 245);
+  --border: rgb(238, 238, 238);
 }
 
 .dark {
-    --theme: rgb(9, 10, 12);
-    --entry: rgb(26, 26, 31);
-    --primary: rgb(218, 218, 219);
-    --secondary: rgb(155, 156, 157);
-    --tertiary: rgb(65, 66, 68);
-    --content: rgb(196, 196, 197);
-    --hljs-bg: rgb(18, 18, 18);
-    --code-bg: rgb(55, 56, 62);
-    --border: rgb(51, 51, 51);
+  --theme: rgb(9, 10, 12);
+  --entry: rgb(26, 26, 31);
+  --primary: rgb(218, 218, 219);
+  --secondary: rgb(155, 156, 157);
+  --tertiary: rgb(65, 66, 68);
+  --content: rgb(196, 196, 197);
+  --hljs-bg: rgb(18, 18, 18);
+  --code-bg: rgb(55, 56, 62);
+  --border: rgb(51, 51, 51);
 }
 
 .list {
-    background: var(--code-bg);
+  background: var(--code-bg);
 }
 
 .dark.list {
-    background: var(--theme);
+  background: var(--theme);
 }
 
 @font-face {
-    font-family: 'Berkeley Mono';
-    src: url('/fonts/BerkeleyMono-Regular.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 400;
-    text-rendering: optimizeLegibility;
+  font-family: "Berkeley Mono";
+  src: url("/fonts/BerkeleyMono-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
 }
 
 @font-face {
-    font-family: 'Berkeley Mono';
-    src: url('/fonts/BerkeleyMono-Italic.woff2') format('woff2');
-    font-style: italic;
-    font-weight: 400;
-    text-rendering: optimizeLegibility;
+  font-family: "Berkeley Mono";
+  src: url("/fonts/BerkeleyMono-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
 }
 
 @font-face {
-    font-family: 'Berkeley Mono';
-    src: url('/fonts/BerkeleyMono-Bold.woff2') format('woff2');
-    font-style: normal;
-    font-weight: 700;
-    text-rendering: optimizeLegibility;
+  font-family: "Berkeley Mono";
+  src: url("/fonts/BerkeleyMono-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
 }
 
 @font-face {
-    font-family: 'Berkeley Mono';
-    src: url('/fonts/BerkeleyMono-BoldItalic.woff2') format('woff2');
-    font-style: italic;
-    font-weight: 700;
-    text-rendering: optimizeLegibility;
+  font-family: "Berkeley Mono";
+  src: url("/fonts/BerkeleyMono-BoldItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
 }
 
 .post-content code {
-    margin: auto 4px;
-    padding: 4px 6px;
-    font-family: 'Berkeley Mono';
-    font-size: 14px;
-    line-height: 1.5;
-    background: var(--code-bg);
-    border-radius: 2px;
+  margin: auto 4px;
+  padding: 4px 6px;
+  font-family: "Berkeley Mono";
+  font-size: 14px;
+  line-height: 1.5;
+  background: var(--code-bg);
+  border-radius: 2px;
 }
 
-body, input, textarea {
-    font-family: 'Berkeley Mono';
-    font-size: 16px;
+body,
+input,
+textarea {
+  font-family: "Berkeley Mono";
+  font-size: 16px;
 }
 
 .post-content h1 {
-    margin: 32px auto 24px;
-    font-size: 32px;
+  margin: 32px auto 24px;
+  font-size: 32px;
 }
 
 .post-content h2 {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .post-content h3 {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .post-content h4 {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .post-content h5 {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .post-content h6 {
-    font-size: 10px;
+  font-size: 10px;
 }

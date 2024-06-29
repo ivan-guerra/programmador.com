@@ -129,7 +129,7 @@ markup:
     style: fruity
 
 outputs:
-    home:
-        - HTML
-        - RSS
-        - JSON
+  home:
+    - HTML
+    - RSS
+    - JSON

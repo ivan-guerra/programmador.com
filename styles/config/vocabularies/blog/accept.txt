@@ -12,6 +12,7 @@ ASM
 ASMR
 Assembler
 async
+AUR
 autoconnect
 BBB(s)?
 [Bb]ignum
@@ -135,6 +136,7 @@ Lookaside
 los
 LOTR
 LSB([Ss])?
+LTS
 LWN
 Makefile(s)?
 malloc

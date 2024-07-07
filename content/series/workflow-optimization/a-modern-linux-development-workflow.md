@@ -4,7 +4,7 @@ date: 2024-06-28T12:43:44-04:00
 description: "The first in a series of articles on how to setup a modern Linux
 development workflow."
 tags: ["linux", "workflow optimization"]
-series: ["workflow-optimization"]
+series: ["workflow optimization"]
 ---
 
 As a Linux developer, you have probably spent some time optimizing your

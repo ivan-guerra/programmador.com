@@ -228,7 +228,7 @@ If the user presses any key, the application exits.
 
 Here's what the screensaver looks like in action:
 
-![Binary Rain](/posts/binary-rain/neo.gif#center)
+![Binary Rain](/posts/2023/binary-rain/neo.gif#center)
 
 ## Conclusion
 

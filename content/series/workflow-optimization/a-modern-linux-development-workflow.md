@@ -5,6 +5,7 @@ description: "The first in a series of articles on how to setup a modern Linux
 development workflow."
 tags: ["linux", "workflow optimization"]
 series: ["workflow optimization"]
+ShowPostNavLinks: false
 ---
 
 As a Linux developer, you have probably spent some time optimizing your

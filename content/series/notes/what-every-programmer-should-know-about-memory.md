@@ -4,6 +4,7 @@ date: 2024-02-14T20:47:58-08:00
 description: "My collection of notes on Drepper's 2007 LWN article on memory."
 tags: ["c", "c++", "linux", "notes"]
 series: ["notes"]
+ShowPostNavLinks: false
 ---
 
 This is the first [installment][5] in a series of posts where I share notes

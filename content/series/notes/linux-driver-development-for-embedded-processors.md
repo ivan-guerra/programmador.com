@@ -5,6 +5,7 @@ description: "My collection of notes on Rio's \"Linux Driver Development for
 Embedded Processors\"."
 tags: ["c", "c++", "linux", "notes"]
 series: ["notes"]
+ShowPostNavLinks: false
 ---
 
 This is the second [installment][1] in a series of posts where I share notes

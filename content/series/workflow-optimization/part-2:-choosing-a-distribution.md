@@ -1,5 +1,5 @@
 ---
-title: "Choosing a Distribution"
+title: "Part 2: Choosing a Distribution"
 date: 2024-07-06T11:22:22-04:00
 description: "Selecting and installing a Linux distro."
 tags: ["linux", "workflow optimization"]

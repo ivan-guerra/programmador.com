@@ -2,6 +2,7 @@ ABBA
 ADC(s)?
 agent
 AKA
+(!?)ALSA
 API(s)?
 Architecting
 arg
@@ -44,6 +45,7 @@ ccache
 CFQ
 cgroup(s)?
 CImg
+concat
 config
 CPP
 CPU(s)?
@@ -61,19 +63,23 @@ defacto
 dentries
 dentry
 dereferenc[(e)(ing)]
+DE(s)?
 devtmpfs
 dhb
 DHCP
 disabled
 DMA
+dmenu
 Dockerfile
 Docker('s)?
 DOS
 dotfile(s)?
 Doxygen
 DRAM
+drawtext
 Drepper
 (!?)DT
+dwm
 (!?)ELDD
 ELF
 eLinux('s)?
@@ -81,6 +87,9 @@ endianness
 (!?)ENTER
 enum
 featureful
+feh
+ffmpeg
+ffplay
 FIFO
 FLAC
 FOV
@@ -122,6 +131,7 @@ JPEG
 JVM
 kbhell
 KCachegrind
+KDE
 keylogger
 kfifo
 kobject
@@ -177,6 +187,7 @@ PCI
 performant
 Petazzoni('s)?
 PGP
+picom
 PID
 pinctrl
 pixel(s)?
@@ -218,6 +229,7 @@ SPI
 SRAM
 src
 SSH('ing)?
+SSID
 [Ss]ierpinski
 [Ss]ignkey
 [Ss]teghide
@@ -268,6 +280,7 @@ vszzc
 WAV
 WAVE
 WiFi
+WM(s)?
 wordsmithing
 [Ww]aitqueue(s)?
 [Ww]akeup

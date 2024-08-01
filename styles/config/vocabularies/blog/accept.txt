@@ -45,6 +45,7 @@ ccache
 CFQ
 cgroup(s)?
 CImg
+CLion
 concat
 config
 CPP
@@ -83,12 +84,14 @@ dwm
 (!?)ELDD
 ELF
 eLinux('s)?
+Emacs
 endianness
 (!?)ENTER
 enum
 featureful
 feh
 ffmpeg
+[Ff]ormatters
 ffplay
 FIFO
 FLAC
@@ -97,10 +100,12 @@ Framebuffer
 framerate
 Frontside
 game_of_life
+gatekeeping
 (!?)gcc
 gfp
 [Gg]nu
 GIL
+gitsigns
 glibc('s)?
 GMP
 (!?)GOOD
@@ -123,10 +128,12 @@ iMX7D
 initramfs
 inlined
 inode
+IRC
 IRQ
 ISA
 ISR(s)?
 ITU
+JetBrains
 JPEG
 JVM
 kbhell
@@ -146,7 +153,9 @@ Lookaside
 los
 LOTR
 LSB([Ss])?
+LSP(s)?
 LTS
+Lua
 LWN
 Makefile(s)?
 malloc
@@ -176,6 +185,8 @@ NTP
 NULL
 NUMA
 numpy
+NVChad
+Nvdash
 NXP
 NXT
 Ogness('s)?
@@ -205,6 +216,7 @@ Raphson
 reentrant
 reinstallation
 RGB
+ripgrep
 ROM
 rootfs
 [Rr]eal-time
@@ -261,6 +273,7 @@ Ulam
 Ulrich
 uncached
 uncomment
+unergonomic
 uniprocessor
 Unix's
 unmerg[(e)(ed)(ing)]
@@ -274,6 +287,7 @@ userland
 Valgrind
 VCS
 VFS
+vimscript
 virtualiz[(es)(ing)]
 vruntime(s)?
 vszzc

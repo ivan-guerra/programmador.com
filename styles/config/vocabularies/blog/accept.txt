@@ -73,6 +73,7 @@ DMA
 dmenu
 Dockerfile
 Docker('s)?
+doctest
 DOS
 dotfile(s)?
 Doxygen
@@ -107,6 +108,7 @@ gfp
 GIL
 gitsigns
 glibc('s)?
+globals
 GMP
 (!?)GOOD
 Gosper
@@ -118,6 +120,7 @@ GUI(s)?
 hackbench
 hardcode
 [Hh]uffman
+hotspot(s)?
 HOWTO
 icache
 (i?)GNU
@@ -139,6 +142,7 @@ JVM
 kbhell
 KCachegrind
 KDE
+Kernighan
 keylogger
 kfifo
 kobject
@@ -179,6 +183,7 @@ Netwide
 noisey
 nonblocking
 nondefault
+nonportable
 NOOP
 Northbridge
 NTP
@@ -205,13 +210,16 @@ pixel(s)?
 PNG
 POSIX
 [Pp]laintext
+[Pp]recompute
 [Pp]refault
 [Pp]rimality
 preemptible
 prefetch(s)?
 preprogrammed
+profiler(s)?
 PulseAudio
 QEMU
+quicksort
 Raphson
 reentrant
 reinstallation
@@ -250,6 +258,7 @@ steganography
 STEM
 STL('s)?
 STMicroelectronics
+subexpression(s)?
 submillisecond
 subtree(s)?
 subtriangle

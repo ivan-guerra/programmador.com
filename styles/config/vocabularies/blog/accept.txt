@@ -42,6 +42,7 @@ ccache
 [Cc]omputerphile
 [Cc]ontainerization
 [Cc]osmo
+cellular_textures
 CFQ
 cgroup(s)?
 CImg
@@ -51,6 +52,7 @@ config
 CPP
 CPU(s)?
 crypto
+ctext
 cyber
 Cyclictest
 CYMK
@@ -135,6 +137,7 @@ IRC
 IRQ
 ISA
 ISR(s)?
+ith
 ITU
 JetBrains
 JPEG

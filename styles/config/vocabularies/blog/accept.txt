@@ -1,5 +1,17 @@
 ABBA
+firemaking
+rsbot
+fletching
+bezmouse
+Bezier
+pyHM's
+[Bb]otting
+gameplay
+scriptable
+Jagex
+botters
 ADC(s)?
+VPN
 agent
 AKA
 (!?)ALSA
@@ -238,7 +250,7 @@ RTC
 RTFM
 RTOS(es)?
 RuneLite
-Runescape
+RuneScape
 runqueue(s)?
 SATA
 schedulable

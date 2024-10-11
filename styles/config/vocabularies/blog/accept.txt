@@ -1,4 +1,6 @@
 ABBA
+VNC
+hostname
 firemaking
 rsbot
 fletching

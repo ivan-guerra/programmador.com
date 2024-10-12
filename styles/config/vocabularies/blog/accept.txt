@@ -1,19 +1,5 @@
 ABBA
-VNC
-hostname
-firemaking
-rsbot
-fletching
-bezmouse
-Bezier
-pyHM's
-[Bb]otting
-gameplay
-scriptable
-Jagex
-botters
 ADC(s)?
-VPN
 agent
 AKA
 (!?)ALSA
@@ -31,8 +17,11 @@ AUR
 autoconnect
 BBB(s)?
 [Bb]ignum
+[Bb]otting
 Beagle[Bb]one
 beta
+Bezier
+bezmouse
 BFS
 BIOS
 bitcount
@@ -43,6 +32,7 @@ bookkeep
 boolean
 Bootlin
 bootloader
+botters
 BST
 busybox
 bzImage
@@ -54,6 +44,7 @@ ccache
 [Cc][Mm]ake
 [Cc]odebook
 [Cc]omputerphile
+[Cc]onfig
 [Cc]ontainerization
 [Cc]osmo
 cellular_textures
@@ -62,7 +53,6 @@ cgroup(s)?
 CImg
 CLion
 concat
-config
 CPP
 CPU(s)?
 crypto
@@ -111,12 +101,16 @@ ffmpeg
 [Ff]ormatters
 ffplay
 FIFO
+firemaking
 FLAC
+fletching
 FOV
 Framebuffer
 framerate
 Frontside
+Fwding
 game_of_life
+gameplay
 gatekeeping
 (!?)gcc
 gfp
@@ -135,6 +129,7 @@ gsync
 GUI(s)?
 hackbench
 hardcode
+[Hh]ostname
 [Hh]uffman
 hotspot(s)?
 HOWTO
@@ -150,9 +145,11 @@ inode
 IRC
 IRQ
 ISA
+ISP(s)?
 ISR(s)?
 ith
 ITU
+Jagex
 JetBrains
 JPEG
 JVM
@@ -166,6 +163,7 @@ kobject
 kthreads
 Kuramoto
 KVM
+LAN
 LaTeX
 LBAOD
 LED(s)?
@@ -230,11 +228,13 @@ POSIX
 [Pp]recompute
 [Pp]refault
 [Pp]rimality
+[Pp]ubkey(s)?
 preemptible
 prefetch(s)?
 preprogrammed
 profiler(s)?
 PulseAudio
+pyHM's
 QEMU
 quicksort
 Raphson
@@ -247,6 +247,7 @@ rootfs
 [Rr]eal-time
 [Rr]epo
 RS3
+rsbot
 RSCW('s)?
 RTC
 RTFM
@@ -256,6 +257,7 @@ RuneScape
 runqueue(s)?
 SATA
 schedulable
+scriptable
 SDL
 SDRAM
 shared_ptr
@@ -315,6 +317,8 @@ VCS
 VFS
 vimscript
 virtualiz[(es)(ing)]
+VNC
+VPN
 vruntime(s)?
 vszzc
 WAV
@@ -327,6 +331,7 @@ wordsmithing
 [Ww]orkqueue(s)?
 xclip
 XFCE
+Xfinity
 x_p
 x_r
 yeet

@@ -12,7 +12,7 @@
   --secondary: rgb(108, 108, 108);
   --tertiary: rgb(214, 214, 214);
   --content: rgb(31, 31, 31);
-  --hljs-bg: rgb(28, 29, 33);
+  --code-block-bg: rgb(46, 46, 51);
   --code-bg: rgb(245, 245, 245);
   --border: rgb(238, 238, 238);
 }
@@ -24,13 +24,13 @@
   --secondary: rgb(155, 156, 157);
   --tertiary: rgb(65, 66, 68);
   --content: rgb(196, 196, 197);
-  --hljs-bg: rgb(18, 18, 18);
+  --code-block-bg: rgb(18, 18, 18);
   --code-bg: rgb(55, 56, 62);
   --border: rgb(51, 51, 51);
 }
 
 .list {
-  background: var(--code-bg);
+  background: var(--code-block-bg);
 }
 
 .dark.list {
@@ -101,7 +101,7 @@
   font-family: "Berkeley Mono";
   font-size: 14px;
   line-height: 1.5;
-  background: var(--code-bg);
+  background: var(--code-block-bg);
   border-radius: 2px;
 }
 

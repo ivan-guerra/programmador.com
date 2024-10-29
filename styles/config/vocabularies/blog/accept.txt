@@ -23,6 +23,7 @@ beta
 Bezier
 bezmouse
 BFS
+Bilokon
 BIOS
 bitcount
 bitmask
@@ -34,6 +35,7 @@ Bootlin
 bootloader
 botters
 BST
+Burak 
 busybox
 bzImage
 Cachegrind
@@ -43,8 +45,10 @@ ccache
 [Cc]iphertext
 [Cc][Mm]ake
 [Cc]odebook
+[Cc]olocation
 [Cc]omputerphile
 [Cc]onfig
+[Cc]onstexpr
 [Cc]ontainerization
 [Cc]osmo
 cellular_textures
@@ -55,6 +59,7 @@ CLion
 concat
 CPP
 CPU(s)?
+CRTP
 crypto
 ctext
 cyber
@@ -95,6 +100,7 @@ Emacs
 endianness
 (!?)ENTER
 enum
+failover
 featureful
 feh
 ffmpeg
@@ -105,6 +111,7 @@ firemaking
 FLAC
 fletching
 FOV
+FPGA(s)?
 Framebuffer
 framerate
 Frontside
@@ -120,6 +127,7 @@ gitsigns
 glibc('s)?
 globals
 GMP
+Godbolt('s)?
 (!?)GOOD
 Gosper
 GPIO
@@ -127,15 +135,19 @@ grayscale
 GRUB
 gsync
 GUI(s)?
+Gunduz
 hackbench
 hardcode
+HFT
 [Hh]ostname
+[Hh]otpath
 [Hh]uffman
 hotspot(s)?
 HOWTO
 icache
 (i?)GNU
 (i?)GPG
+[Ii]nlining
 [Ii]nterruptible
 (?i)iso
 iMX7D
@@ -168,6 +180,7 @@ LaTeX
 LBAOD
 LED(s)?
 libc
+LMAX
 Lookaside
 los
 LOTR
@@ -215,6 +228,7 @@ OSADL
 OSRS
 OSTEP
 PCI
+perf
 performant
 Petazzoni('s)?
 PGP
@@ -229,8 +243,10 @@ POSIX
 [Pp]refault
 [Pp]rimality
 [Pp]ubkey(s)?
+preallocated
 preemptible
 prefetch(s)?
+preload
 preprogrammed
 profiler(s)?
 PulseAudio
@@ -260,7 +276,9 @@ schedulable
 scriptable
 SDL
 SDRAM
+SEC
 shared_ptr
+signedness
 SLOC
 SMP
 Southbridge
@@ -271,6 +289,7 @@ SSH('ing)?
 SSID
 [Ss]ierpinski
 [Ss]ignkey
+[Ss]lowpath
 [Ss]teghide
 Stanislaw
 steganography
@@ -288,6 +307,7 @@ Tektronix
 textfield
 tickless
 timeslice
+timestamp(ing)?
 TLB(s)?
 TLS
 Torvald('s)?
@@ -299,9 +319,11 @@ UID(s)?
 UIO
 Ulam
 Ulrich
+UML
 uncached
 uncomment
 unergonomic
+unhedged
 uniprocessor
 Unix's
 unmerg[(e)(ed)(ing)]

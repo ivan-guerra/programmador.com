@@ -302,8 +302,12 @@ requires thought. Visualization is the least of your worries when libraries such
 as Boost's GIL make writing images pixel-by-pixel a breeze. The end result is
 satisfying though. The lines in the Ulam spiral image are striking.
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [ulam_spiral][8].
+The complete project source is available on GitHub under [ulam_spiral][8]. Note,
+this project has since been rewritten in Rust. There were a number of benefits
+to the rewrite including support for more image formats, better unit testing,
+and benchmarking to name a few. The Rust version of the program uses the Sieve
+of Eratosthenes for primality checking. The performance of the Rust
+implementation is comparable to that of the original C++ implementation.
 
 [1]: https://en.wikipedia.org/wiki/Ulam_spiral#
 [2]: https://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/

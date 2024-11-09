@@ -153,8 +153,11 @@ With some basic math and computer science, you can write a CLI tool to help you
 explore the "cellular texture space." The end result: some neat looking
 pictures.
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [cellular_textures][4].
+The complete project source is available on GitHub under [cellular_textures][4].
+Note, this project has since been rewritten in Rust. The Rust version of the
+program uses a K-D tree for nearest neighbor searches exclusively. The
+performance of the Rust implementation is comparable to that of the original C++
+implementation.
 
 [1]: https://blackpawn.com/texts/cellular/default.html#:~:text=Making%20Cellular%20Textures&text=These%20textures%20are%20all%20based,values%20to%20determine%20a%20color.
 [2]: https://en.wikipedia.org/wiki/K-d_tree

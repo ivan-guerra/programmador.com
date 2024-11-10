@@ -320,8 +320,9 @@ dictionary to perform look ups on. The frequency analysis attack depends on
 knowledge of the expected distribution of alphabet characters. Regardless of its
 utility, the Caesar Cipher remains a fun algorithm to explore.
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [caesar_cipher][10].
+The complete project source is available on GitHub under [caesar_cipher][10].
+Note, this project has since been rewritten in Rust. The Rust version of the
+project includes more testing but is otherwise a straight port of the C++.
 
 [1]: https://en.wikipedia.org/wiki/Caesar_cipher#
 [2]: https://en.wikipedia.org/wiki/Symmetric-key_algorithm

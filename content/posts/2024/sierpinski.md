@@ -209,8 +209,10 @@ significantly making it possible to generate higher degree triangles in a
 reasonable amount of time. It's also nice to flex on the original textbook's
 `System.out.println()` triangle by making a ncurses based visualization.
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [sierpinski][4].
+The complete project source is available on GitHub under [sierpinski][4]. Note,
+this project has since been rewritten in Rust. The Rust version of the project
+replaces ncurses with the crossterm crate. The crossterm crate makes it possible
+to build and run the program on both Windows and Linux!
 
 [1]: https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle#
 [2]: https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle#Chaos_game

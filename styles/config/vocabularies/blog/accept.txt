@@ -59,6 +59,7 @@ CLion
 concat
 CPP
 CPU(s)?
+crossterm
 CRTP
 crypto
 ctext

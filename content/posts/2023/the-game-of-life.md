@@ -179,8 +179,10 @@ simple makes it so there aren't too many hurdles when it comes to implementing
 the core game logic. Rendering is dead simple considering the perfect match
 between the main game data structure, a 2D board, and ncurses' window model.
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [game_of_life][4].
+The complete project source is available on GitHub under [game_of_life][4].
+Note, this project has since been rewritten in Rust. The Rust version includes
+some improvements namely automatic centering of the initial game state and
+improved unit test coverage.
 
 [1]: https://adventofcode.com/
 [2]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life

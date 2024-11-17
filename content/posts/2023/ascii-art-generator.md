@@ -127,10 +127,9 @@ finish. Even more surprising was how simple it was to get such a satisfying
 result (sweet ASCII images) with just a handful of insights and a number of open
 source libraries.
 
-The complete source with build instructions, usage, etc. is available on GitHub
-under [ascii_art_gen][5]. For those familiar with Docker, included with the
-project are step-by-step instructions on how to run `asciigen` from within a
-Docker container.
+Note, this project has since been rewritten in Rust and renamed `aart`. The
+complete source is available on GitHub under [aart][5]. The Rust version of the
+project includes more testing but is otherwise a straight port of the C++.
 
 [1]: https://www.youtube.com/@Raphson
 [2]: https://cimg.eu/

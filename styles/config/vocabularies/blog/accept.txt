@@ -205,6 +205,7 @@ multithreaded
 mutex(es)?
 mux
 NASM
+nconv
 ncube
 Netwide
 [Nn]curses

@@ -232,10 +232,12 @@ was relatively straightforward. I credit the simplicity to identifying early on
 the primary use cases and not tacking on too many bells and whistles along the
 way.
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [dhb][4].
+Note, this project has since been rewritten in Rust and renamed to `nconv`. The
+complete project source is available on GitHub under [nconv][4]. The Rust
+version of the project includes more testing but is otherwise a straight port of
+the C++.
 
 [1]: https://gmplib.org
 [2]: https://gmplib.org/manual/C_002b_002b-Class-Interface
 [3]: https://cs.stackexchange.com/questions/10318/the-math-behind-converting-from-any-base-to-any-base-without-going-through-base
-[4]: https://github.com/ivan-guerra/dhb/tree/master
+[4]: https://github.com/ivan-guerra/nconv/tree/master

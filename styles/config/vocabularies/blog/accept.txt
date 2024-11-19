@@ -295,6 +295,7 @@ SSID
 [Ss]lowpath
 [Ss]teghide
 Stanislaw
+steg
 steganography
 STEM
 STL('s)?

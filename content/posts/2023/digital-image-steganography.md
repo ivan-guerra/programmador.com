@@ -275,8 +275,10 @@ doesn't disappoint in its effectiveness in secretly embedding one image within
 another. Interested in a more serious steganography tool? Highly recommend
 checking out a free and open source tool such as [steghide][7].
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [steganography][8].
+Note, this project has since been rewritten in Rust and renamed to `steg`. The
+complete project source is available on GitHub under [steg][8]. The Rust version
+of the project includes more testing, support for additional image formats, and
+the ability to chose the number of bits to use for the merge/unmerge operation.
 
 [1]: https://www.youtube.com/@Computerphile
 [2]: https://www.youtube.com/watch?v=TWEXCYQKyDc
@@ -285,4 +287,4 @@ GitHub under [steganography][8].
 [5]: https://github.com/ivan-guerra/steganography/tree/master/resources
 [6]: https://github.com/ivan-guerra/steganography/blob/master/resources/unmerged.jpg
 [7]: https://steghide.sourceforge.net/documentation/manpage.php
-[8]: https://github.com/ivan-guerra/steganography/tree/master
+[8]: https://github.com/ivan-guerra/steg/tree/master

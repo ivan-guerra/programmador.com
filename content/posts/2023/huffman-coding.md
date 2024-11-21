@@ -476,8 +476,9 @@ any files that don't fit in memory. That said, the core concepts are there.
 Playing around with the tool, you'll find some files compress down to 50% of
 their original size!
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [huffman][5].
+Note, this project has since been rewritten in Rust. The complete project source
+is available on GitHub under [huffman][5]. The Rust version of the project
+includes more testing, better error handling, and buffered IO.
 
 [1]: https://en.wikipedia.org/wiki/Huffman_coding
 [2]: https://en.wikipedia.org/wiki/Huffman_coding#Basic_technique

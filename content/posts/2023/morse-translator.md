@@ -239,8 +239,9 @@ sounds over the host's speakers. Of course, audio generation on a computer is a
 problem with a solution. The SDL library with its simple C API covers all your
 audio needs. In the end, you walk away with a fun, flexible CLI tool.
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [morse][13].
+Note, this project has since been rewritten in Rust. The complete project source
+is available on GitHub under [morse][13]. The Rust version of the project
+includes more testing and better error handling.
 
 P.S. You can augment the tool to go the other way. That is, take in a Morse code
 audio recording and output the decoded text. Going the audio to text route is

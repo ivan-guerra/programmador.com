@@ -257,10 +257,12 @@ pyHM's
 QEMU
 quicksort
 Raphson
+rdev
 reentrant
 reinstallation
 RGB
 ripgrep
+rodio
 ROM
 rootfs
 [Rr]eal-time

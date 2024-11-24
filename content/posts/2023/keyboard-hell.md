@@ -267,8 +267,11 @@ understanding the API for processing global key events in Windows and Linux was
 challenging. Both OSes provide conceptually similar solutions though the fine
 details can bite you.
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [kbhell][7].
+Note, this project has since been rewritten in Rust. The complete project source
+is available on GitHub under [kbhell][7]. The Rust implementation is **much**
+simpler. The rodio and rdev crates do the heavy lifting when it comes to audio
+playback and key press detection. The Rust version of the project can playback
+more audio formats than just WAV!
 
 [1]: https://programmador.com/posts/2023/morse-translator/
 [2]: https://www.libsdl.org/

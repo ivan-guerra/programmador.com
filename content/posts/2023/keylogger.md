@@ -222,8 +222,10 @@ keystrokes which is highly dependent on the OS and display technology in use.
 Beyond that, you have to decide how to record keystrokes. Be responsible with
 how you use this or any keylogger!
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [keylogger][7].
+Note, this project has since been rewritten in Rust. The complete project source
+is available on GitHub under [keylogger][7]. The Rust implementation is **much**
+simpler. The rdev crate does a lot of the heavy lifting when it comes to key
+press detection.
 
 [1]: https://programmador.com/posts/2023/keyboard-hell/
 [2]: https://en.cppreference.com/w/cpp/string/byte/isprint

@@ -127,7 +127,7 @@ markup:
     guessSyntax: true
     lineNos: false
     noClasses: false
-    style: fruity
+    style: trac
 
 outputs:
   home:

@@ -204,8 +204,11 @@ to the problem of generating nice-ish looking edges for the cube using a
 textbook CS approach. `ncube` is satisfying to run. The crappy 3D graphics are
 something special.
 
-The complete project source with build instructions, usage, etc. is available on
-GitHub under [ncube][5].
+Note, this project has since been rewritten in Rust and renamed to `cube`. The
+complete project source is available on GitHub under [cube][5]. The Rust version
+of the program uses the `ggez` crate to render the cube in a window. Using
+`ggez` is nice because you can draw lines between points. The draw performance
+is also better than ncurses.
 
 [1]: https://www.youtube.com/watch?v=p09i_hoFdd0
 [2]: https://en.wikipedia.org/wiki/Ncurses

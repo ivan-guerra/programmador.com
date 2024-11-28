@@ -21,3 +21,7 @@ body {
   background-color: var(--code-bg) !important; /* support light/dark */
   color: var(--secondary) !important; /* support light/dark */
 }
+
+a:hover {
+  color: #0645ad;
+}

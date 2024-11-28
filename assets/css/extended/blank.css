@@ -1,8 +1,8 @@
 body {
-  font-family: "Josefin Sans", sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0;
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .post-content pre code,

@@ -1,5 +1,6 @@
 aart
 ABBA
+ACK
 ADC(s)?
 agent
 AKA
@@ -60,6 +61,7 @@ CImg
 CLion
 colorbot
 concat
+connectionless
 CPP
 CPU(s)?
 crossterm
@@ -102,7 +104,6 @@ ELF
 eLinux('s)?
 Emacs
 endianness
-(!?)ENTER
 enum
 failover
 featureful
@@ -132,7 +133,6 @@ glibc('s)?
 globals
 GMP
 Godbolt('s)?
-(!?)GOOD
 Gosper
 GPIO
 grayscale
@@ -149,8 +149,12 @@ HFT
 [Hh]uffman
 hotspot(s)?
 HOWTO
+https
 icache
+ICMP
+(!?)(?i)ENTER
 (i?)GNU
+(!?)(?i)GOOD
 (i?)GPG
 [Ii]nlining
 [Ii]nterruptible
@@ -212,6 +216,7 @@ NASM
 nconv
 ncube
 Netwide
+nmap
 [Nn]curses
 [Nn]eo
 noisey
@@ -256,6 +261,7 @@ prefetch(s)?
 preload
 preprogrammed
 profiler(s)?
+pscan
 PulseAudio
 pyHM's
 QEMU
@@ -274,6 +280,7 @@ rootfs
 RS3
 rsbot
 RSCW('s)?
+RST
 RTC
 RTFM
 RTOS(es)?
@@ -310,6 +317,7 @@ subexpression(s)?
 submillisecond
 subtree(s)?
 subtriangle
+SYN
 sys
 syscalls
 sysfs

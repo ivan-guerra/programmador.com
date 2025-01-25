@@ -57,11 +57,11 @@ do this.
 ## Performance
 
 You want the color detection process to be quick. `rsbot` is a Python script.
-Screen capturing and iterating over all pixels in a \\(1920x1080\\) image is
-noticeably slow in Python. Rather than optimizing the Python code, it's easier
-to translate the useful parts of `rsbot` to a compiled language. `colorbot` is a
-Rust application but any other compiled language such as C or C++ would work
-just as well.
+Screen capturing and iterating over all pixels in a \\(1920 \times 1080\\) image
+is noticeably slow in Python. Rather than optimizing the Python code, it's
+easier to translate the useful parts of `rsbot` to a compiled language.
+`colorbot` is a Rust application but any other compiled language such as C or
+C++ would work just as well.
 
 A benefit of using Rust is its package manager, Cargo. With Cargo, it's
 straightforward to install a cross platform screen capture library. `colorbot`
@@ -145,12 +145,12 @@ Below is an example script for fishing:
 ```
 
 The script demonstrates three events. The first, lure fish, clicks a fishing
-spot and waits between \\(75000\\) to \\(80000\\) milliseconds. The other events
-click to drop a fish in the inventory and wait between \\(100\\) to \\(200\\)
-milliseconds. The delay exists to accommodate certain long actions. The delay
-varies to avoid detection by Jagex's bot detection system. Disclaimer, it's
-unknown whether randomizing mouse gestures, delays, etc. actually helps but it's
-better to be safe than sorry.
+spot and waits between 75000 to 80000 milliseconds. The other events click to
+drop a fish in the inventory and wait between 100 to 200 milliseconds. The delay
+exists to accommodate certain long actions. The delay varies to avoid detection
+by Jagex's bot detection system. Disclaimer, it's unknown whether randomizing
+mouse gestures, delays, etc. actually helps but it's better to be safe than
+sorry.
 
 ## Leveraging Game Client Features
 
@@ -192,19 +192,19 @@ to "drop."
 Demo](/posts/2025/colorbot/menu-entry-swapper.webp#center)
 
 Configuring four plugins alongside `colorbot` might sound like a lot of work.
-However, you'll find that spending \\(45\\) minutes to an hour configuring the
-bot is much less painless than manually skilling for \\(200\\) hours or more.
-Below is an example of a fishing script in action (note, the video is a bit slow
-since the PC was overloaded at the time of recording):
+However, you'll find that spending 45 minutes to an hour configuring the bot is
+much less painless than manually skilling for 200 hours or more. Below is an
+example of a fishing script in action (note, the video is a bit slow since the
+PC was overloaded at the time of recording):
 
 {{< video src="/posts/2025/colorbot/fishing-colorbot.mp4" type="video/mp4" preload="auto" >}}
 
 The NPC Indicator Plugin highlights the fishing spots red. The Inventory Tags
 Plugin highlights the fish in the inventory purple. `colorbot` runs a [fishing
 script][7] which uses the information on screen to click a luring spot and drop
-fish in the inventory. This script ran \\(12\\) hours a day for close to a month
-on the journey from \\(67\\) to \\(99\\) fishing. You can do the math on how
-many hours that saved.
+fish in the inventory. This script ran 12 hours a day for close to a month on
+the journey from 67 to 99 fishing. You can do the math on how many hours that
+saved.
 
 ## Conclusion
 

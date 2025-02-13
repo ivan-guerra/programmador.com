@@ -145,6 +145,7 @@ hardcode
 herblore
 HFT
 [Hh]ostname
+[Hh]ostname(s)?
 [Hh]otpath
 [Hh]uffman
 hotspot(s)?
@@ -347,6 +348,7 @@ unhedged
 uniprocessor
 Unix's
 unmerg[(e)(ed)(ing)]
+unpriviledged
 unsynchronized
 USB
 usec

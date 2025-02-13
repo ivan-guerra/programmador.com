@@ -118,4 +118,4 @@ etc. on GitHub under [eldd][9].
 [6]: https://www.youtube.com/watch?v=m_NyYEBxfn8
 [7]: https://github.com/ALIBERA/linux_book_2nd_edition/blob/master/Practical_labs_hardware.pdf
 [8]: https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468
-[9]: https://github.com/ivan-guerra/eldd/tree/master
+[9]: https://github.com/ivan-guerra/eldd.git

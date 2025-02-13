@@ -232,5 +232,5 @@ in maxing the most tedious skills in RuneScape.
 [3]: https://ben.land/post/2021/04/25/windmouse-human-mouse-movement/
 [4]: https://github.com/vincentbavitz/bezmouse
 [5]: https://pypi.org/project/pyHM/
-[6]: https://github.com/ivan-guerra/rsbot/tree/master
+[6]: https://github.com/ivan-guerra/rsbot.git
 [7]: https://github.com/ivan-guerra/rsbot/blob/master/README.md

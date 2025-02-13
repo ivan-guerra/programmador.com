@@ -240,4 +240,4 @@ the C++.
 [1]: https://gmplib.org
 [2]: https://gmplib.org/manual/C_002b_002b-Class-Interface
 [3]: https://cs.stackexchange.com/questions/10318/the-math-behind-converting-from-any-base-to-any-base-without-going-through-base
-[4]: https://github.com/ivan-guerra/nconv/tree/master
+[4]: https://github.com/ivan-guerra/nconv.git

@@ -287,4 +287,4 @@ the ability to chose the number of bits to use for the merge/unmerge operation.
 [5]: https://github.com/ivan-guerra/steganography/tree/master/resources
 [6]: https://github.com/ivan-guerra/steganography/blob/master/resources/unmerged.jpg
 [7]: https://steghide.sourceforge.net/documentation/manpage.php
-[8]: https://github.com/ivan-guerra/steg/tree/master
+[8]: https://github.com/ivan-guerra/steg.git

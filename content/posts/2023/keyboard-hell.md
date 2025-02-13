@@ -279,4 +279,4 @@ more audio formats than just WAV!
 [4]: https://www.x.org/releases/X11R7.7/doc/libXtst/recordlib.html
 [5]: https://github.com/nibrahim/showkeys/blob/master/tests/record-example.c
 [6]: https://learn.microsoft.com/en-us/windows/win32/winmsg/hooks
-[7]: https://github.com/ivan-guerra/kbhell/tree/master
+[7]: https://github.com/ivan-guerra/kbhell.git

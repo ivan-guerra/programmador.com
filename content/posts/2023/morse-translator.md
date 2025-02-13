@@ -261,5 +261,5 @@ Algorithm"][14].
 [10]: https://web.archive.org/web/20120313055436/http://www.dgames.org/beep-sound-with-sdl/
 [11]: https://github.com/ivan-guerra/morse/blob/master/src/audio/beeper.cc
 [12]: https://github.com/ivan-guerra/morse/blob/master/include/audio/beeper.hpp
-[13]: https://github.com/ivan-guerra/morse/tree/master
+[13]: https://github.com/ivan-guerra/morse.git
 [14]: http://www.pa3fwm.nl/software/rscw/algorithm.html

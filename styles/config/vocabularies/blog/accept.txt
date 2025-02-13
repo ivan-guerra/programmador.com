@@ -263,6 +263,8 @@ preprogrammed
 profiler(s)?
 pscan
 PulseAudio
+p_x
+p_y
 pyHM's
 QEMU
 quicksort

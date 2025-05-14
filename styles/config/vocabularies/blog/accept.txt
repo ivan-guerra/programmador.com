@@ -8,6 +8,7 @@ AKA
 API(s)?
 Architecting
 arg
+arm
 ARM
 ASAP
 ASCII
@@ -179,8 +180,12 @@ kbhell
 KCachegrind
 KDE
 Kernighan
+Keybr
+keycode(s)?
 keylogger
 kfifo
+[Kk]eycaps
+[Kk]eymap(s)?
 kobject
 kthreads
 Kuramoto
@@ -237,6 +242,7 @@ Nvdash
 NXP
 NXT
 Ogness('s)?
+OLED
 OOP
 OSADL
 OSRS
@@ -269,6 +275,7 @@ p_x
 p_y
 pyHM's
 QEMU
+QMK
 quicksort
 Raphson
 rdev
@@ -298,9 +305,11 @@ SDL
 SDRAM
 SEC
 shared_ptr
+Shirogane
 signedness
 SLOC
 SMP
+soughtering
 Southbridge
 SPI
 SRAM
@@ -333,6 +342,7 @@ timestamp(ing)?
 TLB(s)?
 TLS
 Torvald('s)?
+TRRS
 [Tt]asklet(s)?
 [Tt]oolchain
 UDP

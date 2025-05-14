@@ -227,6 +227,7 @@ nonportable
 NOOP
 Northbridge
 NPC
+NPC(s)?
 NTP
 NULL
 NUMA

@@ -209,13 +209,25 @@ saved.
 ## Conclusion
 
 `colorbot` demonstrates how color-based automation can be both simple and
-effective. While this approach has limitations, it works well for basic for
-automating some skills with random elements in RuneScape. Client plugins play a
-crucial role in this setup. Without plugins to highlight key elements with
-distinct colors, `colorbot` would be unable to reliably identify and interact
-with game objects.
+effective. While this approach has limitations, it works well for automating
+skills with random elements in RuneScape. Client plugins play a crucial role in
+this setup. Without plugins to highlight key elements with distinct colors,
+`colorbot` would be unable to reliably identify and interact with game objects.
 
 The complete project source is available on GitHub under [colorbot][8].
+
+**Update**: `colorbot` nearly got a main account to max without a ban. Two
+skills remained before a temporary two day ban was issued for a macro minor
+offense. Agility and farming had to be leveled manually. The bot was banned 4
+days into agility training. The bot ran for 12 hours a day in 3 hour sessions
+with 1.5 to 2 hour breaks between sessions. This worked fine for all previous
+skills. However, for agility, I started running 15 hours a day. I suspect this
+is what triggered the ban. Moral of the story, don't run the bot excessively. I
+speculate that running the bot for 9 hours a day with metered breaks is the
+sweet spot. Despite the ban, I did suffer the last two skills to achieve my
+childhood goal of maxing on RuneScape.
+
+{{< video src="/posts/2025/colorbot/maxed.mp4" type="video/mp4" preload="auto" >}}
 
 [1]: https://programmador.com/posts/2024/rsbot/
 [2]: https://runelite.net/

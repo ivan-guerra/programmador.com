@@ -1,3 +1,4 @@
+AAC
 aart
 ABBA
 ACK
@@ -18,8 +19,10 @@ Assembler
 async
 AUR
 autoconnect
+[a-z]_[a-z0-9]
 BBB(s)?
 [Bb]ignum
+[Bb]oolean
 [Bb]otting
 Beagle[Bb]one
 beta
@@ -44,6 +47,7 @@ busybox
 bzImage
 Cachegrind
 caesar_cipher
+(CALL|call)
 Callgrind
 ccache
 [Cc]iphertext
@@ -60,6 +64,7 @@ CFQ
 cgroup(s)?
 CImg
 CLion
+CMOS
 colorbot
 concat
 connectionless
@@ -72,6 +77,7 @@ ctext
 cyber
 Cyclictest
 CYMK
+DAC(s)?
 datasheet(s)?
 dcache
 [Dd]ev
@@ -79,6 +85,7 @@ dcache
 DDR
 deallocate
 defacto
+Demorgan(')?(s)
 dentries
 dentry
 dereferenc[(e)(ing)]
@@ -92,6 +99,7 @@ dmenu
 Dockerfile
 Docker('s)?
 doctest
+dopants
 DOS
 dotfile(s)?
 Doxygen
@@ -104,9 +112,11 @@ dwm
 ELF
 eLinux('s)?
 Emacs
+endian
 endianness
 enum
 failover
+fanout
 featureful
 feh
 ffmpeg
@@ -118,6 +128,7 @@ FLAC
 fletching
 FOV
 FPGA(s)?
+FPU
 Framebuffer
 framerate
 Frontside
@@ -128,6 +139,7 @@ gatekeeping
 (!?)gcc
 gfp
 [Gg]nu
+GIF
 GIL
 gitsigns
 glibc('s)?
@@ -135,7 +147,7 @@ globals
 GMP
 Godbolt('s)?
 Gosper
-GPIO
+GPIO(s)?
 grayscale
 GRUB
 gsync
@@ -152,8 +164,11 @@ HFT
 hotspot(s)?
 HOWTO
 https
+(?i)(AND|OR|NOT|XOR|NOR|NAND)
 icache
 ICMP
+IC(s)?
+IEEE
 (!?)(?i)ENTER
 (i?)GNU
 (!?)(?i)GOOD
@@ -172,11 +187,13 @@ ISP(s)?
 ISR(s)?
 ith
 ITU
+(?i)(WAVE)
 Jagex
 JetBrains
 JPEG
 JVM
 kbhell
+kbps
 KCachegrind
 KDE
 Kernighan
@@ -195,9 +212,11 @@ LaTeX
 LBAOD
 LED(s)?
 libc
+LLVM
 LMAX
 Lookaside
 los
+lossy
 LOTR
 LSB([Ss])?
 LSP(s)?
@@ -222,6 +241,7 @@ NASM
 nconv
 ncube
 Netwide
+Neumann
 nmap
 [Nn]curses
 [Nn]eo
@@ -233,6 +253,7 @@ NOOP
 Northbridge
 NPC
 NPC(s)?
+NPN
 NTP
 NULL
 NUMA
@@ -241,6 +262,7 @@ NVChad
 Nvdash
 NXP
 NXT
+Nyquist
 Ogness('s)?
 OLED
 OOP
@@ -251,6 +273,7 @@ PCI
 perf
 performant
 Petazzoni('s)?
+Petzgold
 PGP
 picom
 PID
@@ -271,16 +294,16 @@ preprogrammed
 profiler(s)?
 pscan
 PulseAudio
-p_x
-p_y
 pyHM's
 QEMU
 QMK
+quantizes
 quicksort
 Raphson
 rdev
 reentrant
 reinstallation
+RET
 RGB
 ripgrep
 rodio
@@ -298,6 +321,7 @@ RTOS(es)?
 RuneLite
 RuneScape
 runqueue(s)?
+sample
 SATA
 schedulable
 scriptable
@@ -344,6 +368,7 @@ TLS
 Torvald('s)?
 TRRS
 [Tt]asklet(s)?
+TTL
 [Tt]oolchain
 UDP
 uevent(s)?
@@ -364,6 +389,7 @@ unsynchronized
 USB
 usec
 userland
+UTFs
 [Uu]narchive
 [Uu]nmount
 [Uu]serspace
@@ -373,11 +399,11 @@ VFS
 vimscript
 virtualiz[(es)(ing)]
 VNC
+Von
 VPN
 vruntime(s)?
 vszzc
 WAV
-WAVE
 WiFi
 WM(s)?
 wordsmithing
@@ -387,11 +413,6 @@ wordsmithing
 xclip
 XFCE
 Xfinity
-x_p
-x_r
 yeet
 Youtube
 Youtubing
-y_p
-y_r
-z_r

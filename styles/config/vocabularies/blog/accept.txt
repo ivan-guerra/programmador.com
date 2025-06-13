@@ -224,6 +224,7 @@ LaTeX
 LBAOD
 LED(s)?
 libc
+LLM(s)?
 LLVM
 LMAX
 Lookaside
@@ -315,6 +316,7 @@ QEMU
 QMK
 quantizes
 quicksort
+Qwen
 Raphson
 rdev
 reentrant
@@ -420,9 +422,11 @@ VCS
 VFS
 vimscript
 virtualiz[(es)(ing)]
+vLLM
 VNC
 Von
 VPN
+VRAM
 vruntime(s)?
 vszzc
 WAV

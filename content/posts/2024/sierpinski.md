@@ -84,23 +84,23 @@ If you were paying attention in your algorithms course, you'd know the time
 complexity of this implementation isn't so great. Below is the call tree for a
 `Sierpinski(2)` run.
 
-```text
-                                                                              +----------------+
-                                                                              | Sierpinski(2)  |
-                                                                              +-------+--------+
-                                                                                      |
-                           +----------------------------------------------------------+----------------------------------------------------------+
-                           |                                                          |                                                          |
-                   +-------v--------+                                         +-------v--------+                                                 |
-                   | Sierpinski(1)  |                                         | Sierpinski(1)  |                                         +-------v--------+
-                   +-------+--------+                                         +-------+--------+                                         | Sierpinski(1)  |
-                           |                                                          |                                                  +-------+--------+
-                           |                                      +-------------------+-----------------+                                        |
-       +-------------------+-----------------+                    |                   |                 |                     +------------------+-----------------+
-       |                   |                 |                    |                   |                 |                     |                  |                 |
-+------v---------+ +-------v--------+ +------v---------+   +------v---------+ +-------v--------+ +------v---------+   +-------v--------+ +-------v--------+ +------v---------+
-| Sierpinski(0)  | | Sierpinski(0)  | | Sierpinski(0)  |   | Sierpinski(0)  | | Sierpinski(0)  | | Sierpinski(0)  |   | Sierpinski(0)  | | Sierpinski(0)  | | Sierpinski(0)  |
-+----------------+ +----------------+ +----------------+   +----------------+ +----------------+ +----------------+   +----------------+ +----------------+ +----------------+
+```mermaid
+graph TD
+    S2(("Sierpinski(2)")) --> S1A(("Sierpinski(1)"))
+    S2 --> S1B(("Sierpinski(1)"))
+    S2 --> S1C(("Sierpinski(1)"))
+
+    S1A --> S0A(("Sierpinski(0)"))
+    S1A --> S0B(("Sierpinski(0)"))
+    S1A --> S0C(("Sierpinski(0)"))
+
+    S1B --> S0D(("Sierpinski(0)"))
+    S1B --> S0E(("Sierpinski(0)"))
+    S1B --> S0F(("Sierpinski(0)"))
+
+    S1C --> S0G(("Sierpinski(0)"))
+    S1C --> S0H(("Sierpinski(0)"))
+    S1C --> S0I(("Sierpinski(0)"))
 ```
 
 At each node in the tree you make 3 calls to `Sierpinski()`. The depth of this
@@ -121,9 +121,9 @@ page and you'll find a section labeled ["Chaos Game"][2]. You can read the wiki
 to get a technical description of the algorithm. Here's the for dummies version:
 
 1. Take three points in a plane to form a triangle.
-2. Randomly select any point inside the triangle and consider that your current
+2. Select any point inside the triangle at random and consider that your current
    position.
-3. Randomly select any one of the three vertex points.
+3. Select any one of the three vertex points at random.
 4. Move half the distance from your current position to the selected vertex.
 5. Plot the current position.
 6. Repeat from step 3.
@@ -178,7 +178,7 @@ encountered. The space complexity is also optimal here coming in at
 The setup is mostly straightforward. Assume the screen is a quadrant of the 2D
 coordinate plane. Every time you generate a new point, draw it on the screen
 using some marker symbol such as an asterisk. To make it look nice, bold the
-character and randomly assign it a color.
+character and assign it a random color.
 
 Below is the relevant ncurses draw snippet:
 

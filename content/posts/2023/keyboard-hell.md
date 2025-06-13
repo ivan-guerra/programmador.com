@@ -1,7 +1,7 @@
 ---
 title: "Keyboard Hell"
 date: 2023-09-02T12:46:36-07:00
-description: "Play a soundbite on keypress anywhere in the desktop."
+description: "Play a soundbite on keystroke anywhere in the desktop."
 tags: ["c++", "cli-tools", "sdl", "x11", "windows"]
 ---
 

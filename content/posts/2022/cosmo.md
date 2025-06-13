@@ -126,7 +126,7 @@ choice.
 The inherent modularity of the project drives you towards C++. The object
 oriented features, templating, and interoperability with C made C++ a great
 candidate. Being able to package concepts like the frame buffer, global
-descriptor table, etc. into a neat little class led to more modular code.
+descriptor table, etc. into a neat little class creates more modular code.
 
 There was no noticeable overhead to switching over to C++ beyond passing a few
 additional flags to the compiler:
@@ -236,9 +236,9 @@ the "Little Book About OS Development" exist:
 
 ## Conclusion
 
-Writing your own OS, even a primitive one, is a daunting task. Thankfully, there
-are communities and plenty of resources out there to help get the job done.
-Working a project like Cosmo teaches you about toolchains, the x86 architecture,
+Writing your own OS, even a primitive one, is a daunting task. There are
+communities and plenty of resources out there to help get the job done. Working
+a project like Cosmo teaches you about toolchains, the x86 architecture,
 assembly, and more. Highly recommend anyone thinking about starting an OS
 development project dive in. Even if you don't hit your mark, you'll pick up
 some useful knowledge along the way. Just be wary that an OS project takes

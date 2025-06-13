@@ -127,29 +127,30 @@ points along a line in 3D space. Cool, but you don't want to implement that in
 C++ or integrate a 3rd party library just to solve this little problem.
 
 There's another solution for generating \\(N\\) equidistant points on the line
-between two endpoints. The idea is to repeatedly compute midpoints until you
-have generated \\(N\\) midpoints. Here's an example.
+between two endpoints. The idea is to compute midpoints until you have generated
+\\(N\\) midpoints. Here's an example.
 
 Imagine you wanted to generate 7 points between an edge start and end point. You
-compute the midpoint of the start and end point call it \\(M_1\\). Then you
-compute the midpoint between the start and \\(M_1\\), \\(M_2\\), and the
-midpoint between \\(M_1\\) and end, \\(M_3\\). Continue applying this process
-recursively until you have generated the 7th midpoint, \\(M_7\\). The figure
+compute the midpoint of the start and end point call it \\(m_1\\). Then you
+compute the midpoint between the start and \\(m_1\\), \\(m_2\\), and the
+midpoint between \\(m_1\\) and end, \\(m_3\\). Continue applying this process
+recursively until you have generated the 7th midpoint, \\(m_7\\). The figure
 below illustrates the process.
 
-```text
-Start                                 M_1                                        End
-  -------------------------------------O-------------------------------------------
-                                       |
-                 M_2                   |                     M_3
-                  ---------------------+-----------------------
-                  O                                           O
-       M_4        |      M_5                       M_6        |       M_7
-        ----------+--------                         ----------+---------
-        O                 O                         O                  O
+```mermaid
+flowchart TD
+    m1((m₁)) --- m2((m₂))
+    m1 --- m3((m₃))
+    m2 --- m4((m₄))
+    m2 --- m5((m₅))
+    m3 --- m6((m₆))
+    m3 --- m7((m₇))
+
+    classDef nodeStyle stroke-width:2px,fill:white
+    class m1,m2,m3,m4,m5,m6,m7 nodeStyle
 ```
 
-You want to generate midpoints in the order \\(M_1, M_2, M_3, ..., M_7\\). Put
+You want to generate midpoints in the order \\(m_1, m_2, m_3, ..., m_7\\). Put
 in other words, you need to generate the tree in breadth-first order.
 
 Below is a C++ implementation of the algorithm:

@@ -208,7 +208,7 @@ having to buy any specialty hardware to follow along with the examples in the
 text is a big bonus. Highly recommend LDD3 in 2022!
 
 The complete project source with build instructions, usage, etc. is available on
-GitHub under [linux_device_drivers][17].
+GitHub under [`linux_device_drivers`][17].
 
 [1]: https://lwn.net/Kernel/LDD3/
 [2]: https://lwn.net/Archives/

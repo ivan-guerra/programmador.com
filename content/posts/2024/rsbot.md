@@ -9,7 +9,7 @@ Are you a fan of the MMO [RuneScape][1]? Are you not a fan of the grinds
 RuneScape subjects its players to? If you answered yes to these two questions,
 it's likely botting has crossed your mind.
 
-Put aside that botting is against the game's rules. Creating a scriptable bot
+Put aside that botting is breaks the game's rules. Creating a scriptable bot
 that can avoid RuneScape's bot detection system presents a number of interesting
 technical problems. This article explores the creation of a rudimentary bot: an
 auto clicker bot.

@@ -26,27 +26,27 @@ Below is a shortlist of the features a modern text editor should support:
 - Version control system integration.
 
 There are a number of editors that provide these and many more features. The key
-players are CLion, Visual Studio Code, Emacs, Vim, and Neovim. This series
-recommends you install [Neovim][2].
+players are CLion, Visual Studio Code, Emacs, Vim, and NeoVim. This series
+recommends you install [NeoVim][2].
 
-Why Neovim? Neovim includes all the modern features introduced in this section
-and more. Neovim is [free as in beer][3]. You don't have to pay Microsoft or
-JetBrains a monthly subscription fee for a text editor/IDE. You configure Neovim
+Why NeoVim? NeoVim includes all the modern features introduced in this section
+and more. NeoVim is [free as in beer][3]. You don't have to pay Microsoft or
+JetBrains a monthly subscription fee for a text editor/IDE. You configure NeoVim
 using Lua. Lua is arguably a more user friendly configuration language than
-vimscript or Emacs' Lisp dialect. Most importantly, Neovim has an active
+vimscript or Emacs' Lisp dialect. Most importantly, NeoVim has an active
 community of developers maintaining and creating new plugins.
 
 ## Installation and Base Configuration
 
-The following command will install Neovim on an Arch Linux system:
+The following command will install NeoVim on an Arch Linux system:
 
 ```bash
 sudo pacman -S neovim
 ```
 
-There's two paths you can take in regards to configuring Neovim: create a custom
+There's two paths you can take in regards to configuring NeoVim: create a custom
 configuration from scratch or use a community distribution. If you're completely
-new to Neovim, the best option is to start with a distribution that suits you.
+new to NeoVim, the best option is to start with a distribution that suits you.
 There are a number of distributions to choose from:
 
 - AstroVim
@@ -56,7 +56,7 @@ There are a number of distributions to choose from:
 
 Each distribution differs in their default plugin and keybinding support. Also,
 some distributions are more actively maintained than others. The latter point is
-especially important. In the world of Neovim, there's a nonzero chance breaking
+especially important. In the world of NeoVim, there's a nonzero chance breaking
 changes make it into the core editor/plugins. You don't want to spend time
 patching your configs. It's better if the distribution developers do that for
 you.
@@ -71,18 +71,18 @@ steps in the [NVChad Quickstart][5] guide before proceeding.
 
 ### Adding LSPs and More Using Mason
 
-You might see the acronym LSP thrown around in Neovim docs and elsewhere on the
+You might see the acronym LSP thrown around in NeoVim docs and elsewhere on the
 web. What's an LSP?
 
 > LSP(s) facilitates features like go-to-definition, find references, hover,
 > completion, rename, format, refactor, etc., using semantic whole-project
 > analysis.
 
-To get the most out of Neovim, **you'll want to install an LSP for each language
+To get the most out of NeoVim, **you'll want to install an LSP for each language
 that you use**. Mason is a package manager that comes with NVChad that makes LSP
 installation easy.
 
-Open Neovim and run the Mason package manager by entering the command `:Mason`:
+Open NeoVim and run the Mason package manager by entering the command `:Mason`:
 
 ![Mason UI](/series/workflow-optimization/part-5:-text-editing/mason.webp#center)
 
@@ -100,21 +100,21 @@ distribution.
 
 {{< youtube lsFoZIg-oDs >}}
 
-## Working with Neovim
+## Working with NeoVim
 
-Learning Neovim or more so Vim keystrokes may take some getting used to. There
+Learning NeoVim or more so Vim keystrokes may take some getting used to. There
 are plenty of [resources][6] and [cheatsheets][7] out there online to help you
 get started. The best advice is to dive right in but pace yourself. Learn a few
 keystrokes a week. Modify any key bindings that feel unergonomic. Soon enough
 you'll find you've developed the muscle memory to navigate and edit any
 document.
 
-Likewise, you need to learn what tools are available to you in Neovim. This is
+Likewise, you need to learn what tools are available to you in NeoVim. This is
 especially important when developing software. In this section, you'll take a
-tour of some of Neovim's most critical features for software development. The
+tour of some of NeoVim's most critical features for software development. The
 list isn't meant to be exhaustive. If you feel like something is missing, that
 something likely exists as a plugin already. A quick online search or post on
-the [Neovim IRC][8] will get you going in the right direction.
+the [NeoVim IRC][8] will get you going in the right direction.
 
 ### Nvdash and NvCheatsheet
 
@@ -165,7 +165,7 @@ you'll first need to install ripgrep:
 sudo pacman -S ripgrep
 ```
 
-Enter `space+f+w` in Neovim to open the ripgrep live preview window. Enter a
+Enter `space+f+w` in NeoVim to open the ripgrep live preview window. Enter a
 regex and telescope will show you a live preview of all files whose **content**
 matches the regex.
 
@@ -182,7 +182,7 @@ To run git's status command alongside a live diff, enter `space+g+t`:
 
 ![Git Status](/series/workflow-optimization/part-5:-text-editing/git-status.webp#center)
 
-You also get live change tracking on the left handside of the screen whenever
+You also get live change tracking on the left hand side of the screen whenever
 you make changes to a git version controlled file. This information and more is
 also included in the status bar at the bottom of the window.
 
@@ -207,10 +207,10 @@ to open up the theme picker and make a selection.
 
 Being able to text edit is a critical component of a developer's workflow. To
 make the editing experience smoother, the editor program must provide a number
-of modern features. Neovim is an editor that has many of those modern features
+of modern features. NeoVim is an editor that has many of those modern features
 including file/content search, code navigation, and version control support. In
-particular, the NVChad Neovim distribution comes prepackaged with most of what
-you need to make your Linux editing experience more pleasant. NVChad/Neovim
+particular, the NVChad NeoVim distribution comes prepackaged with most of what
+you need to make your Linux editing experience more pleasant. NVChad/NeoVim
 introduce a learning curve in regards to the number key bindings one has to
 remember to be effective. That said, just weeks into using the tools, you'll
 find it was worth investing the time to learn your editor.

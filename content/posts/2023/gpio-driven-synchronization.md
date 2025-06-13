@@ -28,32 +28,33 @@ How would one computer communicate when it last ran to other? You can connect
 the output GPIO that drives the LED to an input GPIO on the peer board! Below is
 a sketch of the setup:
 
-```text
-                +-------------------------------------------+
-                |BeagleBone Black 1                         |
-  BBB2_GPIO_OUT |   +----------+               +---------+  | BBB1_GPIO_OUT
-----------------+-->|  gtimer  |               |  gsync  +--+--------------->
-                |   +----+-----+               +----^----+  |
-                |        |                          |       |
-                |        |                          |       |
-                |   +----v--------------------------+----+  |
-                |   |            Shared Memory           |  |
-                |   +------------------------------------+  |
-                |                                           |
-                +-------------------------------------------+
+```mermaid
+graph LR
+    %% BeagleBone Black 1 subgraph
+    subgraph "BeagleBone Black 1"
+        direction TB
+        bbb1_gtimer["gtimer"]
+        bbb1_gsync["gsync"]
+        bbb1_sm["Shared Memory"]
 
-                +-------------------------------------------+
-                |BeagleBone Black 2                         |
-  BBB1_GPIO_OUT |   +----------+               +---------+  | BBB2_GPIO_OUT
-----------------+-->|  gtimer  |               |  gsync  +--+--------------->
-                |   +----+-----+               +----^----+  |
-                |        |                          |       |
-                |        |                          |       |
-                |   +----v--------------------------+----+  |
-                |   |            Shared Memory           |  |
-                |   +------------------------------------+  |
-                |                                           |
-                +-------------------------------------------+
+        bbb1_gtimer --> bbb1_sm
+        bbb1_sm --> bbb1_gsync
+    end
+
+    %% BeagleBone Black 2 subgraph
+    subgraph "BeagleBone Black 2"
+        direction TB
+        bbb2_gtimer["gtimer"]
+        bbb2_gsync["gsync"]
+        bbb2_sm["Shared Memory"]
+
+        bbb2_gtimer --> bbb2_sm
+        bbb2_sm --> bbb2_gsync
+    end
+
+    %% External connections between the boards
+    bbb1_gsync -->|BBB1_GPIO_OUT| bbb2_gtimer
+    bbb2_gsync -->|BBB2_GPIO_OUT| bbb1_gtimer
 ```
 
 Each BBB would host two processes: `gtimer` and `gsync`. The `gtimer` process
@@ -62,13 +63,12 @@ event. When the input GPIO goes high, `gtimer` logs the time when the signal
 arrived in shared memory. Here's a flowchart showing how `gtimer` does its
 thing:
 
-```text
-+------------+     +-----------------+     +----------------------+     +----------------------+
-| Init Shmem +---->| Init Input GPIO +---->| Wait for Rising Edge +---->| Write Wakeup Time to |
-+------------+     +-----------------+     |        Event         |     |         Shmem        |
-                                           +----------^-----------+     +----------+-----------+
-                                                      |                            |
-                                                      +----------------------------+
+```mermaid
+graph LR
+    init_shmem["Init Shmem"] --> init_gpio["Init Input GPIO"]
+    init_gpio --> wait_edge["Wait for Rising Edge Event"]
+    wait_edge --> write_time["Write Wakeup Time to Shmem"]
+    write_time --> wait_edge
 ```
 
 `gsync` is essentially the blink program. `gsync` runs at a configurable rate,
@@ -79,26 +79,14 @@ know when its peer last ran. Using its own wakeup time and peer wakeup time,
 wakeup time will be closer to bringing the process into sync with its peer.
 Here's a flowchart showing how `gsync` works:
 
-```text
-+-------------------+       +------------------+
-| Attached to Shmem +------>| Init Output GPIO |
-+-------------------+       +--------+---------+
-                                     |
-                         +-----------v--------------+
-                    +----> Get CLOCK_MONOTONIC Time |
-                    |    +-----------+--------------+
-                    |                |
-                    |   +------------v---------------+
-                    |   | Send Wakeup Signal to Peer |
-                    |   +------------+---------------+
-                    |                |
-                    |    +-----------v--------------+
-                    |    | Compute Next Wakeup Time |
-                    |    +-----------+--------------+
-                    |                |
-                    |    +-----------v-------------+
-                    +----+ Sleep Until Next Wakeup |
-                         +-------------------------+
+```mermaid
+flowchart LR
+    attach["Attached to Shmem"] --> init_gpio["Init Output GPIO"]
+    init_gpio --> get_time["Get CLOCK_MONOTONIC Time"]
+    get_time --> send_signal["Send Wakeup Signal to Peer"]
+    send_signal --> compute_time["Compute Next Wakeup Time"]
+    compute_time --> sleep["Sleep Until Next Wakeup"]
+    sleep --> get_time
 ```
 
 The best implementation of `gsync` and `gtimer` isn't immediately obvious.

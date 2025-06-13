@@ -423,7 +423,7 @@ releasing locks, consider this scenario on a uniprocessor system:
 3. Task 2 requests the lock.
 4. Kernel boosts Task 1 priority to 60 and schedules it.
 5. Task 1 completes its critical section and releases the lock.
-6. Kernel de-boosts Task 1 back to priority 50 and schedules Task 2.
+6. Kernel deboosts Task 1 back to priority 50 and schedules Task 2.
 7. Task 2 acquires the lock.
 8. Task 2 waits forever on a signal that will never come from Task 1!
 

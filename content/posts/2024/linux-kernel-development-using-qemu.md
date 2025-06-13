@@ -38,15 +38,11 @@ QEMU has three main [operating modes][2]:
 This article demos hypervisor support mode. Below is an illustration showing the
 intended setup:
 
-```text
-+--------------------------------------------+
-| PC                                         |
-|                                            |
-|  +----------+                +-----------+ |
-|  | Host OS  |<------SSH----->|  Guest OS | |
-|  +----------+                +-----------+ |
-|                                            |
-+--------------------------------------------+
+```mermaid
+graph LR
+    subgraph PC["PC"]
+        Host["Host OS"] <-->|SSH| Guest["Guest OS"]
+    end
 ```
 
 The goal is to run a guest OS on your host machine. The guest OS will run a

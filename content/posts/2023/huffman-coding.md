@@ -380,9 +380,9 @@ You can decompose the `Decompression()` routine into three separate parts:
 3. Decoding the input bit stream.
 
 You already have a routine to write the header. The function that reads the
-header in is nearly identical. Just replace stream writes with reads. Once you
-read the header, building the encoding tree requires calling
-`BuildEncodingTree()`. Decoding the bit stream is the only new thing here.
+header is similar. Just replace stream writes with reads. Once you read the
+header, building the encoding tree requires calling `BuildEncodingTree()`.
+Decoding the bit stream is the only new thing here.
 
 Here's the code that implements the concept:
 

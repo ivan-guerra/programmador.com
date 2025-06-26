@@ -18,13 +18,13 @@
 }
 
 .dark {
-  --theme: #f0eee6; /* site background */
-  --entry: #d4d2c9; /* table of contents */
-  --primary: #333333; /* header text color */
-  --secondary: #333333; /* card text color */
-  --tertiary: #d4d2c9; /* front page buttons */
-  --content: #333333; /* post text color */
-  --code-bg: #d4d2c9; /* code block */
-  --code-block-bg: #d4d2c9; /* inline code blocks */
-  --border: #88b0ac; /* elements such as navigation buttons */
+  --theme: #f8fbf8; /* site background */
+  --entry: #ffffff; /* table of contents */
+  --primary: #2c3e50; /* header text color */
+  --secondary: #5a7a8c; /* card text color */
+  --tertiary: #e0f0e9; /* front page buttons */
+  --content: #2c3e50; /* post text color */
+  --code-block-bg: #f0f5f3; /* code block */
+  --code-bg: #edf7f2; /* inline code blocks */
+  --border: #a8d1c0; /* elements such as navigation buttons */
 }

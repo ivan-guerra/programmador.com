@@ -1,6 +1,7 @@
 AAC
 [Aa]lsa
 aart
+[Aa]ssembler
 ABBA
 ACK
 ADC(s)?
@@ -16,7 +17,6 @@ ASAP
 ASCII
 ASM
 ASMR
-Assembler
 async
 AUR
 autoconnect
@@ -43,6 +43,7 @@ boolean
 Bootlin
 bootloader
 botters
+BRIX
 Broadcom
 BST
 Burak 
@@ -277,6 +278,7 @@ Nvdash
 NXP
 NXT
 Nyquist
+Octo
 Ogness('s)?
 OLED
 OOP
@@ -326,7 +328,7 @@ RET
 RGB
 ripgrep
 rodio
-ROM
+ROM(s)?
 rootfs
 [Rr]eal-[Tt]ime
 [Rr]epo
@@ -374,6 +376,7 @@ subexpression(s)?
 submillisecond
 subtree(s)?
 subtriangle
+Sweetcopter
 SYN
 sys
 syscalls
@@ -382,6 +385,7 @@ systemd
 Tektronix
 textfield
 tickless
+Timendus('s)?
 timeslice
 timestamp(ing)?
 TLB(s)?
@@ -421,6 +425,7 @@ Valgrind
 VCS
 VFS
 vimscript
+VIP
 virtualiz[(es)(ing)]
 vLLM
 VNC

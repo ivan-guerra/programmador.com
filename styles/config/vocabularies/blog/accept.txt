@@ -3,6 +3,7 @@ AAC
 aart
 [Aa]ssembler
 ABBA
+ABI
 ACK
 ADC(s)?
 agent
@@ -45,6 +46,8 @@ bootloader
 botters
 BRIX
 Broadcom
+BSD
+BSS
 BST
 Burak 
 busybox
@@ -71,9 +74,12 @@ CImg
 CLion
 CMOS
 codec(s)?
+COFF
 colorbot
+COM
 concat
 connectionless
+COW
 CPP
 CPU(s)?
 crossterm
@@ -93,14 +99,17 @@ dcache
 DDR
 deallocate
 deboost(s)?
+decompile
 defacto
 Demorgan(')?(s)
 demux(er)?
 dentries
 dentry
 dereferenc[(e)(ing)]
+dereference(s)?
 DE(s)?
 deschedule(d)?
+destructors
 devtmpfs
 dhb
 DHCP
@@ -118,14 +127,18 @@ drawtext
 Drepper
 (!?)dt
 dts
+DWARF
 dwm
 (!?)ELDD
+ELF
 ELF
 eLinux('s)?
 Emacs
 endian
 endianness
 enum
+epilog
+EXE
 failover
 fanout
 featureful
@@ -134,7 +147,10 @@ ffmpeg
 [Ff]ormatters
 ffplay
 FIFO
+finalizers
+fini
 firemaking
+fixup(s)?
 FLAC
 fletching
 FOV
@@ -189,6 +205,7 @@ IEEE
 (?i)iso
 iMX7D
 (?i)ncurses
+initializers
 initramfs
 inlined
 inode
@@ -225,6 +242,7 @@ LaTeX
 LBAOD
 LED(s)?
 libc
+[Ll]inker('s)?
 LLM(s)?
 LLVM
 LMAX
@@ -292,6 +310,7 @@ performant
 Petazzoni('s)?
 Petzgold
 PGP
+PIC
 picom
 PID
 pinctrl
@@ -310,6 +329,7 @@ prefetch(s)?
 preload
 preprogrammed
 profiler(s)?
+prolog
 pscan
 pseudocode
 PulseAudio
@@ -409,6 +429,7 @@ uncomment
 unergonomic
 unhedged
 uniprocessor
+UNIX
 Unix's
 unmerg[(e)(ed)(ing)]
 unpriviledged
@@ -420,6 +441,7 @@ UTFs
 util(s)?
 [Uu]narchive
 [Uu]nmount
+[Uu]nreferenced
 [Uu]serspace
 Valgrind
 VCS

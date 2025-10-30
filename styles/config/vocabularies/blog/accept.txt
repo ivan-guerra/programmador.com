@@ -136,6 +136,7 @@ eLinux('s)?
 Emacs
 endian
 endianness
+Enigo
 enum
 epilog
 EXE
@@ -457,6 +458,7 @@ VRAM
 vruntime(s)?
 vszzc
 WAV
+whacko
 WiFi
 WM(s)?
 wordsmithing

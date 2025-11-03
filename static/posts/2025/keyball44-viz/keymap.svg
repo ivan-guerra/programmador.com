@@ -1,0 +1,1415 @@
+<svg height="2600" viewBox="0 0 1606 2600" width="1606" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#faf8f3" height="100%" width="100%"/>
+<style>
+
+        .key {
+            fill: url(#keyGradient);
+            stroke: #2c3e50;
+            stroke-width: 2;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));
+            transition: all 0.3s ease;
+        }
+        .key:hover {
+            filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
+            transform: translateY(-2px);
+        }
+        .key-layer1 { fill: url(#layer1Gradient); }
+        .key-layer2 { fill: url(#layer2Gradient); }
+        .key-layer3 { fill: url(#layer3Gradient); }
+        .key-layer4 { fill: url(#layer4Gradient); }
+        .key-layer5 { fill: url(#layer5Gradient); }
+        .key-layer6 { fill: url(#layer6Gradient); }
+        .key-layer7 { fill: url(#layer7Gradient); }
+        .key-layer8 { fill: url(#layer8Gradient); }
+        .key-special { fill: url(#specialGradient); }
+        .key-empty { fill: #ecf0f1; opacity: 0.5; }
+        
+        .key-text {
+            fill: #2c3e50;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        .layer-title {
+            fill: #34495e;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+    
+</style>
+<defs>
+<linearGradient id="layer1Gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#7cb0d9"/>
+<stop offset="100%" stop-color="#5a8fb8"/>
+</linearGradient>
+<linearGradient id="layer2Gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#b888c4"/>
+<stop offset="100%" stop-color="#9668a8"/>
+</linearGradient>
+<linearGradient id="layer3Gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#d97c7c"/>
+<stop offset="100%" stop-color="#c25858"/>
+</linearGradient>
+<linearGradient id="layer4Gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#e8a87c"/>
+<stop offset="100%" stop-color="#d18a58"/>
+</linearGradient>
+<linearGradient id="layer5Gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#7ec4a8"/>
+<stop offset="100%" stop-color="#5ca888"/>
+</linearGradient>
+<linearGradient id="layer6Gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#88c47c"/>
+<stop offset="100%" stop-color="#68a858"/>
+</linearGradient>
+<linearGradient id="layer7Gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#d4c47c"/>
+<stop offset="100%" stop-color="#b8a858"/>
+</linearGradient>
+<linearGradient id="layer8Gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#a8a8a8"/>
+<stop offset="100%" stop-color="#888888"/>
+</linearGradient>
+<linearGradient id="keyGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#e8e8e8"/>
+<stop offset="100%" stop-color="#d0d0d0"/>
+</linearGradient>
+<linearGradient id="specialGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#7ec4a8"/>
+<stop offset="100%" stop-color="#5ca888"/>
+</linearGradient>
+</defs>
+<text class="layer-title" x="20" y="20">
+
+Layer 0
+</text>
+<rect class="key" height="60" rx="5" width="104" x="20" y="60"/>
+<text class="key-text" x="72" y="93.666664">
+
+KC_TAB
+</text>
+<rect class="key" height="60" rx="5" width="104" x="129" y="60"/>
+<text class="key-text" x="181" y="93.666664">
+
+KC_Q
+</text>
+<rect class="key" height="60" rx="5" width="104" x="238" y="60"/>
+<text class="key-text" x="290" y="93.666664">
+
+KC_W
+</text>
+<rect class="key" height="60" rx="5" width="104" x="347" y="60"/>
+<text class="key-text" x="399" y="93.666664">
+
+KC_E
+</text>
+<rect class="key" height="60" rx="5" width="104" x="456" y="60"/>
+<text class="key-text" x="508" y="93.666664">
+
+KC_R
+</text>
+<rect class="key" height="60" rx="5" width="104" x="565" y="60"/>
+<text class="key-text" x="617" y="93.666664">
+
+KC_T
+</text>
+<rect class="key" height="60" rx="5" width="104" x="932" y="60"/>
+<text class="key-text" x="984" y="93.666664">
+
+KC_Y
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1041" y="60"/>
+<text class="key-text" x="1093" y="93.666664">
+
+KC_U
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1150" y="60"/>
+<text class="key-text" x="1202" y="93.666664">
+
+KC_I
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1259" y="60"/>
+<text class="key-text" x="1311" y="93.666664">
+
+KC_O
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1368" y="60"/>
+<text class="key-text" x="1420" y="93.666664">
+
+KC_P
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1477" y="60"/>
+<text class="key-text" x="1529" y="93.666664">
+
+KC_BSPC
+</text>
+<rect class="key" height="60" rx="5" width="104" x="20" y="125"/>
+<text class="key-text" x="72" y="158.66667">
+
+KC_LCTL
+</text>
+<rect class="key" height="60" rx="5" width="104" x="129" y="125"/>
+<text class="key-text" x="181" y="158.66667">
+
+KC_A
+</text>
+<rect class="key" height="60" rx="5" width="104" x="238" y="125"/>
+<text class="key-text" x="290" y="158.66667">
+
+KC_S
+</text>
+<rect class="key" height="60" rx="5" width="104" x="347" y="125"/>
+<text class="key-text" x="399" y="158.66667">
+
+KC_D
+</text>
+<rect class="key" height="60" rx="5" width="104" x="456" y="125"/>
+<text class="key-text" x="508" y="158.66667">
+
+KC_F
+</text>
+<rect class="key" height="60" rx="5" width="104" x="565" y="125"/>
+<text class="key-text" x="617" y="158.66667">
+
+KC_G
+</text>
+<rect class="key" height="60" rx="5" width="104" x="932" y="125"/>
+<text class="key-text" x="984" y="158.66667">
+
+KC_H
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1041" y="125"/>
+<text class="key-text" x="1093" y="158.66667">
+
+KC_J
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1150" y="125"/>
+<text class="key-text" x="1202" y="158.66667">
+
+KC_K
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1259" y="125"/>
+<text class="key-text" x="1311" y="158.66667">
+
+LT(5, KC_L)
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1368" y="125"/>
+<text class="key-text" x="1420" y="158.66667">
+
+KC_SCLN
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1477" y="125"/>
+<text class="key-text" x="1529" y="158.66667">
+
+KC_ENT
+</text>
+<rect class="key" height="60" rx="5" width="104" x="20" y="190"/>
+<text class="key-text" x="72" y="223.66667">
+
+KC_LSFT
+</text>
+<rect class="key" height="60" rx="5" width="104" x="129" y="190"/>
+<text class="key-text" x="181" y="223.66667">
+
+KC_Z
+</text>
+<rect class="key" height="60" rx="5" width="104" x="238" y="190"/>
+<text class="key-text" x="290" y="223.66667">
+
+KC_X
+</text>
+<rect class="key" height="60" rx="5" width="104" x="347" y="190"/>
+<text class="key-text" x="399" y="223.66667">
+
+KC_C
+</text>
+<rect class="key" height="60" rx="5" width="104" x="456" y="190"/>
+<text class="key-text" x="508" y="223.66667">
+
+KC_V
+</text>
+<rect class="key" height="60" rx="5" width="104" x="565" y="190"/>
+<text class="key-text" x="617" y="223.66667">
+
+KC_B
+</text>
+<rect class="key" height="60" rx="5" width="104" x="932" y="190"/>
+<text class="key-text" x="984" y="223.66667">
+
+KC_N
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1041" y="190"/>
+<text class="key-text" x="1093" y="223.66667">
+
+KC_M
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1150" y="190"/>
+<text class="key-text" x="1202" y="223.66667">
+
+KC_COMM
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1259" y="190"/>
+<text class="key-text" x="1311" y="223.66667">
+
+KC_DOT
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1368" y="190"/>
+<text class="key-text" x="1420" y="223.66667">
+
+KC_SLSH
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1477" y="190"/>
+<text class="key-text" x="1529" y="223.66667">
+
+KC_RSFT
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="238" y="255"/>
+<text class="key-text" x="290" y="288.66666">
+
+MO(4)
+</text>
+<rect class="key" height="60" rx="5" width="104" x="347" y="255"/>
+<text class="key-text" x="399" y="288.66666">
+
+KC_LALT
+</text>
+<rect class="key" height="60" rx="5" width="104" x="456" y="255"/>
+<text class="key-text" x="508" y="288.66666">
+
+KC_LGUI
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="565" y="255"/>
+<text class="key-text" x="617" y="288.66666">
+
+MO(3)
+</text>
+<rect class="key" height="60" rx="5" width="104" x="674" y="255"/>
+<text class="key-text" x="726" y="288.66666">
+
+KC_SPC
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="823" y="255"/>
+<text class="key-text" x="875" y="288.66666">
+
+MO(1)
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="932" y="255"/>
+<text class="key-text" x="984" y="288.66666">
+
+MO(2)
+</text>
+<rect class="key" height="60" rx="5" width="104" x="1041" y="255"/>
+<text class="key-text" x="1093" y="288.66666">
+
+KC_RALT
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="255"/>
+<text class="key-text" x="1311" y="288.66666">
+
+_______
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1368" y="255"/>
+<text class="key-text" x="1420" y="288.66666">
+
+MO(5)
+</text>
+<text class="layer-title" x="20" y="440">
+
+Layer 1
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="480"/>
+<text class="key-text" x="72" y="513.6667">
+
+_______
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="129" y="480"/>
+<text class="key-text" x="181" y="513.6667">
+
+KC_GRV
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="238" y="480"/>
+<text class="key-text" x="290" y="513.6667">
+
+S(KC_BSLS)
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="480"/>
+<text class="key-text" x="399" y="513.6667">
+
+_______
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="456" y="480"/>
+<text class="key-text" x="508" y="513.6667">
+
+KC_QUOT
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="565" y="480"/>
+<text class="key-text" x="617" y="513.6667">
+
+S(KC_QUOT)
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="480"/>
+<text class="key-text" x="984" y="513.6667">
+
+_______
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="1041" y="480"/>
+<text class="key-text" x="1093" y="513.6667">
+
+S(KC_LBRC)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="1150" y="480"/>
+<text class="key-text" x="1202" y="513.6667">
+
+S(KC_RBRC)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="1259" y="480"/>
+<text class="key-text" x="1311" y="513.6667">
+
+KC_LBRC
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="1368" y="480"/>
+<text class="key-text" x="1420" y="513.6667">
+
+KC_RBRC
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="480"/>
+<text class="key-text" x="1529" y="513.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="545"/>
+<text class="key-text" x="72" y="578.6667">
+
+_______
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="129" y="545"/>
+<text class="key-text" x="181" y="578.6667">
+
+S(KC_1)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="238" y="545"/>
+<text class="key-text" x="290" y="578.6667">
+
+S(KC_2)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="347" y="545"/>
+<text class="key-text" x="399" y="578.6667">
+
+S(KC_3)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="456" y="545"/>
+<text class="key-text" x="508" y="578.6667">
+
+S(KC_4)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="565" y="545"/>
+<text class="key-text" x="617" y="578.6667">
+
+S(KC_5)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="932" y="545"/>
+<text class="key-text" x="984" y="578.6667">
+
+S(KC_6)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="1041" y="545"/>
+<text class="key-text" x="1093" y="578.6667">
+
+S(KC_7)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="1150" y="545"/>
+<text class="key-text" x="1202" y="578.6667">
+
+S(KC_8)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="1259" y="545"/>
+<text class="key-text" x="1311" y="578.6667">
+
+S(KC_9)
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="1368" y="545"/>
+<text class="key-text" x="1420" y="578.6667">
+
+S(KC_0)
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="545"/>
+<text class="key-text" x="1529" y="578.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="610"/>
+<text class="key-text" x="72" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="129" y="610"/>
+<text class="key-text" x="181" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="610"/>
+<text class="key-text" x="290" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="610"/>
+<text class="key-text" x="399" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="610"/>
+<text class="key-text" x="508" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="610"/>
+<text class="key-text" x="617" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="610"/>
+<text class="key-text" x="984" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1041" y="610"/>
+<text class="key-text" x="1093" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1150" y="610"/>
+<text class="key-text" x="1202" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="610"/>
+<text class="key-text" x="1311" y="643.6667">
+
+_______
+</text>
+<rect class="key key-layer1" height="60" rx="5" width="104" x="1368" y="610"/>
+<text class="key-text" x="1420" y="643.6667">
+
+KC_BSLS
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="610"/>
+<text class="key-text" x="1529" y="643.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="675"/>
+<text class="key-text" x="290" y="708.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="675"/>
+<text class="key-text" x="399" y="708.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="675"/>
+<text class="key-text" x="508" y="708.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="675"/>
+<text class="key-text" x="617" y="708.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="674" y="675"/>
+<text class="key-text" x="726" y="708.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="675"/>
+<text class="key-text" x="1311" y="708.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="675"/>
+<text class="key-text" x="1420" y="708.6667">
+
+_______
+</text>
+<text class="layer-title" x="20" y="860">
+
+Layer 2
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="900"/>
+<text class="key-text" x="72" y="933.6667">
+
+_______
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="129" y="900"/>
+<text class="key-text" x="181" y="933.6667">
+
+S(KC_GRV)
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="900"/>
+<text class="key-text" x="290" y="933.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="900"/>
+<text class="key-text" x="399" y="933.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="900"/>
+<text class="key-text" x="508" y="933.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="900"/>
+<text class="key-text" x="617" y="933.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="900"/>
+<text class="key-text" x="984" y="933.6667">
+
+_______
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="1041" y="900"/>
+<text class="key-text" x="1093" y="933.6667">
+
+KC_MINUS
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="1150" y="900"/>
+<text class="key-text" x="1202" y="933.6667">
+
+S(KC_MINUS)
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="1259" y="900"/>
+<text class="key-text" x="1311" y="933.6667">
+
+KC_EQL
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="1368" y="900"/>
+<text class="key-text" x="1420" y="933.6667">
+
+S(KC_EQL)
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="900"/>
+<text class="key-text" x="1529" y="933.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="965"/>
+<text class="key-text" x="72" y="998.6667">
+
+_______
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="129" y="965"/>
+<text class="key-text" x="181" y="998.6667">
+
+KC_1
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="238" y="965"/>
+<text class="key-text" x="290" y="998.6667">
+
+KC_2
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="347" y="965"/>
+<text class="key-text" x="399" y="998.6667">
+
+KC_3
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="456" y="965"/>
+<text class="key-text" x="508" y="998.6667">
+
+KC_4
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="565" y="965"/>
+<text class="key-text" x="617" y="998.6667">
+
+KC_5
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="932" y="965"/>
+<text class="key-text" x="984" y="998.6667">
+
+KC_6
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="1041" y="965"/>
+<text class="key-text" x="1093" y="998.6667">
+
+KC_7
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="1150" y="965"/>
+<text class="key-text" x="1202" y="998.6667">
+
+KC_8
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="1259" y="965"/>
+<text class="key-text" x="1311" y="998.6667">
+
+KC_9
+</text>
+<rect class="key key-layer2" height="60" rx="5" width="104" x="1368" y="965"/>
+<text class="key-text" x="1420" y="998.6667">
+
+KC_0
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="965"/>
+<text class="key-text" x="1529" y="998.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="1030"/>
+<text class="key-text" x="72" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="129" y="1030"/>
+<text class="key-text" x="181" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="1030"/>
+<text class="key-text" x="290" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="1030"/>
+<text class="key-text" x="399" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="1030"/>
+<text class="key-text" x="508" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="1030"/>
+<text class="key-text" x="617" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="1030"/>
+<text class="key-text" x="984" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1041" y="1030"/>
+<text class="key-text" x="1093" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1150" y="1030"/>
+<text class="key-text" x="1202" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="1030"/>
+<text class="key-text" x="1311" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="1030"/>
+<text class="key-text" x="1420" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="1030"/>
+<text class="key-text" x="1529" y="1063.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="1095"/>
+<text class="key-text" x="290" y="1128.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="1095"/>
+<text class="key-text" x="399" y="1128.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="1095"/>
+<text class="key-text" x="508" y="1128.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="1095"/>
+<text class="key-text" x="617" y="1128.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="674" y="1095"/>
+<text class="key-text" x="726" y="1128.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="1095"/>
+<text class="key-text" x="1311" y="1128.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="1095"/>
+<text class="key-text" x="1420" y="1128.6666">
+
+_______
+</text>
+<text class="layer-title" x="20" y="1280">
+
+Layer 3
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="20" y="1320"/>
+<text class="key-text" x="72" y="1353.6666">
+
+KC_ESC
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="129" y="1320"/>
+<text class="key-text" x="181" y="1353.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="1320"/>
+<text class="key-text" x="290" y="1353.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="1320"/>
+<text class="key-text" x="399" y="1353.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="1320"/>
+<text class="key-text" x="508" y="1353.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="1320"/>
+<text class="key-text" x="617" y="1353.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="1320"/>
+<text class="key-text" x="984" y="1353.6666">
+
+_______
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1041" y="1320"/>
+<text class="key-text" x="1093" y="1353.6666">
+
+KC_PGUP
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1150" y="1320"/>
+<text class="key-text" x="1202" y="1353.6666">
+
+KC_PGDN
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1259" y="1320"/>
+<text class="key-text" x="1311" y="1353.6666">
+
+KC_HOME
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1368" y="1320"/>
+<text class="key-text" x="1420" y="1353.6666">
+
+KC_END
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1477" y="1320"/>
+<text class="key-text" x="1529" y="1353.6666">
+
+KC_DEL
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="1385"/>
+<text class="key-text" x="72" y="1418.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="129" y="1385"/>
+<text class="key-text" x="181" y="1418.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="1385"/>
+<text class="key-text" x="290" y="1418.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="1385"/>
+<text class="key-text" x="399" y="1418.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="1385"/>
+<text class="key-text" x="508" y="1418.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="1385"/>
+<text class="key-text" x="617" y="1418.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="1385"/>
+<text class="key-text" x="984" y="1418.6666">
+
+_______
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1041" y="1385"/>
+<text class="key-text" x="1093" y="1418.6666">
+
+KC_LEFT
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1150" y="1385"/>
+<text class="key-text" x="1202" y="1418.6666">
+
+KC_DOWN
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1259" y="1385"/>
+<text class="key-text" x="1311" y="1418.6666">
+
+KC_UP
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1368" y="1385"/>
+<text class="key-text" x="1420" y="1418.6666">
+
+KC_RIGHT
+</text>
+<rect class="key key-layer3" height="60" rx="5" width="104" x="1477" y="1385"/>
+<text class="key-text" x="1529" y="1418.6666">
+
+S(KC_INSERT)
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="1450"/>
+<text class="key-text" x="72" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="129" y="1450"/>
+<text class="key-text" x="181" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="1450"/>
+<text class="key-text" x="290" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="1450"/>
+<text class="key-text" x="399" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="1450"/>
+<text class="key-text" x="508" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="1450"/>
+<text class="key-text" x="617" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="1450"/>
+<text class="key-text" x="984" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1041" y="1450"/>
+<text class="key-text" x="1093" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1150" y="1450"/>
+<text class="key-text" x="1202" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="1450"/>
+<text class="key-text" x="1311" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="1450"/>
+<text class="key-text" x="1420" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="1450"/>
+<text class="key-text" x="1529" y="1483.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="1515"/>
+<text class="key-text" x="290" y="1548.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="1515"/>
+<text class="key-text" x="399" y="1548.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="1515"/>
+<text class="key-text" x="508" y="1548.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="1515"/>
+<text class="key-text" x="617" y="1548.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="674" y="1515"/>
+<text class="key-text" x="726" y="1548.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="1515"/>
+<text class="key-text" x="1311" y="1548.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="1515"/>
+<text class="key-text" x="1420" y="1548.6666">
+
+_______
+</text>
+<text class="layer-title" x="20" y="1700">
+
+Layer 4
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="1740"/>
+<text class="key-text" x="72" y="1773.6666">
+
+_______
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="129" y="1740"/>
+<text class="key-text" x="181" y="1773.6666">
+
+KC_F11
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="238" y="1740"/>
+<text class="key-text" x="290" y="1773.6666">
+
+KC_F12
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="1740"/>
+<text class="key-text" x="399" y="1773.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="1740"/>
+<text class="key-text" x="508" y="1773.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="1740"/>
+<text class="key-text" x="617" y="1773.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="1740"/>
+<text class="key-text" x="984" y="1773.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1041" y="1740"/>
+<text class="key-text" x="1093" y="1773.6666">
+
+_______
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="1150" y="1740"/>
+<text class="key-text" x="1202" y="1773.6666">
+
+KC_PSCR
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="1259" y="1740"/>
+<text class="key-text" x="1311" y="1773.6666">
+
+KC_SCRL
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="1368" y="1740"/>
+<text class="key-text" x="1420" y="1773.6666">
+
+KC_PAUSE
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="1740"/>
+<text class="key-text" x="1529" y="1773.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="1805"/>
+<text class="key-text" x="72" y="1838.6666">
+
+_______
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="129" y="1805"/>
+<text class="key-text" x="181" y="1838.6666">
+
+KC_F1
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="238" y="1805"/>
+<text class="key-text" x="290" y="1838.6666">
+
+KC_F2
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="347" y="1805"/>
+<text class="key-text" x="399" y="1838.6666">
+
+KC_F3
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="456" y="1805"/>
+<text class="key-text" x="508" y="1838.6666">
+
+KC_F4
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="565" y="1805"/>
+<text class="key-text" x="617" y="1838.6666">
+
+KC_F5
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="932" y="1805"/>
+<text class="key-text" x="984" y="1838.6666">
+
+KC_F6
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="1041" y="1805"/>
+<text class="key-text" x="1093" y="1838.6666">
+
+KC_F7
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="1150" y="1805"/>
+<text class="key-text" x="1202" y="1838.6666">
+
+KC_F8
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="1259" y="1805"/>
+<text class="key-text" x="1311" y="1838.6666">
+
+KC_F9
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="1368" y="1805"/>
+<text class="key-text" x="1420" y="1838.6666">
+
+KC_F10
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="1805"/>
+<text class="key-text" x="1529" y="1838.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="1870"/>
+<text class="key-text" x="72" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="129" y="1870"/>
+<text class="key-text" x="181" y="1903.6666">
+
+KC_CAPS
+</text>
+<rect class="key key-layer4" height="60" rx="5" width="104" x="238" y="1870"/>
+<text class="key-text" x="290" y="1903.6666">
+
+KC_NUM
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="1870"/>
+<text class="key-text" x="399" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="1870"/>
+<text class="key-text" x="508" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="1870"/>
+<text class="key-text" x="617" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="1870"/>
+<text class="key-text" x="984" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1041" y="1870"/>
+<text class="key-text" x="1093" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1150" y="1870"/>
+<text class="key-text" x="1202" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="1870"/>
+<text class="key-text" x="1311" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="1870"/>
+<text class="key-text" x="1420" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="1870"/>
+<text class="key-text" x="1529" y="1903.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="1935"/>
+<text class="key-text" x="290" y="1968.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="1935"/>
+<text class="key-text" x="399" y="1968.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="1935"/>
+<text class="key-text" x="508" y="1968.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="1935"/>
+<text class="key-text" x="617" y="1968.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="674" y="1935"/>
+<text class="key-text" x="726" y="1968.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="1935"/>
+<text class="key-text" x="1311" y="1968.6666">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="1935"/>
+<text class="key-text" x="1420" y="1968.6666">
+
+_______
+</text>
+<text class="layer-title" x="20" y="2120">
+
+Layer 5
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="2160"/>
+<text class="key-text" x="72" y="2193.6667">
+
+_______
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="129" y="2160"/>
+<text class="key-text" x="181" y="2193.6667">
+
+AML_TO
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="238" y="2160"/>
+<text class="key-text" x="290" y="2193.6667">
+
+AML_I50
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="347" y="2160"/>
+<text class="key-text" x="399" y="2193.6667">
+
+AML_D50
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="2160"/>
+<text class="key-text" x="508" y="2193.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="2160"/>
+<text class="key-text" x="617" y="2193.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="2160"/>
+<text class="key-text" x="984" y="2193.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1041" y="2160"/>
+<text class="key-text" x="1093" y="2193.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1150" y="2160"/>
+<text class="key-text" x="1202" y="2193.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="2160"/>
+<text class="key-text" x="1311" y="2193.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="2160"/>
+<text class="key-text" x="1420" y="2193.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="2160"/>
+<text class="key-text" x="1529" y="2193.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="2225"/>
+<text class="key-text" x="72" y="2258.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="129" y="2225"/>
+<text class="key-text" x="181" y="2258.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="2225"/>
+<text class="key-text" x="290" y="2258.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="2225"/>
+<text class="key-text" x="399" y="2258.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="2225"/>
+<text class="key-text" x="508" y="2258.6667">
+
+_______
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="565" y="2225"/>
+<text class="key-text" x="617" y="2258.6667">
+
+SCRL_DVI
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="932" y="2225"/>
+<text class="key-text" x="984" y="2258.6667">
+
+_______
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1041" y="2225"/>
+<text class="key-text" x="1093" y="2258.6667">
+
+KC_BTN1
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1150" y="2225"/>
+<text class="key-text" x="1202" y="2258.6667">
+
+KC_BTN2
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1259" y="2225"/>
+<text class="key-text" x="1311" y="2258.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="2225"/>
+<text class="key-text" x="1420" y="2258.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1477" y="2225"/>
+<text class="key-text" x="1529" y="2258.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="20" y="2290"/>
+<text class="key-text" x="72" y="2323.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="129" y="2290"/>
+<text class="key-text" x="181" y="2323.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="238" y="2290"/>
+<text class="key-text" x="290" y="2323.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="347" y="2290"/>
+<text class="key-text" x="399" y="2323.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="2290"/>
+<text class="key-text" x="508" y="2323.6667">
+
+_______
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="565" y="2290"/>
+<text class="key-text" x="617" y="2323.6667">
+
+SCRL_DVD
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="932" y="2290"/>
+<text class="key-text" x="984" y="2323.6667">
+
+CPI_D1K
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1041" y="2290"/>
+<text class="key-text" x="1093" y="2323.6667">
+
+CPI_D100
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1150" y="2290"/>
+<text class="key-text" x="1202" y="2323.6667">
+
+CPI_I100
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1259" y="2290"/>
+<text class="key-text" x="1311" y="2323.6667">
+
+CPI_I1K
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="1368" y="2290"/>
+<text class="key-text" x="1420" y="2323.6667">
+
+_______
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1477" y="2290"/>
+<text class="key-text" x="1529" y="2323.6667">
+
+KBC_SAVE
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="238" y="2355"/>
+<text class="key-text" x="290" y="2388.6667">
+
+QK_BOOT
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="347" y="2355"/>
+<text class="key-text" x="399" y="2388.6667">
+
+KBC_RST
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="456" y="2355"/>
+<text class="key-text" x="508" y="2388.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="565" y="2355"/>
+<text class="key-text" x="617" y="2388.6667">
+
+_______
+</text>
+<rect class="key key-empty" height="60" rx="5" width="104" x="674" y="2355"/>
+<text class="key-text" x="726" y="2388.6667">
+
+_______
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1259" y="2355"/>
+<text class="key-text" x="1311" y="2388.6667">
+
+KBC_RST
+</text>
+<rect class="key key-layer5" height="60" rx="5" width="104" x="1368" y="2355"/>
+<text class="key-text" x="1420" y="2388.6667">
+
+QK_BOOT
+</text>
+</svg>

@@ -324,6 +324,7 @@ POSIX
 [Pp]rimality
 [Pp]ubkey(s)?
 preallocated
+precompiled
 preemptible
 Prefaulting
 prefetch(s)?

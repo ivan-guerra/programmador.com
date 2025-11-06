@@ -1,5 +1,5 @@
 baseURL: "https://programmador.com/"
-title: "@ieg"
+title: "~ieg"
 theme: "hugo-PaperMod"
 copyright: "All rights reserved, Ivan Eduardo Guerra"
 googleAnalytics: "G-XEENY573SL"
@@ -58,7 +58,7 @@ params:
   profileMode:
     title: "Ivan Eduardo Guerra"
     subtitle: "My personal collection of tech junk."
-    enabled: true
+    enabled: false
     imageUrl: "alien.jpg"
     imageTitle: "Alien with Microscope"
     imageWidth: 180

@@ -8,3 +8,6 @@ resources
 # We might occassionally build the site locally but we don't want to
 # accidentally version our local build.
 public
+
+# Ignore installed node dependencies
+node_modules

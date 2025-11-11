@@ -5,3 +5,14 @@ img[src$="#center"] {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.mermaid {
+  display: flex;
+  justify-content: center;
+}

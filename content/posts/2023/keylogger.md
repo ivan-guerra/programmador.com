@@ -162,8 +162,7 @@ retrospect, this would have been a good use case for using
 [`std::ostream::flush`][3].
 
 The `NetworkRecorder` uses a wrapper around a Linux/Windows UDP socket to
-transmit data. You can look at the UDP wrapper [source][4] to get the full
-details.
+transmit data.
 
 ## Configuration
 
@@ -224,14 +223,11 @@ Beyond that, you have to decide how to record keystrokes. Be responsible with
 how you use this or any keylogger!
 
 Note, this project has since been rewritten in Rust. The complete project source
-is available on GitHub under [keylogger][7]. The Rust implementation is **much**
+is available on GitHub under [keylogger][4]. The Rust implementation is **much**
 simpler. The rdev crate does a lot of the heavy lifting when it comes to key
 press detection.
 
 [1]: https://programmador.com/posts/2023/keyboard-hell/
 [2]: https://en.cppreference.com/w/cpp/string/byte/isprint
 [3]: https://en.cppreference.com/w/cpp/io/basic_ostream/flush
-[4]: https://github.com/ivan-guerra/keylogger/blob/master/include/io/udp/udp_socket.h
-[5]: https://github.com/ivan-guerra/keylogger/blob/master/src/io/udp/linux_udp_socket.cpp
-[6]: https://github.com/ivan-guerra/keylogger/blob/master/src/io/udp/windows_udp_socket.cpp
-[7]: https://github.com/ivan-guerra/keylogger.git
+[4]: https://github.com/ivan-guerra/keylogger.git

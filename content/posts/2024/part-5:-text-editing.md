@@ -216,7 +216,7 @@ find it was worth investing the time to learn your editor.
 That's it for this series. Hopefully these articles have helped shape your Linux
 dev experience to be efficient and, most importantly, enjoyable.
 
-[1]: https://programmador.com/series/workflow-optimization/part-4-terminal-emulation-and-the-shell/
+[1]: https://programmador.com/posts/2024/part-4-terminal-emulation-and-the-shell/
 [2]: https://neovim.io/
 [3]: https://en.wiktionary.org/wiki/free_as_in_beer
 [4]: https://nvchad.com/

@@ -192,6 +192,6 @@ androidVNC connection won't make its way through to the server.
 [1]: https://tigervnc.org/
 [2]: https://wiki.archlinux.org/title/OpenSSH
 [3]: https://play.google.com/store/apps/details?id=org.connectbot&hl=en_US
-[4]: https://play.google.com/store/apps/details?id=android.androidVNC&hl=en_US&pli=1
+[4]: https://play.google.com/store/apps/details?id=net.christianbeier.droidvnc_ng&hl=en_US
 [5]: https://programmador.com/posts/2024/tigervnc-setup/
 [6]: https://www.whatismyip.com/

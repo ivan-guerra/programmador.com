@@ -723,5 +723,5 @@ Linux kernel development:
 - Always assume and program for an SMP/preempt/highmem system. This keeps you
   safe in any kernel/HW configuration.
 
-[1]: https://programmador.com/series/notes/
+[1]: https://programmador.com/categories/notes/
 [2]: https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468

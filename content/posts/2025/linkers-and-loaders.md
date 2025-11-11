@@ -593,6 +593,6 @@ Structure](/series/notes/linkers-and-loaders/elf-shared-lib.webp#center)
 - There's a discussion of the Java linking model that's worth a read starting on
   page 287.
 
-[1]: https://programmador.com/series/notes/
+[1]: https://programmador.com/categories/notes/
 [2]: https://www.amazon.com/Linkers-Kaufmann-Software-Engineering-Programming/dp/1558604960#customerReviews
 [3]: https://github.com/ivan-guerra/mild/tree/master

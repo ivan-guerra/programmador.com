@@ -261,7 +261,7 @@ GitHub under [cosmo][20].
 [11]: https://www.nasm.us/
 [12]: https://cliutils.gitlab.io/modern-cmake/chapters/basics/structure.html
 [13]: https://github.com/ivan-guerra/cosmo/blob/master/kernel/CMakeLists.txt
-[14]: https://kubasejdak.com/how-to-cross-compile-for-embedded-with-cmake-like-a-champ
+[14]: https://kubasejdak.com/blog/how-to-cross-compile-for-embedded-with-cmake-like-a-champ/
 [15]: https://wiki.osdev.org/Bare_Bones#Implementing_the_Kernel
 [16]: https://github.com/ivan-guerra/cosmo/blob/master/cmake/i686-elf-gcc.cmake
 [17]: https://en.wikipedia.org/wiki/GNU_GRUB

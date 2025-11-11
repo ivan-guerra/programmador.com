@@ -259,6 +259,6 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
 - Consider whether a change that breaks portability is worth making. Try to
   remain backwards compatible whenever possible.
 
-[1]: https://programmador.com/series/notes/
+[1]: https://programmador.com/categories/notes/
 [2]: https://www.amazon.com/Practice-Programming-Addison-Wesley-Professional-Computing/dp/020161586X
 [3]: https://stackoverflow.com/questions/7622/are-the-shift-operators-arithmetic-or-logical-in-c

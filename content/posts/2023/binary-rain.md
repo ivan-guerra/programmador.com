@@ -244,6 +244,6 @@ The complete project source with build instructions, usage, etc. is available on
 GitHub under [neo][4].
 
 [1]: https://en.wikipedia.org/wiki/The_Matrix
-[2]: https://tinyurl.com/yc7p7285
+[2]: https://scifi.stackexchange.com/questions/19782/how-does-seeing-the-code-help-neo
 [3]: https://en.wikipedia.org/wiki/Matrix_digital_rain
 [4]: https://github.com/ivan-guerra/neo

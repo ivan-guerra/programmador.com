@@ -538,5 +538,5 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
 - The Domain Name System (DNS) is a distributed naming system that translates
   human-readable domain names (like www.example.com) into IP addresses.
 
-[1]: https://programmador.com/series/notes/
+[1]: https://programmador.com/categories/notes/
 [2]: https://codehiddenlanguage.com/Chapter00/

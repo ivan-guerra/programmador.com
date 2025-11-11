@@ -168,7 +168,7 @@ text editing experience.
 [1]: https://wiki.archlinux.org/title/Category:Terminal_emulators
 [2]: https://news.ycombinator.com/item?id=29528343#:~:text=Faster%20screen%20updates%2C%20lower%20CPU,completely%20while%20burning%20the%20CPU.
 [3]: https://docs.xfce.org/apps/terminal/start
-[4]: https://programmador.com/series/workflow-optimization/part-3-an-i3-desktop-environment/
+[4]: https://programmador.com/posts/2024/part-3-an-i3-desktop-environment/
 [5]: https://github.com/Gogh-Co/Gogh
 [6]: https://github.com/adobe-fonts/source-code-pro
 [7]: https://fishshell.com/docs/current/

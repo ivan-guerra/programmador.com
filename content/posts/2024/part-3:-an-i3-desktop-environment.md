@@ -127,7 +127,7 @@ WMs out there due to its rich feature set and ease of configuration.
 In the next installment, you'll explore the terminal emulator and shell.
 
 [1]: https://i3wm.org/
-[2]: https://programmador.com/series/workflow-optimization/part-2-choosing-a-distribution/
+[2]: https://programmador.com/posts/2024/part-2-choosing-a-distribution/
 [3]: https://wiki.archlinux.org/title/i3
 [4]: https://i3wm.org/i3bar/
 [5]: https://i3wm.org/i3lock/

@@ -210,4 +210,4 @@ This section is a bit outdated. Probably the most relevant tool mentioned is
 [2]: https://valgrind.org/docs/manual/cg-manual.html
 [3]: https://valgrind.org/docs/manual/cl-manual.html
 [4]: https://kcachegrind.sourceforge.net/html/Home.html
-[5]: https://programmador.com/series/notes/
+[5]: https://programmador.com/categories/notes/

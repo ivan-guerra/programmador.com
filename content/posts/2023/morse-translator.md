@@ -143,8 +143,7 @@ beep sound. The `Beeper` object plays sounds by order of registration.
 completion.
 
 A complete description of how `Beeper` does its thing is worthy of a separate
-post. You can find the article from which this code derives here or checkout
-the `Beeper` [source code][11].
+post. You can find the article from which this code derives [here][10].
 
 ## Translating to Beeps
 
@@ -241,14 +240,14 @@ problem with a solution. The SDL library with its simple C API covers all your
 audio needs. In the end, you walk away with a fun, flexible CLI tool.
 
 Note, this project has since been rewritten in Rust. The complete project source
-is available on GitHub under [morse][13]. The Rust version of the project
+is available on GitHub under [morse][11]. The Rust version of the project
 includes more testing and better error handling.
 
 P.S. You can augment the tool to go the other way. That is, take in a Morse code
 audio recording and output the decoded text. Going the audio to text route is
 actually a challenging problem that requires digital signal processing skills.
 If you're interested, here's a resource that could be of help: ["RSCW's
-Algorithm"][14].
+Algorithm"][12].
 
 [1]: https://leetcode.com
 [2]: https://leetcode.com/problems/unique-morse-code-words/
@@ -260,7 +259,5 @@ Algorithm"][14].
 [8]: https://www.libsdl.org/
 [9]: https://web.archive.org/web/20100629004347/http://www.libsdl.org/games.php?order=name&category=-1&completed=0&os=-1&match_name=&perpage=-1
 [10]: https://web.archive.org/web/20120313055436/http://www.dgames.org/beep-sound-with-sdl/
-[11]: https://github.com/ivan-guerra/morse/blob/master/src/audio/beeper.cc
-[12]: https://github.com/ivan-guerra/morse/blob/master/include/audio/beeper.hpp
-[13]: https://github.com/ivan-guerra/morse.git
-[14]: http://www.pa3fwm.nl/software/rscw/algorithm.html
+[11]: https://github.com/ivan-guerra/morse.git
+[12]: http://www.pa3fwm.nl/software/rscw/algorithm.html

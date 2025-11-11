@@ -285,7 +285,7 @@ the ability to chose the number of bits to use for the merge/unmerge operation.
 [2]: https://www.youtube.com/watch?v=TWEXCYQKyDc
 [3]: https://en.wikipedia.org/wiki/Pixel
 [4]: https://en.wikipedia.org/wiki/RGB_color_model#/media/File:Palette_of_125_main_colors_with_RGB_components_divisible_by_64.gif
-[5]: https://github.com/ivan-guerra/steganography/tree/master/resources
-[6]: https://github.com/ivan-guerra/steganography/blob/master/resources/unmerged.jpg
+[5]: https://github.com/ivan-guerra/steg/tree/master/examples
+[6]: https://github.com/ivan-guerra/steg/blob/master/examples/unmerged.jpg
 [7]: https://steghide.sourceforge.net/documentation/manpage.php
 [8]: https://github.com/ivan-guerra/steg.git

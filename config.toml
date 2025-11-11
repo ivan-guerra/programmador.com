@@ -45,7 +45,7 @@ title = "ieg archive"
   weight = 3
 
 [params]
-  title="i.e.g. Archive"
+  title="ieg Archive"
   author = "Ivan Eduardo Guerra"
   description = "Personal programming and tech archive."
   footnote = """

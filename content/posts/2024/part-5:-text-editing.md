@@ -2,9 +2,7 @@
 title: "Part 5: Text Editing"
 date: 2024-07-28T16:54:41-04:00
 description: "Improving your text editing experience."
-tags: ["linux", "workflow optimization"]
-series: ["workflow optimization"]
-ShowPostNavLinks: false
+categories: ["workflow"]
 ---
 
 Linux developers spend a large amount of time in both the shell and their text

@@ -2,7 +2,8 @@
 title: "Ulam Spiral"
 date: 2024-05-02T14:32:27-05:00
 description: "Visualizing the Ulam spiral."
-tags: ["c++", "cli-tools"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 The Ulam spiral is a graphical depiction of a set of prime numbers devised by

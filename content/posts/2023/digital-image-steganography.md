@@ -2,7 +2,8 @@
 title: "Digital Image Steganography"
 date: 2023-06-25T22:13:54-07:00
 description: "How to embed an image within another."
-tags: ["c++", "boost", "cli-tools"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 There's a neat [Computerphile][1] video discussing the topic of

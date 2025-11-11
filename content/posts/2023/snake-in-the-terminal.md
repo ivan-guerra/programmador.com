@@ -2,7 +2,8 @@
 title: "Snake in the Terminal"
 date: 2023-06-17T17:04:23-07:00
 description: "An implementation of the classic snake game for the terminal."
-tags: ["c++", "cli-tools", "ncurses", "games"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp"]
 ---
 
 Are you a text user interface enjoyer? Have you always wondered how difficult is

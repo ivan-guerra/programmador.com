@@ -2,7 +2,8 @@
 title: "Huffman Coding"
 date: 2023-07-04T20:57:06-07:00
 description: "Data compression using Huffman coding."
-tags: ["c++", "cli-tools", "compression"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 Implementing a [Huffman Tree][1] is a fun afternoon project for anyone

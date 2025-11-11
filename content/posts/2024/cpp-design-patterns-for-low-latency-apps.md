@@ -4,9 +4,7 @@ Frequency Trading"
 date: 2024-10-19T16:11:48-04:00
 description: 'Notes on John Bilokon''s and Burak Gunduz''s 2023 publication "C++
 Design Patterns for Low Latency Applications Including High Frequency Trading".'
-tags: ["notes"]
-series: ["notes"]
-ShowPostNavLinks: false
+categories: ["notes"]
 ---
 
 This is the fifth [installment][1] in a series of posts where I share notes

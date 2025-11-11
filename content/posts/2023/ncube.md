@@ -2,7 +2,8 @@
 title: "ncube: A Cube in Your Terminal"
 date: 2023-11-16T09:55:29-08:00
 description: "Rendering a cube in the terminal."
-tags: ["cli-tools", "c++", "ncurses"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 You ever come across one of those ASMR programming videos? [This video][1] where

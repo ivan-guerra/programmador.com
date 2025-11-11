@@ -2,6 +2,7 @@
 title: "Plasma"
 date: 2025-02-13T10:48:16-05:00
 description: "Old school plasma demo effects."
+categories: ["projects"]
 tags: ["cli-tools", "rust"]
 ---
 

@@ -2,7 +2,8 @@
 title: "Caesar Cipher"
 date: 2024-04-09T15:42:10-07:00
 description: "Creating Caesar Cipher encode, decode, and cracking utils."
-tags: ["c++", "cli-tools"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 The [Caesar Cipher][1] (CC) is a classic [symmetric key][2] algorithm dating

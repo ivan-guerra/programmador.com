@@ -2,7 +2,7 @@
 title: "Linux Kernel Development Using QEMU"
 date: 2024-02-20T14:40:50-08:00
 description: "How to setup a Linux kernel dev workflow using QEMU."
-tags: ["linux", "qemu"]
+tags: ["linux", "kernel"]
 ---
 
 This article gives an overview of how to setup a Linux kernel development

@@ -2,6 +2,7 @@
 title: "Busy"
 date: 2025-10-30T13:16:01-04:00
 description: "A simple CLI tool to keep you looking busy."
+categories: ["projects"]
 tags: ["cli-tools", "rust"]
 ---
 

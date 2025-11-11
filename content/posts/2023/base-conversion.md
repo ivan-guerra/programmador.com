@@ -2,7 +2,8 @@
 title: "A CLI Base Converter"
 date: 2023-07-08T11:14:45-07:00
 description: "A command line numerical base conversion utility."
-tags: ["c++", "cli-tools", "gnu"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 When debugging an embedded system, it's common to work with raw data requiring

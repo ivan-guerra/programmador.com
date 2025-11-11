@@ -2,7 +2,8 @@
 title: "Real-time Linux App Development"
 date: 2023-04-27T22:49:14-07:00
 description: "A checklist for developing real-time applications in Linux."
-tags: ["c", "c++", "linux", "realtime"]
+categories: ["notes"]
+tags: ["linux"]
 ---
 
 If you're an embedded systems programmer, you have likely touched on the topic

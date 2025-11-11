@@ -2,7 +2,8 @@
 title: "An Interview with Shared Pointers"
 date: 2024-03-09T20:39:30-08:00
 description: "Implementing an interview grade shared pointer in C++."
-tags: ["c++"]
+categories: ["projects"]
+tags: ["cpp"]
 ---
 
 Have you implemented a shared pointer class in C++? If you have, did you do it
@@ -13,7 +14,7 @@ thought about or tried to actually implement the concept itself, doing so in an
 interview is a tall order. This article walks you through the implementation of
 an interview grade `SharedPtr` class.
 
-## How to Reference Count 
+## How to Reference Count
 
 When you think about implementing a shared pointer, what comes to mind? Wrapping
 the user's pointer and counting how many `SharedPtr` objects point to the same
@@ -75,11 +76,11 @@ Nothing too crazy here. You wrap a pointer to the value `42`. Your ref count
 points to a value of `1`. What happens when you assign `p1` to `p2`?
 
 ```text
-                         +------------+      +-----------------+     
-                         |     P1     |      |   Main Memory   |     
-                         +------------+      +-----------------+     
-                         | data_      +----->| 42              |<-+  
-                         +------------+      +-----------------+  |  
+                         +------------+      +-----------------+
+                         |     P1     |      |   Main Memory   |
+                         +------------+      +-----------------+
+                         | data_      +----->| 42              |<-+
+                         +------------+      +-----------------+  |
                          | ref_count_ +----->| 2               |<-+-+
                          +------------+      +-----------------+  | |
 SharedPtr<int> p2 = p1;                                           | |
@@ -130,14 +131,14 @@ class SharedPtr {
 
 Here are the key features starting from the top:
 
-* `SharedPtr` is a template class that wraps a pointer to any type `T`.
-* You can default construct `SharedPtr`.
-* Included is a constructor that takes ownership of a raw pointer.
-* You can copy/move construct and assign `SharedPtr` objects.
-* The dereference operator gets overloaded.
-* One can verify whether the pointer is empty or NULL.
-* One can access the reference count. 
-* You can wrap another dynamically allocated object without leaking memory to
+- `SharedPtr` is a template class that wraps a pointer to any type `T`.
+- You can default construct `SharedPtr`.
+- Included is a constructor that takes ownership of a raw pointer.
+- You can copy/move construct and assign `SharedPtr` objects.
+- The dereference operator gets overloaded.
+- One can verify whether the pointer is empty or NULL.
+- One can access the reference count.
+- You can wrap another dynamically allocated object without leaking memory to
   the originally wrapped object via a `Reset()` call.
 
 You'll notice a friend `Swap()` method towards the end of the declaration.
@@ -204,14 +205,14 @@ this right, you can enumerate all the places `ref_count_` gets updated.
 
 `ref_count_` gets incremented:
 
-* On nondefault construction.
-* On copy construction.
+- On nondefault construction.
+- On copy construction.
 
 `ref_count_` gets decremented:
 
-* On destruction.
-* On copy or move assignment.
-* After a call to `Reset()`.
+- On destruction.
+- On copy or move assignment.
+- After a call to `Reset()`.
 
 Decrement happens more often and has the added overhead of checking whether the
 `ref_count_` reached 0. In the interest of not duplicating the decrement and ref
@@ -311,4 +312,4 @@ The complete project source with build instructions, usage, etc. is available on
 GitHub under [shared_ptr][2].
 
 [1]: https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom
-[2]: https://github.com/ivan-guerra/shared_ptr 
+[2]: https://github.com/ivan-guerra/shared_ptr

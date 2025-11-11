@@ -2,7 +2,8 @@
 title: "keylogger: A Cross-Platform Keylogger"
 date: 2023-11-13T11:04:37-08:00
 description: "How to write a cross platform keylogger."
-tags: ["cli-tools", "c++", "linux", "windows", "x11"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 If you're familiar with the [kbhell][1] application, you might realize that

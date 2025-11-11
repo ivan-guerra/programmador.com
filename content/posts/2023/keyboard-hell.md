@@ -2,7 +2,8 @@
 title: "Keyboard Hell"
 date: 2023-09-02T12:46:36-07:00
 description: "Play a soundbite on keystroke anywhere in the desktop."
-tags: ["c++", "cli-tools", "sdl", "x11", "windows"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 Do you enjoy the sound of a mechanical keyboard? What if it was possible to

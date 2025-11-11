@@ -2,6 +2,7 @@
 title: "Port Scanning"
 date: 2025-01-21T22:43:50-05:00
 description: "TCP/UDP port scanning in Rust."
+categories: ["projects"]
 tags: ["cli-tools", "rust"]
 ---
 

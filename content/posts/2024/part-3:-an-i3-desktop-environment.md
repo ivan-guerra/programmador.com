@@ -2,9 +2,7 @@
 title: "Part 3: An I3 Desktop Environment"
 date: 2024-07-13T20:51:45-04:00
 description: "Setting up an i3 desktop environment."
-tags: ["linux", "workflow optimization"]
-series: ["workflow optimization"]
-ShowPostNavLinks: false
+categories: ["workflow"]
 ---
 
 The next step in optimizing your development workflow is to setup the desktop

@@ -2,7 +2,8 @@
 title: "Chip8"
 date: 2025-07-27T19:02:44-04:00
 description: "Notes on Writing a Chip8 emulator."
-tags: ["emulation", "rust"]
+categories: ["projects"]
+tags: ["cli-tools", "rust"]
 ---
 
 A classic weekend programming project is to write a Chip8 emulator. Chip8 refers

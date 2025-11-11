@@ -2,9 +2,7 @@
 title: "Part 4: Terminal Emulation and the Shell"
 date: 2024-07-22T20:23:55-04:00
 description: "Choosing a terminal emulator and shell."
-tags: ["linux", "workflow optimization"]
-series: ["workflow optimization"]
-ShowPostNavLinks: false
+categories: ["workflow"]
 ---
 
 The terminal emulator and shell are critical components of any developer's

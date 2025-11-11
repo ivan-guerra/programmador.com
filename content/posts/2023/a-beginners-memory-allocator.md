@@ -2,7 +2,8 @@
 title: "A Beginner's Memory Allocator"
 date: 2023-09-12T13:41:25-07:00
 description: "On creating a crude Linux memory allocator."
-tags: ["c++", "linux"]
+categories: ["projects"]
+tags: ["cpp"]
 ---
 
 While reading through the awesome ["Operating Systems: Three Easy Pieces"][1]

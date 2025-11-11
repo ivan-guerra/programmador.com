@@ -2,7 +2,7 @@
 title: "Linux Driver Development for Embedded Processors"
 date: 2023-10-07T17:56:16-07:00
 description: 'A short review of "Linux Driver Development for Embedded Processors".'
-tags: ["linux", "raspberrypi"]
+tags: ["linux", "hardware"]
 ---
 
 If you've already read through ["Linux Device Drivers"][1], it may be worth your

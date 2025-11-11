@@ -2,7 +2,7 @@
 title: "androidVNC and Linux"
 date: 2024-10-12T12:04:29-04:00
 description: "How to connect your Android phone to your Linux PC from anywhere."
-tags: ["android", "linux"]
+tags: ["linux"]
 ---
 
 Have you been away from your PC and wished you could login and start a job or

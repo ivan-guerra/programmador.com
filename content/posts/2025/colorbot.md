@@ -2,7 +2,8 @@
 title: "colorbot"
 date: 2025-01-15T20:35:23-05:00
 description: "A RuneScape colorbot."
-tags: ["games", "rust"]
+categories: ["projects"]
+tags: ["cli-tools", "rust"]
 ---
 
 A [previous article][1] explored writing `rsbot`, a scriptable auto clicker

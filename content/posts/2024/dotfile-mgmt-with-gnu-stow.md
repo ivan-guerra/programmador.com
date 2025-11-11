@@ -2,7 +2,7 @@
 title: "Dotfile Mgmt With GNU Stow"
 date: 2024-01-20T21:24:43-08:00
 description: "Using GNU stow to manage your dotfiles."
-tags: ["cli-tools", "gnu", "linux"]
+tags: ["cli-tools", "linux"]
 showToc: false
 ---
 

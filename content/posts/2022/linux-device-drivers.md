@@ -2,7 +2,8 @@
 title: "Docker Assisted Driver Dev and LDD3"
 date: 2022-09-18T20:44:17-07:00
 description: "Creating a containerized Linux dev environment with working LDD3 modules."
-tags: ["docker", "linux"]
+categories: ["projects"]
+tags: ["containerization", "kernel", "linux"]
 ---
 
 Where does a newbie start their journey into the Linux kernel? Device drivers is

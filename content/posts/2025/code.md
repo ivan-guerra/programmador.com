@@ -2,9 +2,7 @@
 title: "Code - The Hidden Language of Computer Hardware and Software"
 date: 2025-05-15T16:13:15-04:00
 description: 'Notes on Charles Petzgold''s "Code" second edition.'
-tags: ["notes"]
-series: ["notes"]
-ShowPostNavLinks: false
+categories: ["notes"]
 ---
 
 This is the sixth [installment][1] in a series of posts where I share notes

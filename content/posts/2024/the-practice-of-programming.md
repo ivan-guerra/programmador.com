@@ -2,9 +2,7 @@
 title: "The Practice of Programming 1st Edition"
 date: 2024-08-03T19:47:09-04:00
 description: 'Notes on "The Practice of Programming".'
-tags: ["notes"]
-series: ["notes"]
-ShowPostNavLinks: false
+categories: ["notes"]
 ---
 
 This is the fourth [installment][1] in a series of posts where I share notes
@@ -90,7 +88,6 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
 - Key concerns when designing are interfaces, information hiding, resource
   management, and error handling.
 - Good interfaces follow a set of principles:
-
   - Hide implementation details.
   - Choose a small orthogonal set of primitives. Make your interfaces narrow.
     That is, provide only what's necessary. Don't expose multiple ways of doing
@@ -121,7 +118,6 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
   is in overcoming the learning curve of working with the debugger. It's worth
   learning if you program professionally.
 - Tips for when you have plenty of "clues" to work with:
-
   - Look for familiar patterns. Does the bug look like something you've seen
     before?
   - Examine the most recent change. If you edit and test in small increments, a
@@ -138,7 +134,6 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
     talking about the bug aloud might be good enough.
 
 - Tips when there's not much information to go off of:
-
   - Make the bug reproducible.
   - Divide and conquer. Narrow down program inputs and code to the smallest you
     can while still reliably triggering the bug.
@@ -165,7 +160,6 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
 - Testing isn't the same as debugging.
 - Testing can demonstrate the presence of bugs but not their absence.
 - Test as you write the code:
-
   - Test code at its boundaries.
   - Test pre- and post conditions.
   - Use assertions.
@@ -173,7 +167,6 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
   - Check error returns.
 
 - Systematic testing:
-
   - Test incrementally.
   - Test the simple parts first.
   - Know what output to expect.
@@ -190,7 +183,6 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
   different than the usual definition where one sends large amounts of valid
   input to a program hoping to induce a crash.
 - Testing tips:
-
   - Vary your test cases.
   - Don't keep on implementing new features or even testing existing ones if you
     know there are bugs.
@@ -211,14 +203,12 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
   that otherwise wouldn't be apparent from just looking at the numbers.
 
 - Strategies for speed:
-
   - Use a better algorithm or data structure.
   - Enable compiler optimizations.
   - Tune the code. See next section for tuning tips.
   - Don't optimize what doesn't matter.
 
 - Tuning the code:
-
   - Collect common subexpressions.
   - Replace expensive operations by cheap ones.
   - Unroll or remove loops.
@@ -232,7 +222,6 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
   - Rewrite in a lower level language.
 
 - Space efficiency:
-
   - Save space by using the smallest possible data type.
   - Don't store what you can easily recompute.
 
@@ -243,7 +232,6 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
   programming in general.
 
 - Languages:
-
   - An easy way to achieve portability is to stick with the language's standard.
   - Program in the mainstream. This means give preference to the mature/stable
     parts of the language.

@@ -2,7 +2,8 @@
 title: "rsbot"
 date: 2024-09-05T20:36:14-04:00
 description: "A basic RS3/OSRS auto clicker bot."
-tags: ["games", "python"]
+categories: ["projects"]
+tags: ["cli-tools", "python"]
 ---
 
 Are you a fan of the MMO [RuneScape][1]? Are you not a fan of the grinds

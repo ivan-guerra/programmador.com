@@ -2,7 +2,8 @@
 title: "Cellular Textures"
 date: 2024-08-22T19:51:21-04:00
 description: "Generating grayscale cellular texture images."
-tags: ["c++", "cli-tools"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 The article ["Making Cellular Textures"][1] gives a good description of how you

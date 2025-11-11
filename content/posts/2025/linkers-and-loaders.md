@@ -2,9 +2,7 @@
 title: "Linkers and Loaders"
 date: 2025-09-14T21:09:31-04:00
 description: 'Notes on John Levine''s "Linkers and Loaders".'
-tags: ["notes"]
-series: ["notes"]
-ShowPostNavLinks: false
+categories: ["notes"]
 ---
 
 This is the seventh [installment][1] in a series of posts where I share notes

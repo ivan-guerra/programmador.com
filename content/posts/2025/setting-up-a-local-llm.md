@@ -2,7 +2,7 @@
 title: "Setting Up a Local LLM"
 date: 2025-06-13T11:14:31-04:00
 description: "How to setup and use a local LLM with NeoVim."
-tags: ["neovim", "llm"]
+tags: ["llm"]
 ---
 
 This is a quick and dirty guide to setting up a local LLM. You'll see how to run

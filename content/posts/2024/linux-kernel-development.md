@@ -2,9 +2,7 @@
 title: Linux Kernel Development 3rd Edition
 date: 2024-04-04T07:37:02-07:00
 description: 'My collection of notes on Robert Love''s "Linux Kernel Development".'
-tags: ["c", "linux", "notes"]
-series: ["notes"]
-ShowPostNavLinks: false
+categories: ["notes"]
 ---
 
 This is the third [installment][1] in a series of posts where I share notes

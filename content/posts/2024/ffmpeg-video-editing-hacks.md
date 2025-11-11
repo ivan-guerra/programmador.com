@@ -2,7 +2,7 @@
 title: "ffmpeg Video Editing Hacks"
 date: 2024-07-15T21:15:38-04:00
 description: "A few ffmpeg video editing hacks."
-tags: ["cli-tools"]
+tags: ["cli-tools", "linux"]
 ---
 
 [ffmpeg][1] is a powerful command line tool for processing video and audio

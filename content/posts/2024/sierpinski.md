@@ -2,7 +2,8 @@
 title: "The Sierpinski Triangle"
 date: 2024-02-07T15:39:59-08:00
 description: "Visualizing Sierpinski's triangle in your terminal."
-tags: ["cli-tools", "c++", "ncurses"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 Do you remember when you first learned about recursion? The thought triggered a

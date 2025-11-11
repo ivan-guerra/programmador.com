@@ -2,7 +2,8 @@
 title: "The Game of Life"
 date: 2023-12-01T13:13:04-08:00
 description: "Visualize Conway's Game of Life in your terminal."
-tags: ["cli-tools", "c++", "ncurses"]
+categories: ["projects"]
+tags: ["cli-tools", "cpp", "rust"]
 ---
 
 If you grind old [Advent of Code][1] problems, you might notice a particular

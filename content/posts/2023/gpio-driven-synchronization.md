@@ -2,8 +2,8 @@
 title: "GPIO Driven Synchronization"
 date: 2023-05-29T21:24:12-07:00
 description: "Synchronizing two single board computers using only GPIO."
-tags: ["c++", "beaglebone", "realtime"]
-math: true
+categories: ["projects"]
+tags: ["cpp", "hardware", "linux"]
 ---
 
 Have you ever heard of the [Kuramoto Model][1]? The Kuramoto Model Wikipedia

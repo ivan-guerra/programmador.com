@@ -2,7 +2,7 @@
 title: "Signing Git Commits With GPG"
 date: 2024-01-21T17:16:02-08:00
 description: "How to sign your Git commits with a GPG key."
-tags: ["cli-tools", "gnu", "linux"]
+tags: ["linux"]
 ---
 
 If you've been around the open source community long enough, you've probably

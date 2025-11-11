@@ -2,7 +2,7 @@
 title: "Using GoogleTest with CMake"
 date: 2024-01-23T15:13:27-08:00
 description: "How to use GoogleTest with CMake."
-tags: ["cmake", "c++"]
+tags: ["cmake", "cpp"]
 ---
 
 If you've worked in a large C++ codebase within the last couple of years, you've

@@ -29,26 +29,18 @@ English letters**. You decide to use a Caesar Cipher to encrypt the **plaintext
 "hello"** using the **key 14**. To perform the encryption you map each character
 in the alphabet to an integer:
 
-```text
-┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┐
-│ a│ b│ c│ d│ e│ f│ g│ h│ i│ j│ k│ l│ m│ n│ o│ p│ q│ r│ s│ t│ u│ v│ w│ x│ y│ z│
-├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤
-│ 0│ 1│ 2│ 3│ 4│ 5│ 6│ 7│ 8│ 9│10│11│12│13│14│15│16│17│18│19│20│21│22│23│24│25│
-└──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┘
-```
+| a   | b   | c   | d   | e   | f   | g   | h   | i   | j   | k   | l   | m   | n   | o   | p   | q   | r   | s   | t   | u   | v   | w   | x   | y   | z   |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  | 11  | 12  | 13  | 14  | 15  | 16  | 17  | 18  | 19  | 20  | 21  | 22  | 23  | 24  | 25  |
 
 To perform the encryption, add the key to each characters' integer
 representation **modulo the size of the alphabet**. For example, the letter "o"
 encrypts to \\((14 + 14) \mod 26 = 2\\) which according to the table is the
 letter "c." The table below shows the encrypted form of "hello":
 
-```text
-┌──┬──┬──┬──┬──┐
-│ h│ e│ l│ l│ o│
-├──┼──┼──┼──┼──┤
-│ v│ s│ z│ z│ c│
-└──┴──┴──┴──┴──┘
-```
+| h   | e   | l   | l   | o   |
+| --- | --- | --- | --- | --- |
+| v   | s   | z   | z   | c   |
 
 **"vszzc" is the ciphertext** that you send to all your friends along with the
 key. To decrypt the message, your friends apply the same shifting process but in
@@ -285,21 +277,13 @@ Lets look at an example. Suppose you encrypted this article using the **key
 42**. Running the **ciphertext** through `AsciiFrequencyAnalysisAttack()` will
 return a `KeyScoreMap` with the following contents:
 
-```text
-┌─────┬─────┐
-│Key  │ Val │
-├─────┼─────┤
-│ 0   │ 0   │
-├─────┼─────┤
-│ ... │ 0   │
-├─────┼─────┤
-│ 86  │ 1   │
-├─────┼─────┤
-│ ... │ 0   │
-├─────┼─────┤
-│ 127 │ 0   │
-└─────┴─────┘
-```
+| Key | Val |
+| --- | --- |
+| 0   | 0   |
+| ... | 0   |
+| 86  | 1   |
+| ... | 0   |
+| 127 | 0   |
 
 The results of `AsciiFrequencyAnalysisAttack()` suggests the decryption key is 86. The plot below shows the expected ASCII frequency distribution versus the
 frequency distribution of the ciphertext post decryption using the key 86.

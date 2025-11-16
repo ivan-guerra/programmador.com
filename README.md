@@ -4,9 +4,8 @@
 
 [programmador.com][1] is a site where I post about my developer projects and
 tech in general. programmador.com is built using the [Hugo][2] static site
-generator and gets its look and feel from the open source theme
-[hugo-texify3][3].
+generator and gets its look and feel from the open source theme [risotto][3].
 
 [1]: https://www.programmador.com
 [2]: https://gohugo.io
-[3]: https://github.com/michaelneuper/hugo-texify3
+[3]: https://github.com/joeroe/risotto

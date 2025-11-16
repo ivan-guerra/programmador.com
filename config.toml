@@ -22,7 +22,7 @@ noindex = false
   [params.about]
   title = "ieg archive"
   description = ""
-  logo_image = "images/favicon.ico"
+  logo_image = "favicon.ico"
   
   [[params.socialLinks]]
   icon = "fa-brands fa-github"

@@ -17,7 +17,7 @@ pagerSize = 3
 noindex = false
 
   [params.theme]
-  palette = "windows-95"
+  palette = "black-metal-dark-funeral"
   
   [params.about]
   title = "ieg archive"

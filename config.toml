@@ -14,6 +14,7 @@ sectionPagesMenu = "main"
 pagerSize = 3
 
 [params]
+math = true
 noindex = false
 
   [params.theme]

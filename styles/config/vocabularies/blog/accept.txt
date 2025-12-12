@@ -8,6 +8,7 @@ ACK
 ADC(s)?
 agent
 AKA
+AMD
 API(s)?
 Architecting
 arg
@@ -213,6 +214,7 @@ inode
 IRC
 IRQ
 ISA
+ISO(s)?
 ISP(s)?
 ISR(s)?
 ith
@@ -420,6 +422,7 @@ TTL
 [Tt]oolchain(s)?
 udev
 UDP
+UEFI
 uevent(s)?
 UID(s)?
 UIO
@@ -442,6 +445,7 @@ userland
 UTFs
 util(s)?
 [Uu]narchive
+[Uu]ncomment
 [Uu]nmount
 [Uu]nreferenced
 [Uu]serspace

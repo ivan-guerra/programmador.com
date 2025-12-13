@@ -1,13 +1,13 @@
 AAC
-[Aa]lsa
+[Aa]gent
 aart
 [Aa]ssembler
 ABBA
 ABI
 ACK
 ADC(s)?
-agent
 AKA
+ALSA
 AMD
 API(s)?
 Architecting
@@ -26,6 +26,7 @@ autoconnect
 bbb_kernel_builder
 BBB(s)?
 [Bb]ignum
+[Bb]luetooth
 [Bb]oolean(s)?
 [Bb]otting
 Beagle[Bb]one
@@ -317,6 +318,7 @@ PIC
 picom
 PID
 pinctrl
+pinentry
 pixel(s)?
 PNG
 POSIX
@@ -400,6 +402,7 @@ subexpression(s)?
 submillisecond
 subtree(s)?
 subtriangle
+sudo
 Sweetcopter
 SYN
 sys
@@ -473,6 +476,7 @@ wordsmithing
 xclip
 XFCE
 Xfinity
+XServer
 yeet
 Youtube
 Youtubing

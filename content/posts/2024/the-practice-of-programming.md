@@ -45,17 +45,17 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
 - Big-oh notation is a tool for describing the time/space complexity of an
   algorithm. Below is a table of the most common complexities:
 
-  | Notation       | Name        |
-  | -------------- | ----------- |
-  | \\(O(1)\\)     | constant    |
-  | \\(O(logn)\\)  | logarithmic |
-  | \\(O(n)\\)     | linear      |
-  | \\(O(nlogn)\\) | nlogn       |
-  | \\(O(n^2)\\)   | quadratic   |
-  | \\(O(n^3)\\)   | cubic       |
-  | \\(O(2^n)\\)   | exponential |
+  | Notation   | Name        |
+  | ---------- | ----------- |
+  | $O(1)$     | constant    |
+  | $O(logn)$  | logarithmic |
+  | $O(n)$     | linear      |
+  | $O(nlogn)$ | nlogn       |
+  | $O(n^2)$   | quadratic   |
+  | $O(n^3)$   | cubic       |
+  | $O(2^n)$   | exponential |
 
-- Arrays are easy to use, provide \\(O(1)\\) access to any item, work well with
+- Arrays are easy to use, provide $O(1)$ access to any item, work well with
   binary search and quicksort, and have little space overhead. For fixed sized
   data sets, or for guaranteed small collections of data, arrays are unbeatable.
 - Lists are useful when the container size isn't known at compile time and when
@@ -66,7 +66,7 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
   balanced versus unbalanced BST. You can traverse a tree in preorder, inorder,
   and postorder fashion. Each traversal introduces benefits depending on the
   contents of the tree.
-- Hash tables provide fast (on average \\(O(1)\\)) insertion, deletion, and
+- Hash tables provide fast (on average $O(1)$) insertion, deletion, and
   lookup. The performance of a hash table relies on the implementation of its
   hashing function and collision handling scheme.
 

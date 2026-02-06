@@ -35,7 +35,7 @@ in the alphabet to an integer:
 
 To perform the encryption, add the key to each characters' integer
 representation **modulo the size of the alphabet**. For example, the letter "o"
-encrypts to \\((14 + 14) \mod 26 = 2\\) which according to the table is the
+encrypts to $(14 + 14) \mod 26 = 2$ which according to the table is the
 letter "c." The table below shows the encrypted form of "hello":
 
 | h   | e   | l   | l   | o   |
@@ -44,26 +44,30 @@ letter "c." The table below shows the encrypted form of "hello":
 
 **"vszzc" is the ciphertext** that you send to all your friends along with the
 key. To decrypt the message, your friends apply the same shifting process but in
-reverse. For example, the letter "c" in the ciphertext decrypts to \\((2 - 14)
-\mod 26 = 14\\) which maps to the letter "o."
+reverse. For example, the letter "c" in the ciphertext decrypts to $(2 - 14)
+\mod 26 = 14$ which maps to the letter "o."
 
 In general, the encryption and decryption formulas are:
 
-\\[E_{n}(x) = (x + n) \mod |\Sigma|\\]
+```passthrough
+E_{n}(x) = (x + n) \mod |\Sigma|
+```
 
-\\[D_{n}(x) = (x - n) \mod |\Sigma|\\]
+```passthrough
+D_{n}(x) = (x - n) \mod |\Sigma|
+```
 
-where \\(x\\) is the integer mapping of the encrypt/decrypt letter, \\(n\\) is
-the key, and \\(|\Sigma|\\) is the size of the alphabet.
+where $x$ is the integer mapping of the encrypt/decrypt letter, $n$ is
+the key, and $|\Sigma|$ is the size of the alphabet.
 
 ## Coding the Cipher
 
 You can apply the CC encryption/decryption algorithm to any character set as
 long as you map each character to a unique integral value. In the world of
 computers and text, the [ASCII character set][3] is a perfect CC candidate.
-ASCII includes 128 characters each mapped to an integer in the range \\([0,
-127]\\). The table below defines the ASCII character set. Only 95 out of 128
-characters are printable.
+ASCII includes 128 characters each mapped to an integer in the range $[0, 127]$.
+The table below defines the ASCII character set. Only 95 out of 128 characters
+are printable.
 
 [![ASCII Table](/posts/2024/caesar-cipher/ascii-table.webp#center)][4]
 
@@ -114,9 +118,9 @@ Each character has the CC shift applied. The shifted character gets output to
 recording medium. **The same `AsciiCaesarCipher()` function can encrypt and
 decrypt ASCII text depending on the contents of `is` and the value of `shift`.**
 
-`AsciiCaesarCipher()` has a time complexity of \\(\mathcal{O}(N)\\) where
-\\(N\\) is the number of characters in the input stream. The space complexity is
-\\(\mathcal{O}(1)\\). In reality, `std::istream` and `std::ostream` objects
+`AsciiCaesarCipher()` has a time complexity of $\mathcal{O}(N)$ where
+$N$ is the number of characters in the input stream. The space complexity is
+$\mathcal{O}(1)$. In reality, `std::istream` and `std::ostream` objects
 buffer data to reduce read/write overhead. The size of these buffers is
 implementation dependent though likely a small, constant size.
 
@@ -179,10 +183,10 @@ There's a lot to talk about here. Lets start with the types `WordSet` and
 `KeyScoreMap`. `WordSet` is a set of strings representing the [most popular
 English words][5] in lowercase form. Why a set? Using a set, you can determine
 whether a string is an English word with an average time complexity of
-\\(\mathcal{O}(1)\\).
+$\mathcal{O}(1)$.
 
 `KeyScoreMap` is a map data structure. The map's keys are CC shift/key values in
-the range \\([0, 127]\\). The map's values are a tally of the number of English
+the range $[0, 127]$. The map's values are a tally of the number of English
 words seen when applying the corresponding shift key to the input stream.
 
 `AsciiDictionaryAttack()` processes the input stream character by character. You
@@ -220,10 +224,12 @@ represented as a percent value. You can compute the [Manhattan Distance][9]
 between to vectors to get a measure of how similar they are. The formula looks
 like this:
 
-\\[D = \sum_{i=0}^{127} |e_i - a_i|\\]
+```passthrough
+D = \sum_{i=0}^{127} |e_i - a_i|
+```
 
-Where \\(e_i\\) is the expected percent frequency of the ASCII character
-corresponding to \\(i\\) in the English language. \\(a_i\\) is the actual
+Where $e_i$ is the expected percent frequency of the ASCII character
+corresponding to $i$ in the English language. $a_i$ is the actual
 frequency of the character as measured in the ciphertext. **The shift that
 produces the smallest distance value is the decryption key.**
 
@@ -293,7 +299,7 @@ frequency distribution of the ciphertext post decryption using the key 86.
 The distributions match up well. If you were to decrypt using the key 86, you
 would indeed get the correct plaintext! Why is the decryption key 86 and not 42?
 Recall that to decrypt you take the negative of the encryption key **modulo the
-size of the alphabet**. In this case, \\(-42 \mod 128 = 86\\).
+size of the alphabet**. In this case, $-42 \mod 128 = 86$.
 
 ## Conclusion
 

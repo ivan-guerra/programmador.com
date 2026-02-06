@@ -82,10 +82,10 @@ To add a bit of security to your SSH config, apply these settings to
   `AllowUsers foo bar` makes it so only the users `foo` and `bar` can SSH to the
   PC.
 - Disallow root login by setting `PermitRootLogin no`.
-- Change the SSH port from the default \\(22\\) to some random, unused port. You
-  can set the option using the `Port` config item. For example, `Port 31456`.
-  Valid ports are in the range \\([1024, 65535]\\). Just be sure to pick a port
-  that isn't used by some other application.
+- Change the SSH port from the default $22$ to some random, unused port. You can
+  set the option using the `Port` config item. For example, `Port 31456`. Valid
+  ports are in the range $[1024, 65535]$. Just be sure to pick a port that isn't
+  used by some other application.
 - Set `PasswordAuthentication no`. This makes it so you can only enable login
   via public key authentication.
 
@@ -115,7 +115,7 @@ provided router:
 7. Select the home equipment to redirect ports from the menu of connected
    devices.
 8. Setup the forwarding rule. If you followed the advice at the end of
-   [OpenSSH](#openssh) and changed the SSH port from the default \\(22\\), then
+   [OpenSSH](#openssh) and changed the SSH port from the default $22$, then
    enter the port number you set in `sshd_config`.
 
 Here's an example Xfinity port forwarding rule for SSH:
@@ -123,9 +123,8 @@ Here's an example Xfinity port forwarding rule for SSH:
 ![Xfinity Port
 Fowarding](/posts/2024/android-vnc/xfinity-port-fwding.webp#center)
 
-`prim` is the name of the Linux PC on the LAN. \\(54446\\) is the port
-configured for SSH on the PC. It's fine to leave the protocol set to the
-"TCP/UDP" option.
+`prim` is the name of the Linux PC on the LAN. $54446$ is the port configured
+for SSH on the PC. It's fine to leave the protocol set to the "TCP/UDP" option.
 
 ## Android Device Setup
 
@@ -139,10 +138,9 @@ and androidVNC applications.
 2. Fill in the details in the "username@hostname:port" field. Username is the
    username of a whitelisted SSH user on the Linux PC. Hostname is the IPv4
    address of your PC. You can find this information by logging into the PC and
-   going to [whatismyip.com][6]. Port is the SSH port. The default value is
-   \\(22\\). If you followed the security advice at the end of [OpenSSH](#openssh),
-   then be sure to set the port to match the `Port` setting in your PC's
-   `sshd_config`.
+   going to [whatismyip.com][6]. Port is the SSH port. The default value is $22$.
+   If you followed the security advice at the end of [OpenSSH](#openssh), then be
+   sure to set the port to match the `Port` setting in your PC's `sshd_config`.
 3. Tap "Use pubkey authentication" and select the "Use any unlocked key" option.
 4. Save your settings and return to the ConnectBot home screen.
 5. Select the vertical ellipses at the top right of the screen and tap on
@@ -152,20 +150,20 @@ and androidVNC applications.
    your selections and follow the prompts to generate entropy.
 7. In the Pubkeys page, unlock your key by tapping it until the icon changes to
    that of an unlocked lock. Press and hold your key in the drop down and select
-   "Copy public key."
-   ![ConnectBot Pubkey](/posts/2024/android-vnc/connectbot-pubkey.webp#center)
+   "Copy public key." ![ConnectBot
+Pubkey](/posts/2024/android-vnc/connectbot-pubkey.webp#center)
 8. Transfer the public key to your Linux PC via email or some other means. On
    your Linux PC, add the public key to the SSH users' `~/.ssh/authorized_users`
    file.
 9. Back on the Android device, verify you can login to your PC via ConnectBot.
    Tap your host on the hosts page. You should see a shell like the one shown
-   below.
-   ![ConnectBot Session](/posts/2024/android-vnc/connectbot-session.webp#center)
+   below. ![ConnectBot
+Session](/posts/2024/android-vnc/connectbot-session.webp#center)
 10. From within the shell session, tap the vertical ellipses in the top right
     corner and select "Port Forwards."
 11. Add a new port forwarding rule with type set to "Local," source port set to
-    \\(5901\\) and destination set to "127.0.0.1:5901."
-    ![ConnectBot Port Fwding](/posts/2024/android-vnc/connectbot-port-fwd.webp#center)
+    $5901$ and destination set to "127.0.0.1:5901." ![ConnectBot Port
+Fwding](/posts/2024/android-vnc/connectbot-port-fwd.webp#center)
 
 ### androidVNC
 
@@ -173,7 +171,7 @@ and androidVNC applications.
    connection.
 2. Fill out the following fields. Set "Nickname" to whatever you would like to
    call this connection. "Password" is the VNC password you set on the server.
-   "Address" is \\(127.0.0.1\\). "Port" is \\(5901\\). All other settings can be
+   "Address" is $127.0.0.1$. "Port" is $5901$. All other settings can be
    left at their defaults.
    ![androidVNC Config](/posts/2024/android-vnc/androidvnc-config.webp#center)
 3. Tap "Connect" in the top left to connect to your VNC server.

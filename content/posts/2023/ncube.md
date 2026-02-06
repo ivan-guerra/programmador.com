@@ -21,35 +21,47 @@ tutorial:
 {{< youtube eoXn6nwV694 >}}
 
 No need to repeat Carl's derivation of 3D to 2D coordinate transformation here.
-You just need to apply the secret sauce. To take a 3D coordinate \\((x,y,z)\\)
-and transform it to its 2D projection \\((x_p, y_p)\\), apply the following
+You just need to apply the secret sauce. To take a 3D coordinate $(x,y,z)$
+and transform it to its 2D projection $(x_p, y_p)$, apply the following
 formulas:
 
-\\[ x_p = {x \over {z \tan{\theta \over 2}}} \\]
-\\[ y_p = {y \over {z \tan{\theta \over 2}}} \\]
+```passthrough
+x_p = {x \over {z \tan{\theta \over 2}}}
+```
 
-In these equations, \\(\theta\\) is the angle in radians of the camera's field
+```passthrough
+y_p = {y \over {z \tan{\theta \over 2}}}
+```
+
+In these equations, $\theta$ is the angle in radians of the camera's field
 of view. More on that later.
 
 Okay cool, so you can go from 3D to 2D. What about rotating the object? The
 general 3D rotation matrix that you can copy paste from [Wikipedia][3] does the
 trick:
 
-\\[\begin{bmatrix} \cos \beta \cos \gamma & \sin \alpha \sin \beta \cos \gamma - \cos \alpha \sin \gamma & \cos \alpha \sin \beta \cos \gamma + \sin \alpha \sin \gamma \\\\\cos \beta \sin \gamma & \sin \alpha \sin \beta \sin \gamma + \cos \alpha \cos \gamma & \cos \alpha \sin \beta \sin \gamma - \sin \alpha \cos \gamma \\\\-\sin \beta & \sin \alpha \cos \beta & \cos \alpha \cos \beta \end{bmatrix}
-\begin{bmatrix} x \\\\y \\\\z\end{bmatrix} = \begin{bmatrix} x_r \\\\y_r \\\\z_r \end{bmatrix}\\]
+```passthrough
+\begin{bmatrix} \cos \beta \cos \gamma & \sin \alpha \sin \beta \cos \gamma - \cos \alpha \sin \gamma & \cos \alpha \sin \beta \cos \gamma + \sin \alpha \sin \gamma \\\\\cos \beta \sin \gamma & \sin \alpha \sin \beta \sin \gamma + \cos \alpha \cos \gamma & \cos \alpha \sin \beta \sin \gamma - \sin \alpha \cos \gamma \\\\-\sin \beta & \sin \alpha \cos \beta & \cos \alpha \cos \beta \end{bmatrix}
+\begin{bmatrix} x \\\\y \\\\z\end{bmatrix} = \begin{bmatrix} x_r \\\\y_r \\\\z_r \end{bmatrix}
+```
 
-Where \\(\alpha\\), \\(\beta\\), and \\(\gamma\\) are the camera's yaw, pitch,
-and roll angles in radians. You need to zero the yaw and set the roll and pitch
-angles using a "cursor" location. To explain a bit further, when the application
+Where $\alpha$, $\beta$, and $\gamma$ are the camera's yaw, pitch, and roll
+angles in radians. You need to zero the yaw and set the roll and pitch angles
+using a "cursor" location. To explain a bit further, when the application
 starts, an invisible cursor sits in the center of the screen. When the user
-presses the arrows keys, the application updates the \\((x*{cursor},
-y*{cursor})\\) location of the cursor accordingly. The cursor location is later
-used to determine the roll and pitch angles using the following formulas:
+presses the arrows keys, the application updates the $(x*{cursor}, y*{cursor})$
+location of the cursor accordingly. The cursor location is later used to
+determine the roll and pitch angles using the following formulas:
 
-\\[\beta = {x_{cursor} \over s_{width}} \times \pi\\]
-\\[\gamma = {y_{cursor} \over s_{height}} \times \pi\\]
+```passthrough
+\beta = {x_{cursor} \over s_{width}} \times \pi
+```
 
-Where \\(s*{width}\\) and \\(s*{height}\\) are the screen width/height.
+```passthrough
+\gamma = {y_{cursor} \over s_{height}} \times \pi
+```
+
+Where $s*{width}$ and $s*{height}$ are the screen width/height.
 
 Putting it all together, you get the following projection/rotation function:
 
@@ -127,15 +139,15 @@ plenty of [Python examples][4] where you interpolate to define equally spaced
 points along a line in 3D space. Cool, but you don't want to implement that in
 C++ or integrate a 3rd party library just to solve this little problem.
 
-There's another solution for generating \\(N\\) equidistant points on the line
+There's another solution for generating $N$ equidistant points on the line
 between two endpoints. The idea is to compute midpoints until you have generated
-\\(N\\) midpoints. Here's an example.
+$N$ midpoints. Here's an example.
 
 Imagine you wanted to generate 7 points between an edge start and end point. You
-compute the midpoint of the start and end point call it \\(m_1\\). Then you
-compute the midpoint between the start and \\(m_1\\), \\(m_2\\), and the
-midpoint between \\(m_1\\) and end, \\(m_3\\). Continue applying this process
-recursively until you have generated the 7th midpoint, \\(m_7\\). The figure
+compute the midpoint of the start and end point call it $m_1$. Then you
+compute the midpoint between the start and $m_1$, $m_2$, and the
+midpoint between $m_1$ and end, $m_3$. Continue applying this process
+recursively until you have generated the 7th midpoint, $m_7$. The figure
 below illustrates the process.
 
 ```mermaid
@@ -151,7 +163,7 @@ flowchart TD
     class m1,m2,m3,m4,m5,m6,m7 nodeStyle
 ```
 
-You want to generate midpoints in the order \\(m_1, m_2, m_3, ..., m_7\\). Put
+You want to generate midpoints in the order $m_1, m_2, m_3, ..., m_7$. Put
 in other words, you need to generate the tree in breadth-first order.
 
 Below is a C++ implementation of the algorithm:

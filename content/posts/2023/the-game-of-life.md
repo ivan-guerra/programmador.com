@@ -92,13 +92,12 @@ void GameOfLifeBoard::Tick() noexcept {
 }
 ```
 
-If the game board, labeled `state_`, has \\(M\\) rows and \\(N\\) columns, the
-algorithm has a time complexity of \\(\mathcal{O}(MN)\\). There's actually a
-constant of 2 hidden in that big-oh due to the copy of `state_` to `tmp`. You
-don't copy but move the resources of `tmp` to `state_` at the end, otherwise the
-constant would be 3! This analysis assumes that the `CountLiveNeighbors()`
-function has a time complexity of \\(\mathcal{O}(1)\\). Luckily, it does.
-Checkout the implementation:
+If the game board, labeled `state_`, has $M$ rows and $N$ columns, the algorithm
+has a time complexity of $\mathcal{O}(MN)$. There's actually a constant of 2
+hidden in that big-oh due to the copy of `state_` to `tmp`. You don't copy but
+move the resources of `tmp` to `state_` at the end, otherwise the constant would
+be 3! This analysis assumes that the `CountLiveNeighbors()` function has a time
+complexity of $\mathcal{O}(1)$. Luckily, it does. Checkout the implementation:
 
 ```cpp
 int GameOfLifeBoard::CountLiveNeighbors(std::size_t row,
@@ -133,8 +132,8 @@ adjacent, live neighbors to `state_[row][col]`. Despite having a loop, the
 number of iterations is always constant and equal to the size of `kDirections`.
 
 The state update algorithm certainly isn't particularly space efficient with a
-space complexity of \\(\mathcal{O}(MN)\\). This is due to the copy of `state_`
-to `tmp_`.
+space complexity of $\mathcal{O}(MN)$. This is due to the copy of `state_` to
+`tmp_`.
 
 Since the game board is small, this algorithm is sufficient for computing the
 next state of the board without causing any noticeable delay. Program memory

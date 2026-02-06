@@ -108,18 +108,18 @@ At each node in the tree you make 3 calls to `Sierpinski()`. The depth of this
 tree is equal to the degree of the top-level `Sierpinski()` call. You can
 imagine for higher degree values, the tree just blows up. In fact, you can
 deduce the `Sierpinski()` implementation has an exponential time complexity of
-\\(\\mathcal{O}(3^{degree})\\). Ouch.
+$\\mathcal{O}(3^{degree})$. Ouch.
 
-The space complexity is \\(\\mathcal{O}(degree)\\) due to the depth of the call
+The space complexity is $\\mathcal{O}(degree)$ due to the depth of the call
 stack scaling linearly with the degree.
 
 ## Randomization to the Rescue
 
-An exponential algorithm just isn't going to work. At \\(N = 10\\), the
-algorithm takes well over 5 seconds to finish on a PC with an Intel i5
-processor. So what can you do? Well, scroll a little further down that Wikipedia
-page and you'll find a section labeled ["Chaos Game"][2]. You can read the wiki
-to get a technical description of the algorithm. Here's the for dummies version:
+An exponential algorithm just isn't going to work. At $N = 10$, the algorithm
+takes well over 5 seconds to finish on a PC with an Intel i5 processor. So what
+can you do? Well, scroll a little further down that Wikipedia page and you'll
+find a section labeled ["Chaos Game"][2]. You can read the wiki to get a
+technical description of the algorithm. Here's the for dummies version:
 
 1. Take three points in a plane to form a triangle.
 2. Select any point inside the triangle at random and consider that your current
@@ -168,11 +168,10 @@ number of points via `max_iterations`. You control the draw speed via
 `refresh_rate_usec`.
 
 The chaos game approach is _fast_. Assuming you can generate random numbers in
-\\(\\mathcal{O}(1)\\) time, the time complexity of `DrawSierpinskiTriangles()`
-is \\(\\mathcal{O}(max\\\_iterations)\\). A linear algorithm that scales with a
-tunable iteration count is much nicer than the exponential previously
-encountered. The space complexity is also optimal here coming in at
-\\(\\mathcal{O}(1)\\).
+$\\mathcal{O}(1)$ time, the time complexity of `DrawSierpinskiTriangles()` is
+$\\mathcal{O}(max\\\_iterations)$. A linear algorithm that scales with a tunable
+iteration count is much nicer than the exponential previously encountered. The
+space complexity is also optimal here coming in at $\\mathcal{O}(1)$.
 
 ## Visualization Using ncurses
 

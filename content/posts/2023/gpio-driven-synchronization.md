@@ -230,8 +230,9 @@ Finally, it's time to implement the Kuramoto Model. Step one is to translate the
 equation from the wiki page to something manageable in the code. Here's the
 original equation:
 
-\\[ {d\theta \over dt} = \omega_i + {K \over N}\sum_{i=1}^N \sin(\theta_j -
-\theta_i) \\]
+```passthrough
+{d\theta \over dt} = \omega_i + {K \over N}\sum_{i=1}^N \sin(\theta_j - \theta_i)
+```
 
 ## Phase Angles and Time
 
@@ -240,76 +241,80 @@ angles and vice versa. Your blink task has a known frequency of 1 Hertz meaning
 one complete task cycle takes 1 second. You can map portions of the cycle in
 seconds to angles on the unit circle. For example,
 
-- 0.00 -> \\( 0 \\) radians
-- 0.25 -> \\( \pi \over 2 \\) radians
-- 0.50 -> \\( \pi \\) radians
-- 0.75 -> \\( 3 \pi \over 2 \\) radians
-- 1.00 -> \\( 2 \pi \\) radians
+- 0.00 -> $ 0 $ radians
+- 0.25 -> $ \pi \over 2 $ radians
+- 0.50 -> $ \pi $ radians
+- 0.75 -> $ 3 \pi \over 2 $ radians
+- 1.00 -> $ 2 \pi $ radians
 
-The relationship between time, \\(t\\), and frequency, \\(F\\), is
-\\( t = {1 \over F} \\). You're interested in the time it takes to move some
-angle \\( \theta \\) in radians. What you find is that
+The relationship between time, $t$, and frequency, $F$, is
+$ t = {1 \over F} $. You're interested in the time it takes to move some
+angle $ \theta $ in radians. What you find is that
 
-\\[ t = {\theta \over {2 \pi F}} \\]
+```passthrough
+t = {\theta \over {2 \pi F}}
+```
 
-To go from time to angle you can solve for \\(\theta\\):
+To go from time to angle you can solve for $\theta$:
 
-\\[ \theta = {2 \pi F t} \\]
+```passthrough
+\theta = {2 \pi F t}
+```
 
-Note, the \\( t \\) is in units of seconds. The `gsync` implementation tracks
+Note, the $ t $ is in units of seconds. The `gsync` implementation tracks
 time in units of nanoseconds. The conversion equations used in [the code][6]
 account for the units change.
 
 ## The Wakeup Delta
 
 At this point, you're ready to plug some numbers into the base equation to
-compute \\( d\theta \over dt \\)! Fill in the blanks on the terms:
+compute $ d\theta \over dt $! Fill in the blanks on the terms:
 
-- \\( \omega_i \\) -> This is your base frequency. In radians, the base
-  frequency is \\( 2 \pi \\).
-- \\( K \\) -> This is the coupling constant and is a tuneable parameter.
-  `gsync` defaults to \\( K = 0.5 \\).
-- \\( N \\) -> This is the number of participants. Since you are syncing 2
-  computers, \\( N = 2 \\).
-- \\( \theta_j \\) -> This is your peer's phase offset from the ideal base
-  frequency. You can compute \\( \theta_j \\) by taking your peer's reported
-  wakeup time and converting to a phase angle using the conversion function
-  previously derived.
-- \\( \theta_i \\) -> This is your own phase offset. Similar to \\( \theta_j
-  \\), \\( \theta_i \\) converts your actual wakeup time to a phase angle. To
-  explain a bit further, you have an expected and an actual wakeup time on the
-  computer. The expected time is the time you would execute if there were no
-  additional latencies imposed by the system. The actual wakeup time is the
-  measured time after you resume execution. In short, you're off phase from the
-  desired base frequency and the model uses \\( \theta_i \\) to account for that.
+- $ \omega_i $ -> This is your base frequency. In radians, the base frequency is
+  $ 2 \pi $.
+- $ K $ -> This is the coupling constant and is a tuneable parameter. `gsync`
+  defaults to $ K = 0.5 $.
+- $ N $ -> This is the number of participants. Since you are syncing 2
+  computers, $ N = 2 $.
+- $ \theta_j $ -> This is your peer's phase offset from the ideal base
+  frequency. You can compute $ \theta_j $ by taking your peer's reported wakeup
+  time and converting to a phase angle using the conversion function previously
+  derived.
+- $ \theta_i $ -> This is your own phase offset. Similar to $\theta_j$ , $
+  \theta_i $ converts your actual wakeup time to a phase angle. To explain a bit
+  further, you have an expected and an actual wakeup time on the computer. The
+  expected time is the time you would execute if there were no additional
+  latencies imposed by the system. The actual wakeup time is the measured time
+  after you resume execution. In short, you're off phase from the desired base
+  frequency and the model uses $ \theta_i $ to account for that.
 
 In the code, the sync function takes as input the computer's actual wakeup time
 and the last reported peer wakeup time extracted from shared memory. Using the
 latter information, along with frequency and coupling constant info given at
-program startup, `gsync` computes \\( d\theta \over dt\\) and converts it to a
+program startup, `gsync` computes $ d\theta \over dt$ and converts it to a
 time in nanoseconds. That time is an offset to the next `gsync` wakeup time.
 
 As an example, suppose `gsync` ran with a frequency of 1 Hz or every 1 seconds.
 Also suppose the sync function returned time deltas in seconds. If the sync
-function returned a time delta of \\( -0.5 \\), then `gsync` would next sleep
-for \\( 1 - 0.5 = 0.5 \\) seconds (that is, `gsync` will wakeup _earlier_ by
+function returned a time delta of $ -0.5 $, then `gsync` would next sleep
+for $ 1 - 0.5 = 0.5 $ seconds (that is, `gsync` will wakeup _earlier_ by
 half a second). Maybe the sync function over shot. In the next run, the sync
-function returns a delta of \\( 0.8 \\), then `gsync` will sleep for \\( 1.0 +
-0.8 = 1.8 \\) seconds (that is, it will wakeup _later_). Essentially, the delta
-in the wakeup time of the computers oscillates about \\( 0 \\)! The smaller the
+function returns a delta of $ 0.8 $, then `gsync` will sleep for $1.0 +
+0.8 = 1.8$ seconds (that is, it will wakeup _later_). Essentially, the delta
+in the wakeup time of the computers oscillates about $ 0 $! The smaller the
 oscillations, the better the sync.
 
 ## The End Result
 
 In the end, what do you see? Well, running `gtimer` and `gsync` on both BBBs
-with the frequency of `gtimer` set to 1 Hz and the coupling constant set to \\(
-0.5\\), you see two LEDs blinking synchronously. It takes maybe 3 to 4 cycles
+with the frequency of `gtimer` set to 1 Hz and the coupling constant set to
+$0.5$, you see two LEDs blinking synchronously. It takes maybe 3 to 4 cycles
 (blinks) before they flash in unison. Running both processes for a day and
 doesn't produce any noticeable hiccups in the sync!
 
 You can also play a bit with the coupling constant to see what sort of effect it
-has. You can increment the coupling constant in steps of \\( 0.1 \\) starting at
-\\( K = 0.1 \\). What you'll find is that if \\( K \\) is too low, the LEDs
+has. You can increment the coupling constant in steps of $ 0.1 $ starting at
+$ K = 0.1 $. What you'll find is that if $ K $ is too low, the LEDs
 never seem to synchronize. After crossing a threshold value, synchronization
 always seems to occur.
 

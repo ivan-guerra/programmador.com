@@ -134,8 +134,8 @@ Drepper titled ["What Every Programmer Should Know About Memory"][1].
 - This article describes how the topology in a NUMA architecture affects the
   memory access performance.
 - A hypercube topology is most effective. The topology has CPU nodes in powers
-  of two (for example, nodes = \\(2^C\\)). The \\(C\\) value dictates the
-  maximum number of interconnects between the different CPUs.
+  of two (for example, nodes = $2^C$). The $C$ value dictates the maximum number
+  of interconnects between the different CPUs.
 - The OS is responsible for acknowledging the NUMA architecture and allocating
   process memory to account for the hops that occur when process memory usage
   exceeds the memory available at the host node.

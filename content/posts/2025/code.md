@@ -50,13 +50,13 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
   conductors. Copper, silver, and gold are good conductors.
 - The opposite of conductance is resistance. Substances with high resistance are
   called insulators. Rubber, glass, and plastic are good insulators.
-- Current (\\(I\\)) is the flow of electrons through a circuit.
-- Voltage (\\(V\\)) is the difference in electric potential between two points
-  in a circuit.
+- Current ($I$) is the flow of electrons through a circuit.
+- Voltage ($V$) is the difference in electric potential between two points in a
+  circuit.
 - Voltage is directly proportional to the amount of current flowing through a
   circuit. Current is inversely proportional to resistance. Also known as Ohm's
-  Law: \\(V = IR\\).
-- Power in Watts is the product of voltage and current: \\(P = IV\\).
+  Law: $V = IR$.
+- Power in Watts is the product of voltage and current: $P = IV$.
 
 ## Chapter 5: Communicating Around Corners
 
@@ -124,8 +124,8 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
   power acting as a relay. You can also use buffers to delay a signal.
 - From a NAND or NOR gate, you can create all other logic gates.
 - The following are Demorgan's Laws:
-  - \\(\lnot A \land \lnot B = \lnot(A \lor B)\\)
-  - \\(\lnot A \lor \lnot B = \lnot(A \land B)\\)
+  - $\lnot A \land \lnot B = \lnot(A \lor B)$
+  - $\lnot A \lor \lnot B = \lnot(A \land B)$
 - Demorgan's Laws are useful for simplifying boolean expressions.
 
 ## Chapter 9: Our Ten Digits
@@ -143,10 +143,9 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
 - By convention, humans work in a base 10 number system, also known as decimal.
 - There are many other number systems, such as binary (base 2), octal (base 8),
   and hexadecimal (base 16).
-- The formula for converting from any base to decimal is:
-  \\(d = \sum\_{i=0}^{n} d_i \cdot b^i\\)
-  where \\(d\\) is the decimal value, \\(d_i\\) is the digit in base \\(b\\),
-  and \\(n\\) is the position of the digit.
+- The formula for converting from any base to decimal is: $d = \sum\_{i=0}^{n}
+d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
+  and $n$ is the position of the digit.
 - Binary numbers unite arithmetic and electricity. Switches, wires, and light
   bulbs can all represent the binary digits 0 and 1, and with the addition of
   logic gates, you can manipulate these numbers.

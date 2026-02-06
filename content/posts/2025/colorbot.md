@@ -49,20 +49,20 @@ Second, you may find that many objects on screen share the same color as your
 target leading to false positives. One solution is to make the colors of the
 objects distinctive. Most objects' pixels have color components with mixed
 values. What you want is to have "unique" colors with respect to the common
-colors in the game. For example, red \\((255,0,0)\\), green \\((0,255,0)\\), and
-cyan \\((0,255,255)\\) don't occur in RuneScape. You might ask, if they don't
-occur, how can you use these colors as targets? You can leverage features of the
-game client to make a viable solution. This article provides examples of how to
-do this.
+colors in the game. For example, red $(255,0,0)$, green $(0,255,0)$, and cyan
+$(0,255,255)$ don't occur in RuneScape. You might ask, if they don't occur, how
+can you use these colors as targets? You can leverage features of the game
+client to make a viable solution. This article provides examples of how to do
+this.
 
 ## Performance
 
 You want the color detection process to be quick. `rsbot` is a Python script.
-Screen capturing and iterating over all pixels in a \\(1920 \times 1080\\) image
-is noticeably slow in Python. Rather than optimizing the Python code, it's
-easier to translate the useful parts of `rsbot` to a compiled language.
-`colorbot` is a Rust application but any other compiled language such as C or
-C++ would work just as well.
+Screen capturing and iterating over all pixels in a $1920 \times 1080$ image is
+noticeably slow in Python. Rather than optimizing the Python code, it's easier
+to translate the useful parts of `rsbot` to a compiled language. `colorbot` is a
+Rust application but any other compiled language such as C or C++ would work
+just as well.
 
 A benefit of using Rust is its package manager, Cargo. With Cargo, it's
 straightforward to install a cross platform screen capture library. `colorbot`
@@ -111,9 +111,9 @@ pub fn get_pixels_with_target_color(
 The code iterates over the BGRA pixels in the screenshot and checks if each
 pixel matches the target color. After finding a match, the code stores the
 pixel's coordinates in a vector. The function returns the vector of matching
-pixels. For an \\(M \times N\\) image, this function has a time complexity of
-\\(\mathcal{O}(MN)\\). Not winning any performance awards but it's fast enough
-for this purpose.
+pixels. For an $M \times N$ image, this function has a time complexity of
+$\mathcal{O}(MN)$. Not winning any performance awards but it's fast enough for
+this purpose.
 
 ## Scripting
 

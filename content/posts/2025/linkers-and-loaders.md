@@ -61,9 +61,8 @@ incrementally build a linker. A partial implementation is available on GitHub:
   both in data memory and in instructions.
 - The aspect of the Abstract Binary Interface that most often affects the linker
   is the definition of a standard procedure call.
-- Usually addresses are byte aligned. This means that if you have an \\(N\\)
-  byte datum, its address should have at least \\(log_2(N)\\) least significant
-  zero bits.
+- Usually addresses are byte aligned. This means that if you have an $N$ byte
+  datum, its address should have at least $log_2(N)$ least significant zero bits.
 - Unaligned accesses can degrade performance on some systems. On others,
   unaligned access leads to faults.
 - The instruction format is of concern to the linker. Specifically those
@@ -74,8 +73,8 @@ incrementally build a linker. A partial implementation is available on GitHub:
   use.
 - Within a procedure, data addressing falls into four categories:
   - A caller can pass **arguments** to the procedure.
-  - **Local variables** get allocated within the procedure and freed before
-    the procedure returns.
+  - **Local variables** get allocated within the procedure and freed before the
+    procedure returns.
   - **Local static** data gets stored in a fixed location in memory and is
     private to the procedure.
   - **Global static** data gets stored in a fixed location in memory and can be
@@ -84,8 +83,8 @@ incrementally build a linker. A partial implementation is available on GitHub:
   procedure. There's also a stack pointer pointing to the top of the stack.
   Arguments to the procedure are at negative offsets to the frame pointer (higher
   memory addresses). Local variables are at positive offsets to the frame pointer
-  (lower memory addresses). The OS usually sets the initial stack pointer before
-  a program starts.
+  (lower memory addresses). The OS usually sets the initial stack pointer before a
+  program starts.
 - The compiler generates a table of pointers to local and global static data.
   The address of that table gets loaded into a register. You require another
   register to calculate offsets from that base address.
@@ -108,10 +107,10 @@ incrementally build a linker. A partial implementation is available on GitHub:
   back and forth between disk and memory makes it seem like the system has more
   memory than it actually does (virtual memory).
 - Page tables are usually hierarchical. The hardware divides the virtual address
-  into three parts: a top-level page table index, a second-level page table
-  index, and an offset within the page. The hardware uses the top-level index to
-  find the second-level page table, then uses the second-level index to find the
-  page table entry. This can vary by architecture.
+  into three parts: a top-level page table index, a second-level page table index,
+  and an offset within the page. The hardware uses the top-level index to find the
+  second-level page table, then uses the second-level index to find the page table
+  entry. This can vary by architecture.
 - Every application runs in an address space defined by a combination of the
   computer's hardware and OS. The linker or loader needs to create a runnable
   program that matches that address space.
@@ -122,23 +121,22 @@ incrementally build a linker. A partial implementation is available on GitHub:
 - Many systems provide a memory mapping mechanism for mapping a file into the
   address space of a program. The OS sets up the page tables so that when the
   program accesses a page in the mapped region, the OS loads the page from the
-  file on disk. Policies for mapping files include read-only, read-write, and
-  copy on write (COW). COW is interesting because it means changes made in the
-  address space are only visible to that process.
+  file on disk. Policies for mapping files include read-only, read-write, and copy
+  on write (COW). COW is interesting because it means changes made in the address
+  space are only visible to that process.
 - Shared libraries often use position independent code (PIC). This means you can
   load the code at any address in memory without modification. Only data pages
-  still usually contain pointers which need relocation, but since data pages
-  map COW anyway, there's little sharing lost.
+  still usually contain pointers which need relocation, but since data pages map
+  COW anyway, there's little sharing lost.
 - Embedded systems pose special challenges for linkers and loaders. They often
-  have address spaces that divide into regions for ROM, RAM, and peripherals.
-  The linker needs to know about these regions and place code and data
-  appropriately.
+  have address spaces that divide into regions for ROM, RAM, and peripherals. The
+  linker needs to know about these regions and place code and data appropriately.
 - On some embedded systems, there's references to on-chip and off-chip memory.
   The linker needs to know which addresses are on-chip and which are off-chip so
   it can place code and data appropriately. You can also use tricks to copy code
-  or data from slow memory to fast memory as needed. To do this, you have to
-  tell the linker "put this code at location X but link it as though it's at
-  location Y." The code gets copied from X to Y at runtime.
+  or data from slow memory to fast memory as needed. To do this, you have to tell
+  the linker "put this code at location X but link it as though it's at location
+  Y." The code gets copied from X to Y at runtime.
 
 ## Chapter 3: Object Files
 

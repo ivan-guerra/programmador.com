@@ -89,7 +89,7 @@ Linux kernel development:
   amount of time a process has spent running. A red-black tree stores the
   vruntimes (that is, a height balanced binary search tree). The process chosen
   to run next is the process with the smallest vruntime (that is, the leftmost
-  process in the tree). Instead of incurring a \\(\\mathcal{O}(logn)\\) cost to
+  process in the tree). Instead of incurring a $\\mathcal{O}(logn)$ cost to
   retrieve this process, the kernel caches the left most node.
 - `sched_entity` is the structure used by the kernel to account for a process's
   scheduling. `sched_entity` is a field in the process descriptor `task_struct`.
@@ -345,11 +345,11 @@ Linux kernel development:
   clock, CPU frequency, etc. When the timer goes off, a interrupt gets sent to
   the kernel.
 - The kernel knows the preprogrammed tick rate so it knows the time between two
-  successive timer interrupts. This is a tick and is equal to \\(1 /
-  tick_rate\\).
+  successive timer interrupts. This is a tick and is equal to
+  $\frac{1}{tickrate}$.
 - The kernel uses this tick to track both wall clock time and system uptime.
 - The timer interrupt performs the following tasks. Note some of these are
-  executed every tick others every \\(N\\) ticks:
+  executed every tick others every $N$ ticks:
   - Update the system uptime.
   - Update the time of day.
   - On an SMP system, ensuring balance in the scheduler runqueues and, if
@@ -454,7 +454,7 @@ Linux kernel development:
   only `ZONE_DMA` and `ZONE_NORMAL` because they can address the entire physical
   address space. Others like x86-32 have all four.
 - `struct page* alloc_pages(gfp_t gfp_mask, unsigned int order)` is the kernel
-  API for acquiring a list of \\(2^{order}\\) contiguous pages.
+  API for acquiring a list of $2^{order}$ contiguous pages.
 - You can call the `void* page_address(struct page* page)` API to get the
   logical address of a page.
 - Use `unsigned long get_zeroed_page(unsigned int gfp_mask)` to get the address

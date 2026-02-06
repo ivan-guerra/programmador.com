@@ -144,16 +144,15 @@ if (IsInBounds(candidate, dim) && !visited.count(candidate)) {
 ```
 
 What's the time complexity of `GenerateUlamSpiral()`? You iterate
-\\(\mathcal{O}(N^2)\\) times where \\(N\\) is the `dim` value passed to
+$\mathcal{O}(N^2)$ times where $N$ is the `dim` value passed to
 `GenerateUlamSpiral()`. The time complexity of each iteration is equivalent to
 the time complexity of a `std::unordered_set` lookup which on average is
-\\(\mathcal{O}(1)\\) plus a number of other constant time operations. Putting it
-all together the overall time complexity of `GenerateUlamSpiral()` is
-approximately \\(\mathcal{O}(N^2)\\).
+$\mathcal{O}(1)$ plus a number of other constant time operations. Putting it all
+together the overall time complexity of `GenerateUlamSpiral()` is approximately
+$\mathcal{O}(N^2)$.
 
-`GenerateUlamSpiral()`'s space complexity is \\(\mathcal{O}(N^2)\\). Storing
-each `Position` in the `visited` set requires \\(\mathcal{O}(N^2)\\) additional
-space.
+`GenerateUlamSpiral()`'s space complexity is $\mathcal{O}(N^2)$. Storing each
+`Position` in the `visited` set requires $\mathcal{O}(N^2)$ additional space.
 
 ## Checking Primality
 
@@ -161,9 +160,9 @@ According to [Wikipedia][3], a prime number (or a prime) is a natural number
 greater than 1 that's not a product of two smaller natural numbers. You can test
 for primality in polynomial time.
 
-The naive, linear time approach is to iterate from \\(2\\) to \\((N - 1)\\) and
-check if any number in this range divides \\(N\\). If the number divides
-\\(N\\), then it's not a prime number:
+The naive, linear time approach is to iterate from $2$ to $(N - 1)$ and check if
+any number in this range divides $N$. If the number divides $N$, then it's not a
+prime number:
 
 ```cpp
 bool IsPrime(int n) {
@@ -180,8 +179,8 @@ bool IsPrime(int n) {
 }
 ```
 
-There is a more efficient \\(\mathcal{O}(\sqrt{N})\\) method. Below is the
-algorithm description from [GeeksForGeeks][4]:
+There is a more efficient $\mathcal{O}(\sqrt{N})$ method. Below is the algorithm
+description from [GeeksForGeeks][4]:
 
 > Iterate through all numbers from 2 to ssquare root of n and for every number
 > check if it divides n (because if a number is expressed as n = xy and any of
@@ -203,11 +202,10 @@ bool IsPrime(int n) {
 }
 ```
 
-Given the upper limit of the numbers in the Ulam spiral is \\(N^2\\), you can
-use a third approach to reduce the overall time complexity of
-`GenerateUlamSpiral()`. A modified [Sieve of Eratosthenes][5] generates the set
-of prime numbers less than \\(N\\) in \\(\mathcal{O}(N)\\) time and
-\\(\mathcal{O}(N)\\) space:
+Given the upper limit of the numbers in the Ulam spiral is $N^2$, you can use a
+third approach to reduce the overall time complexity of `GenerateUlamSpiral()`.
+A modified [Sieve of Eratosthenes][5] generates the set of prime numbers less
+than $N$ in $\mathcal{O}(N)$ time and $\mathcal{O}(N)$ space:
 
 ```cpp
 [[nodiscard]] static std::unordered_set<int> SieveOfEratosthenes(int n) {
@@ -227,30 +225,30 @@ of prime numbers less than \\(N\\) in \\(\mathcal{O}(N)\\) time and
 }
 ```
 
-With the square root approach, you would pay a \\(\mathcal{O}(\sqrt{N})\\) cost
-on each primality check on the \\(N^2\\) elements in the Ulam Spiral. This means
-`GenerateUlamSpiral()` would have a time complexity of \\(\mathcal{O}(\sqrt{N} \*
-N^2) = \mathcal{O}(N^{2.5})\\)! Using the sieve approach reduces the time
-complexity to \\(\mathcal{O}(N^2)\\). Why? The primality check in the main loop
-gets reduced to an \\(O(1)\\) time lookup into a precomputed set of prime
-numbers. The space complexity remains linear though the constant hidden by the
-big O notation does grow.
+With the square root approach, you would pay a $\mathcal{O}(\sqrt{N})$ cost on
+each primality check on the $N^2$ elements in the Ulam Spiral. This means
+`GenerateUlamSpiral()` would have a time complexity of $\mathcal{O}(\sqrt{N} \*
+N^2) = \mathcal{O}(N^{2.5})$! Using the sieve approach reduces the time
+complexity to $\mathcal{O}(N^2)$. Why? The primality check in the main loop gets
+reduced to an $O(1)$ time lookup into a precomputed set of prime numbers. The
+space complexity remains linear though the constant hidden by the big O notation
+does grow.
 
 Is the theoretical speed up worth the increased space and code complexity? In
 the case of this Ulam spiral visualization tool, yes. The graph below compares
 the runtime of `GenerateUlamSpiral()` using the Sieve of Eratosthenes versus the
 Square Root method for primality testing. The graph shows dimensions in the
-range \\([0, 4096]\\). The plotted dimension values are at increments of
-\\(256\\). The y-axis shows `GenerateUlamSpiral()`'s runtime. To minimize the
-effect of system delays on runtime measurements, the graph shows the average of
-\\(10\\) samples at each dimension value.
+range $[0, 4096]$. The plotted dimension values are at increments of $256$. The
+y-axis shows `GenerateUlamSpiral()`'s runtime. To minimize the effect of system
+delays on runtime measurements, the graph shows the average of $10$ samples at
+each dimension value.
 
 ![Sieve of Eratosthenes vs Square Root
 Method](/posts/2024/ulam-spiral/sieve-vs-sqrt.webp#center)
 
 As the dimension value increases, you can see the two lines start to diverge.
-That \\(0.5\\) difference in the exponent has a significant effect on runtime
-even with small values of \\(N\\)!
+That $0.5$ difference in the exponent has a significant effect on runtime even
+with small values of $N$!
 
 ## Visualization
 

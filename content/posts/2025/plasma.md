@@ -18,8 +18,8 @@ In this article, you'll learn how to implement plasma effects of your own.
 To generate a plasma effect, you iterate the pixels in the screen buffer. For
 each pixel:
 
-1. Apply a function to the pixel's coordinate producing some value \\(v\\).
-2. Use \\(v\\) to calculate the new RGB value of the pixel.
+1. Apply a function to the pixel's coordinate producing some value $v$.
+2. Use $v$ to calculate the new RGB value of the pixel.
 3. Update the pixel's RGB value in the screen buffer.
 4. Repeat steps (1)-(3) until you have processed the entire image frame.
 5. Display the updated frame.
@@ -42,19 +42,20 @@ the function and its parameters.
 The following sections describe a few functions you can use. In the equations
 that follow:
 
-- \\(d\\) is the distance from the center of the screen.
-- \\(t\\) is the time.
-- \\(s\\) is the scale factor.
-- \\(\theta\\) is the angle from the center point.
-- \\(p_x\\) and \\(p_y\\) are the pixel's coordinates relative to the center
-  point.
-- \\(d\_{min}\\) is half of the smallest screen dimension.
+- $d$ is the distance from the center of the screen.
+- $t$ is the time.
+- $s$ is the scale factor.
+- $\theta$ is the angle from the center point.
+- $p_x$ and $p_y$ are the pixel's coordinates relative to the center point.
+- $d\_{min}$ is half of the smallest screen dimension.
 
 ### Ripple
 
 To produce a ripple effect, you can use the following function:
 
-\\[ {f(d, t, s)} = \sin(ds - 2t) \\]
+```passthrough
+{f(d, t, s)} = \sin(ds - 2t)
+```
 
 ![Ripple](/posts/2025/plasma/ripples.webp#center)
 
@@ -62,7 +63,9 @@ To produce a ripple effect, you can use the following function:
 
 To produce a spiral effect, you can use the following function:
 
-\\[ {f(d, t, s, \theta)} = \sin(ds + 3\theta + t) \\]
+```passthrough
+{f(d, t, s, \theta)} = \sin(ds + 3\theta + t)
+```
 
 ![Spiral](/posts/2025/plasma/spiral.webp#center)
 
@@ -70,7 +73,9 @@ To produce a spiral effect, you can use the following function:
 
 To produce a circle effect, you can use the following function:
 
-\\[ {f(d, t, s, \theta)} = \sin(ds + t) + \sin(2\theta + t) \\]
+```passthrough
+{f(d, t, s, \theta)} = \sin(ds + t) + \sin(2\theta + t)
+```
 
 ![Circle](/posts/2025/plasma/circles.webp#center)
 
@@ -78,7 +83,9 @@ To produce a circle effect, you can use the following function:
 
 To produce a checkerboard effect, you can use the following function:
 
-\\[ {f(d, t, s, p_x, p_y, d_{min})} = \sin({sp_x \over d_{min}}) * \sin({sp_y \over d_{min}} + t) \\]
+```passthrough
+{f(d, t, s, p_x, p_y, d_{min})} = \sin({sp_x \over d_{min}}) * \sin({sp_y \over d_{min}} + t)
+```
 
 ![Checkerboard](/posts/2025/plasma/checkerboard.webp#center)
 

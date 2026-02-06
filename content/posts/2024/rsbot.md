@@ -103,22 +103,22 @@ and over. Do you click those elements at the exact same cadence each time? Of
 course not. The delay between clicks varies even if only by a few hundreds of
 milliseconds. To decrease the chance of getting banned, you append a min and max
 delay in seconds to each click event. After the bot performs a click, it will
-wait \\(N\\) seconds where \\(N\\) gets chosen at random from the configured
+wait $N$ seconds where $N$ gets chosen at random from the configured
 delay range.
 
 How big should the range be? Depends on the event and how risk tolerant you are.
 Rule of thumb is make the bottom end of the range large enough to execute the
 action to completion then add 5 seconds to that to get the max delay. For
 example, if it takes 28 seconds to fletch an inventory of logs, you would
-specify a delay range of \\([28, 33]\\).
+specify a delay range of $[28, 33]$.
 
 ### Random Idling
 
 Random idles or breaks can help approximate human like RuneScape gameplay. For
 example, maybe every 30 minutes you take a 5 minute break to get a snack or load
-another Youtube video. The auto clicker bot should do the same. Every \\(N\\)
-minutes, an idle of \\(M\\) seconds gets inserted. Similar to the click event
-delays, you can specify a range from which to select \\(M\\).
+another Youtube video. The auto clicker bot should do the same. Every $N$
+minutes, an idle of $M$ seconds gets inserted. Similar to the click event
+delays, you can specify a range from which to select $M$.
 
 ### Click Boxes
 

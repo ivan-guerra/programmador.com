@@ -46,24 +46,25 @@ program exposes five key parameters that control the look of the output image:
 The process for generating a texture is as follows:
 
 - Create a MxN grid of pixels.
-- Generate `--num-points` random texture points. All points must lie within
-  the bounds of the pixel grid.
+- Generate `--num-points` random texture points. All points must lie within the
+  bounds of the pixel grid.
 - For each pixel:
   - Find the `--num-neighbors` nearest texture points.
-  - Calculate the distance from the pixel to each neighboring texture point.
-    If tiling is active, apply a modified distance formula that accounts for
-    wrapping around the edges of the pixel grid.
+  - Calculate the distance from the pixel to each neighboring texture point. If
+    tiling is active, apply a modified distance formula that accounts for wrapping
+    around the edges of the pixel grid.
   - Apply the `--dist-op` operation to the collection of distances. For example,
     if in the previous step you computed the distances 1, 2, 3, and your
-    `--dist-op` was multiplication, you would compute \\(dist = 1 \* 2 \* 3 =
-    6\\).
-  - Cache each pixel's \\(dist\\) value.
-  - Keep track of the minimum and maximum \\(dist\\) values: \\(mindist\\) and
-    \\(maxdist\\).
+    `--dist-op` was multiplication, you would compute $dist = 1 \* 2 \* 3 = 6$.
+  - Cache each pixel's $dist$ value.
+  - Keep track of the minimum and maximum $dist$ values: $mindist$ and
+    $maxdist$.
 - Iterate over all pixels once again. For each pixel:
-  - Compute the grayscale value of the ith pixel, \\(c_i\\):
+  - Compute the grayscale value of the ith pixel, $c_i$:
 
-\\[c_i = \frac{(dist_i - mindist)}{(maxdist - mindist)} \* 255\\]
+```passthrough
+c_i = \frac{(dist_i - mindist)}{(maxdist - mindist)} \times 255
+```
 
 - Write the pixels to a grayscale PNG output file.
 
@@ -72,11 +73,11 @@ The process for generating a texture is as follows:
 The formulas and numbers can get confusing. The core idea is that you are
 iterating a grid of grayscale pixels. You want to determine how light or dark
 each pixel should be. You generate a set of random "texture points" within the
-bounds of the image. Then you find the \\(k\\) nearest texture points of each
-pixel and apply an arbitrary formula to the collection of distances from each of
-the \\(k\\) neighbors to the pixel. Applying the formula generates a single
-"distance" value. You later use this distance value along with the global max
-and min distances to determine the color of the pixel.
+bounds of the image. Then you find the $k$ nearest texture points of each pixel
+and apply an arbitrary formula to the collection of distances from each of the
+$k$ neighbors to the pixel. Applying the formula generates a single "distance"
+value. You later use this distance value along with the global max and min
+distances to determine the color of the pixel.
 
 The number of neighbors and the operation you apply creates drastic changes in
 the output. For example, set `--num-neighbors` to 2 and `--dist-op` to minus and
@@ -119,8 +120,8 @@ The capture shows a single `ctext` run:
 ctext 128 128 test.png --num-neighbors 1 --dist-op "-"
 ```
 
-The run uses a brute force, \\(\mathcal{O}(n^2)\\) algorithm, where \\(n\\) is the number of
-texture points.
+The run uses a brute force, $\mathcal{O}(n^2)$ algorithm, where $n$ is the
+number of texture points.
 
 The "Making Cellular Textures" article suggests a number of tree data structures
 that could help speed up the search. Among these is the [K-D Tree][2]. There are
@@ -128,8 +129,8 @@ a few C++ K-D Tree implementations floating around online. [This][3] C++
 implementation for nearest neighbor and k nearest neighbors is one of the better
 options given it comes with solid unit/benchmark tests.
 
-You'd think a \\(\mathcal{O}(logn)\\) nearest neighbor search complexity would
-grant a massive speedup. Measurements showed otherwise:
+You'd think a $\mathcal{O}(logn)$ nearest neighbor search complexity would grant
+a massive speedup. Measurements showed otherwise:
 
 ![Brute Force vs. K-D Tree](/posts/2024/cellular-textures/bf-vs-kd.webp#center)
 
@@ -142,11 +143,11 @@ ctext 1024 1024 --num-neighbors=1 --dist-op="-" --num-points=<VARIABLE>
 
 The tree performs about the same or worse in some instances. Why? It's likely
 because there's a significant cost to constructing the tree. The worst case
-complexity for constructing the tree is \\(\mathcal{O}(nlog^2n)\\). Then add in
-that the search complexity is on _average_ \\(\mathcal{O}(logn)\\). The
-distribution of the random points also plays a key role. The more uniformly
-distributed the points are, the more balanced the tree will be. Some of those
-large spikes to the right might be the result of searches on a "skewed" tree.
+complexity for constructing the tree is $\mathcal{O}(nlog^2n)$. Then add in that
+the search complexity is on _average_ $\mathcal{O}(logn)$. The distribution of
+the random points also plays a key role. The more uniformly distributed the
+points are, the more balanced the tree will be. Some of those large spikes to
+the right might be the result of searches on a "skewed" tree.
 
 ## Conclusion
 

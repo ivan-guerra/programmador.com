@@ -1,0 +1,3 @@
+[submodule "themes/hugo-trainsh"]
+	path = themes/hugo-trainsh
+	url = git@github.com:binbinsh/hugo-trainsh.git

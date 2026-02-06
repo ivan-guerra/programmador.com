@@ -33,9 +33,9 @@ covers a number of heavy hitters in Linux desktop land:
 Each article in this series will cover one of the components. The articles will
 discuss tradeoffs and present a number of options. You'll see the installation
 and setup of one of those options. It's highly recommended that if you find
-another option appealing, that you take the time to do research and opt for
-what works best for you. Linux is about having choices. The goal of these
-articles is more so to inspire thought than direct.
+another option appealing, that you take the time to do research and opt for what
+works best for you. Linux is about having choices. The goal of these articles is
+more so to inspire thought than direct.
 
 ## What About Hardware
 

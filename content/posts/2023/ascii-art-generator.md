@@ -6,11 +6,11 @@ categories: ["projects"]
 tags: ["cli-tools", "cpp", "rust"]
 ---
 
-Who doesn't like ASCII art? If you're like me, you probably thought about
-making your own ASCII art generator before but gave up on the idea thinking
-that it's too complicated. Is the time investment worth it to draw ASCII
-versions of your favorite LOTR characters? Well, after some Googling, I found
-out it's not all that bad and set to write a ASCII art CLI tool.
+Who doesn't like ASCII art? If you're like me, you probably thought about making
+your own ASCII art generator before but gave up on the idea thinking that it's
+too complicated. Is the time investment worth it to draw ASCII versions of your
+favorite LOTR characters? Well, after some Googling, I found out it's not all
+that bad and set to write a ASCII art CLI tool.
 
 {{<toc>}}
 

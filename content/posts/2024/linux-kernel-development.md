@@ -203,8 +203,8 @@ Linux kernel development:
 - When to perform tasks in the upper half:
   - If the work is time sensitive, perform it in the interrupt handler.
   - If the work relates to the hardware, perform it in the interrupt handler.
-  - If the work needs to guarantee that another interrupt (particularly the
-    same interrupt) doesn't interrupt it, perform it in the interrupt handler.
+  - If the work needs to guarantee that another interrupt (particularly the same
+    interrupt) doesn't interrupt it, perform it in the interrupt handler.
   - For everything else, consider performing the work in the bottom half.
 - The bottom half facilities provided by the kernel are softirqs/tasklets and
   workqueues.
@@ -273,15 +273,14 @@ Linux kernel development:
 - The kernel has many causes of concurrency:
   - Interrupts: An interrupt can occur asynchronously at almost any time,
     interrupting the current executing code.
-  - Softirqs and tasklets: The kernel can raise or schedule a softirq or
-    tasklet at almost any time, interrupting the current executing code.
-  - Kernel preemption: Because the kernel is preemptive, one task in the
-    kernel can preempt another.
-  - Sleeping and synchronization with userspace: A task in the kernel can
-    sleep and thus invoke the scheduler, resulting in the running of a new
-    process.
-  - Symmetrical Multiprocessing: Two or more processors can execute kernel
-    code at exactly the same time.
+  - Softirqs and tasklets: The kernel can raise or schedule a softirq or tasklet
+    at almost any time, interrupting the current executing code.
+  - Kernel preemption: Because the kernel is preemptive, one task in the kernel
+    can preempt another.
+  - Sleeping and synchronization with userspace: A task in the kernel can sleep
+    and thus invoke the scheduler, resulting in the running of a new process.
+  - Symmetrical Multiprocessing: Two or more processors can execute kernel code
+    at exactly the same time.
 - Code that's safe from concurrent access from an interrupt handler is
   _interrupt-safe_.
 - Code that's safe from concurrency on symmetrical multiprocessing machines is
@@ -397,8 +396,8 @@ Linux kernel development:
   routines.
 - The architecture dependent routine gets registered as the ISR. Its tasking is
   platform specific. That said, they all do share some common functions:
-  - Obtain the `xtime_lock` lock, which protects access to `jiffies_64` and
-    wall time value, `xtime`.
+  - Obtain the `xtime_lock` lock, which protects access to `jiffies_64` and wall
+    time value, `xtime`.
   - Acknowledge or reset the system timer as required.
   - Periodically save the updated wall time to the RTC.
   - Call the architecture-independent timer routine, `tick_periodic()`.
@@ -443,8 +442,8 @@ Linux kernel development:
 - Memory divides into zones. Below are four of the most popular zones:
   - `ZONE_DMA`: This zone contains pages that can undergo DMA.
   - `ZONE_DMA32`: LIke `ZONE_DMA`, this zone contains pages that can undergo
-    DMA. Unlike `ZONE_DMA`, only 32-bit devices can access these pages. On
-    some architectures, this zone is a larger subset of memory.
+    DMA. Unlike `ZONE_DMA`, only 32-bit devices can access these pages. On some
+    architectures, this zone is a larger subset of memory.
   - `ZONE_NORMAL`: This zone contains normal mapped pages.
   - `ZONE_HIGHMEM`: This zone contains "high memory," which are pages not
     permanently mapped into the kernel's address space.
@@ -476,8 +475,8 @@ Linux kernel development:
   - Action Modifiers: Specify how the kernel allocates the memory.
   - Zone Modifiers: Specify which zone the memory will come from.
   - Types: Acts as a combination of action and zone flags. There's a couple of
-    these like, `GFP_KERNEL` which define and OR of one or more action and
-    zone flags.
+    these like, `GFP_KERNEL` which define and OR of one or more action and zone
+    flags.
 - You only want to deal with type flags. Table 12.6 on Pg. 241 shows the
   available type flags and their description.
 - `vmalloc()` acquires logically contiguous memory. It's not typical that one
@@ -613,11 +612,11 @@ Linux kernel development:
     sector wise so that all seeking activity moves as close to sequential as
     possible.
 - There are many different IO scheduler algorithms supported by the kernel:
-  - **The Linus Elevator**: Performs both the merge and sort operations. Uses
-    an insertion sort to maintain the sector ordering of the request queue and
-    will merge adjacent sectors on insertion. There's an issue with requests
-    starving with this algorithm if requests cluster around one area of the
-    disk leaving the far off requests to starve.
+  - **The Linus Elevator**: Performs both the merge and sort operations. Uses an
+    insertion sort to maintain the sector ordering of the request queue and will
+    merge adjacent sectors on insertion. There's an issue with requests starving
+    with this algorithm if requests cluster around one area of the disk leaving
+    the far off requests to starve.
   - **The Deadline IO Scheduler**: This algorithm uses three queues: a queue
     sorted on sector just like the previous one, a write FIFO, and read FIFO.
     The write/read FIFO queues are essentially sorted on time. Write request
@@ -626,26 +625,25 @@ Linux kernel development:
     scheduler dispatches a request, it first checks if there is an expired
     request in one of the FIFO queues before issuing a request from the sorted
     queue. In this way, you avoid starvation. Also note the bias towards read
-    requests. If you delay read requests significantly, application
-    performance would degrade notably (imagine all the time spent blocking on
-    `read()`)!
+    requests. If you delay read requests significantly, application performance
+    would degrade notably (imagine all the time spent blocking on `read()`)!
   - **The Anticipatory IO Scheduler**: This algorithm is identical to the
     Deadline IO scheduler except there is an added heuristic: the anticipation
     heuristic. It's meant to resolve the delay in write heavy systems that
-    occasionally read. In the latter scenario with a Deadline IO scheduler,
-    the seek head would bounce back and forth as infrequent reads would be
+    occasionally read. In the latter scenario with a Deadline IO scheduler, the
+    seek head would bounce back and forth as infrequent reads would be
     immediately serviced triggering a long seek. The trick here is that after
-    servicing a read request, the algorithm will wait for a configurable
-    amount of time before returning to the previous request. This makes it
-    such that if another read requests comes in during the wait, it can
-    immediately get serviced with a reduction in the time spent seeking. The
-    algorithm uses per process block IO statistics to improve its behavior
-    over time. The algorithm avoids starvation, reduces read latency, and
-    increases overall throughput through the reduction of seeks/seek time.
+    servicing a read request, the algorithm will wait for a configurable amount
+    of time before returning to the previous request. This makes it such that if
+    another read requests comes in during the wait, it can immediately get
+    serviced with a reduction in the time spent seeking. The algorithm uses per
+    process block IO statistics to improve its behavior over time. The algorithm
+    avoids starvation, reduces read latency, and increases overall throughput
+    through the reduction of seeks/seek time.
   - **The Completely Fair Queueing IO Scheduler**: This one's a bit different
     than the rest. CFQ gives each process an IO request queue. The queue are
-    serviced round robin. The number of requests consumed at each queue visit
-    is configurable. CFQ works well with specific workloads particularly those
+    serviced round robin. The number of requests consumed at each queue visit is
+    configurable. CFQ works well with specific workloads particularly those
     associated with multimedia.
   - **NOOP IO Scheduler**: This algorithm does little more than insertion sort
     incoming request by sector size. Beyond that, it's basically a FIFO

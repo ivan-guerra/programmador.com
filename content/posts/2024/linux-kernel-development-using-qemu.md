@@ -111,10 +111,10 @@ A quick side note on KVM support. It's possible though unlikely your PC doesn't
 have KVM support. If you try to run the command and QEMU complains about a lack
 of KVM support try the following:
 
-- Verify the host processor has virtualization enabled. Run `lscpu | grep
-Virtualization`. If you are on an Intel machine with virtualization enabled,
-  the output will be `Virtualization: VT-x`. If your output doesn't match,
-  enable virtualization in the BIOS menu.
+- Verify the host processor has virtualization enabled. Run
+  `lscpu | grep Virtualization`. If you are on an Intel machine with
+  virtualization enabled, the output will be `Virtualization: VT-x`. If your
+  output doesn't match, enable virtualization in the BIOS menu.
 - Some distros require your user be part of a KVM group. You can add yourself to
   such a group using the command: `sudo usermod -aG kvm $USER`. Replace `kvm`
   with name of the KVM group on your system.
@@ -240,8 +240,8 @@ ssh -p 2222 root@localhost
 
 ### SSH'ing as a User
 
-If instead of using the `root` user you would like to login as `my_user`,
-follow these steps:
+If instead of using the `root` user you would like to login as `my_user`, follow
+these steps:
 
 1. Login to the VM as `root`. Optionally, if `my_user` has `sudo` privileges,
    login as `my_user`.

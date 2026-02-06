@@ -204,11 +204,11 @@ fn scan(
 ```
 
 Here are the highlights. `n_threads` uses the `num_cpus` crate to determine the
-number of logical cores on the host. The value gets clamped down to a maximum of 16.
-`chunk_size` calculates the number of ports each thread will scan. `handles` is
-a vector of thread handles. Each handle represents a thread that will scan a
-chunk of ports. The program joins all threads and sorts the results by port
-number for display.
+number of logical cores on the host. The value gets clamped down to a maximum
+of 16. `chunk_size` calculates the number of ports each thread will scan.
+`handles` is a vector of thread handles. Each handle represents a thread that
+will scan a chunk of ports. The program joins all threads and sorts the results
+by port number for display.
 
 The speed up achieved by this code is significant. Many cases saw an upwards of
 50% reduction in scan time versus a sequential scan.

@@ -45,9 +45,9 @@ ffmpeg -y -f x11grab -draw_mouse 0 -s $RESOLUTION -i $DISPLAY -f pulse -ac 2 -i 
 
 What does the newly added `-f pulse -ac 2 -i default` bit do? It tells ffmpeg to
 record audio using the default PulseAudio device. If you instead use Alsa for
-audio, replace the PulseAudio device with the equivalent Alsa device: `-f alsa
--ac 2 -i hw:0`. Having trouble identifying your Alsa/PulseAudio device? See
-["Capture/ALSA"][2] and ["Capture/PulseAudio"][3] for help.
+audio, replace the PulseAudio device with the equivalent Alsa device:
+`-f alsa -ac 2 -i hw:0`. Having trouble identifying your Alsa/PulseAudio device?
+See ["Capture/ALSA"][2] and ["Capture/PulseAudio"][3] for help.
 
 You can augment the capture command to change the framerate, recording area, and
 more. Checkout the [original source][4] of this info for more details on how to

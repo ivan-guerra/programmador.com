@@ -79,9 +79,9 @@ config controls what status info gets displayed in the status bar. You can find
 a complete listing of status options in the [i3status docs][10].
 
 Enter `Super+shift+r` to reload you're i3 configuration. If you're not fond of a
-black wallpaper, edit `$HOME/.config/i3/config` and change the `exec
---no-startup-id feh ...` command to point to a background image of your choice
-and reload. You're desktop should look similar to the capture below:
+black wallpaper, edit `$HOME/.config/i3/config` and change the
+`exec --no-startup-id feh ...` command to point to a background image of your
+choice and reload. You're desktop should look similar to the capture below:
 
 ![i3 Desktop](/series/workflow-optimization/part-3:-an-i3-desktop-environment/i3-desktop.webp#center)
 

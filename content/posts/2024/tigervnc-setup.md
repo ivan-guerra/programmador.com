@@ -44,8 +44,8 @@ pacman -S tigervnc
 2. Add users by editing `/etc/tigervnc/vncserver.users`. User entries consist of
    both a display number and username. You can spawn multiple server instances,
    one per display. Note, the display number is automatically associated with a
-   TCP port. For example, display `:1` binds to port $5900 + 1 = 5901$,
-   display `:2` binds to port $5900 + 2 = 5902$, etc. Below is an example
+   TCP port. For example, display `:1` binds to port $5900 + 1 = 5901$, display
+   `:2` binds to port $5900 + 2 = 5902$, etc. Below is an example
    `vncserver.users` file containing a single user:
 
 ```text
@@ -69,10 +69,10 @@ sudo systemctl start vncserver@:1.service
 1. Connect to the VNC server using the `vncviewer` application. The syntax is
    `vncviewer HOSTNAME::PORT`. `HOSTNAME` is the hostname or IPv4 address of the
    remote machine. `PORT` is the TCP port exposed by the server. The TCP port is
-   always the display number plus $5900$. As an example, suppose the VNC server is
-   running on a machine with hostname `foo`. On the machine hosting the server, the
-   VNC server systemd service is running for display `:1`. To connect the client to
-   the server:
+   always the display number plus $5900$. As an example, suppose the VNC server
+   is running on a machine with hostname `foo`. On the machine hosting the
+   server, the VNC server systemd service is running for display `:1`. To
+   connect the client to the server:
 
 ```bash
 vncviewer foo::5901

@@ -64,13 +64,13 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
   insertions/deletions in the middle of the collection happen frequently. You
   can't index a list so operations like searching are always linear.
 - Trees represent a hierarchical relationship between a collection of items. The
-  structure of the tree often affects algorithm performance as is the case with a
-  balanced versus unbalanced BST. You can traverse a tree in preorder, inorder,
-  and postorder fashion. Each traversal introduces benefits depending on the
-  contents of the tree.
-- Hash tables provide fast (on average $O(1)$) insertion, deletion, and
-  lookup. The performance of a hash table relies on the implementation of its
-  hashing function and collision handling scheme.
+  structure of the tree often affects algorithm performance as is the case with
+  a balanced versus unbalanced BST. You can traverse a tree in preorder,
+  inorder, and postorder fashion. Each traversal introduces benefits depending
+  on the contents of the tree.
+- Hash tables provide fast (on average $O(1)$) insertion, deletion, and lookup.
+  The performance of a hash table relies on the implementation of its hashing
+  function and collision handling scheme.
 
 ## Chapter 3: Design and Implementation
 
@@ -101,9 +101,9 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
   - Do the same thing the same way everywhere. Consistency and regularity are
     important.
 
-- You should always consider how an interface manages resources.
-  Construction, destruction, and copying are of key concern. Try to always free
-  a resource at the same layer that allocated it.
+- You should always consider how an interface manages resources. Construction,
+  destruction, and copying are of key concern. Try to always free a resource at
+  the same layer that allocated it.
 - Try to write reentrant code meaning code that works regardless of the number
   of simultaneous executions. Avoid global variables, static local variables,
   and modifying anything that has potential for concurrent access.
@@ -116,15 +116,15 @@ of Programming"][2] by Brian Kernighan and Rob Pike.
 
 - The authors don't recommend use of a debugger. This is counter personal
   experience in which interactive debugging has been invaluable. Stack traces,
-  breakpoints, etc. make locating and understanding bugs easier. The trouble
-  is in overcoming the learning curve of working with the debugger. It's worth
+  breakpoints, etc. make locating and understanding bugs easier. The trouble is
+  in overcoming the learning curve of working with the debugger. It's worth
   learning if you program professionally.
 - Tips for when you have plenty of "clues" to work with:
   - Look for familiar patterns. Does the bug look like something you've seen
     before?
   - Examine the most recent change. If you edit and test in small increments, a
-    bug will likely be a direct result of the most recent change. Using a version
-    control system makes this easier.
+    bug will likely be a direct result of the most recent change. Using a
+    version control system makes this easier.
   - Don't make the same mistake twice. After you fix a bug, ask whether you
     might have made the same mistake somewhere else.
   - Debug it now not later. It's easy to forget a bug exists especially if it

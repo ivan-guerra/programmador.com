@@ -35,8 +35,8 @@ Here are some features that pop out in the video:
 - Each column or stream has a fixed length with the first character in the
   stream having a bright white color.
 - Character streams spawn at random.
-- Once a stream of characters has begun, a new stream won't begin on that
-  column until all the previous characters have "fallen" off screen.
+- Once a stream of characters has begun, a new stream won't begin on that column
+  until all the previous characters have "fallen" off screen.
 
 Fundamentally, a stream of characters scrolls down the screen. You can imagine
 the screen is a two dimensional matrix of characters. Each screensaver frame
@@ -46,8 +46,8 @@ characters fly down the screen.
 
 ## Building a Scrolling Buffer
 
-A handful of data structures implement the scrolling buffer effect. The first
-is the `Char` type:
+A handful of data structures implement the scrolling buffer effect. The first is
+the `Char` type:
 
 ```cpp
 struct Char {
@@ -150,8 +150,8 @@ class ScreenBuffer {
 At its core, `ScreenBuffer` is an array of `CharStream` objects where each
 `CharStream` represents a single screen column. The `ScreenBuffer` constructor
 ensures there are `width` many streams each with capacity and char limit of
-`height`. `ScreenBuffer`'s API updates the internal screen buffer
-and retrieves a read-only view of the buffer's contents.
+`height`. `ScreenBuffer`'s API updates the internal screen buffer and retrieves
+a read-only view of the buffer's contents.
 
 `Update()` is the heavy lifter which performs the following operations:
 

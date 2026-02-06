@@ -8,9 +8,9 @@ tags: ["containerization"]
 
 If you grew up gaming in the 00's and even into the 10's, you probably have
 heard of Runescape. Even in 2023, Runescape remains one of the world's most
-popular MMOs. The game has evolved significantly over the past 20-ish
-years of its existence and continues to have one of the most active online
-communities of any MMO.
+popular MMOs. The game has evolved significantly over the past 20-ish years of
+its existence and continues to have one of the most active online communities of
+any MMO.
 
 There's two main forks of the game: [Old School Runescape][1] (OSRS) and
 [Runescape 3][2] (RS3). Both versions of Runescape have game clients. There's a

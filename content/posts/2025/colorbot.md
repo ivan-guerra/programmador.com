@@ -10,9 +10,9 @@ A [previous article][1] explored writing `rsbot`, a scriptable auto clicker
 meant to automate training the most repetitive skills in RuneScape. As a recap,
 that bot would take as input a script defining click events where each click
 event includes an ID, click box, and delay range. The bot would continuously
-execute each event. Executing an event means randomly clicking within the
-click box and waiting a random amount of time within the delay range. Bonus
-points, `rsbot` mouse movements look human.
+execute each event. Executing an event means randomly clicking within the click
+box and waiting a random amount of time within the delay range. Bonus points,
+`rsbot` mouse movements look human.
 
 `rsbot` works well. It allowed a main account to level fletching, firemaking,
 herblore, crafting, and many other skills to 99 without catching even a temp
@@ -168,9 +168,9 @@ styles. Here's a short video from the developer's demonstrating how it works:
 ![NPC Indicator Plugin Demo](/posts/2025/colorbot/npc-indicators.webp#center)
 
 RuneScape has many surprising elements that register as NPCs. For example,
-fishing spots are all NPCs! Configure the plugin and your `colorbot`
-script to use colors which don't occur in the game such as pure red, green, etc.
-This guarantees you'll accurately click the object you're interested in.
+fishing spots are all NPCs! Configure the plugin and your `colorbot` script to
+use colors which don't occur in the game such as pure red, green, etc. This
+guarantees you'll accurately click the object you're interested in.
 
 What if you want to click non NPC objects? You can mark arbitrary objects using
 the [Object Markers][4] plugin. You can customize the color and highlight style
@@ -187,9 +187,9 @@ plugin is useful. Checkout this short clip demoing usage:
 ![Inventory Tags Plugin Demo](/posts/2025/colorbot/inventory-tags.webp#center)
 
 Finally, the [Menu Entry Swapper][6] plugin lets you avoid right clicking and
-searching through menus. This is useful in many ways. For example, say you
-want to drop an inventory of logs. You can set the left click option on logs
-to "drop."
+searching through menus. This is useful in many ways. For example, say you want
+to drop an inventory of logs. You can set the left click option on logs to
+"drop."
 
 ![Menu Entry Swapper Plugin
 Demo](/posts/2025/colorbot/menu-entry-swapper.webp#center)

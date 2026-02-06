@@ -215,9 +215,9 @@ ISO generation requires the following tools:
 
 `grub-mkrescue` combined with the `grub.cfg` and `kernel.elf` create the
 `cosmo.iso` that Bochs can boot off of. [`generate_iso.sh`][18] gives the
-details. The tools and scripts are all packaged into the [dev
-container](#setting-up-the-toolchain) so there's no need to install them on the
-host PC.
+details. The tools and scripts are all packaged into the
+[dev container](#setting-up-the-toolchain) so there's no need to install them on
+the host PC.
 
 ## Progress Report
 

@@ -22,8 +22,8 @@ instructions!**
 
 1. Plugin the USB serial device.
 2. Identify the `/dev/ttyUSB*` name assigned to your device. There are many ways
-   to do this. Perhaps the easiest is to `grep` the `dmesg` log to
-   see what name the kernel gives the device:
+   to do this. Perhaps the easiest is to `grep` the `dmesg` log to see what name
+   the kernel gives the device:
 
 ```bash
 dmesg | grep USB

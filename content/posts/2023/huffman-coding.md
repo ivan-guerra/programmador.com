@@ -184,12 +184,12 @@ node of the Huffman Tree.
 
 ## Building a Codebook
 
-It's the moment you've been waiting for: code generation. You probably
-already guessed how this works. To generate a character's code, all you need to
-do is traverse the Huffman Tree. As you walk down from the root to each leaf,
-you bookkeep the path taken using `0`'s to indicate left subtree traversals and
-`1`'s for the right subtree traversals. When you hit a leaf node, you save off the
-node's `character` value and the bit string generated up to that node.
+It's the moment you've been waiting for: code generation. You probably already
+guessed how this works. To generate a character's code, all you need to do is
+traverse the Huffman Tree. As you walk down from the root to each leaf, you
+bookkeep the path taken using `0`'s to indicate left subtree traversals and
+`1`'s for the right subtree traversals. When you hit a leaf node, you save off
+the node's `character` value and the bit string generated up to that node.
 
 Here's a snippet showing how to recursively construct character encodings:
 

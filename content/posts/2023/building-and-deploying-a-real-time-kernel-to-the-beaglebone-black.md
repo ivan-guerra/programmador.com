@@ -51,11 +51,11 @@ packages on the BBB using `dpkg`.
 
 Robert's scripts require that the host system have a number of libraries and
 utilities installed in order for the kernel build to succeed. To ease the
-process, I created the [`bbb_kernel_builder`][5] project that launches a
-docker container which runs the build scripts on your behalf. The docker
-container will prompt you to configure the kernel, but, beyond that, the process
-is hands off. A successful container run copies `*.deb` kernel packages to the
-host PC (see the [`README`][6] for details).
+process, I created the [`bbb_kernel_builder`][5] project that launches a docker
+container which runs the build scripts on your behalf. The docker container will
+prompt you to configure the kernel, but, beyond that, the process is hands off.
+A successful container run copies `*.deb` kernel packages to the host PC (see
+the [`README`][6] for details).
 
 A future post will discuss the details of configuring a kernel for real-time.
 For now, watch John Ogness's "A Checklist for Writing Real-Time Linux
@@ -96,9 +96,9 @@ Boot the BBB off the SD card and login as root. Install the kernel.
 dpkg -i /root/*.deb
 ```
 
-Reboot the BBB off the SD card. Verify your kernel is live by running `uname
--a`. You should see output similar to that shown below. Note the `PREEMPT_RT`
-bit indicates that you have a fully preemptible kernel!
+Reboot the BBB off the SD card. Verify your kernel is live by running
+`uname -a`. You should see output similar to that shown below. Note the
+`PREEMPT_RT` bit indicates that you have a fully preemptible kernel!
 
 ```text
 Linux beaglebone 5.10.162-ti-rt-r59 #1xross SMP PREEMPT_RT ...

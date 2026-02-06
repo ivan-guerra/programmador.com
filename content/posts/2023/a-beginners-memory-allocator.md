@@ -16,8 +16,8 @@ decided to write a basic allocator on Linux.
 
 ## The Interface
 
-What does the API look like? The API is identical to that of
-`malloc()`/`free()` with only two major deviations:
+What does the API look like? The API is identical to that of `malloc()`/`free()`
+with only two major deviations:
 
 1. Compile time memory pool size specification.
 2. The allocator accepts an optional alignment argument so that the user can
@@ -63,12 +63,11 @@ In Linux, there are two options to explore for acquiring allocator memory:
 - Request that the kernel map pages of memory into the process's virtual address
   space using the `mmap()` system call.
 
-Which option's better? It depends. Some allocators use a combination of
-both syscalls with the primary goal of reducing memory fragmentation. Freeing
-an `mmap()`'ed chunk of memory basically tells the kernel "these pages, dirty
-or not, can be re-purposed." In the case of `sbrk()`, it's possible to free
-chunks of memory yet the kernel doesn't know unless you reduce the program
-break.
+Which option's better? It depends. Some allocators use a combination of both
+syscalls with the primary goal of reducing memory fragmentation. Freeing an
+`mmap()`'ed chunk of memory basically tells the kernel "these pages, dirty or
+not, can be re-purposed." In the case of `sbrk()`, it's possible to free chunks
+of memory yet the kernel doesn't know unless you reduce the program break.
 
 Okay, so what does all that mean for `Malloc`? To keep things simple, a chunk of
 memory allocated using `mmap()` serves as a memory pool. The size of the pool is
@@ -179,8 +178,8 @@ struct MemBlockHeader {
 The header will come in handy later when it comes time to free the allocated
 block. Included in the header is a magic number used to identify a block
 allocated by `Alloc()`. The `size` field defines the size of the allocated
-block. Inclusion of a header requires that a free block be at least `n +
-sizeof(MemBlockHeader)` bytes in size.
+block. Inclusion of a header requires that a free block be at least
+`n + sizeof(MemBlockHeader)` bytes in size.
 
 Below is an updated allocation example that accounts for the block header:
 
@@ -253,15 +252,15 @@ void* Malloc<N>::Alloc(std::size_t size, std::size_t alignment) {
 
 First, you search for the first block capable of satisfying the request via a
 linear search of the free list. If no such block exists, return `nullptr`.
-Notice that the block search requires a size equal to the sum `size +
-sizeof(MemBlockHeader) + alignment  + 1`. The key takeaway: you need more space
-than the caller asks for to satisfy the request because of your allocation
-bookkeeping requirements. Further along, the allocated memory gets split via
-pointer updates. The use of the `dummy` list node makes edge cases like updates
-at the head of the list a nonissue. The final step is to setup the contents of
-the header in the allocated block and return the address just beyond the header.
-Aside from the linear search for a free block, the algorithm is pretty efficient
-in that it's just doing constant time pointer swaps/arithmetic.
+Notice that the block search requires a size equal to the sum
+`size + sizeof(MemBlockHeader) + alignment  + 1`. The key takeaway: you need
+more space than the caller asks for to satisfy the request because of your
+allocation bookkeeping requirements. Further along, the allocated memory gets
+split via pointer updates. The use of the `dummy` list node makes edge cases
+like updates at the head of the list a nonissue. The final step is to setup the
+contents of the header in the allocated block and return the address just beyond
+the header. Aside from the linear search for a free block, the algorithm is
+pretty efficient in that it's just doing constant time pointer swaps/arithmetic.
 
 Now, for the next piece of the allocation puzzle: address alignment.
 
@@ -294,9 +293,9 @@ starts one byte later at address `0x7FFF000A`. The reason for this is that one
 byte is always committed to store the alignment byte count. If you follow the
 header starting at address `0x7FFF000A`, you have 8 bytes from which you can
 search for an 8 byte aligned addressed. The next 8 byte aligned address is 7
-bytes in at address `0x7FFF0010`. `0x7FFF00010` is the address you return to
-the caller. Before returning, place 7, the number of bytes used in alignment, in
-the byte preceding the return address.
+bytes in at address `0x7FFF0010`. `0x7FFF00010` is the address you return to the
+caller. Before returning, place 7, the number of bytes used in alignment, in the
+byte preceding the return address.
 
 How do you find the next aligned address? C++ provides a nice utility for doing
 just that: `std::align`. `std::align` has a tricky interface in the sense that
@@ -481,8 +480,8 @@ implementation of memory allocators one could read through and learn from. Not
 to mention the many tradeoffs you can make with regards to data structures and
 algorithms.
 
-You can find the complete project source with build instructions, usage, etc.
-on GitHub under [malloc][2].
+You can find the complete project source with build instructions, usage, etc. on
+GitHub under [malloc][2].
 
 [1]: https://pages.cs.wisc.edu/~remzi/OSTEP/
 [2]: https://github.com/ivan-guerra/malloc

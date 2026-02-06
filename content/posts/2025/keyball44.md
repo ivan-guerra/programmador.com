@@ -103,9 +103,9 @@ It may seem silly to explain how to buy a keyboard, but the keyball44, much like
 other niche hardware, isn't always easy to buy. There are a few options.
 
 If you own a soughtering iron and you're confident in your soughtering skills,
-you can build the keyboard yourself. There's an official [build guide][2]
-that details everything you need to know. The guide includes a bill of materials
-and step by step instructions. To simplify the process even further, you can
+you can build the keyboard yourself. There's an official [build guide][2] that
+details everything you need to know. The guide includes a bill of materials and
+step by step instructions. To simplify the process even further, you can
 purchase build kits from various vendors. For example, [HolyKeebs][3] sells
 build kits that include (almost) everything you need.
 
@@ -142,8 +142,8 @@ few other tweaks [here][11]. Those tweaks include:
 - The arrow keys on the navigation layer are in a Vim style `hjkl` pattern.
 
 If you want to further customize, you can find a [keycode reference][12] on the
-QMK site. If using a keyball44, you have access to additional keycodes. Check out
-the added keyball44 codes at [HolyKeebs][13].
+QMK site. If using a keyball44, you have access to additional keycodes. Check
+out the added keyball44 codes at [HolyKeebs][13].
 
 ## Flashing
 

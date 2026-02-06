@@ -229,12 +229,13 @@ than $N$ in $\mathcal{O}(N)$ time and $\mathcal{O}(N)$ space:
 
 With the square root approach, you would pay a $\mathcal{O}(\sqrt{N})$ cost on
 each primality check on the $N^2$ elements in the Ulam Spiral. This means
-`GenerateUlamSpiral()` would have a time complexity of $\mathcal{O}(\sqrt{N} \*
-N^2) = \mathcal{O}(N^{2.5})$! Using the sieve approach reduces the time
-complexity to $\mathcal{O}(N^2)$. Why? The primality check in the main loop gets
-reduced to an $O(1)$ time lookup into a precomputed set of prime numbers. The
-space complexity remains linear though the constant hidden by the big O notation
-does grow.
+`GenerateUlamSpiral()` would have a time complexity of
+$\mathcal{O}(\sqrt{N} \*
+N^2) = \mathcal{O}(N^{2.5})$! Using the sieve approach
+reduces the time complexity to $\mathcal{O}(N^2)$. Why? The primality check in
+the main loop gets reduced to an $O(1)$ time lookup into a precomputed set of
+prime numbers. The space complexity remains linear though the constant hidden by
+the big O notation does grow.
 
 Is the theoretical speed up worth the increased space and code complexity? In
 the case of this Ulam spiral visualization tool, yes. The graph below compares

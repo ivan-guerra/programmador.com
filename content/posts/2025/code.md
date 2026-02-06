@@ -31,7 +31,8 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
 - Though there are only 64 characters, Braille characters can have additional
   meanings based on their context.
 - The number indicator marks the beginning of a sequence of numbers. The letter
-  indicator terminates the number sequence. This is an example of a _shift code_.
+  indicator terminates the number sequence. This is an example of a _shift
+  code_.
 - In Braille, the capital indicator capitalizes the letter that follows. The
   capital indicator is an example of an _escape code_. Escape codes change the
   meaning of the code that immediately follows.
@@ -69,7 +70,8 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
 - The Earth acts a source of electrons. The electrons flow from the Earth,
   through the circuit, and into the positive terminal of the battery.
 - American Wire Gauge (AWG) is a measure of wire thickness. The lower the
-  number, the thicker the wire. The thicker the wire, the less resistance it has.
+  number, the thicker the wire. The thicker the wire, the less resistance it
+  has.
 - When covering great distances, you need to use thicker wire or a higher
   voltage power supply.
 
@@ -94,8 +96,8 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
 - The telegraph sounder is a device that converts the electrical signals from
   the telegraph key into audible sounds.
 - One major impediment to the telegraph was the length of the wires needed to
-  connect the telegraph stations. The longer the wire, the more resistance it has,
-  and the weaker the signal.
+  connect the telegraph stations. The longer the wire, the more resistance it
+  has, and the weaker the signal.
 - The invention of the relay solved the problem of long-distance telegraphy. A
   relay is an electrically operated switch that can amplify the signal.
 - A relay consists of an electromagnet, a set of contacts, and a spring. When
@@ -116,14 +118,14 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
   energized. A normally closed relay is a relay that's closed when the
   electromagnet isn't energized.
 - An inverter is a logic gate that reverses the input signal. In terms of
-  relays, an inverter is a normally closed relay that opens when the electromagnet
-  gets energized.
+  relays, an inverter is a normally closed relay that opens when the
+  electromagnet gets energized.
 - There are six basic logic gates: AND, OR, NOT, NAND, NOR, and XOR.
 - Additionally, you have buffers. A buffer is a logic gate that passes the input
   signal to the output without changing it. In real life circuits, sometimes
-  output must serve as many inputs. That's called **fanout**, and it can result in
-  a lessening of the power available to each input. Buffers can help boost that
-  power acting as a relay. You can also use buffers to delay a signal.
+  output must serve as many inputs. That's called **fanout**, and it can result
+  in a lessening of the power available to each input. Buffers can help boost
+  that power acting as a relay. You can also use buffers to delay a signal.
 - From a NAND or NOR gate, you can create all other logic gates.
 - The following are Demorgan's Laws:
   - $\lnot A \land \lnot B = \lnot(A \lor B)$
@@ -133,9 +135,9 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
 ## Chapter 9: Our Ten Digits
 
 - There are many possible number systems.
-- Roman numerals were common before the introduction of the Hindu-Arabic
-  numeral system. Key features that differentiate the Hindu-Arabic numeral
-  system include:
+- Roman numerals were common before the introduction of the Hindu-Arabic numeral
+  system. Key features that differentiate the Hindu-Arabic numeral system
+  include:
   - The use of a zero to represent the absence of a value.
   - The positional notation, where the value of a digit depends on its position
     in the number.
@@ -145,9 +147,10 @@ Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
 - By convention, humans work in a base 10 number system, also known as decimal.
 - There are many other number systems, such as binary (base 2), octal (base 8),
   and hexadecimal (base 16).
-- The formula for converting from any base to decimal is: $d = \sum\_{i=0}^{n}
-d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
-  and $n$ is the position of the digit.
+- The formula for converting from any base to decimal is:
+  $d = \sum\_{i=0}^{n}
+d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is
+  the digit in base $b$, and $n$ is the position of the digit.
 - Binary numbers unite arithmetic and electricity. Switches, wires, and light
   bulbs can all represent the binary digits 0 and 1, and with the addition of
   logic gates, you can manipulate these numbers.
@@ -166,7 +169,8 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
   UPC barcode encodes 95 bits of data.
 - The UPC barcode also includes some error checking. The last digit is a
   checksum that verifies the integrity of the data. Each barcode includes a
-  beginning, middle, and end guard pattern to help scanners identify faulty codes.
+  beginning, middle, and end guard pattern to help scanners identify faulty
+  codes.
 - Quick Response (QR) codes are another example of a binary code. QR codes can
   encode more information than UPC barcodes, including URLs and text. QR codes
   consist of black squares arranged on a white grid. The black squares represent
@@ -186,13 +190,14 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
 ## Chapter 13: From ASCII to Unicode
 
 - Morse code is a variable bit-length code, meaning that different characters
-  can have different numbers of bits. For example, the letter 'E' is a single dot
-  (1 bit), while 'Q' is a dash followed by two dots (3 bits).
+  can have different numbers of bits. For example, the letter 'E' is a single
+  dot (1 bit), while 'Q' is a dash followed by two dots (3 bits).
 - Braille is a fixed-length code, meaning that each character has the same
   number of bits (6 bits).
 - ASCII (American Standard Code for Information Interchange) is a character
-  encoding standard that uses 7 bits to represent characters. ASCII can represent
-  128 different characters, including letters, digits, and control characters.
+  encoding standard that uses 7 bits to represent characters. ASCII can
+  represent 128 different characters, including letters, digits, and control
+  characters.
 - ASCII includes 32 control characters that are not printable, such as the
   newline character and the tab character.
 - ASCII is also known as plain text. ASCII data does not include any formatting
@@ -267,8 +272,8 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
 - TTL chips are faster but consume more power than CMOS chips. CMOS chips are
   slower but consume less power and are more tolerant to variations in voltages.
 - One important fact to know about a particular integrated circuit is the
-  propagation time, the time it takes for a change in the inputs to reflect in the
-  output.
+  propagation time, the time it takes for a change in the inputs to reflect in
+  the output.
 - You measure propagation time in nanoseconds.
 - The timeline to keep in mind from this chapter is that logic gate components
   trended from relays, to vacuum tubes, to transistors, and then to integrated
@@ -312,8 +317,8 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
   See page 235 for an illustration of a frequency divider.
 - Chained frequency dividers create a binary counter called a ripple counter.
 - To find the frequency of the oscillator, you can let the ripple counter run
-  for a certain number of cycles and then divide the number of cycles by the time
-  it took to run them.
+  for a certain number of cycles and then divide the number of cycles by the
+  time it took to run them.
 - You can augment a flip-flop with a clear and preset input. You never set both
   clear and preset at the same time.
 - Having a clear input avoids the issue of the flip-flop being in an
@@ -327,15 +332,16 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
   BCD uses 4 bits to represent each decimal digit, allowing you to represent
   decimal numbers from 0 to 9.
 - It's best to read the book to get an idea of how to build the clock. At a high
-  level, you use a ripple counter to count each digit in the seconds, minutes, and
-  hours. The output of the high digit's counter is the input to the next counter.
-  Additional circuitry makes it possible to display the hours in 12-hour format.
+  level, you use a ripple counter to count each digit in the seconds, minutes,
+  and hours. The output of the high digit's counter is the input to the next
+  counter. Additional circuitry makes it possible to display the hours in
+  12-hour format.
 - Electrical current can only flow in one direction through a diode.
 - A Light Emitting Diode (LED) is a diode that emits light when current flows
   through it.
 - A diode matrix is a grid of diodes that displays characters or numbers. The
-  diodes are in rows and columns, and you can turn on specific diodes to create a
-  pattern.
+  diodes are in rows and columns, and you can turn on specific diodes to create
+  a pattern.
 - Diode matrices are technically a form of Read Only Memory (ROM).
 
 ## Chapter 19: An Assemblage of Memory
@@ -348,8 +354,8 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
 - This is a form of read/write memory. Since you can address any of the 8 bits
   at will, this is also known as Random Access Memory (RAM).
 - A tri-state buffer can have one of three states: high, low, or high impedance
-  (Z). The high impedance state is like an open circuit, meaning it doesn't affect
-  the output.
+  (Z). The high impedance state is like an open circuit, meaning it doesn't
+  affect the output.
 - Both static and dynamic RAM are examples of volatile memory, meaning they lose
   their contents when powered off.
 
@@ -384,14 +390,14 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
 
 - A CPU includes a small number of special purpose registers.
 - The registers can be general purpose or serve a specific task. For example, in
-  the Intel 8080 CPU, the accumulator register is a general purpose register used
-  to store intermediate results of arithmetic and logic operations.
+  the Intel 8080 CPU, the accumulator register is a general purpose register
+  used to store intermediate results of arithmetic and logic operations.
 - The opcodes may use one or more registers as operands. For example, the Intel
   8080 CPU has an opcode for moving data to RAM. The opcode uses the H and L
   registers to form the 16-bit address of the RAM location to write to.
 - Assembly language is a low-level programming language that uses mnemonics to
-  represent opcodes and registers. Each assembly language instruction corresponds
-  to a single opcode.
+  represent opcodes and registers. Each assembly language instruction
+  corresponds to a single opcode.
 - Opcodes for arithmetic, moving data to registers/ram, control flow, and
   halting the CPU exist.
 - The data bus is a set of wires that carry data between the CPU, memory, and
@@ -423,8 +429,8 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
 - Subroutines or functions are groups of instructions.
 - The CALL and RET instructions call and return from subroutines.
 - The stack is a special area of memory used to store temporary data. The stack
-  provides a means to save the state of the program when calling a subroutine and
-  to restore it when returning from the subroutine.
+  provides a means to save the state of the program when calling a subroutine
+  and to restore it when returning from the subroutine.
 - You can nest subroutine calls, meaning you can call a subroutine from within
   another subroutine. It's possible to nest so many calls that you run out of
   stack space resulting in a stack overflow. You can also underflow the stack by
@@ -435,10 +441,10 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
 - Devices such as the mouse, keyboard, video display, and printer fall under the
   category of peripherals.
 - One of the most important peripherals is the video display. The video display
-  renders pixels on the screen. Each pixel is a small dot of color. Each pixel is
-  a combination of 8 bit red, green, and blue (RGB) values. A display with a
-  1920x1080 resolution has 2,073,600 pixels, each represented by 3 bytes requiring
-  a total of 6MB of memory to store the pixel data.
+  renders pixels on the screen. Each pixel is a small dot of color. Each pixel
+  is a combination of 8 bit red, green, and blue (RGB) values. A display with a
+  1920x1080 resolution has 2,073,600 pixels, each represented by 3 bytes
+  requiring a total of 6MB of memory to store the pixel data.
 - The frame buffer is an area in main memory that houses the display pixels. The
   frame buffer is an example of a memory-mapped I/O device. The CPU can read and
   write to the frame buffer as if it were regular memory.
@@ -446,10 +452,12 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
   signal that tells the CPU to stop what it's doing and handle a specific event.
 - Many signals are analog. To convert an analog signal to a digital signal, you
   need an Analog-to-Digital Converter (ADC). An ADC samples the analog signal at
-  regular intervals and converts each sample to a digital value. Digital-to-Analog
-  Converters (DAC) do the opposite, converting digital values to analog signals.
+  regular intervals and converts each sample to a digital value.
+  Digital-to-Analog Converters (DAC) do the opposite, converting digital values
+  to analog signals.
 - DACs in video displays convert the digital values of the pixels into voltages
-  that govern the intensity of the red, green, and blue components of each pixel.
+  that govern the intensity of the red, green, and blue components of each
+  pixel.
 - Digital cameras use ADCs to convert the analog signals from the camera sensor
   into digital values that form a bitmap.
 - With image data such as a bitmap, you can use compression algorithms to reduce
@@ -461,9 +469,9 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
   electrical signals are analog, so you need an ADC to convert them into digital
   values.
 - Compact discs (CDs) store audio data in a digital format. Pulse Code
-  Modulation (PCM) is the technique which encodes the data. PCM samples the audio
-  signal at regular intervals and quantizes the amplitude of the signal to a fixed
-  number of levels.
+  Modulation (PCM) is the technique which encodes the data. PCM samples the
+  audio signal at regular intervals and quantizes the amplitude of the signal to
+  a fixed number of levels.
 - You sample audio at a rate of 44.1 kHz, meaning you take 44,100 samples per
   second. Each sample is typically 16 bits, resulting in a data rate of 1,411.2
   kbps for stereo audio (two channels). The Nyquist Theorem states that you need
@@ -519,7 +527,8 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
   The standard defines how to represent floating point numbers in binary,
   including the sign bit, exponent, and mantissa.
 - Special hardware called a floating point unit (FPU) performs arithmetic
-  operations on floating point numbers. The FPU is often integrated into the CPU.
+  operations on floating point numbers. The FPU is often integrated into the
+  CPU.
 
 ## Chapter 28: The World Brain
 
@@ -533,9 +542,9 @@ d_i \cdot b^i$ where $d$ is the decimal value, $d_i$ is the digit in base $b$,
 - The Internet is a decentralized network, meaning there is no single point of
   control. This decentralization makes the Internet resilient to failures.
 - Modems and routers are devices that connect computers to the Internet. A modem
-  converts digital signals from a computer into analog signals sent over telephone
-  lines or cable systems. A router directs data packets between different
-  networks.
+  converts digital signals from a computer into analog signals sent over
+  telephone lines or cable systems. A router directs data packets between
+  different networks.
 - The Domain Name System (DNS) is a distributed naming system that translates
   human-readable domain names (like www.example.com) into IP addresses.
 

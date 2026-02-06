@@ -148,8 +148,9 @@ git config --global tag.gpgSign true
 ```
 
 Boom, now all your commits and tags will have your crypto signature attached!
-Try it out. Make a commit in one of your repos, then run the command `git log
---show-signature -1`. You'll see you're signature info is part of the commit:
+Try it out. Make a commit in one of your repos, then run the command
+`git log --show-signature -1`. You'll see you're signature info is part of the
+commit:
 
 ```bash
 commit 443fc7706ab4cafdda0426f88fdeecc916bcf787 (HEAD -> master, origin/master)

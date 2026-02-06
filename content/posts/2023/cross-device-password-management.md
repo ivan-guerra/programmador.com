@@ -167,9 +167,9 @@ pass edit games/runescape
 
 `pass` will bring up the editor pointed to by your `EDITOR` environment
 variable. From there, you can **put your password on the first line** and all
-other secrets (for example, username and recovery questions/answers) on subsequent
-lines. Note, you can also use the `--multiline` option with the `insert` command
-to store secret data:
+other secrets (for example, username and recovery questions/answers) on
+subsequent lines. Note, you can also use the `--multiline` option with the
+`insert` command to store secret data:
 
 ```bash
 pass insert --multiline misc/super_secret
@@ -241,8 +241,8 @@ OpenKeychain to decrypt it by selecting _Keys -> Import from File_. **Don't
 text, email, etc. the file password. Manually input the password when prompted
 by the app!**
 
-Now all that's left is setting up your password database in Password Store.
-Here are the steps:
+Now all that's left is setting up your password database in Password Store. Here
+are the steps:
 
 1. Open Password Store on mobile.
 2. Select _Clone Remote Repo_.
@@ -255,8 +255,8 @@ Here are the steps:
 That's it. You should see your password database appear in the app. When you
 select a password, Password Store will prompt you for your GPG key passphrase.
 Password Store is smart enough to show you not only passwords but any other
-secrets you may have hidden in the store (see [Beyond
-Passwords](#beyond-passwords))!
+secrets you may have hidden in the store (see
+[Beyond Passwords](#beyond-passwords))!
 
 ## Conclusion
 

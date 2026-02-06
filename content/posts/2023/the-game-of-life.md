@@ -20,8 +20,8 @@ What are the GoL rules? The setup is simple. You have an MxN grid of "cells."
 Each cell is always in one of two states: live or dead. The grid transitions
 through states on a frame tick. You apply the following rule at each tick.
 
-1. Any live cell with fewer than two live neighbours dies, as if by
-   under population.
+1. Any live cell with fewer than two live neighbours dies, as if by under
+   population.
 2. Any live cell with two or three live neighbours lives on to the next
    generation.
 3. Any live cell with more than three live neighbours dies, as if by

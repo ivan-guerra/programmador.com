@@ -140,8 +140,8 @@ breaks down into a five step process:
 4. Copy over the `init` script and custom module kobjects into (2).
 5. Use `cpio` to package the filesystem up.
 
-The initramfs [Dockerfile][8] implements the steps. The output of running
-the initramfs container is a `initramfs-busybox-x86.cpio.gz`.
+The initramfs [Dockerfile][8] implements the steps. The output of running the
+initramfs container is a `initramfs-busybox-x86.cpio.gz`.
 
 ## Custom Kernel Modules In QEMU
 
@@ -198,9 +198,9 @@ The ability to debug kernel code using a tool like GDB just as you would a
 userland program feels like magic. The project includes support for debugging
 the kernel and modules using GDB. Given a kernel built with the right debug
 configurations, you can attach a GDB session to the [QEMU VM][15] and break,
-step, etc. through driver/kernel code! It isn't absolutely necessary for
-working through LDD3. That said, the debugger did come in handy on a few
-occasions making it worth the effort to learn how to set it up.
+step, etc. through driver/kernel code! It isn't absolutely necessary for working
+through LDD3. That said, the debugger did come in handy on a few occasions
+making it worth the effort to learn how to set it up.
 
 ## Conclusion
 

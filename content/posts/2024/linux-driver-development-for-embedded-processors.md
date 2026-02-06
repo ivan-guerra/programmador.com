@@ -64,9 +64,9 @@ review][3] before buying.
   driver ops trigger. Specifically `probe()` on initialization and `remove()` on
   exit.
 - `probe()` performs the following functions:
-  - Gets a pointer to a device structure as an argument (for example, `struct
-pci_dev *`, `struct usb_dev *`, `struct platform_device *`, `struct
-i2c_client *`, etc.).
+  - Gets a pointer to a device structure as an argument (for example,
+    `struct pci_dev *`, `struct usb_dev *`, `struct platform_device *`,
+    `struct i2c_client *`, etc.).
   - Initializes the device, maps I/O memory, allocates buffers, registers
     interrupt handlers, timers, etc.
   - It registers the device to a specific framework (for example, network, misc,
@@ -152,8 +152,8 @@ i2c_client *`, etc.).
   - Workqueues
 - Tasklets may only run on a single CPU concurrently. Tasklets execute in an
   interrupt context so no blocking/sleeping is okay.
-- A typical flow in the kernel is `ALL ISRs -> ALL TASKLETS -> Process Threads
-(both kernel and user)`
+- A typical flow in the kernel is
+  `ALL ISRs -> ALL TASKLETS -> Process Threads (both kernel and user)`
 - ISRs run at essentially infinite priority and mask the interrupt they're
   servicing. You want ISRs not to block or sleep for that reason.
 - Tasklets build off of softirqs. If there are too many softrirqs or softirq

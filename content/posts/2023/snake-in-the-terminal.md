@@ -252,8 +252,8 @@ trick.
 
 ### Losing
 
-Another $\mathcal{O}(N^2)$ algorithm determines whether a player lost. In
-this case, the majority of the time goes into checking whether the snake is
+Another $\mathcal{O}(N^2)$ algorithm determines whether a player lost. In this
+case, the majority of the time goes into checking whether the snake is
 overlapping with itself.
 
 ```cpp

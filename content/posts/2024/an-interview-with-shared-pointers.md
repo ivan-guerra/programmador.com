@@ -45,11 +45,11 @@ in the object performing the operation. However, there's no clear way to
 communicate the increment/decrement to all other `SharedPtr` instances wrapping
 the same `data_` pointer.
 
-What's the trick? Change the declaration of `ref_count_` to `std::size_t*
-ref_count_`. The ref count itself is a pointer that's shared by all `SharedPtr`
-instances wrapping the same `data_` pointer. The first `SharedPtr` to wrap
-`data_` is responsible for allocating `ref_count_`. When `ref_count_` hits 0,
-`ref_count_` deallocates along with `data_`.
+What's the trick? Change the declaration of `ref_count_` to
+`std::size_t* ref_count_`. The ref count itself is a pointer that's shared by
+all `SharedPtr` instances wrapping the same `data_` pointer. The first
+`SharedPtr` to wrap `data_` is responsible for allocating `ref_count_`. When
+`ref_count_` hits 0, `ref_count_` deallocates along with `data_`.
 
 Lets work an example. Consider the code below:
 

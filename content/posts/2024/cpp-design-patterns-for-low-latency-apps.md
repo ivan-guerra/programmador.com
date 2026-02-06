@@ -31,19 +31,19 @@ Paul Bilokon and Burak Gunduz.
   - The objective of concluding the trading day with minimal unhedged positions
     and near-neutral exposure to overnight.
 - HFT systems are mainly built from five main components:
-  - **Data Feed**: Responsible for receiving and processing real-time market data
-    from various sources, enabling the algorithms to make buy, sell, or wait
-    decisions.
+  - **Data Feed**: Responsible for receiving and processing real-time market
+    data from various sources, enabling the algorithms to make buy, sell, or
+    wait decisions.
   - **Order Management System (OMS)**: Handles the submission, routing, and
     monitoring of trade orders, ensuring efficient execution and management of
     trading activities.
   - **Trading Strategies**: Employ automated algorithms to identify market
     opportunities, make trading decisions, and execute trades at high speeds.
-  - **Risk management**: Implements measures to assess and mitigate potential risks
-    associated with high-speed trading, ensuring the preservation of capital and
-    minimizing losses.
-  - **Execution Infrastructure**: Provides the necessary technological framework for
-    low-latency communication and trade execution in HFT systems. Networking
+  - **Risk management**: Implements measures to assess and mitigate potential
+    risks associated with high-speed trading, ensuring the preservation of
+    capital and minimizing losses.
+  - **Execution Infrastructure**: Provides the necessary technological framework
+    for low-latency communication and trade execution in HFT systems. Networking
     infrastructure falls in this category.
 - HFT firms make strong use of Field Programmable Gate Arrays (FPGAs) to achieve
   low-latency targets. Four key characteristics of FPGAs are programmability,
@@ -87,8 +87,8 @@ programming strategies. Here's a list of the different programming strategies:
 - **Short-circuiting**: Logical expressions cease evaluation after computing the
   final result, reducing unnecessary computations and improving performance.
 - **Signed vs Unsigned Comparisons**: Ensuring consistent signedness in
-  comparisons avoids conversion related performance issues and maintains efficient
-  code execution.
+  comparisons avoids conversion related performance issues and maintains
+  efficient code execution.
 - **Avoid Mixing Float and Doubles**: Consistent use of float or double types in
   calculations prevents implicit type conversions, potential loss of precision,
   and slower execution.
@@ -112,9 +112,9 @@ programming strategies. Here's a list of the different programming strategies:
   minimal contention and latency.
 - The LMAX Disruptor addresses the issue of shared resource contention between
   multiple threads. The cost comes from context switches. Those context switches
-  can invalidate the cache or even lead to a cache flush which hurts performance.
-  When the new thread starts, the cache for that task likely needs to build up
-  which incurs some additional latency.
+  can invalidate the cache or even lead to a cache flush which hurts
+  performance. When the new thread starts, the cache for that task likely needs
+  to build up which incurs some additional latency.
 - Another way to tackle contention is the use of Compare And Swap (CAS)
   operations. CAS is an atomic instruction used in concurrent programming to
   implement synchronization and guarantee data integrity in multi-threaded
@@ -140,18 +140,19 @@ programming strategies. Here's a list of the different programming strategies:
   multi-consumer queues.
 - Producers and consumers interact with the ring buffer based on sequencing.
   Producers claim the next available slot in the sequence. Once the producer
-  claims a slot, the producer can write to it and update a cursor representing the
-  latest entry available to consumers. Consumers wait for a specific sequence by
-  using memory barriers to read the cursor, ensuring visibility of changes.
-  Consumers maintain their own sequence to track their progress and coordinate
-  work on entries.
+  claims a slot, the producer can write to it and update a cursor representing
+  the latest entry available to consumers. Consumers wait for a specific
+  sequence by using memory barriers to read the cursor, ensuring visibility of
+  changes. Consumers maintain their own sequence to track their progress and
+  coordinate work on entries.
 - The Disruptor offers an advantage over queues when consumers wait for an
   advancing cursor in the ring buffer. If a consumer notices that the cursor has
-  advanced multiple steps since it last checked, it can process entries up to that
-  sequence without involving concurrency mechanisms. This enables the consumer to
-  catch up with producers during bursts, balancing the system. This batching
-  approach improves throughput, reduces latency, and provides consistent latency
-  regardless of load until the memory system becomes saturated.
+  advanced multiple steps since it last checked, it can process entries up to
+  that sequence without involving concurrency mechanisms. This enables the
+  consumer to catch up with producers during bursts, balancing the system. This
+  batching approach improves throughput, reduces latency, and provides
+  consistent latency regardless of load until the memory system becomes
+  saturated.
 
 ![UML of Disruptor Framework](/series/notes/cpp-design-patterns-for-low-latency-apps/uml-of-disruptor-framework.webp#center)
 
@@ -165,8 +166,8 @@ programming strategies. Here's a list of the different programming strategies:
   others. You must supplement with other performance analysis tools that can
   analyze these additional factors.
 - Performance Counter for Linux or _perf_ is a sophisticated performance
-  monitoring utility that integrates into the Linux kernel. It provides a rich set
-  of commands and options for profiling and tracing software performance and
+  monitoring utility that integrates into the Linux kernel. It provides a rich
+  set of commands and options for profiling and tracing software performance and
   system events at multiple layers, from hardware-level instruction cycles to
   application-level function calls.
 - The authors of this paper used perf for cache analysis.
@@ -184,19 +185,19 @@ programming strategies. Here's a list of the different programming strategies:
 - Most HFT firms opt for fiber-optic communication to enable data transmission
   at speeds close to the speed of light.
 - Colocation remains a crucial strategy for HFT firms, providing them the
-  benefit of proximity to a stock exchange’s data center, thus further minimizing
-  latency.
+  benefit of proximity to a stock exchange’s data center, thus further
+  minimizing latency.
 - Another critical aspect is the network topology used within the trading
   infrastructure. The design of these networks focuses on maximizing speed and
-  minimizing the number of hops between network nodes. This often involves direct
-  connections between key components in the trading infrastructure, thereby
-  avoiding potential points of latency and failure.
+  minimizing the number of hops between network nodes. This often involves
+  direct connections between key components in the trading infrastructure,
+  thereby avoiding potential points of latency and failure.
 - Redundancy measures are usually put in place, including dual network paths,
   failover systems, and backup data centers to maintain a 100% uptime.
 - Additionally time is a critical factor in high-frequency trading, and the use
-  of precise time-synchronization protocols like Precision Time Protocol (PTP) is
-  becoming increasingly important. Accurate timestamping of events enables for
-  fairer market conditions and is often a regulatory requirement.
+  of precise time-synchronization protocols like Precision Time Protocol (PTP)
+  is becoming increasingly important. Accurate timestamping of events enables
+  for fairer market conditions and is often a regulatory requirement.
 
 ## Section 3: Low-Latency Programming Repository
 
@@ -241,23 +242,25 @@ system programming.
 ### 3.2 Optimization Techniques
 
 - Loop unrolling is a technique used in computer programming to optimise the
-  execution of loops by reducing or eliminating the overhead associated with loop
-  control. It’s a form of trade-off between processing speed and program size.
+  execution of loops by reducing or eliminating the overhead associated with
+  loop control. It’s a form of trade-off between processing speed and program
+  size.
 - Short-circuiting is a logical operation in programming where the evaluation of
-  boolean expressions stops as soon as you have the final result. Short-circuiting
-  consistently results in faster execution. Short-circuit where possible.
+  boolean expressions stops as soon as you have the final result.
+  Short-circuiting consistently results in faster execution. Short-circuit where
+  possible.
 - Separating slowpath code from the hotpath can significantly enhance latency in
   code execution. The strategy is encapsulate the slow path operations (for
-  example, error handling) so as to keep the hotpath lean. The end result is that
-  the instruction cache gets used more efficiently leading to a reduction in
-  execution time. It's recommended to **not** inline the slow path functionality
-  so as to not unintentionally bloat the icache.
+  example, error handling) so as to keep the hotpath lean. The end result is
+  that the instruction cache gets used more efficiently leading to a reduction
+  in execution time. It's recommended to **not** inline the slow path
+  functionality so as to not unintentionally bloat the icache.
 - By minimising unnecessary branches and avoiding potential branch
   mispredictions, you can reduce program latency significantly.
 - Prefetching is a technique used by computer processors to boost execution
-  performance by fetching data and instructions from the main memory to the cache
-  before it's actually needed for execution. Functions like `__builtin_prefetch`
-  can assist in the prefetching of data.
+  performance by fetching data and instructions from the main memory to the
+  cache before it's actually needed for execution. Functions like
+  `__builtin_prefetch` can assist in the prefetching of data.
 
 ### 3.3 Data Handling
 

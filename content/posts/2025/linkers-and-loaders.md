@@ -23,11 +23,11 @@ incrementally build a linker. A partial implementation is available on GitHub:
 - Linkers assign relative addresses within a program. Loaders do final
   relocation to assign actual addresses in memory.
 - Program loading is the process of copying a program from secondary storage
-  into main memory. This may involve allocating storage, setting protection bits,
-  or arranging for virtual memory to map virtual addresses to disk pages.
+  into main memory. This may involve allocating storage, setting protection
+  bits, or arranging for virtual memory to map virtual addresses to disk pages.
 - Relocation is the process of assigning load addresses to the various parts of
-  the program, adjusting the code and data in the program to reflect the assigned
-  addresses.
+  the program, adjusting the code and data in the program to reflect the
+  assigned addresses.
 - Symbol resolution is just as the name suggests: take a symbol name and resolve
   it to an address in the code or a library.
 - There's a lot of overlap between linker and loader responsibilities. In
@@ -43,10 +43,10 @@ incrementally build a linker. A partial implementation is available on GitHub:
   merged in the output file. Each input file also contains at least one symbol
   table.
 - You can import symbols. These are names that must be present in one of the
-  other input files. You can export symbols. This makes the symbol name visible to
-  code in the other input files.
-- All linkers support object code libraries. A library is just a collection
-  of object files. The linker resolves undefined names in the input files by
+  other input files. You can export symbols. This makes the symbol name visible
+  to code in the other input files.
+- All linkers support object code libraries. A library is just a collection of
+  object files. The linker resolves undefined names in the input files by
   looking at the library's object code for exported names that match.
 - With dynamic linking, the linker leaves hints for the loader of the symbols
   required and what libraries they're found so the loader can patch the code at
@@ -64,7 +64,8 @@ incrementally build a linker. A partial implementation is available on GitHub:
 - The aspect of the Abstract Binary Interface that most often affects the linker
   is the definition of a standard procedure call.
 - Usually addresses are byte aligned. This means that if you have an $N$ byte
-  datum, its address should have at least $log_2(N)$ least significant zero bits.
+  datum, its address should have at least $log_2(N)$ least significant zero
+  bits.
 - Unaligned accesses can degrade performance on some systems. On others,
   unaligned access leads to faults.
 - The instruction format is of concern to the linker. Specifically those
@@ -83,62 +84,63 @@ incrementally build a linker. A partial implementation is available on GitHub:
     referenced from many different procedures.
 - There's usually a frame pointer pointing to the return address of the
   procedure. There's also a stack pointer pointing to the top of the stack.
-  Arguments to the procedure are at negative offsets to the frame pointer (higher
-  memory addresses). Local variables are at positive offsets to the frame pointer
-  (lower memory addresses). The OS usually sets the initial stack pointer before a
-  program starts.
+  Arguments to the procedure are at negative offsets to the frame pointer
+  (higher memory addresses). Local variables are at positive offsets to the
+  frame pointer (lower memory addresses). The OS usually sets the initial stack
+  pointer before a program starts.
 - The compiler generates a table of pointers to local and global static data.
   The address of that table gets loaded into a register. You require another
   register to calculate offsets from that base address.
 - Within some architectures, the linker must create a table of pointers that
   captures static data across all modules/object files. In other systems,
-  procedures within a module have their own table. A register gets loaded with the
-  procedure's table address **before** that procedure gets called.
+  procedures within a module have their own table. A register gets loaded with
+  the procedure's table address **before** that procedure gets called.
 - There's a bootstrapping problem here where the first procedure called needs to
   have its static data table pointer set up. This is usually done by the linker
   via some special code.
 - Modern computers support virtual memory. On these machines, paging hardware
-  divides the program's address space into fixed size **pages**, typically 4KB in
-  size. The same hardware divides the physical memory into **page frames** of the
-  same size. The hardware contains **page tables** with an entry for each page in
-  the address space.
+  divides the program's address space into fixed size **pages**, typically 4KB
+  in size. The same hardware divides the physical memory into **page frames** of
+  the same size. The hardware contains **page tables** with an entry for each
+  page in the address space.
 - A page table entry can contain the real memory page frame for the page, or
-  flag bits to mark the page "not present." When a program attempts to use a page
-  that isn't present, hardware generates a **page fault**. Page faults get handled
-  by the OS which can copy content from disk into a free page frame. Moving data
-  back and forth between disk and memory makes it seem like the system has more
-  memory than it actually does (virtual memory).
+  flag bits to mark the page "not present." When a program attempts to use a
+  page that isn't present, hardware generates a **page fault**. Page faults get
+  handled by the OS which can copy content from disk into a free page frame.
+  Moving data back and forth between disk and memory makes it seem like the
+  system has more memory than it actually does (virtual memory).
 - Page tables are usually hierarchical. The hardware divides the virtual address
-  into three parts: a top-level page table index, a second-level page table index,
-  and an offset within the page. The hardware uses the top-level index to find the
-  second-level page table, then uses the second-level index to find the page table
-  entry. This can vary by architecture.
+  into three parts: a top-level page table index, a second-level page table
+  index, and an offset within the page. The hardware uses the top-level index to
+  find the second-level page table, then uses the second-level index to find the
+  page table entry. This can vary by architecture.
 - Every application runs in an address space defined by a combination of the
   computer's hardware and OS. The linker or loader needs to create a runnable
   program that matches that address space.
 - Address space layouts vary from system to system. Some systems have a single
-  address space where the OS and all programs share the same address space. Others
-  partition the address space and allocate a free chunk large enough to hold the
-  program.
+  address space where the OS and all programs share the same address space.
+  Others partition the address space and allocate a free chunk large enough to
+  hold the program.
 - Many systems provide a memory mapping mechanism for mapping a file into the
   address space of a program. The OS sets up the page tables so that when the
   program accesses a page in the mapped region, the OS loads the page from the
-  file on disk. Policies for mapping files include read-only, read-write, and copy
-  on write (COW). COW is interesting because it means changes made in the address
-  space are only visible to that process.
+  file on disk. Policies for mapping files include read-only, read-write, and
+  copy on write (COW). COW is interesting because it means changes made in the
+  address space are only visible to that process.
 - Shared libraries often use position independent code (PIC). This means you can
   load the code at any address in memory without modification. Only data pages
   still usually contain pointers which need relocation, but since data pages map
   COW anyway, there's little sharing lost.
 - Embedded systems pose special challenges for linkers and loaders. They often
-  have address spaces that divide into regions for ROM, RAM, and peripherals. The
-  linker needs to know about these regions and place code and data appropriately.
+  have address spaces that divide into regions for ROM, RAM, and peripherals.
+  The linker needs to know about these regions and place code and data
+  appropriately.
 - On some embedded systems, there's references to on-chip and off-chip memory.
   The linker needs to know which addresses are on-chip and which are off-chip so
   it can place code and data appropriately. You can also use tricks to copy code
-  or data from slow memory to fast memory as needed. To do this, you have to tell
-  the linker "put this code at location X but link it as though it's at location
-  Y." The code gets copied from X to Y at runtime.
+  or data from slow memory to fast memory as needed. To do this, you have to
+  tell the linker "put this code at location X but link it as though it's at
+  location Y." The code gets copied from X to Y at runtime.
 
 ## Chapter 3: Object Files
 
@@ -165,8 +167,8 @@ incrementally build a linker. A partial implementation is available on GitHub:
   Uninitialized data lives in a `.bss` section. Read-only text sections are
   shareable amongst multiple processes.
 - The `a.out` format also includes a header. The header contains sizes of the
-  different sections. Also at the start of the header is a magic number that tells
-  the loader how to load the file into memory.
+  different sections. Also at the start of the header is a magic number that
+  tells the loader how to load the file into memory.
 - On a BSD system using the QMAGIC load format, the layout in memory looks like:
   - The object exists as a file on disk. The text section of that file will be
     loaded as read-only pages into the address space of the process. The data
@@ -192,8 +194,8 @@ incrementally build a linker. A partial implementation is available on GitHub:
 - Shared objects contain both symbol information for the linker and directly
   runnable code for runtime.
 - Compilers, assemblers, and linkers treat an ELF file as a set of logical
-  sections described by a section header table, while the system loader treats the
-  file as set of segments described by a program header table.
+  sections described by a section header table, while the system loader treats
+  the file as set of segments described by a program header table.
 - Here's a capture of the ELF header with descriptions:
 
 ![ELF Header](/series/notes/linkers-and-loaders/elf-header.webp#center)
@@ -218,7 +220,8 @@ incrementally build a linker. A partial implementation is available on GitHub:
     takes no space in the file, hence `NOBITS`, but gets allocated at runtime,
     hence `ALLOC`.
   - `.rel.text`, `.rel.data`, and `.rel.rodata` each of which type `REL` or
-    `RELA`. The relocation information for the corresponding text or data section.
+    `RELA`. The relocation information for the corresponding text or data
+    section.
   - `.init` and `.fini` which are type `PROGBITS` with attributes
     `ALLOC+EXECINSTR`. These are similar to `.text`, but they execute when the
     program starts up or terminates. These factor in with C++ which has global
@@ -244,8 +247,8 @@ incrementally build a linker. A partial implementation is available on GitHub:
 
 - An executable has a handful of segments, a read-only one for the code and
   read-only data, and read-write one for the read-write data. All the loadable
-  sections pack into the appropriate segments so the system can map the file with
-  one or two operations.
+  sections pack into the appropriate segments so the system can map the file
+  with one or two operations.
 - An ELF shared object contains all the baggage of a relocatable and an
   executable. It has the program header table at the beginning, followed by the
   sections in the loadable segments, including dynamic linking information.
@@ -264,14 +267,14 @@ incrementally build a linker. A partial implementation is available on GitHub:
 - Linkers will usually take the text segments of all modules and merge them
   together one after the other. Space gets allocated to house the merged text
   segments making sure to respect the alignment requirements of the target. The
-  same gets done for data and BSS segments where data always follows text and BSS
-  follows data.
+  same gets done for data and BSS segments where data always follows text and
+  BSS follows data.
 
 ![Storage Layout](/series/notes/linkers-and-loaders/storage-layout.webp#center)
 
 - When you add paging, the same process happens with the distinction that the
-  first data page follows the last text page. BSS gets interpreted as data so some
-  BSS data actually lives on data pages.
+  first data page follows the last text page. BSS gets interpreted as data so
+  some BSS data actually lives on data pages.
 - With C++ there's a duplicate removal problem created by virtual function
   tables, templates, and extern inline functions. There are several solutions:
   - Live with the duplication. Downside here is significant code bloat for large
@@ -280,9 +283,9 @@ incrementally build a linker. A partial implementation is available on GitHub:
     they can identify and remove duplication. Usually "link once" sections get
     emitted by the compiler. The linkers see these sections and discard all but
     the first one. Some linkers will inspect the content of the sections before
-    discarding. This isn't perfect since type information gets lost at this point.
-    For example, a template taking pointer to `int` and one taking pointer to
-    `float` may look identical at the binary level.
+    discarding. This isn't perfect since type information gets lost at this
+    point. For example, a template taking pointer to `int` and one taking
+    pointer to `float` may look identical at the binary level.
 - C++ also exacerbates the initializer/finalizer problem. In C++, you have
   static variables. The variables may have constructors and destructors. The
   linker needs to arrange for the constructors to run before `main()` and
@@ -291,18 +294,18 @@ incrementally build a linker. A partial implementation is available on GitHub:
   constructors and destructors. The startup code runs the constructors in order
   before calling `main()`. The exit code runs the destructors in reverse order
   after `main()` returns. Within the init and fini sections, there's further
-  ordering. Often library routines need to run before constructors and vice versa
-  for the cleanup code. In this case, there might be several init/fini sections
-  ordered by the linker appropriately.
+  ordering. Often library routines need to run before constructors and vice
+  versa for the cleanup code. In this case, there might be several init/fini
+  sections ordered by the linker appropriately.
 - The last source of linker-allocated storage is the linker itself. When a
   program uses shared libraries, the linker creates segments with pointers,
   symbols, etc. for runtime support of the libraries. Once these segments get
   created, the linker allocates storage for them the same way it does for the
   other segments.
-- Many linkers support control scripts that let the programmer control
-  storage allocation. The scripts can specify the order of segments, their
-  alignment, and even their absolute addresses. This is especially useful for
-  embedded systems where code and data need to go in specific memory regions.
+- Many linkers support control scripts that let the programmer control storage
+  allocation. The scripts can specify the order of segments, their alignment,
+  and even their absolute addresses. This is especially useful for embedded
+  systems where code and data need to go in specific memory regions.
 
 ## Chapter 5: Symbol Management
 
@@ -310,23 +313,24 @@ incrementally build a linker. A partial implementation is available on GitHub:
   references from one module to another.
 - Each input module includes a symbol table. The symbols includes:
   - Global symbols defined and perhaps referenced in the module.
-  - Global symbols referenced but not defined in this module (called
-    externals).
+  - Global symbols referenced but not defined in this module (called externals).
   - Segment names which are usually also considered to be global symbols defined
     to be at the beginning of the segment.
   - Non-global symbols usually for debuggers and crash dump analysis. These
-    aren't symbols needed for the linking process, but sometimes they're
-    mixed in with global symbols so the linker has to at least skip over them.
+    aren't symbols needed for the linking process, but sometimes they're mixed
+    in with global symbols so the linker has to at least skip over them.
   - Line number information to tell source language debuggers the correspondence
     between source lines and object code.
 - Within a linker, there's one symbol table listing the input files and library
-  modules, keeping the per-file information. A second symbol table handles global
-  symbols, the ones that the linker has to resolve among input files. A third
-  table may handle intra-module debugging symbols, although more often than not
-  the linker need not create a full-fledged symbol table for debug symbols.
+  modules, keeping the per-file information. A second symbol table handles
+  global symbols, the ones that the linker has to resolve among input files. A
+  third table may handle intra-module debugging symbols, although more often
+  than not the linker need not create a full-fledged symbol table for debug
+  symbols.
 - On the first pass, the linker reads each input file's symbol table and stores
   each table in some program data structure. The linker also creates a single
-  global symbol table for every symbol referenced or defined in _any_ input file.
+  global symbol table for every symbol referenced or defined in _any_ input
+  file.
 - During the second pass, the linker resolves symbol references as it creates
   the output file.
 - The output file usually contains a symbol table of its own. This is because
@@ -341,10 +345,10 @@ incrementally build a linker. A partial implementation is available on GitHub:
   - Name overloading
   - Type checking
 - Many object formats can qualify a reference as weak or strong. A strong
-  reference must get resolved while a weak reference may get resolved if there's a
-  definition, but it's not an error if it's not. Linker processing of weak
-  symbols is much like that for strong symbols except that at the end of the first
-  pass an undefined reference to one isn't an error.
+  reference must get resolved while a weak reference may get resolved if there's
+  a definition, but it's not an error if it's not. Linker processing of weak
+  symbols is much like that for strong symbols except that at the end of the
+  first pass an undefined reference to one isn't an error.
 - Debugging symbols are sometimes included in the output module sometimes placed
   in a separate file. The debug info often includes line number information as
   well as names, types, and locations of program variables.
@@ -356,8 +360,8 @@ incrementally build a linker. A partial implementation is available on GitHub:
 - The term libraries in this chapter refers to collections of object files that
   get included as needed in a linked program (statically linked libraries).
 - UNIX linker libraries use an "archive" format which you can use for
-  collections of any type of files, although in practice it's used just for object
-  files.
+  collections of any type of files, although in practice it's used just for
+  object files.
 - The archive consists of a text header with an extension for long names and a
   directory called `/`.
 - `a.out` archives store the directory in a member called `__.SYMDEF`. Which is
@@ -373,39 +377,41 @@ Directory](/series/notes/linkers-and-loaders/coff-elf-directory.webp#center)
 - For COFF and ELF files, `ar` is the utility which creates a symbol directory
   if any of the members appears to be an object module.
 - Library search happens during the first linker pass after the individual input
-  files get read. If the library or libraries have symbol directories, the linker
-  reads in the directory and checks for each symbol in the linker's symbol table.
-  For each undefined symbol, the linker includes that symbol's file from the
-  library. It's not enough to mark the file for later loading; the linker has to
-  process the symbols in the segments in the library file just like those in an
-  explicitly linked file. The segments then go in the segment table, and the
-  symbols, both defined and undefined, go in the global symbol table.
+  files get read. If the library or libraries have symbol directories, the
+  linker reads in the directory and checks for each symbol in the linker's
+  symbol table. For each undefined symbol, the linker includes that symbol's
+  file from the library. It's not enough to mark the file for later loading; the
+  linker has to process the symbols in the segments in the library file just
+  like those in an explicitly linked file. The segments then go in the segment
+  table, and the symbols, both defined and undefined, go in the global symbol
+  table.
 - Linkers almost always process the objects and libraries in the order they
-  appear on the command line. This means that if two libraries `A` and `B` form a
-  circular dependency, you have to list one of them twice on the command line: `A
--> B -> A`. The problem becomes worse when there's three or more libraries
+  appear on the command line. This means that if two libraries `A` and `B` form
+  a circular dependency, you have to list one of them twice on the command line:
+  `A -> B -> A`. The problem becomes worse when there's three or more libraries
   exhibiting this behavior.
 - Weak symbols are symbols that get resolved only if they're referenced.
   Unreferenced weak symbols are not defined and this is not considered an error.
-  This is useful for libraries where you have optional routines that get used only
-  if needed.
+  This is useful for libraries where you have optional routines that get used
+  only if needed.
 
 ## Chapter 7: Relocation
 
 - Relocation refers to both the process of adjusting program addresses to
-  account for non-zero segment origins, and the process of resolving references to
-  external symbols, since the two are frequently done together.
+  account for non-zero segment origins, and the process of resolving references
+  to external symbols, since the two are frequently done together.
 - Hardware relocation enables the operating system to give each process a
-  separate address space that starts at a fixed known address, which makes program
-  loading easier and prevents buggy programs in one address space from damaging
-  programs in other address spaces.
-- Software linker or loader relocation combines input files into one large
-  file that's ready to get loaded into the address space provided by hardware
+  separate address space that starts at a fixed known address, which makes
+  program loading easier and prevents buggy programs in one address space from
+  damaging programs in other address spaces.
+- Software linker or loader relocation combines input files into one large file
+  that's ready to get loaded into the address space provided by hardware
   relocation, frequently with no load-time fixing up at all.
 - UNIX systems never relocate ELF programs although they do relocate ELF shared
   libraries. That is, programs get linked so that they load at a fixed address
-  which is usually available, and no load-time relocation gets done except in the
-  unusual case that the standard address is already in use by something else.
+  which is usually available, and no load-time relocation gets done except in
+  the unusual case that the standard address is already in use by something
+  else.
 
 - Load-time relocation is simple compared to link-time relocation. At link time,
   different addresses get relocated different amounts depending on the size and
@@ -414,15 +420,16 @@ Directory](/series/notes/linkers-and-loaders/coff-elf-directory.webp#center)
   loader needs only to adjust program addresses by the difference between the
   nominal and actual load addresses.
 - The requirements of relocation and symbol resolution are slightly different.
-  For relocation, the number of base values is small, the number of segments in an
-  input file, but the object format has to permit relocation of references to any
-  address in any segment. For symbol resolution, the number of symbols is far
-  greater, but the only action the linker needs to take with the symbol is to plug
-  the symbol's value into a word in the program.
+  For relocation, the number of base values is small, the number of segments in
+  an input file, but the object format has to permit relocation of references to
+  any address in any segment. For symbol resolution, the number of symbols is
+  far greater, but the only action the linker needs to take with the symbol is
+  to plug the symbol's value into a word in the program.
 - Relocation falls into two categories: absolute and PC-relative. Absolute
-  relocation means adding the base address of the related segment to the address.
-  PC-relative relocation means adjusting an offset relative to the program counter
-  to reflect the distance between the instruction and its target.
+  relocation means adding the base address of the related segment to the
+  address. PC-relative relocation means adjusting an offset relative to the
+  program counter to reflect the distance between the instruction and its
+  target.
 - The linker must implement a different number of relocation strategies
   depending on the target architecture. This is due to how the different
   instructions encode addresses and offsets.
@@ -483,8 +490,8 @@ Directory](/series/notes/linkers-and-loaders/coff-elf-directory.webp#center)
 ## Chapter 9: Shared Libraries
 
 - A program that uses a shared library depends on having that shared library
-  available when the program runs. In this case, printing an error message is all
-  you can do.
+  available when the program runs. In this case, printing an error message is
+  all you can do.
 - With static shared libraries, symbols get bound to addresses at link time.
   This means that the library must not change or it will break linked programs.
 - The most difficult aspect of shared libraries is address space management.
@@ -527,9 +534,9 @@ Directory](/series/notes/linkers-and-loaders/coff-elf-directory.webp#center)
   position independent code so that the text pages of the file need not be
   relocated and get shared among multiple processes.
 - ELF linkers support PIC code with a Global Offset Table (GOT) in each shared
-  library that contains pointers to all the static data referenced in the program.
-  The dynamic linker resolves and relocates all the pointers in the GOT. This can
-  be a performance problem mostly for large libraries.
+  library that contains pointers to all the static data referenced in the
+  program. The dynamic linker resolves and relocates all the pointers in the
+  GOT. This can be a performance problem mostly for large libraries.
 - Similar to the GOT which points to static data in the SO, the Procedure
   Linkage Table (PLT) contains pointers to all the external functions called by
   the program. The PLT permits lazy evaluation, that is, procedure addresses
@@ -560,11 +567,11 @@ Structure](/series/notes/linkers-and-loaders/elf-shared-lib.webp#center)
   the runtime dynamic linker with the index of the function. The dynamic linker
   looks up the function in the symbol table, finds the address, and patches the
   GOT entry to point directly to the function. The dynamic linker then jumps to
-  the function. Subsequent calls to the function go directly to the function since
-  the GOT entry now points directly to it.
+  the function. Subsequent calls to the function go directly to the function
+  since the GOT entry now points directly to it.
 - The takeaway here is that the dynamic linker (for example, `ld.so` on Linux)
-  gets invoked not only at program startup but also each time a new function in a
-  shared library gets called for the first time.
+  gets invoked not only at program startup but also each time a new function in
+  a shared library gets called for the first time.
 - A program can call the dynamic linker directly using `dlopen()`. Similarly,
   the program can resolve the address of a symbol (usually a procedure) using
   `dlsym()`. This permits users to add extra functionality to programs without
@@ -575,8 +582,8 @@ Structure](/series/notes/linkers-and-loaders/elf-shared-lib.webp#center)
 
 - The C++ section is worth reading directly. See page 273.
 - Unlike the compiler, the linker has access to the entire program's object
-  code. This means global optimizations are possible. There have been various link
-  time strategies for optimizing code:
+  code. This means global optimizations are possible. There have been various
+  link time strategies for optimizing code:
   - Link time optimization that applies to object code. Some of these optimizers
     decompile the code into an intermediate representation. Some decompile to
     assembly and perform optimization on the assembly.

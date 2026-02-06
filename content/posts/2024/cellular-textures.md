@@ -53,8 +53,8 @@ The process for generating a texture is as follows:
 - For each pixel:
   - Find the `--num-neighbors` nearest texture points.
   - Calculate the distance from the pixel to each neighboring texture point. If
-    tiling is active, apply a modified distance formula that accounts for wrapping
-    around the edges of the pixel grid.
+    tiling is active, apply a modified distance formula that accounts for
+    wrapping around the edges of the pixel grid.
   - Apply the `--dist-op` operation to the collection of distances. For example,
     if in the previous step you computed the distances 1, 2, 3, and your
     `--dist-op` was multiplication, you would compute $dist = 1 \* 2 \* 3 = 6$.

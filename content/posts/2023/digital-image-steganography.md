@@ -92,8 +92,8 @@ like:
 | G       | 0x1**7** |
 | B       | 0xC**F** |
 
-To retrieve the secret pixel from a merge pixel, you take the least significant 4
-bits of the merged pixel and concatenate it with zeroes on the right:
+To retrieve the secret pixel from a merge pixel, you take the least significant
+4 bits of the merged pixel and concatenate it with zeroes on the right:
 
 | Channel | Value    |
 | ------- | -------- |

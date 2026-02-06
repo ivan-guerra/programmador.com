@@ -27,8 +27,8 @@ Below is a summary of the top three bot types taken directly from the [OSRS
 Botting][2] wiki.
 
 - **Color Bots**: Color bots are a primitive form of botting that uses colors in
-  the game to perform tasks. The bot is told to recognise a certain type of color
-  on the screen and then the bot clicks on that color.
+  the game to perform tasks. The bot is told to recognise a certain type of
+  color on the screen and then the bot clicks on that color.
 - **Injection Bots**: An injection bot is a type of bot that utilises the
   RuneScape code itself. It injects itself into the RuneScape client and is able
   to read the client's code. It makes sense of the code and is able to make
@@ -65,11 +65,11 @@ bot:
   straight. Inhuman play streaks are a good botting indicator.
 - **IP Info**: Some speculate that Jagex analyzes IP information. If you play
   through a VPN used by botters, your IP may raise a red flag.
-- **Perfect Clicks**: If you click the exact same pixel for hours on end,
-  that's a good sign you're a bot.
+- **Perfect Clicks**: If you click the exact same pixel for hours on end, that's
+  a good sign you're a bot.
 - **Robotic Mouse Movement**: Jagex can certainly track mouse gestures. Whether
-  they analyze the movements is unknown. A survivable bot must generate human like
-  mouse movements.
+  they analyze the movements is unknown. A survivable bot must generate human
+  like mouse movements.
 - **In Game Reports**: Other players reporting your account for botting is
   undesirable.
 
@@ -105,8 +105,8 @@ and over. Do you click those elements at the exact same cadence each time? Of
 course not. The delay between clicks varies even if only by a few hundreds of
 milliseconds. To decrease the chance of getting banned, you append a min and max
 delay in seconds to each click event. After the bot performs a click, it will
-wait $N$ seconds where $N$ gets chosen at random from the configured
-delay range.
+wait $N$ seconds where $N$ gets chosen at random from the configured delay
+range.
 
 How big should the range be? Depends on the event and how risk tolerant you are.
 Rule of thumb is make the bottom end of the range large enough to execute the
@@ -189,8 +189,8 @@ using a set of vertices that happen to form a perfect square:
 
 ### Moving the Mouse
 
-You want your mouse movements to be as human like as possible. There are a couple
-of different Python projects that solve this problem:
+You want your mouse movements to be as human like as possible. There are a
+couple of different Python projects that solve this problem:
 
 - [WindMouse][3]: Models mouse movement using an imaginary wind and
   gravitational force. The implementation is tunable allowing you to adjust the
@@ -214,9 +214,9 @@ an interval.
 ## Conclusion
 
 The [rsbot][6] project puts the ideas from the previous sections into practice.
-The [README][7] includes instructions on how to configure and run the bot.
-The bot has successfully allowed a main account to level fletching, firemaking,
-and crafting to 99 all in the last month.
+The [README][7] includes instructions on how to configure and run the bot. The
+bot has successfully allowed a main account to level fletching, firemaking, and
+crafting to 99 all in the last month.
 
 The bot has a few shortcomings. In particular, if you change the game camera
 orientation or screen resolution, you have to regenerate all those click boxes.

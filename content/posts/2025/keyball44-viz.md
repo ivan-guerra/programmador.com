@@ -1,7 +1,8 @@
 ---
 title: "Keyball44 Viz"
 date: 2025-11-03T14:27:53-05:00
-description: "A CLI tool to parse keyball44 QMK keymap.c files and output an SVG visualization."
+description: "A CLI tool to parse keyball44 QMK keymap.c files and output an SVG
+  visualization."
 categories: ["projects"]
 tags: ["cli-tools", "hardware", "rust"]
 ---

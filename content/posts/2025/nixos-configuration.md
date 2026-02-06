@@ -17,8 +17,8 @@ configurations in a virtual machine. Check out [NixOS QEMU VM Setup][1] for
 guidance. Keep in mind that some configurations may have no effect on a VM or
 may require added configuration at VM launch time. The rest of this article
 assumes you have a vanilla NixOS installation and are familiar with editing
-`/etc/nixos/configuration.nix` and rebuilding your system via `sudo
-nixos-rebuild switch`.
+`/etc/nixos/configuration.nix` and rebuilding your system via
+`sudo nixos-rebuild switch`.
 
 {{<toc>}}
 
@@ -207,8 +207,8 @@ with your SSH public key.**
 
 # XServer + Desktop Manager + Window Manager
 
-To set up a graphical environment in NixOS, you can enable the X server,
-a desktop manager, and a window manager. Here's an example configuration using
+To set up a graphical environment in NixOS, you can enable the X server, a
+desktop manager, and a window manager. Here's an example configuration using
 `lightdm` as the desktop manager and `i3` as the window manager:
 
 ```nix

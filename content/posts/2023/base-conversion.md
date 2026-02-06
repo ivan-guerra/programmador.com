@@ -11,10 +11,10 @@ conversion between decimal, hexadecimal, binary, and sometimes octal number
 systems. The Python REPL and `printf` shell utility do the job but are tedious
 to use for the simple task of base conversion.
 
-It would be nice to drop the overhead of format specifiers and fear of
-numerical limits. To ease the pain, I decided to write a command line utility
-that made conversion between positive binary, decimal, octal, and hexadecimal
-numbers of arbitrary size.
+It would be nice to drop the overhead of format specifiers and fear of numerical
+limits. To ease the pain, I decided to write a command line utility that made
+conversion between positive binary, decimal, octal, and hexadecimal numbers of
+arbitrary size.
 
 {{<toc>}}
 
@@ -111,10 +111,10 @@ manipulate big integral values. You can see `mpz_class` overloads the arithmetic
 operators such that the code doesn't look much different than if one were to use
 the C/C++ built-in types.
 
-One neat feature of GMP is the ability to construct an `mpz_class` object from
-a number represented as a string and its base. That feature makes
-implementation easier because you don't have to massage the input into a format
-GMP understands. The constructor does throw `std::invalid_arg` if given an
+One neat feature of GMP is the ability to construct an `mpz_class` object from a
+number represented as a string and its base. That feature makes implementation
+easier because you don't have to massage the input into a format GMP
+understands. The constructor does throw `std::invalid_arg` if given an
 unsupported base argument. To avoid exceptions, the caller specifies the base
 using a `NumSystem` type which limits the caller to the bases known to the
 `mpz_class` constructor.

@@ -136,8 +136,8 @@ typing a command and then make a selection.
 
 In other shells, you write command aliases to assist in quick directory
 navigation. Fish comes with a built in `cd` function. That is, if you type the
-name of a directory and press `enter`, that's equivalent to typing `cd
-/path/to/dir`:
+name of a directory and press `enter`, that's equivalent to typing
+`cd /path/to/dir`:
 
 {{< video src="/series/workflow-optimization/part-4:-terminal-emulation-and-the-shell/fish-cd.mp4" type="video/mp4" preload="auto" >}}
 

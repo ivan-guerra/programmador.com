@@ -52,26 +52,25 @@ Drepper titled ["What Every Programmer Should Know About Memory"][1].
 - Each SDRAM transfer is about 8 bytes.
 - There are different SDRAM types each offering different effective bus rates:
   - **Single Data Rate SDRAM**: There's a one-to-one mapping between the bus
-    frequency and the data transfer frequency. For example, a 100MHz bus
-    implies you can transfer 100Mb/s.
-  - **Double Data Rate 1**: Double the data transfers per cycle. Data
-    transfers on both the rising and falling edge of a cycle. Also known as a
+    frequency and the data transfer frequency. For example, a 100MHz bus implies
+    you can transfer 100Mb/s.
+  - **Double Data Rate 1**: Double the data transfers per cycle. Data transfers
+    on both the rising and falling edge of a cycle. Also known as a
     "double-pumped" bus. DDR modules have their transfer rates calculated in
     bytes. For example, a 100MHz DDR1 module has a data transfer speed of
     `100MHz - 64 bits - 2 = 1600MB/s`.
   - **Double Data Rate 2**: Here you increase the frequency of the IO buffer
-    (same IO buffer like the one used in DDR1). The frequency increase on the
-    IO buffer doesn't cause a large amount of additional power consumption.
-    This leads to a quad pumped bus. Following the previous example, the
-    transfer rate of a DDR2 module would be `100MhZ - 64 bits - 4 = 3200MB/s`.
+    (same IO buffer like the one used in DDR1). The frequency increase on the IO
+    buffer doesn't cause a large amount of additional power consumption. This
+    leads to a quad pumped bus. Following the previous example, the transfer
+    rate of a DDR2 module would be `100MhZ - 64 bits - 4 = 3200MB/s`.
   - **Double Data Read 3**: DDR3 is like a further revision of DDR2. No real
     innovation there?
   - **FB-DRAM**: Similar to DDR2 except serial lines connect to the memory
     controller. Fully Buffered DRAM modules run the serial lines at high
     frequencies. FB-DRAM modules can have more channels per module, more
     channels per Northbridge/memory controller, and the serial lines are full
-    duplex. The required pin count also drops from 240 for DDR2 to 69 for
-    DDR3.
+    duplex. The required pin count also drops from 240 for DDR2 to 69 for DDR3.
 - Direct Memory Access (DMA) is in use with many devices. DMA means more
   competition for the FSB bandwidth. If there's a lot of DMA traffic, a CPU
   might stall more than usual when accessing RAM.

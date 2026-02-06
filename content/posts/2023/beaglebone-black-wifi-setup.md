@@ -30,8 +30,9 @@ and require `root` access.
 sudo connmanctl
 ```
 
-You can ignore the `Error getting VPN connections: The name net.connman.vpn was
-not provided by any .service files` message.
+You can ignore the
+`Error getting VPN connections: The name net.connman.vpn was not provided by any .service files`
+message.
 
 3. Enable WiFi:
 

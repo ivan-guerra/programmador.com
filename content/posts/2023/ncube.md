@@ -23,9 +23,8 @@ tutorial:
 {{< youtube eoXn6nwV694 >}}
 
 No need to repeat Carl's derivation of 3D to 2D coordinate transformation here.
-You just need to apply the secret sauce. To take a 3D coordinate $(x,y,z)$
-and transform it to its 2D projection $(x_p, y_p)$, apply the following
-formulas:
+You just need to apply the secret sauce. To take a 3D coordinate $(x,y,z)$ and
+transform it to its 2D projection $(x_p, y_p)$, apply the following formulas:
 
 ```passthrough
 x_p = {x \over {z \tan{\theta \over 2}}}
@@ -35,8 +34,8 @@ x_p = {x \over {z \tan{\theta \over 2}}}
 y_p = {y \over {z \tan{\theta \over 2}}}
 ```
 
-In these equations, $\theta$ is the angle in radians of the camera's field
-of view. More on that later.
+In these equations, $\theta$ is the angle in radians of the camera's field of
+view. More on that later.
 
 Okay cool, so you can go from 3D to 2D. What about rotating the object? The
 general 3D rotation matrix that you can copy paste from [Wikipedia][3] does the
@@ -146,11 +145,10 @@ between two endpoints. The idea is to compute midpoints until you have generated
 $N$ midpoints. Here's an example.
 
 Imagine you wanted to generate 7 points between an edge start and end point. You
-compute the midpoint of the start and end point call it $m_1$. Then you
-compute the midpoint between the start and $m_1$, $m_2$, and the
-midpoint between $m_1$ and end, $m_3$. Continue applying this process
-recursively until you have generated the 7th midpoint, $m_7$. The figure
-below illustrates the process.
+compute the midpoint of the start and end point call it $m_1$. Then you compute
+the midpoint between the start and $m_1$, $m_2$, and the midpoint between $m_1$
+and end, $m_3$. Continue applying this process recursively until you have
+generated the 7th midpoint, $m_7$. The figure below illustrates the process.
 
 ```mermaid
 flowchart TD
@@ -165,8 +163,8 @@ flowchart TD
     class m1,m2,m3,m4,m5,m6,m7 nodeStyle
 ```
 
-You want to generate midpoints in the order $m_1, m_2, m_3, ..., m_7$. Put
-in other words, you need to generate the tree in breadth-first order.
+You want to generate midpoints in the order $m_1, m_2, m_3, ..., m_7$. Put in
+other words, you need to generate the tree in breadth-first order.
 
 Below is a C++ implementation of the algorithm:
 

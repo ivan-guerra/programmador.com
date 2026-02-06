@@ -50,8 +50,8 @@ TigerVNC server. Follow the steps below to setup the server on your Linux PC:
 
 3. Create `$XDG_CONFIG_HOME/tigervnc/config`. Below is an example configuration.
    Set `session` and `geometry` according to your needs. Note, `session` is the
-   name of the desktop environment installed on your PC. You can run `echo
-$XDG_CURRENT_DESKTOP` to retrieve the desktop name.
+   name of the desktop environment installed on your PC. You can run
+   `echo $XDG_CURRENT_DESKTOP` to retrieve the desktop name.
 
 ```text
 session=i3
@@ -140,9 +140,10 @@ and androidVNC applications.
 2. Fill in the details in the "username@hostname:port" field. Username is the
    username of a whitelisted SSH user on the Linux PC. Hostname is the IPv4
    address of your PC. You can find this information by logging into the PC and
-   going to [whatismyip.com][6]. Port is the SSH port. The default value is $22$.
-   If you followed the security advice at the end of [OpenSSH](#openssh), then be
-   sure to set the port to match the `Port` setting in your PC's `sshd_config`.
+   going to [whatismyip.com][6]. Port is the SSH port. The default value is
+   $22$. If you followed the security advice at the end of [OpenSSH](#openssh),
+   then be sure to set the port to match the `Port` setting in your PC's
+   `sshd_config`.
 3. Tap "Use pubkey authentication" and select the "Use any unlocked key" option.
 4. Save your settings and return to the ConnectBot home screen.
 5. Select the vertical ellipses at the top right of the screen and tap on
@@ -152,19 +153,22 @@ and androidVNC applications.
    your selections and follow the prompts to generate entropy.
 7. In the Pubkeys page, unlock your key by tapping it until the icon changes to
    that of an unlocked lock. Press and hold your key in the drop down and select
-   "Copy public key." ![ConnectBot
+   "Copy public key."
+   ![ConnectBot
 Pubkey](/posts/2024/android-vnc/connectbot-pubkey.webp#center)
 8. Transfer the public key to your Linux PC via email or some other means. On
    your Linux PC, add the public key to the SSH users' `~/.ssh/authorized_users`
    file.
 9. Back on the Android device, verify you can login to your PC via ConnectBot.
    Tap your host on the hosts page. You should see a shell like the one shown
-   below. ![ConnectBot
+   below.
+   ![ConnectBot
 Session](/posts/2024/android-vnc/connectbot-session.webp#center)
 10. From within the shell session, tap the vertical ellipses in the top right
     corner and select "Port Forwards."
 11. Add a new port forwarding rule with type set to "Local," source port set to
-    $5901$ and destination set to "127.0.0.1:5901." ![ConnectBot Port
+    $5901$ and destination set to "127.0.0.1:5901."
+    ![ConnectBot Port
 Fwding](/posts/2024/android-vnc/connectbot-port-fwd.webp#center)
 
 ### androidVNC
@@ -173,13 +177,12 @@ Fwding](/posts/2024/android-vnc/connectbot-port-fwd.webp#center)
    connection.
 2. Fill out the following fields. Set "Nickname" to whatever you would like to
    call this connection. "Password" is the VNC password you set on the server.
-   "Address" is $127.0.0.1$. "Port" is $5901$. All other settings can be
-   left at their defaults.
+   "Address" is $127.0.0.1$. "Port" is $5901$. All other settings can be left at
+   their defaults.
    ![androidVNC Config](/posts/2024/android-vnc/androidvnc-config.webp#center)
 3. Tap "Connect" in the top left to connect to your VNC server.
 4. You should see your PC desktop loading. The first frame may take awhile to
-   load.
-   ![OSRS VNC](/posts/2024/android-vnc/osrs-vnc.webp#center)
+   load. ![OSRS VNC](/posts/2024/android-vnc/osrs-vnc.webp#center)
 
 After following the steps, did you get the following error message?
 

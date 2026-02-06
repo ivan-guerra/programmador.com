@@ -66,8 +66,8 @@ patches to your kernel using the steps listed below:
 
 1. Make note of your kernel's X.Y.Z version number. Typically, the git branch
    name will include the version number.
-2. Go to kernel.org and download the `*.gz` containing the patch files for
-   your particular kernel version.
+2. Go to kernel.org and download the `*.gz` containing the patch files for your
+   particular kernel version.
 3. Apply the patches:
 
 ```bash
@@ -408,7 +408,8 @@ approaches to consider:
 - **[Standard Signals][17]**: These are the signals in the `SIG*` family that
   get caught by an application using `sigaction`.
 - **`pthread_cond` Signals**: These are condition objects typically associated
-  with a `pthread_mutex` that synchronize notification between threads/processes.
+  with a `pthread_mutex` that synchronize notification between
+  threads/processes.
 
 **Avoid standard signals in an RT application**. Why? The context when a signal
 handler executes is hard or near impossible to predict. Are you holding a lock?
@@ -585,5 +586,7 @@ meets your needs.
 [21]: https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/worstcaselatency
 [22]: https://www.osadl.org/Continuous-latency-monitoring.qa-farm-monitoring.0.html
 
-[23]: https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script
-[24]: https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script
+[23]:
+https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script
+[24]:
+https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script

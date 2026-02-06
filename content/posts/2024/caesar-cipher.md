@@ -37,8 +37,8 @@ in the alphabet to an integer:
 
 To perform the encryption, add the key to each characters' integer
 representation **modulo the size of the alphabet**. For example, the letter "o"
-encrypts to $(14 + 14) \mod 26 = 2$ which according to the table is the
-letter "c." The table below shows the encrypted form of "hello":
+encrypts to $(14 + 14) \mod 26 = 2$ which according to the table is the letter
+"c." The table below shows the encrypted form of "hello":
 
 | h   | e   | l   | l   | o   |
 | --- | --- | --- | --- | --- |
@@ -46,7 +46,8 @@ letter "c." The table below shows the encrypted form of "hello":
 
 **"vszzc" is the ciphertext** that you send to all your friends along with the
 key. To decrypt the message, your friends apply the same shifting process but in
-reverse. For example, the letter "c" in the ciphertext decrypts to $(2 - 14)
+reverse. For example, the letter "c" in the ciphertext decrypts to
+$(2 - 14)
 \mod 26 = 14$ which maps to the letter "o."
 
 In general, the encryption and decryption formulas are:
@@ -59,8 +60,8 @@ E_{n}(x) = (x + n) \mod |\Sigma|
 D_{n}(x) = (x - n) \mod |\Sigma|
 ```
 
-where $x$ is the integer mapping of the encrypt/decrypt letter, $n$ is
-the key, and $|\Sigma|$ is the size of the alphabet.
+where $x$ is the integer mapping of the encrypt/decrypt letter, $n$ is the key,
+and $|\Sigma|$ is the size of the alphabet.
 
 ## Coding the Cipher
 
@@ -120,11 +121,11 @@ Each character has the CC shift applied. The shifted character gets output to
 recording medium. **The same `AsciiCaesarCipher()` function can encrypt and
 decrypt ASCII text depending on the contents of `is` and the value of `shift`.**
 
-`AsciiCaesarCipher()` has a time complexity of $\mathcal{O}(N)$ where
-$N$ is the number of characters in the input stream. The space complexity is
-$\mathcal{O}(1)$. In reality, `std::istream` and `std::ostream` objects
-buffer data to reduce read/write overhead. The size of these buffers is
-implementation dependent though likely a small, constant size.
+`AsciiCaesarCipher()` has a time complexity of $\mathcal{O}(N)$ where $N$ is the
+number of characters in the input stream. The space complexity is
+$\mathcal{O}(1)$. In reality, `std::istream` and `std::ostream` objects buffer
+data to reduce read/write overhead. The size of these buffers is implementation
+dependent though likely a small, constant size.
 
 ## Cracking the Code
 
@@ -231,9 +232,9 @@ D = \sum_{i=0}^{127} |e_i - a_i|
 ```
 
 Where $e_i$ is the expected percent frequency of the ASCII character
-corresponding to $i$ in the English language. $a_i$ is the actual
-frequency of the character as measured in the ciphertext. **The shift that
-produces the smallest distance value is the decryption key.**
+corresponding to $i$ in the English language. $a_i$ is the actual frequency of
+the character as measured in the ciphertext. **The shift that produces the
+smallest distance value is the decryption key.**
 
 Lets look at the code:
 
@@ -293,7 +294,8 @@ return a `KeyScoreMap` with the following contents:
 | ... | 0   |
 | 127 | 0   |
 
-The results of `AsciiFrequencyAnalysisAttack()` suggests the decryption key is 86. The plot below shows the expected ASCII frequency distribution versus the
+The results of `AsciiFrequencyAnalysisAttack()` suggests the decryption key
+is 86. The plot below shows the expected ASCII frequency distribution versus the
 frequency distribution of the ciphertext post decryption using the key 86.
 
 ![Frequency Plot](/posts/2024/caesar-cipher/frequency-plot.webp#center)

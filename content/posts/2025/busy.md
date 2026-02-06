@@ -103,10 +103,10 @@ receives a signal to stop.
 
 ## Usage
 
-You should ideally build `bz` from source using the usual `cargo build
---release` command. If you like to live dangerously, download a pre-built binary
-from the [releases][3] page on GitHub. The release contains pre-built binaries
-for Linux and Windows x86_64 platforms.
+You should ideally build `bz` from source using the usual
+`cargo build --release` command. If you like to live dangerously, download a
+pre-built binary from the [releases][3] page on GitHub. The release contains
+pre-built binaries for Linux and Windows x86_64 platforms.
 
 `bz` is a command line application, so you should open up a terminal to run it.
 That's true on both Windows and Linux. That said, on Windows you can double

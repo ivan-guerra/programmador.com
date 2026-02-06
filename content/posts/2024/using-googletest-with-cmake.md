@@ -94,10 +94,10 @@ set_target_properties(gmock_main PROPERTIES FOLDER extern)
 
 ## Option 2: `FetchContent()`
 
-Perhaps a better, more modern way to bring GoogleTest into your CMake project
-is to use the `FetchContent` module introduced in CMake3.11. The advantage of
-`FetchContent` over submodules is that dependency management is now part of
-your CMake project itself. It's also pretty easy to use, just add the following
+Perhaps a better, more modern way to bring GoogleTest into your CMake project is
+to use the `FetchContent` module introduced in CMake3.11. The advantage of
+`FetchContent` over submodules is that dependency management is now part of your
+CMake project itself. It's also pretty easy to use, just add the following
 snippet to your top level `CMakeLists.txt`:
 
 ```cmake

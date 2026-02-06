@@ -170,9 +170,9 @@ chrt --fifo $GSYNC_PRIO \
 ```
 
 `SCHED_FIFO` was the most appropriate RT scheduling policy for this application.
-`gtimer` has a higher priority than `gsync` because you want to log
-the time when the peer signal arrives ASAP. That means that `gtimer` may have to
-preempt a running `gsync`.
+`gtimer` has a higher priority than `gsync` because you want to log the time
+when the peer signal arrives ASAP. That means that `gtimer` may have to preempt
+a running `gsync`.
 
 One thing you'd usually do on a multicore system is allocate your cores among
 the real-time processes. The BBB is a **single core** system meaning your RT
@@ -249,9 +249,9 @@ seconds to angles on the unit circle. For example,
 - 0.75 -> $ 3 \pi \over 2 $ radians
 - 1.00 -> $ 2 \pi $ radians
 
-The relationship between time, $t$, and frequency, $F$, is
-$ t = {1 \over F} $. You're interested in the time it takes to move some
-angle $ \theta $ in radians. What you find is that
+The relationship between time, $t$, and frequency, $F$, is $ t = {1 \over F} $.
+You're interested in the time it takes to move some angle $ \theta $ in radians.
+What you find is that
 
 ```passthrough
 t = {\theta \over {2 \pi F}}
@@ -263,9 +263,9 @@ To go from time to angle you can solve for $\theta$:
 \theta = {2 \pi F t}
 ```
 
-Note, the $ t $ is in units of seconds. The `gsync` implementation tracks
-time in units of nanoseconds. The conversion equations used in [the code][6]
-account for the units change.
+Note, the $ t $ is in units of seconds. The `gsync` implementation tracks time
+in units of nanoseconds. The conversion equations used in [the code][6] account
+for the units change.
 
 ## The Wakeup Delta
 
@@ -293,18 +293,20 @@ compute $ d\theta \over dt $! Fill in the blanks on the terms:
 In the code, the sync function takes as input the computer's actual wakeup time
 and the last reported peer wakeup time extracted from shared memory. Using the
 latter information, along with frequency and coupling constant info given at
-program startup, `gsync` computes $ d\theta \over dt$ and converts it to a
-time in nanoseconds. That time is an offset to the next `gsync` wakeup time.
+program startup, `gsync` computes $ d\theta \over dt$ and converts it to a time
+in nanoseconds. That time is an offset to the next `gsync` wakeup time.
 
 As an example, suppose `gsync` ran with a frequency of 1 Hz or every 1 seconds.
 Also suppose the sync function returned time deltas in seconds. If the sync
-function returned a time delta of $ -0.5 $, then `gsync` would next sleep
+function returned a time delta of $ -0.5
+$, then `gsync` would next sleep
 for $ 1 - 0.5 = 0.5 $ seconds (that is, `gsync` will wakeup _earlier_ by
 half a second). Maybe the sync function over shot. In the next run, the sync
 function returns a delta of $ 0.8 $, then `gsync` will sleep for $1.0 +
-0.8 = 1.8$ seconds (that is, it will wakeup _later_). Essentially, the delta
-in the wakeup time of the computers oscillates about $ 0 $! The smaller the
-oscillations, the better the sync.
+0.8 = 1.8$
+seconds (that is, it will wakeup _later_). Essentially, the delta in the wakeup
+time of the computers oscillates about $ 0 $! The smaller the oscillations, the
+better the sync.
 
 ## The End Result
 
@@ -315,16 +317,17 @@ $0.5$, you see two LEDs blinking synchronously. It takes maybe 3 to 4 cycles
 doesn't produce any noticeable hiccups in the sync!
 
 You can also play a bit with the coupling constant to see what sort of effect it
-has. You can increment the coupling constant in steps of $ 0.1 $ starting at
-$ K = 0.1 $. What you'll find is that if $ K $ is too low, the LEDs
-never seem to synchronize. After crossing a threshold value, synchronization
-always seems to occur.
+has. You can increment the coupling constant in steps of $ 0.1 $ starting at $ K
+= 0.1 $. What you'll find is that if $ K $ is too low, the LEDs never seem to
+synchronize. After crossing a threshold value, synchronization always seems to
+occur.
 
 So the sync at 1Hz "looks good enough." Still, it would be interesting to
 measure using an oscilloscope the delay between the rising edge of one
-computer's signal versus the other's. You can experiment with a number of different
-rates starting at 1Hz and ramping up to about 500Hz in increments of 50Hz. Below
-is a histogram of the time deltas you would encounter on a 100Hz run:
+computer's signal versus the other's. You can experiment with a number of
+different rates starting at 1Hz and ramping up to about 500Hz in increments of
+50Hz. Below is a histogram of the time deltas you would encounter on a 100Hz
+run:
 
 ![100Hz Run](/posts/2023/gpio-driven-synchronization/100hz-0.5.webp#center)
 

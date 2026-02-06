@@ -1,5 +1,5 @@
 baseURL = "https://programmador.com"
-theme = "risotto"
+theme = "hugo-trainsh"
 title = "ieg archive"
 author = "Ivan Eduardo Guerra"
 copyright = "All rights Reserved, Ivan Eduardo Guerra."
@@ -8,81 +8,57 @@ googleAnalytics = "G-XEENY573SL"
 languageCode = "en"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
-sectionPagesMenu = "main"
 
-[pagination]
-pagerSize = 3
+# URL normalization
+disablePathToLower = false # ensure all paths are lowercased
+removePathAccents = true   # normalize diacritics in paths
+preserveTaxonomyNames = false
 
-[params]
-math = true
-noindex = false
-
-  [params.theme]
-  palette = "black-metal-dark-funeral"
-  
-  [params.about]
-  title = "ieg archive"
-  description = ""
-  logo_image = "favicon.ico"
-  
-  [[params.socialLinks]]
-  icon = "fa-brands fa-github"
-  title = "GitHub"
-  url = "https://github.com/ivan-guerra"
-  
-  [[params.socialLinks]]
-  icon = "fa-solid fa-envelope"
-  title = "Email"
-  url = "mailto:ivan.eduardo.guerra@gmail.com"
+[outputs]
+home = ["HTML", "RSS", "JSON"]
 
 [menu]
   [[menu.main]]
-    identifier = "posts"
     name = "Posts"
-    url = "/posts/"
+    url = "/posts"
+    weight = 1
+  [[menu.main]]
+    name = "Notes"
+    url = "/categories/notes"
+    weight = 5
+  [[menu.main]]
+    name = "Search"
+    url = "/blog"
     weight = 10
-  [[menu.main]]
-    identifier = "categories"
-    name = "Categories"
-    url = "/categories/"
-    weight = 12
-  [[menu.main]]
-    identifier = "tags"
-    name = "Tags"
-    url = "/tags/"
-    weight = 15
 
-[taxonomies]
-category = "categories"
-tag = "tags"
+[params]
+  mainSections = ["posts"]
 
-# Enable Table of Contents in posts
-[cascade]
-toc = true
+  [params.upvote]
+    enabled = false
+    endpoint = "/api/upvote"
+    infoEndpoint = "/api/upvote-info"
 
-[markup.goldmark.renderer]
-unsafe = true
+  [params.social]
+    github = "https://github.com/ivan-guerra"
+    linkedin = "https://www.linkedin.com/in/ivan-guerra"
+    email = "ivan.eduardo.guerra@gmail.com"
+
+  [params.home]
+    [params.home.recent]
+      limit = 5
 
 [markup]
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel   = 4
-    ordered    = true
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.goldmark.parser.attribute]
+    block = true
 
-[privacy]
-  [privacy.vimeo]
-    disabled = false
-    simple = true
-
-  [privacy.x]
-    disabled = false
-    enableDNT = true
-    simple = true
-
-  [privacy.instagram]
-    disabled = false
-    simple = true
-
-  [privacy.youtube]
-    disabled = false
-    privacyEnhanced = true
+  [markup.highlight]
+    # Keep settings aligned with the theme's `render-codeblock.html` hook.
+    lineNos = false
+    lineNumbersInTable = false
+    anchorLineNos = false
+    codeFences = true
+    lineNoStart = 1
+    noClasses = true

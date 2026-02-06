@@ -14,6 +14,8 @@ audio/visual content on this website possible. The commands presented here are
 MP4 centric. That said, you can modify most of the commands to work with
 alternative formats (for example, WebM).
 
+{{<toc>}}
+
 ## Screen Recording
 
 You can use ffmpeg to create a desktop recording. The command below assumes

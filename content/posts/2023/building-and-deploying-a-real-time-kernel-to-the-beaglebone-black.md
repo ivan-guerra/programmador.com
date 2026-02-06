@@ -16,6 +16,8 @@ offered are variants that have had the `PREEMPT_RT` patches already applied! The
 goal is simple: flash the BBB with the latest console image rootfs and Linux
 kernel (RT patches included).
 
+{{<toc>}}
+
 ## Prepping the SD Card
 
 First things first, flash the [latest][4] BBB Debian image onto an SD card. The

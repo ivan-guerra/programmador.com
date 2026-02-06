@@ -17,6 +17,8 @@ what's shown here.
 If you are considering buying the book, you might want to checkout [this
 review][3] before buying.
 
+{{<toc>}}
+
 ## Character Drivers
 
 - There are three primary ways of creating a character driver:

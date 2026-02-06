@@ -10,7 +10,9 @@ the Qwen2.5-Code-3B-Instruct model on your local machine using `vllm`. You'll
 then setup the CodeCompanion plugin in NeoVim for interacting with the model
 directly from your editor.
 
-## `vllm` Installation and Server Setup
+{{<toc>}}
+
+## vLLM Installation and Server Setup
 
 Step one is to install the `vllm` CLI utility:
 

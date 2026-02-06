@@ -11,6 +11,8 @@ taken while reading an interesting book or article.
 This post includes the notes made while reading the book titled ["Linux Kernel
 Development"][2] by Robert Love.
 
+{{<toc>}}
+
 ## Getting Started
 
 The following are key differences between userspace application development and

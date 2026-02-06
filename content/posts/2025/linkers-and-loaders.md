@@ -13,6 +13,8 @@ Loaders"][2] by John Levine. The book includes exercises that have you
 incrementally build a linker. A partial implementation is available on GitHub:
 [mild][3].
 
+{{<toc>}}
+
 ## Chapter 1: Linking and Loading
 
 - The basic job of any linker or loader is simple: it binds more abstract names

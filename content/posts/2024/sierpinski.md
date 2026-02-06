@@ -15,6 +15,8 @@ A quick search on Google for "fractal triangle recursion" led straight to the
 [Sierpinski triangle][1]. A Sierpinski triangle generator with an ncurses
 visualization is a fun afternoon project.
 
+{{<toc>}}
+
 ## The Recursive Approach
 
 Here's the description of the Sierpinski triangle algorithm straight from

@@ -13,6 +13,8 @@ or more commands, and passes on those commands to the OS. All emulators and
 shells provide this basic set of features. What sets them apart are small
 differences that can sometimes amount to large productivity gains.
 
+{{<toc>}}
+
 ## The Terminal Emulator
 
 There's tons of terminal emulators to choose from. The Arch Linux wiki has a

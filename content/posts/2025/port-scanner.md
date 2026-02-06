@@ -10,6 +10,8 @@ Port scanning is the name given to the process of discovering open ports on a
 remote host. In this article, you'll explore the design and implementation of a
 basic port scanner written in Rust.
 
+{{<toc>}}
+
 ## Starting with a Ping
 
 Utilities with port scanning capabilities often start by sending a ping to the

@@ -16,6 +16,8 @@ The content that follows is largely a condensed version of the tips found in
 to using CMake with GoogleTest to act as a quick reference when setting up
 future projects.
 
+{{<toc>}}
+
 ## About Project Organization
 
 You can structure your C/C++ project however you like. That said, this article

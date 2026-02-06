@@ -18,6 +18,8 @@ nested menus. This article takes a look at a LaTeX resume template in the style
 of Gayle McDowell's ["This Is What a _GOOD_ Resume Should Look Like"][2]. You'll
 also see the tools and workflow that simplify resume development in LaTeX.
 
+{{<toc>}}
+
 ## The Template
 
 To be clear, the template given here isn't golden but it's a solid starting

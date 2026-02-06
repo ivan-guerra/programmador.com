@@ -13,6 +13,8 @@ numbers. The outcome is a square with distinct diagonal, horizontal, and
 vertical lines. This post will walk through the development of a Ulam spiral
 visualization tool.
 
+{{<toc>}}
+
 ## Creating a Ulam Spiral
 
 Take a look at the 4x4 Ulam spiral below:

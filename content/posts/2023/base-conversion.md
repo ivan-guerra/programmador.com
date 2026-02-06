@@ -16,6 +16,8 @@ numerical limits. To ease the pain, I decided to write a command line utility
 that made conversion between positive binary, decimal, octal, and hexadecimal
 numbers of arbitrary size.
 
+{{<toc>}}
+
 ## The Requirements
 
 The use case is simple: take a positive integer in one base and convert it to

@@ -20,6 +20,8 @@ game on a Fedora box. It would be nice not to have to install a plethora of
 dependencies to support either client (one of which is only officially supported
 on Debian based distributions).
 
+{{<toc>}}
+
 ## Project Goals
 
 Recent experiences with [Docker][5] suggested that containerizing the game

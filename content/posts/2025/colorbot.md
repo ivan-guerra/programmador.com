@@ -28,6 +28,8 @@ A desire to continue botting tedious skills motivates the development of
 scripts to bot whichever skill you like. The key difference is that instead of
 hard coding click boxes, `colorbot` uses color recognition to guide its clicks.
 
+{{<toc>}}
+
 ## Color Recognition
 
 The color recognition aspect of the bot is stupid simple. The process is:

@@ -12,6 +12,8 @@ Cipher is a great first crypto algorithm to learn. This post will walk through
 the details of implementing a CC encrypt/decrypt function. You'll then get a
 look at the internals of a CC code cracker.
 
+{{<toc>}}
+
 ## Algorithm Description
 
 There are four key ingredients to a Caesar Cipher:

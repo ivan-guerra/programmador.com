@@ -18,6 +18,8 @@ presentation: ["A Checklist for Writing Linux Real-Time Applications"][11].
 You'll explore how to optimize a Linux system and application for real-time
 execution using John's real-time Linux development checklist.
 
+{{<toc>}}
+
 ## Who Needs a Real-time System
 
 Setting up and tuning a Linux real-time system is a time consuming task. Before

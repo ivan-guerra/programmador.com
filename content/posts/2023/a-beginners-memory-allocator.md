@@ -12,6 +12,8 @@ inkling of how functions like `malloc()` and `free()` work under the hood, I
 never considered writing a custom allocator. To help demystify the topic, I
 decided to write a basic allocator on Linux.
 
+{{<toc>}}
+
 ## The Interface
 
 What does the API look like? The API is identical to that of

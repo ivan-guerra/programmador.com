@@ -11,6 +11,8 @@ the developer programs a terminal display with a couple of spinning cubes is
 neat. This video is the motivation for the development of a [ncurses][2]
 application that renders a user controlled 3D cube.
 
+{{<toc>}}
+
 ## Perspective Projection and Rotation Matrices
 
 So how do you take an object in 3D space and visualize it in 2D space? The

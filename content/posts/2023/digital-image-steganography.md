@@ -13,6 +13,8 @@ effectiveness of LSBS in concealing a secret image is surprising. This article
 puts least significant bit substitution to use in a command line tool for
 embedding one image within another.
 
+{{<toc>}}
+
 ## A Little Background on Digital Images
 
 You don't need fancy image manipulation techniques to make this steganography

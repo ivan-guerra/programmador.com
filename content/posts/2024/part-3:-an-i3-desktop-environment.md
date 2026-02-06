@@ -10,6 +10,8 @@ environment (DE). Linux has many different DEs to choose from: Unity, XFCE, KDE
 Plasma, just to name a few. Which should you choose? This series argues that the
 [i3 tiling window manager][1] is the optimal choice.
 
+{{<toc>}}
+
 ## Why i3
 
 Listed below are the benefits of a tiling WM:

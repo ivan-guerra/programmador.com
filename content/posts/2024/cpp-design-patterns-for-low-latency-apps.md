@@ -14,6 +14,8 @@ This post includes the notes made while reading the article titled ["C++ Design
 Patterns for Low-Latency Applications Including High-Frequency Trading"][4] by
 Paul Bilokon and Burak Gunduz.
 
+{{<toc>}}
+
 ## Section 2: Background
 
 ### 2.1 HFT

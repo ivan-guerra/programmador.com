@@ -11,6 +11,8 @@ kbhell is about 90% of the way to being a keylogger. Why not finish the job and
 write a proper, cross platform keylogger that captures a victim's every
 keystroke (for science reasons, of course)?
 
+{{<toc>}}
+
 ## The Requirements
 
 So there's the obvious requirement of capturing user keystrokes. When you think

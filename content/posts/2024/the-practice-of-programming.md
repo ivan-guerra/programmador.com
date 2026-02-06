@@ -11,6 +11,8 @@ taken while reading an interesting book or article.
 This post includes the notes made while reading the book titled ["The Practice
 of Programming"][2] by Brian Kernighan and Rob Pike.
 
+{{<toc>}}
+
 ## Chapter 1: Style
 
 - Use descriptive names for globals and short names for locals.

@@ -12,6 +12,8 @@ You might think there are two or three Linux distros. As of today,
 [DistroWatch][1] shows there are over 20 different distros to choose from! Where
 do you start?
 
+{{<toc>}}
+
 ## Selection Criteria
 
 What makes a good developers distro? The five bullets below take a stab at

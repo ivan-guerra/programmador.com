@@ -11,6 +11,8 @@ code: [Unique Morse Code Words][2]. You might wonder what the encodings sound
 like. With a little programming magic you can find out by creating a command
 line utility for converting text to Morse code audio.
 
+{{<toc>}}
+
 ## The Basics
 
 The journey starts at the Morse code [wiki page][3]. The wiki had a chart that

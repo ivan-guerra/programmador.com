@@ -13,6 +13,8 @@ numbers and prints the result to the screen. It took a month long journey into
 the world of x86 emulators, NASM assembly, and architecture reference manuals to
 get remotely close.
 
+{{<toc>}}
+
 ## Getting the Right Resources
 
 [![Little Book About OS Development](/posts/2022/cosmo/lbaod.webp#center)][2]

@@ -10,6 +10,8 @@ heard of people signing their VCS commits/tags. This post covers the why and how
 of signing your Git commits. The focus will be on commits but keep in mind that
 these tips equally apply to tags.
 
+{{<toc>}}
+
 ## Why Sign Your Commits
 
 The short answer is, signing your commits makes it harder for an attacker to

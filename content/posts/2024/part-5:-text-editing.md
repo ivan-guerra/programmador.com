@@ -9,6 +9,8 @@ Linux developers spend a large amount of time in both the shell and their text
 editors. [Part 4][1] of this series explored improving the shell experience. In
 this final installment, you'll dive into how to text edit like a pro.
 
+{{<toc>}}
+
 ## Features of a Modern Text Editor
 
 What should your text editor provide? You want an editor with features that are

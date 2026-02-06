@@ -12,6 +12,8 @@ solutions as a variation of [Conway's Game of Life][2] (GoL). Wikipedia has a
 great article on GoL. The animations are eye catching. The Wiki serves as
 motivation for a terminal app that visualizes GoL simulations.
 
+{{<toc>}}
+
 ## Rules of the Game
 
 What are the GoL rules? The setup is simple. You have an MxN grid of "cells."

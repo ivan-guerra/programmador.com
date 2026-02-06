@@ -11,6 +11,8 @@ not for just one service but many all at once. The modern day solution is to use
 a password manager. This article walks you through setting up password
 management across Linux and Android devices.
 
+{{<toc>}}
+
 ## Finding a Password Manager
 
 There's no shortage of [password managers][2] to choose from. Your choice of

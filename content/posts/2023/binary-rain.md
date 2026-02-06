@@ -19,6 +19,8 @@ Digital Rain][3].
 Wouldn't it be neat to create a terminal screensaver that mimicked the effect
 seen in the movie?
 
+{{<toc>}}
+
 ## How to Make It Rain
 
 Studying a few video compilations helps with understanding the details behind

@@ -19,6 +19,8 @@ produced by [Shirogane Labs][1].
 This article will cover everything from where to purchase the keyboard,
 customization, and tips on how to adjust to a split keyboard.
 
+{{<toc>}}
+
 ## Pros and Cons of a Split Keyboard
 
 ### The Pros

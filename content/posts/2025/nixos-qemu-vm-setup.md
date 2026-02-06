@@ -8,12 +8,14 @@ tags: ["nixos"]
 
 This article will walk you through the process of running NixOS in a QEMU
 virtual machine (VM) on a Linux host system. Basic nix configuration to help
-with connectivity to the VM from the host is also included. 
+with connectivity to the VM from the host is also included.
 
 This article assumes you're on a Arch Linux host system. Instructions may vary
 with regards to package installation on other distros, but the rest of the steps
 should be largely identical. Additionally, your machine must support
 virtualization and have it enabled in the BIOS/UEFI settings.
+
+{{<toc>}}
 
 ## Installing QEMU and QEMU Utilities
 
@@ -77,12 +79,12 @@ qemu-system-x86_64 \
 You may want to adjust the following parameters based on your system and
 preferences:
 
-| Option                                      | Description                                                      |
-|---------------------------------------------|------------------------------------------------------------------|
-| `-m 6144`                                   | Allocates 6GB of RAM to the VM.                                  |
-| `-smp 3`                                    | Allocates 3 CPU cores to the VM.                                 |
-| `-cdrom <ISO_PATH>`                         | Path to the NixOS ISO downloaded earlier.                        |
-| `-enable-kvm`                               | Optional feature for better performance. See the Arch Wiki's [KVM][2] article for more information. |
+| Option              | Description                                                                                         |
+| ------------------- | --------------------------------------------------------------------------------------------------- |
+| `-m 6144`           | Allocates 6GB of RAM to the VM.                                                                     |
+| `-smp 3`            | Allocates 3 CPU cores to the VM.                                                                    |
+| `-cdrom <ISO_PATH>` | Path to the NixOS ISO downloaded earlier.                                                           |
+| `-enable-kvm`       | Optional feature for better performance. See the Arch Wiki's [KVM][2] article for more information. |
 
 Run the `start-nixos-vm.sh` script to boot into the installation ISO. The
 install wizard should launch automatically. Follow the on-screen instructions to
@@ -118,14 +120,14 @@ SSH into your NixOS VM from the host machine. But first, you'll need to enable
 SSH in your `configuration.nix`. Follow these steps to connect via SSH:
 
 1. Run your NixOS VM.
-2. Edit your nix config: 
+2. Edit your nix config:
 
 ```bash
 sudo nano /etc/nixos/configuration.nix`.
 ```
 
 3. Uncomment or add the line `services.openssh.enable = true;`.
-4. Rebuild your NixOS configuration: 
+4. Rebuild your NixOS configuration:
 
 ```bash
 sudo nixos-rebuild switch`.

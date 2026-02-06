@@ -11,6 +11,8 @@ taken while reading an interesting book or article.
 This post includes the notes made while reading a series of articles by Ulrich
 Drepper titled ["What Every Programmer Should Know About Memory"][1].
 
+{{<toc>}}
+
 ## Part 1: Introduction
 
 - There are a number of different computer architectures each with their own

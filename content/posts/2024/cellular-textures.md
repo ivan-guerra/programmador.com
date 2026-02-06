@@ -28,6 +28,8 @@ The authors' descriptions and pseudocode provide the basis for the
 implementation of a CLI texture generator. This article describes such a tool
 and its performance when generating a number of different textures.
 
+{{<toc>}}
+
 ## Texture Parameters
 
 The goal of the tool is to generate a texture as a MxN grayscale PNG. The

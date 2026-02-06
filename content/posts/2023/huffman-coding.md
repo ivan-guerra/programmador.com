@@ -12,6 +12,8 @@ binary tree that sees use in the compression of an arbitrary data file.
 Developing a command line utility to compress/decompress a file using Huffman
 coding is a good CS101 challenge.
 
+{{<toc>}}
+
 ## Breaking It Down Into Steps
 
 This project starts where many do: Wikipedia. The [Huffman Coding][1] wiki

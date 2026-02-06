@@ -13,6 +13,8 @@ effect:
 
 In this article, you'll learn how to implement plasma effects of your own.
 
+{{<toc>}}
+
 ## The Algorithm
 
 To generate a plasma effect, you iterate the pixels in the screen buffer. For

@@ -17,6 +17,8 @@ keycodes. That's where `keyball44-viz` comes in. `keyball44-viz` is a
 command-line tool written in Rust that parses a `keymap.c` file and generates an
 SVG visualization of the keyboard layout.
 
+{{<toc>}}
+
 ## Taking a Look at `keymap.c`
 
 The snippet below defines six layers for the keyboard, including a base layer,

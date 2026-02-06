@@ -12,6 +12,8 @@ that it's too complicated. Is the time investment worth it to draw ASCII
 versions of your favorite LOTR characters? Well, after some Googling, I found
 out it's not all that bad and set to write a ASCII art CLI tool.
 
+{{<toc>}}
+
 ## Project Goals
 
 The goal is simple: write a JPEG/PNG to ASCII art generator. I came across a

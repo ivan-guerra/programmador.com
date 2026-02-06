@@ -15,6 +15,8 @@ that can avoid RuneScape's bot detection system presents a number of interesting
 technical problems. This article explores the creation of a rudimentary bot: an
 auto clicker bot.
 
+{{<toc>}}
+
 ## Bot Taxonomy
 
 People have been botting RuneScape for ages. In that time, there's been a number

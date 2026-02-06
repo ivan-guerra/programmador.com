@@ -17,6 +17,8 @@ development workflow. These articles aim to have something for both new and old
 Linux developers. The series will start from scratch and will build up a dev
 environment through example.
 
+{{<toc>}}
+
 ## What's Worth Optimizing
 
 What kind of software has the biggest impact on the dev workflow? Rephrasing the

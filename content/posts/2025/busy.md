@@ -20,6 +20,8 @@ status showing active. That's where a tool like `bz` (pronounced "busy") comes
 in handy. `bz` is a simple CLI tool written in Rust that simulates mouse
 movement at regular intervals to keep your system from going idle.
 
+{{<toc>}}
+
 ## How It Works
 
 `bz` works by moving your mouse cursor from the location it's currently at, to

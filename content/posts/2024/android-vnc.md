@@ -11,6 +11,8 @@ answered yes to these questions, you came to the right place. In this article,
 you'll see how to connect to and control your Linux PC from anywhere in the
 world using your Android phone.
 
+{{<toc>}}
+
 ## Required Software
 
 On your Linux PC, install the following packages using your distro's package

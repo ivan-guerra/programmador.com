@@ -51,6 +51,8 @@ guest, you got all the comforts of a full fledged Linux system and can poke and
 prod without any fear. The SSH connection makes it easy to transfer some files
 to/from the guest.
 
+{{<toc>}}
+
 ## Install QEMU and OpenSSH
 
 First, download and install QEMU and OpenSSH on the host machine.

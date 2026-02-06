@@ -17,6 +17,8 @@ implementing your own Chip8 emulator. Note, the issues discussed here are
 language agnostic. At the end of the article, you'll find a link to a Rust
 implementation of a Chip8 emulator that can serve as a more complete reference.
 
+{{<toc>}}
+
 ## The Many Forms of Chip8
 
 To start, you'll want to get your hands on a Chip8 specification. The fun part

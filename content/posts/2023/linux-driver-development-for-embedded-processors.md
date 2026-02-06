@@ -19,6 +19,8 @@ selling points:
 
 This article dives into the details starting with processor support.
 
+{{<toc>}}
+
 ## Processor Options
 
 ELDD gives you the choice of developing for one or more ARM processors: NXP

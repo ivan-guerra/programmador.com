@@ -18,6 +18,8 @@ of the remote target. The image below illustrates the concept:
 In this article, you'll see how to setup a VNC server and client on Linux using
 [TigerVNC][1].
 
+{{<toc>}}
+
 ## Prerequisites and Assumptions
 
 This article assumes you are on an Arch Linux machine with an Internet

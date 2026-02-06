@@ -11,6 +11,8 @@ Do you have a bunch of dotfiles? Do you maintain a GitHub repo with all your
 placing the dotfiles in the right spots in your home directory? If you answered
 yes to these questions, read on.
 
+{{<toc>}}
+
 ## Enter GNU Stow
 
 [GNU Stow][2] is a dotfile management utility. Stow has all the makings of a

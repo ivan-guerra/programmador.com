@@ -14,6 +14,8 @@ thought about or tried to actually implement the concept itself, doing so in an
 interview is a tall order. This article walks you through the implementation of
 an interview grade `SharedPtr` class.
 
+{{<toc>}}
+
 ## How to Reference Count
 
 When you think about implementing a shared pointer, what comes to mind? Wrapping

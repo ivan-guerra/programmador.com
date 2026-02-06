@@ -16,6 +16,8 @@ common "fabric" between the machines? In the clip with the metronomes, the base
 board is crucial in bringing the metronomes into phase. Perhaps you could use
 GPIO signals to achieve a similar link between two computers.
 
+{{<toc>}}
+
 ## Architecting a Test
 
 At a high level, you want to solve the problem of synchronizing two identical,

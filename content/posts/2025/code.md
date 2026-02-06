@@ -11,6 +11,8 @@ taken while reading an interesting book or article.
 This post includes the notes made while reading the book ["Code - The Hidden
 Language of Computer Hardware and Software 2nd Edition"][2] by Charles Petzgold.
 
+{{<toc>}}
+
 ## Chapter 2: Codes and Combinations
 
 - Morse Code is a binary language. International Morse Code encodes up to 8 bits

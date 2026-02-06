@@ -12,6 +12,8 @@ program of your own that explores ncurses' API. Of course, you have to keep it
 interesting. Why not implement a scaled down version of a retro arcade game:
 [snake][2].
 
+{{<toc>}}
+
 ## The Rules of Snake
 
 Step one of this project is to look up what the rules for a game of snake are.

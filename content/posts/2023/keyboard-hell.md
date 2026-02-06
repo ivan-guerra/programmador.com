@@ -11,6 +11,8 @@ achieve the sound of the keys clacking without having an actual mechanical
 keyboard? That was the idea that spawned this keyboard hell (kbhell) project.
 That and trolling friends by playing a soundbite every time they press a key!
 
+{{<toc>}}
+
 ## Getting Started
 
 When a user performs any keystroke, a audio file gets played. One of the main

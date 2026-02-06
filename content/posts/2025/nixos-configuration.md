@@ -20,6 +20,8 @@ assumes you have a vanilla NixOS installation and are familiar with editing
 `/etc/nixos/configuration.nix` and rebuilding your system via `sudo
 nixos-rebuild switch`.
 
+{{<toc>}}
+
 ## Temperature Control (Intel CPUs)
 
 To proactively prevent overheating of Intel CPUs, you can use the `thermald`
@@ -31,7 +33,7 @@ service. From the `thermald` man page:
 >
 > By default, it monitors CPU temperature using available CPU digital
 > temperature sensors and maintains CPU temperature under control, before HW
-> takes aggressive correction action. 
+> takes aggressive correction action.
 
 Add the following line to your NixOS configuration file to enable `thermald`:
 
@@ -170,7 +172,7 @@ the following to your NixOS configuration:
 programs.gnupg.agent = {
   enable = true;
   enableSSHSupport = true;
-  pinentryPackage = pkgs.pinentry-curses; 
+  pinentryPackage = pkgs.pinentry-curses;
 };
 ```
 
@@ -227,7 +229,7 @@ services.displayManager = {
 security.pam.services = {
   i3lock.enable = true;
   i3lock-color.enable = true;
-}; 
+};
 ```
 
 You'll want to further configure the window manager, status bars, etc. for your
@@ -238,7 +240,7 @@ module.
 
 Here's the full configuration in one single snippet for easy copy-pasting:
 
-```nix 
+```nix
 { config, pkgs, ... }:
 
 {
@@ -300,7 +302,7 @@ Here's the full configuration in one single snippet for easy copy-pasting:
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-curses; 
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   services.openssh.enable = true;
@@ -324,7 +326,7 @@ Here's the full configuration in one single snippet for easy copy-pasting:
   security.pam.services = {
     i3lock.enable = true;
     i3lock-color.enable = true;
-  }; 
+  };
 }
 ```
 

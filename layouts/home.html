@@ -1,0 +1,4 @@
+{{ define "main" }} {{- $sections := default (slice "posts")
+site.Params.mainSections -}} {{- $pages := where site.RegularPages "Section"
+"in" $sections -}} {{ partial "post/blog-posts.html" (dict "pages"
+$pages.ByDate.Reverse "filterable" false) }} {{ end }}

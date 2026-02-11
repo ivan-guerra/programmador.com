@@ -31,7 +31,7 @@ of the keyboard such that your shoulders are in their natural position.
 ![Ergonomics](/posts/2025/keyball44/ergonomic.webp#center)
 
 This is in contrast to a traditional keyboard where you can often find yourself
-in a hunched position. This is especially true if your a larger person.
+in a hunched position. This is especially true if you're a larger person.
 
 Most split keyboards support tenting.
 
@@ -115,8 +115,9 @@ provides various customization options including colors, keycaps, switches, and
 more. Not to mention they also sell additional equipment such as tenting kits
 and the TRRS cable required to connect the two halves of the keyboard. A
 keyball44 from HolyKeebs with modest customization and assembly will run you
-about $350 shipping included. $75 of the price covers assembly. If you purchase
-the tenting kit, cable, and trackball, you'll be looking at about $400 all in.
+about 350 USD shipping included. Included in that price is about 75 dollars
+worth of assembly. If you purchase the tenting kit, cable, and trackball, you'll
+be looking at about $400 all in.
 
 One thing to keep in mind is that if you're purchasing a pre-built board, you
 shouldn't expect same day delivery. The lead time is usually about a month. Keep
@@ -214,7 +215,8 @@ and efficiently. The ability to fully customize both the hardware and firmware
 means your keyboard can evolve alongside your needs and preferences.
 
 [1]: https://shirogane-lab.net/
-[2]: https://github.com/Yowkees/keyball/blob/main/keyball44/doc/rev1/buildguide_en.md
+[2]:
+  https://github.com/Yowkees/keyball/blob/main/keyball44/doc/rev1/buildguide_en.md
 [3]: https://holykeebs.com/products/keyball44?_pos=1&_psq=keyball44&_ss=e&_v=1.0
 [4]: https://www.edclub.com/sportal/program-3.game
 [5]: https://monkeytype.com/
@@ -222,8 +224,11 @@ means your keyboard can evolve alongside your needs and preferences.
 [7]: https://en.wikipedia.org/wiki/Touch_typing
 [8]: https://www.theremingoat.com/blog/beginners-guide
 [9]: https://docs.qmk.fm/
-[10]: https://www.keyboard-layout-editor.com/#/gists/016b11b6fc11fa1cb9306338a26e71f9
-[11]: https://github.com/ivan-guerra/qmk_firmware/blob/ieg-keyball44/keyboards/keyball/keyball44/keymaps/ivan-guerra/keymap.c
+[10]:
+  https://www.keyboard-layout-editor.com/#/gists/016b11b6fc11fa1cb9306338a26e71f9
+[11]:
+  https://github.com/ivan-guerra/qmk_firmware/blob/ieg-keyball44/keyboards/keyball/keyball44/keymaps/ivan-guerra/keymap.c
 [12]: https://docs.qmk.fm/#/keycodes
 [13]: https://docs.holykeebs.com/guides/keyboard/keyball/#custom-keycodes
-[14]: https://github.com/Yowkees/keyball/blob/main/qmk_firmware/keyboards/keyball/keyball44/keymaps/default/keymap.c
+[14]:
+  https://github.com/Yowkees/keyball/blob/main/qmk_firmware/keyboards/keyball/keyball44/keymaps/default/keymap.c

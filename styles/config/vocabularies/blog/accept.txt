@@ -93,6 +93,7 @@ crossterm
 CRTP
 crypto
 ctext
+CUDA
 cwd
 cyber
 Cyclictest
@@ -158,6 +159,7 @@ ffmpeg
 [Ff]ormatters
 ffplay
 FIFO(s)?
+FIM
 finalizers
 fini
 firemaking
@@ -177,6 +179,7 @@ gatekeeping
 (!?)gcc
 gfp
 [Gg]nu
+GGUF
 GIF
 GIL
 gitsigns
@@ -262,6 +265,7 @@ LBAOD
 LED(s)?
 len
 libc
+llama.cpp
 [Ll]inker('s)?
 LLM(s)?
 LLVM

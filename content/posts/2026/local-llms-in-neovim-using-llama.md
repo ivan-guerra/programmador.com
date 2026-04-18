@@ -3,6 +3,7 @@ title: "Local LLMs in NeoVim Using Llama"
 date: 2026-04-10T18:22:32-04:00
 description: "How to setup and use a local LLM with NeoVim."
 categories: ["cli-tools", "llm"]
+tags: ["llm"]
 ---
 
 This is a 2026 follow on to [Setting Up a Local LLM][1]. This article will

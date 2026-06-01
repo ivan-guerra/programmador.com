@@ -35,7 +35,7 @@ configuration for CopilotChat with a custom provider.
         end,
         get_headers = function()
           return {
-            ["Authorization"] = "Bearer <YOUR_API_KEY>"),
+            ["Authorization"] = "Bearer <YOUR_API_KEY>",
           }
         end,
         get_models = function()

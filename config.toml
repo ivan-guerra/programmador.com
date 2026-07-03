@@ -5,7 +5,7 @@ author = "Ivan Eduardo Guerra"
 copyright = "All rights Reserved, Ivan Eduardo Guerra."
 enableRobotsTXT = true
 googleAnalytics = "G-XEENY573SL"
-languageCode = "en"
+locale = "en"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
 

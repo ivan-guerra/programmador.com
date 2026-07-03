@@ -168,6 +168,7 @@ FLAC
 fletching
 FOV
 FPGA(s)?
+FPS
 FPU
 Framebuffer
 framerate
@@ -215,6 +216,7 @@ IEEE
 (i?)GNU
 (!?)(?i)GOOD
 (i?)GPG
+[Ii]mager
 [Ii]nlining
 [Ii]nterprocess
 [Ii]nterruptible

@@ -126,6 +126,7 @@ DHCP
 disabled
 DMA
 dmenu
+DNS
 Dockerfile
 Docker('s)?
 doctest
@@ -199,6 +200,7 @@ hackbench
 hardcode
 herblore
 HFT
+[Hh]acky
 [Hh]ostname
 [Hh]ostname(s)?
 [Hh]otpath

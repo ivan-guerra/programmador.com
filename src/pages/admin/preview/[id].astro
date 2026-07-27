@@ -1,9 +1,9 @@
 ---
 import { env } from "cloudflare:workers";
-import Base from "../../../layouts/Base.astro";
 import { getDraft } from "../../../lib/drafts";
 import { splitFrontmatter } from "../../../lib/frontmatter";
 import { renderMarkdown } from "../../../lib/markdown";
+import "../../../styles/global.css";
 
 export const prerender = false;
 
@@ -19,8 +19,9 @@ const title = data.title ?? draft.slug;
 const pubDate = data.pubDate ?? new Date();
 const tags = data.tags ?? [];
 
-// Identical markup to src/pages/blog/[id].astro so the preview renders
-// exactly like the published post.
+// Article markup identical to src/pages/blog/[id].astro, but without the
+// site chrome (header/footer/circles) — this renders inside the editor's
+// preview iframe.
 const formatDate = (date: Date) =>
   date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -30,18 +31,38 @@ const formatDate = (date: Date) =>
   });
 ---
 
-<Base title={`${title} — jumploops`} description={data.description ?? ""}>
-  <article>
-    <header class="article-header">
-      <a href="/" class="back-link">← back</a>
-      <div class="post-meta">
-        <time datetime={pubDate.toISOString()}>
-          {formatDate(pubDate)}
-        </time>
-        {tags.map((tag) => <span class="tag">{tag}</span>)}
-      </div>
-      <h1>{title}</h1>
-    </header>
-    <div class="prose" set:html={html} />
-  </article>
-</Base>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{title} — preview</title>
+    <script is:inline>
+      const stored = localStorage.getItem("theme");
+      const theme =
+        stored ??
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      document.documentElement.dataset.theme = theme;
+    </script>
+  </head>
+  <body>
+    <main class="wrap">
+      <article>
+        <header class="article-header">
+          <a href="/" class="back-link">← back</a>
+          <div class="post-meta">
+            <time datetime={pubDate.toISOString()}>
+              {formatDate(pubDate)}
+            </time>
+            {tags.map((tag) => <span class="tag">{tag}</span>)}
+          </div>
+          <h1>{title}</h1>
+        </header>
+        <div class="prose" set:html={html} />
+      </article>
+    </main>
+  </body>
+</html>

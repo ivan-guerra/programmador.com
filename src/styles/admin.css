@@ -139,15 +139,16 @@
 .editor-pane {
   border: 2.5px solid var(--border);
   background: var(--surface);
-  height: 32rem;
   margin-bottom: 3rem;
 }
 
 .editor-pane textarea {
   display: block;
   width: 100%;
-  height: 100%;
-  resize: vertical;
+  min-height: 24rem;
+  field-sizing: content;
+  resize: none;
+  overflow: hidden;
   border: none;
   outline: none;
   background: transparent;
@@ -162,7 +163,7 @@
 .editor-pane iframe {
   display: block;
   width: 100%;
-  height: 100%;
+  min-height: 24rem;
   border: none;
   background: var(--bg);
 }

@@ -97,6 +97,25 @@ if (!draft) {
     textarea.addEventListener("input", scheduleSave);
     slugInput.addEventListener("input", scheduleSave);
 
+    // Grow the textarea with its content on browsers without
+    // CSS field-sizing support.
+    if (!CSS.supports("field-sizing", "content")) {
+      const autoResize = () => {
+        textarea.style.height = "auto";
+        textarea.style.height = `${textarea.scrollHeight}px`;
+      };
+      textarea.addEventListener("input", autoResize);
+      autoResize();
+    }
+
+    // Size the preview iframe to its document (same-origin).
+    preview.addEventListener("load", () => {
+      const doc = preview.contentDocument;
+      if (doc) {
+        preview.style.height = `${doc.documentElement.scrollHeight + 16}px`;
+      }
+    });
+
     // Tab inserts two spaces instead of leaving the textarea.
     textarea.addEventListener("keydown", (e) => {
       if (e.key === "Tab") {

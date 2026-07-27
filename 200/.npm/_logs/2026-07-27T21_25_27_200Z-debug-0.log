@@ -1,0 +1,19 @@
+0 verbose cli /Users/adam/.nvm/versions/node/v22.14.0/bin/node /Users/adam/.nvm/versions/node/v22.14.0/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@11.6.1
+2 info using node@v22.14.0
+3 silly config load:file:/Users/adam/.nvm/versions/node/v22.14.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/adam/code/jumploops.com/.npmrc
+5 silly config load:file:/Users/adam/code/jumploops.com/200/.npmrc
+6 silly config load:file:/Users/adam/.nvm/versions/node/v22.14.0/etc/npmrc
+7 verbose title npm exec wrangler deployments list
+8 verbose argv "exec" "--" "wrangler" "deployments" "list"
+9 verbose logfile logs-max:10 dir:/Users/adam/code/jumploops.com/200/.npm/_logs/2026-07-27T21_25_27_200Z-
+10 verbose logfile /Users/adam/code/jumploops.com/200/.npm/_logs/2026-07-27T21_25_27_200Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 verbose cwd /Users/adam/code/jumploops.com
+14 verbose os Darwin 24.6.0
+15 verbose node v22.14.0
+16 verbose npm  v11.6.1
+17 verbose exit 1
+18 verbose code 1

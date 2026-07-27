@@ -1,0 +1,153 @@
+---
+import { env } from "cloudflare:workers";
+import Base from "../../../layouts/Base.astro";
+import { getDraft } from "../../../lib/drafts";
+import "../../../styles/admin.css";
+
+export const prerender = false;
+
+const draft = await getDraft((env as any).DRAFTS, Astro.params.id!);
+if (!draft) {
+  return new Response("Draft not found.", { status: 404 });
+}
+---
+
+<Base title="edit — jumploops’ blog">
+  <div class="editor-bar">
+    <div class="group">
+      <a class="admin-btn secondary" href="/admin">← admin</a>
+      <input
+        class="slug-input"
+        id="slug"
+        value={draft.slug}
+        spellcheck="false"
+        aria-label="Post slug"
+      />
+      <span class="save-status" id="status">saved</span>
+    </div>
+    <div class="group">
+      <button class="admin-btn danger" id="delete">delete</button>
+      <button class="admin-btn" id="publish">publish</button>
+    </div>
+  </div>
+
+  <div class="editor-tabs" role="tablist">
+    <button class="editor-tab" id="tab-code" role="tab" aria-selected="true">
+      code
+    </button>
+    <button
+      class="editor-tab"
+      id="tab-preview"
+      role="tab"
+      aria-selected="false"
+    >
+      preview
+    </button>
+  </div>
+
+  <div class="editor-pane">
+    <textarea id="content" spellcheck="false">{draft.content}</textarea>
+    <iframe
+      id="preview"
+      class="hidden"
+      title="Post preview"
+      data-src={`/admin/preview/${draft.id}`}></iframe>
+  </div>
+
+  <script>
+    const draftId = location.pathname.split("/").pop()!;
+    const textarea = document.getElementById("content") as HTMLTextAreaElement;
+    const slugInput = document.getElementById("slug") as HTMLInputElement;
+    const status = document.getElementById("status")!;
+    const tabCode = document.getElementById("tab-code")!;
+    const tabPreview = document.getElementById("tab-preview")!;
+    const preview = document.getElementById("preview") as HTMLIFrameElement;
+
+    let timer: number | undefined;
+    let saving: Promise<void> | null = null;
+
+    const save = async () => {
+      status.textContent = "saving…";
+      saving = fetch(`/admin/api/drafts/${draftId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: textarea.value,
+          slug: slugInput.value,
+        }),
+      })
+        .then((res) => {
+          status.textContent = res.ok ? "saved" : "save failed";
+        })
+        .catch(() => {
+          status.textContent = "save failed";
+        })
+        .finally(() => {
+          saving = null;
+        });
+      await saving;
+    };
+
+    const scheduleSave = () => {
+      status.textContent = "…";
+      clearTimeout(timer);
+      timer = window.setTimeout(save, 800);
+    };
+
+    textarea.addEventListener("input", scheduleSave);
+    slugInput.addEventListener("input", scheduleSave);
+
+    // Tab inserts two spaces instead of leaving the textarea.
+    textarea.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
+        e.preventDefault();
+        const { selectionStart, selectionEnd, value } = textarea;
+        textarea.value =
+          value.slice(0, selectionStart) + "  " + value.slice(selectionEnd);
+        textarea.selectionStart = textarea.selectionEnd = selectionStart + 2;
+        scheduleSave();
+      }
+    });
+
+    const setTab = (mode: "code" | "preview") => {
+      tabCode.setAttribute("aria-selected", String(mode === "code"));
+      tabPreview.setAttribute("aria-selected", String(mode === "preview"));
+      textarea.classList.toggle("hidden", mode !== "code");
+      preview.classList.toggle("hidden", mode !== "preview");
+    };
+
+    tabCode.addEventListener("click", () => setTab("code"));
+    tabPreview.addEventListener("click", async () => {
+      setTab("preview");
+      clearTimeout(timer);
+      await save();
+      preview.src = preview.dataset.src! + "?t=" + Date.now();
+    });
+
+    document.getElementById("publish")!.addEventListener("click", async () => {
+      if (!confirm(`Publish "${slugInput.value}" to the live site?`)) return;
+      clearTimeout(timer);
+      await save();
+      status.textContent = "publishing…";
+      const res = await fetch(`/admin/api/publish/${draftId}`, {
+        method: "POST",
+      });
+      const result = await res.json();
+      if (!res.ok) {
+        status.textContent = "publish failed";
+        alert(result.error ?? "Publish failed.");
+        return;
+      }
+      alert(
+        `Published! The deploy is building now — the post will be live at ${result.postUrl} shortly.`
+      );
+      location.href = "/admin";
+    });
+
+    document.getElementById("delete")!.addEventListener("click", async () => {
+      if (!confirm("Delete this draft?")) return;
+      await fetch(`/admin/api/drafts/${draftId}`, { method: "DELETE" });
+      location.href = "/admin";
+    });
+  </script>
+</Base>

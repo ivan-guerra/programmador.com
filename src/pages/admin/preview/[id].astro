@@ -1,0 +1,47 @@
+---
+import { env } from "cloudflare:workers";
+import Base from "../../../layouts/Base.astro";
+import { getDraft } from "../../../lib/drafts";
+import { splitFrontmatter } from "../../../lib/frontmatter";
+import { renderMarkdown } from "../../../lib/markdown";
+
+export const prerender = false;
+
+const draft = await getDraft((env as any).DRAFTS, Astro.params.id!);
+if (!draft) {
+  return new Response("Draft not found.", { status: 404 });
+}
+
+const { data, body } = splitFrontmatter(draft.content);
+const html = await renderMarkdown(body);
+
+const title = data.title ?? draft.slug;
+const pubDate = data.pubDate ?? new Date();
+const tags = data.tags ?? [];
+
+// Identical markup to src/pages/blog/[id].astro so the preview renders
+// exactly like the published post.
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+---
+
+<Base title={`${title} — jumploops`} description={data.description ?? ""}>
+  <article>
+    <header class="article-header">
+      <a href="/" class="back-link">← back</a>
+      <div class="post-meta">
+        <time datetime={pubDate.toISOString()}>
+          {formatDate(pubDate)}
+        </time>
+        {tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+      <h1>{title}</h1>
+    </header>
+    <div class="prose" set:html={html} />
+  </article>
+</Base>

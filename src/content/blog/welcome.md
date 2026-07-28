@@ -2,7 +2,7 @@
 title: "Welcome"
 description: "A little bit about me"
 pubDate: 2026-07-27
-tags: ["meta", "personal software", "agents"]
+tags: ["meta"]
 ---
 
 Howdy, I'm [Adam](https://x.com/jumploops)! 

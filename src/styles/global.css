@@ -144,7 +144,7 @@ main,
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin: 3rem 0;
 }
 
 .post-entry {

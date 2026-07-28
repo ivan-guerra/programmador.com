@@ -86,15 +86,17 @@ main,
 .site-title .asm-line {
   display: block;
   white-space: pre;
+  position: relative;
+  padding-left: 6ch;
 }
 
-/* Spelled-out on rest; collapse to the real mnemonics on hover. */
-.site-title .op::before {
-  content: attr(data-full);
-}
-
-.site-title:hover .op::before {
-  content: attr(data-short);
+/* Labels hang right-aligned off the mnemonic column: longer labels grow
+   leftward past the element's edge instead of shifting the instructions. */
+.site-title .lbl {
+  position: absolute;
+  left: 5ch;
+  transform: translateX(-100%);
+  background: inherit;
 }
 
 /* The dim lines sit outside the layout flow (header stays one line tall)

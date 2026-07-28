@@ -24,9 +24,9 @@ const { title, description = "jumploops — notes on software" } = Astro.props;
     <header class="site-header">
       <div class="wrap">
         <a href="/" class="site-title" aria-label="adam — home">
-          <span class="asm-line asm-dim" aria-hidden="true">{"      "}<span class="op" data-full="noop" data-short="nop"></span></span>
-          <span class="asm-line asm-live" aria-hidden="true">{"adam: "}<span class="op" data-full="jump" data-short="jmp"></span>{" loops"}</span>
-          <span class="asm-line asm-dim" aria-hidden="true">{"      "}<span class="op" data-full="halt" data-short="hlt"></span></span>
+          <span class="asm-line asm-dim" aria-hidden="true"><span class="lbl"></span><span class="ins">noop</span></span>
+          <span class="asm-line asm-live" aria-hidden="true"><span class="lbl">adam:</span><span class="ins">jump loops</span></span>
+          <span class="asm-line asm-dim" aria-hidden="true"><span class="lbl"></span><span class="ins">halt</span></span>
         </a>
         <nav class="site-nav" aria-label="Social links">
             <a
@@ -69,6 +69,86 @@ const { title, description = "jumploops — notes on software" } = Astro.props;
     </footer>
 
     <script>
+      // Easter egg: hovering the title "executes" the program. The header
+      // is a 3-line viewport into the listing below, centered on the
+      // program counter, which follows the jumps through future blog
+      // topics and always lands back at adam: jump loops.
+      {
+        const titleEl = document.querySelector<HTMLElement>(".site-title");
+        const noMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        if (titleEl && !noMotion) {
+          const TOPICS = ["llm", "agents", "rockhounding", "fpga"];
+          const STEP_MS = 450;
+
+          // Memory layout. The halt after adam: is dead code — the jump
+          // skips it, which is why the rest frame reads noop/jump/halt
+          // and the program never halts.
+          const PROGRAM: [string, string][] = [
+            ["", "noop"],
+            ["adam:", "jump loops"],
+            ["", "halt"],
+            ["loops:", `jump ${TOPICS[0]}`],
+          ];
+          TOPICS.forEach((topic, i) => {
+            PROGRAM.push([`${topic}:`, `loop ${topic}`]);
+            PROGRAM.push(["", `jump ${TOPICS[i + 1] ?? "adam"}`]);
+          });
+
+          const REST_PC = 1;
+          const PATH = PROGRAM.map((_, i) => i).slice(3);
+
+          const lines = [...titleEl.querySelectorAll(".asm-line")].map(
+            (line) => ({
+              lbl: line.querySelector(".lbl")!,
+              ins: line.querySelector(".ins")!,
+            })
+          );
+
+          const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+          const applyPc = (pc: number) => {
+            const n = PROGRAM.length;
+            [pc - 1, pc, pc + 1].forEach((idx, row) => {
+              const [l, i] = PROGRAM[(idx + n) % n];
+              lines[row].lbl.textContent = l;
+              lines[row].ins.textContent = i;
+            });
+          };
+
+          let hovered = false;
+          let running = false;
+
+          const run = async () => {
+            if (running) return;
+            running = true;
+            do {
+              for (const pc of PATH) {
+                applyPc(pc);
+                await sleep(STEP_MS);
+              }
+              applyPc(REST_PC);
+              if (hovered) await sleep(STEP_MS * 2);
+            } while (hovered);
+            running = false;
+          };
+
+          const start = () => {
+            hovered = true;
+            run();
+          };
+          const stop = () => {
+            hovered = false;
+          };
+
+          titleEl.addEventListener("mouseenter", start);
+          titleEl.addEventListener("mouseleave", stop);
+          titleEl.addEventListener("focus", start);
+          titleEl.addEventListener("blur", stop);
+        }
+      }
+
       const trail = document.getElementById("trail");
       const finePointer = window.matchMedia("(pointer: fine)").matches;
       const reducedMotion = window.matchMedia(

@@ -75,6 +75,8 @@ main,
 }
 
 .site-title {
+  position: relative;
+  display: inline-block;
   font-size: 0.95rem;
   line-height: 1.35;
   text-decoration: none;
@@ -86,8 +88,25 @@ main,
   white-space: pre;
 }
 
+/* The dim lines sit outside the layout flow (header stays one line tall)
+   and dissolve vertically away from the live line. */
 .site-title .asm-dim {
-  opacity: 0.3;
+  position: absolute;
+  left: 0;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.site-title .asm-dim:first-child {
+  bottom: 100%;
+  -webkit-mask-image: linear-gradient(to top, rgb(0 0 0 / 0.9), transparent);
+  mask-image: linear-gradient(to top, rgb(0 0 0 / 0.9), transparent);
+}
+
+.site-title .asm-dim:last-child {
+  top: 100%;
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.9), transparent);
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.9), transparent);
 }
 
 .site-title .asm-live {

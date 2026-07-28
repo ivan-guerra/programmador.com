@@ -5,8 +5,6 @@ pubDate: 2026-07-28
 tags: ["personal software", "agents"]
 ---
 
-# Personal Software? 
-
 Back in ~2015 we were shutting down my first [startup](https://techcrunch.com/2016/02/12/family-app-life360-acquires-couple-a-private-messaging-app-for-two/) (long story), and I was trying to figure out what I wanted to work on next. 
 
 Hardware was becoming powerful and cheap, so I started hacking on an OpenWRT-based router/server, with the goal of having an "always-on" hub that could both connect my home internally as well as provide an interface for external access. 

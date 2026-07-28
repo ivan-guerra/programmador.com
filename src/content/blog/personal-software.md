@@ -1,6 +1,6 @@
 ---
 title: "Personal Software?"
-description: ""
+description: "Computers are agents. Agents are computers."
 pubDate: 2026-07-28
 tags: ["personal software", "agents"]
 ---

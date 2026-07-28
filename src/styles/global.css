@@ -75,10 +75,27 @@ main,
 }
 
 .site-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.35;
   text-decoration: none;
   color: var(--text);
+}
+
+.site-title .asm-line {
+  display: block;
+  white-space: pre;
+}
+
+.site-title .asm-dim {
+  opacity: 0.3;
+}
+
+.site-title .asm-live {
+  font-weight: 700;
+}
+
+.site-title:hover .asm-live {
+  background: var(--accent);
 }
 
 .site-nav {

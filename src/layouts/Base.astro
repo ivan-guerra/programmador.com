@@ -6,7 +6,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "jumping loops — notes on software" } = Astro.props;
+const { title, description = "jumploops — notes on software" } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,7 +23,11 @@ const { title, description = "jumping loops — notes on software" } = Astro.pro
 
     <header class="site-header">
       <div class="wrap">
-        <a href="/" class="site-title">jumping loops</a>
+        <a href="/" class="site-title" aria-label="jumploops — home">
+          <span class="asm-line asm-dim" aria-hidden="true">{"           nop"}</span>
+          <span class="asm-line asm-live" aria-hidden="true">{"jumploops: jmp loops"}</span>
+          <span class="asm-line asm-dim" aria-hidden="true">{"           hlt"}</span>
+        </a>
         <nav class="site-nav" aria-label="Social links">
             <a
               href="https://github.com/jumploops"

@@ -17,15 +17,6 @@ const { title, description = "jumploops — a developer blog" } = Astro.props;
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-    <script is:inline>
-      const stored = localStorage.getItem("theme");
-      const theme =
-        stored ??
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light");
-      document.documentElement.dataset.theme = theme;
-    </script>
   </head>
   <body>
     <div class="trail" id="trail" aria-hidden="true"></div>
@@ -33,8 +24,7 @@ const { title, description = "jumploops — a developer blog" } = Astro.props;
     <header class="site-header">
       <div class="wrap">
         <a href="/" class="site-title">jumploops’ blog</a>
-        <div class="header-right">
-          <nav class="site-nav" aria-label="Social links">
+        <nav class="site-nav" aria-label="Social links">
             <a
               href="https://github.com/jumploops"
               target="_blank"
@@ -60,9 +50,6 @@ const { title, description = "jumploops — a developer blog" } = Astro.props;
               </svg>
             </a>
           </nav>
-          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-          </button>
-        </div>
       </div>
     </header>
 
@@ -76,22 +63,6 @@ const { title, description = "jumploops — a developer blog" } = Astro.props;
         <span>built with <a href="https://astro.build">astro</a></span>
       </div>
     </footer>
-
-    <script is:inline>
-      const toggle = document.getElementById("theme-toggle");
-      const setIcon = () => {
-        toggle.textContent =
-          document.documentElement.dataset.theme === "dark" ? "☀" : "☾";
-      };
-      setIcon();
-      toggle.addEventListener("click", () => {
-        const next =
-          document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-        document.documentElement.dataset.theme = next;
-        localStorage.setItem("theme", next);
-        setIcon();
-      });
-    </script>
 
     <script>
       const trail = document.getElementById("trail");

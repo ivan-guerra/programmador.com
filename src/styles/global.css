@@ -11,16 +11,6 @@
     Menlo, Consolas, "Liberation Mono", monospace;
 }
 
-:root[data-theme="dark"] {
-  --bg: #16161c;
-  --text: #ececec;
-  --muted: #9a9aa2;
-  --surface: #1f1f27;
-  --border: #ececec;
-  --shadow: #000000;
-  --accent: #ffd23f;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -47,11 +37,6 @@ body {
   overflow: hidden;
   z-index: 0;
   pointer-events: none;
-  opacity: 1;
-}
-
-:root[data-theme="dark"] .trail {
-  opacity: 0.4;
 }
 
 .trail-circle {
@@ -96,12 +81,6 @@ main,
   color: var(--text);
 }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-}
-
 .site-nav {
   display: flex;
   gap: 0.6rem;
@@ -122,32 +101,6 @@ main,
 .site-nav a:hover {
   background: var(--accent);
   color: #141414;
-}
-
-.theme-toggle {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  line-height: 1;
-  color: var(--text);
-  background: var(--surface);
-  border: 2.5px solid var(--border);
-  box-shadow: 3px 3px 0 var(--shadow);
-  width: 2.4rem;
-  height: 2.4rem;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.theme-toggle:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 var(--shadow);
-}
-
-.theme-toggle:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 var(--shadow);
 }
 
 .site-footer {

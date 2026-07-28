@@ -21,7 +21,7 @@ I still think it could have worked — in some sense it [did](https://www.reddit
 
 Large language models have reduced the cost of _writing_ software to almost nothing*.
 
-I'm writing this blog, using a CMS built on top of [Astro](https://astro.build/), that I built with Claude Fable 15 minutes ago. 
+I'm writing this blog, using a [home-grown CMS](https://github.com/jumploops/.com#admin-editor-admin) built on top of [Astro](https://astro.build/), that I built with Claude Fable 15 minutes ago. 
 
 The existing solutions didn't fit my needs, and building the markdown editor -> deploy pipeline was faster than importing and dealing with the contraints of an existing system.
   

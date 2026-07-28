@@ -24,9 +24,9 @@ const { title, description = "jumploops — notes on software" } = Astro.props;
     <header class="site-header">
       <div class="wrap">
         <a href="/" class="site-title" aria-label="adam — home">
-          <span class="asm-line asm-dim" aria-hidden="true">{"      noop"}</span>
-          <span class="asm-line asm-live" aria-hidden="true">{"adam: jump loops"}</span>
-          <span class="asm-line asm-dim" aria-hidden="true">{"      halt"}</span>
+          <span class="asm-line asm-dim" aria-hidden="true">{"      "}<span class="op" data-full="noop" data-short="nop"></span></span>
+          <span class="asm-line asm-live" aria-hidden="true">{"adam: "}<span class="op" data-full="jump" data-short="jmp"></span>{" loops"}</span>
+          <span class="asm-line asm-dim" aria-hidden="true">{"      "}<span class="op" data-full="halt" data-short="hlt"></span></span>
         </a>
         <nav class="site-nav" aria-label="Social links">
             <a

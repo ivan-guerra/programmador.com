@@ -88,6 +88,15 @@ main,
   white-space: pre;
 }
 
+/* Spelled-out on rest; collapse to the real mnemonics on hover. */
+.site-title .op::before {
+  content: attr(data-full);
+}
+
+.site-title:hover .op::before {
+  content: attr(data-short);
+}
+
 /* The dim lines sit outside the layout flow (header stays one line tall)
    and dissolve vertically away from the live line. */
 .site-title .asm-dim {

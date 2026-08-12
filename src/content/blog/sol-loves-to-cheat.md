@@ -45,7 +45,7 @@ Sitting on my high horse, I surveyed the landscape and thought "wow, everyone sh
   
 What's the best way to do to that? Benchmarks!
   
-What's the best benchmark to test this with? Not [Terminal Bench[(https://github.com/harbor-framework/terminal-bench)! 
+What's the best benchmark to test this with? Not [Terminal Bench](https://github.com/harbor-framework/terminal-bench)! 
   
 What benchmark did I dive too deep on? Terminal Bench 2.1!
   

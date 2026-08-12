@@ -5,8 +5,6 @@ pubDate: 2026-08-12
 tags: ["llm", "harness", "benchmark"]
 ---
 
-## Background
-  
 I've been running a "spec-driven" development flow for the past year. 
   
 It's pretty simple.
@@ -129,19 +127,19 @@ I tried lowering the reasoning level, using simplified language, reducing the sp
   
 A few things showed promise. 
   
-The first was a third context. The idea was that we could use an agent that only saw the commentary/reasoning of the worker, and would surface all of the potential mismatches/assumptions that worker made compared to the strict details of the request. 
+The first was a **third context**. The idea was that we could use an agent that only saw the commentary/reasoning of the worker, and would surface all of the potential mismatches/assumptions that worker made compared to the strict details of the request. 
 
 The supervisor could then review the assumptions the worker took, and ask it to revisit or question said steps. This kind of works, but it's slow and happens after the fact. 
   
-Another idea was to ask the model to output "open questions" -- something I do with my more hands-on development. The initial idea was to have the worker return open questions (rather than a full design doc) whenever it faced them, have the supervisor resolve them. This would free up the supervisor's context to be the forest rather than the trees.
+Another idea was to **ask the model to output "open questions"** -- something I do with my more hands-on development. The initial idea was to have the worker return open questions (rather than a full design doc) whenever it faced them, have the supervisor resolve them. This would free up the supervisor's context to be the forest rather than the trees.
 
-Still, even with a reduced context, the supervisor was still hard-pressed to disagree with the worker's conclusions or overly eager to expand on trivial details. 
+Still, even with a reduced context, the **supervisor was still hard-pressed to disagree with the worker's conclusions** or overly eager to expand on trivial details. 
 
-To remove this bias, the next idea was to employ a separate context, which would first map and reduce (everything old is new again!) the questions, in an attempt to remove any inherent or unfound bias, before ultimately returning a normalized version to the supervisor (or directly to the worker). 
+To remove this bias, the next idea was to employ a separate context, which would first **map and reduce** (everything old is new again!) the questions, in an attempt to remove any inherent or unfound bias, before ultimately returning a normalized version to the supervisor (or directly to the worker). 
   
 This worked better, but it relies on the worker announcing the correct issues _as questions_. 
   
-It turns out, with Sol, it's much easier to have it output _it's decisions_ (along with alternatives it weighed them against) mid-process, than questions. The model is confident, so it doesn't see it's assumptions as questions, even if it has already stated the alternatives in it's reasoning or commentary.
+It turns out, with Sol, it's much easier to have it **output _it's decisions_, rather than it's questions.** The model is confident, so it doesn't see it's assumptions as questions, even if it has already stated the alternatives in it's reasoning or commentary.
 
 With decisions in hand, the supervisor (or third context) can pause the worker, assess the decisions as questions, and then steer appropriately. 
 
@@ -183,7 +181,7 @@ Uh oh, were all of our past successes due to cheating?
   
 ## Is it really Sol? 
 
-I investigated the two recent passing runs for Chum-Codex (our harness) on `torch-pipeline-parallelism` and found something disturbing. 
+I investigated the two recent passing runs for chum-codex on `torch-pipeline-parallelism` and found something disturbing. 
  
 We explicitly disable the web search feature in Codex, but life finds a way: 
   
@@ -213,4 +211,4 @@ Heck, even Terminal Bench 3.0 has added the following instructions to all of the
 
 > **"Do not cheat by using online solutions or hints specific to this task."**
 
-Is this enough? Unlikely.
+Is this enough? **Unlikely.**

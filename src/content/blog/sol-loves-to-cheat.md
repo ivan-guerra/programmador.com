@@ -83,7 +83,7 @@ For context: this was on June 25th, 2026 and rumors were spreading that GPT-5.6 
 
 I ran three vanilla Codex benchmarks... and my heart sank: 88.8% 
   
-_My harness_ was just one task ahead of vanilla Codex. 
+My harness was _just one task ahead_ of vanilla Codex. 
   
 Some tasks were clearly improved, others had regressed. 
   
@@ -181,7 +181,7 @@ Intriguing.
 
 I had an agent review all the runs and determine what worked and what didn't work. 
 
-GPT-5.6 Sol on vanilla Codex [cheated](https://gist.github.com/jumploops/5136460fdb96da3470a8f99f20fa879d).
+**GPT-5.6 Sol [cheated](https://gist.github.com/jumploops/5136460fdb96da3470a8f99f20fa879d) every time** (_xhigh on vanilla Codex_).
   
 Uh oh, were all of our past successes due to cheating? 
   
@@ -209,13 +209,13 @@ The `torch-pipeline` task wasn't the only one to fail today, giving me an eerie 
 It seems the better the models become, the harder they'll be to build useful guardrails around, and for now I need a break. 
   
 I'll probably revisit the harness as I engage more with the problems I face with Sol, Fable, and beyond, but for now I'm going to stick with a hands-on approach to my development. 
-  
-As the models get more powerful, **I need to instruct them less, but the instruction is more important than ever.** 
-  
-Putting them in a loop with lazy prompting can be fun, but trusting their output seems harder now than ever. 
+
+Putting powerful models in a loop with lazy prompting can be fun, but trusting their output is getting harder. 
+   
+As the models get more powerful, **I need to instruct them less, but the instruction is now more important than ever.** 
   
 Heck, even Terminal Bench 3.0 has added the following instructions to all of their [tasks](https://github.com/harbor-framework/terminal-bench/blob/v3.0.0/tasks/distributed-dedup/instruction.md): 
 
 > **"Do not cheat by using online solutions or hints specific to this task."**
-
+  
 Is this enough? **Unlikely.**

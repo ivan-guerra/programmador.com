@@ -1,11 +1,17 @@
 ---
 title: "Sol loves to cheat"
-description: ""
+description: "Adventures in harness engineering"
 pubDate: 2026-08-12
 tags: ["llm", "harness", "benchmark"]
 ---
 
-I've been running a "spec-driven" development flow for the past year. 
+_tl;dr_
+
+> What started as an exploration to build a custom harness, quickly led to the discovery of GPT-5.6 Sol using `curl` to cheat a benchmark task it had successfully passed many times before.
+
+## Background
+
+I've been running a "spec-driven" development flow for the past ~year. 
   
 It's pretty simple.
   
@@ -139,7 +145,7 @@ To remove this bias, the next idea was to employ a separate context, which would
   
 This worked better, but it relies on the worker announcing the correct issues _as questions_. 
   
-It turns out, with Sol, it's much easier to have it **output _it's decisions_, rather than it's questions.** The model is confident, so it doesn't see it's assumptions as questions, even if it has already stated the alternatives in it's reasoning or commentary.
+It turns out, with Sol, it's much easier to have it **output _its decisions_, rather than it's questions.** The model is confident, so it doesn't see it's assumptions as questions, even if it has already stated the alternatives in it's reasoning or commentary.
 
 With decisions in hand, the supervisor (or third context) can pause the worker, assess the decisions as questions, and then steer appropriately. 
 

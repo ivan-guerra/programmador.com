@@ -171,7 +171,9 @@ So the user wants to check that the agent booted the VM, so the agent leaves the
   
 Before moving on to better things, I decided I wanted to share our results with the world, with the caveat that it's a little too benchmark hacky for my liking (the whole third context map-reducer thing). 
   
-I ran the benchmark once before doing the full N=5 run, and was surprised to see a previously passing task had failed: `torch-pipeline-parallelism` 
+I ran the benchmark once before doing the full N=5 run, and was surprised to see a previously passing task had failed: 
+ 
+`torch-pipeline-parallelism` 
   
 I ran it a couple of times. 1/3 worked.
   
@@ -187,7 +189,7 @@ Uh oh, were all of our past successes due to cheating?
   
 ## Is it really Sol? 
 
-I investigated the two recent passing runs for chum-codex on `torch-pipeline-parallelism` and found something disturbing. 
+I looked at two passing runs for chum-codex on `torch-pipeline` and found something disturbing. 
  
 The web search feature was explicitly disabled in Codex, but life finds a way: 
   

@@ -7,7 +7,7 @@ tags: ["llm", "harness", "benchmark"]
 
 _tl;dr_
 
-> What started as an exploration to build a custom harness, quickly led to the discovery of GPT-5.6 Sol using `curl` to cheat a benchmark task it had successfully passed many times before.
+> What started as an exploration in custom harnesses, quickly led to the discovery of GPT-5.6 Sol using `curl` to cheat.
 
 ## Background
 
@@ -15,31 +15,31 @@ I've been running a "spec-driven" development flow for the past ~year.
   
 It's pretty simple.
   
-Before asking an LLM to _do something_, I first ask it to review the current implementation and draft a doc for _what it needs to do._ 
+Before asking an LLM to _do something_, I first ask it to draft a doc for _what it needs to do._ 
   
 I use this strategy for feature development, greenfield projects, debugging, you name it. 
   
-The pattern works well enough, but it's a bit repetitive. 
+The pattern works for me, but it's a bit repetitive. 
   
-So I decided to attempt to automate it. 
+So I decided to automate it. 
 
 ## chum-codex
   
-The idea was straightforward: I'd create a **supervisor agent**, that would run the spec-driven "process" and use **worker subagents** to actually write the docs, do the work, etc. 
+The idea was straightforward: I'd create a **supervisor agent**, that would run a "spec-driven process" by delegating to **worker subagents** who would actually write the docs, do the work, etc. 
   
 > _Note: when trying to do this with vanilla Codex or Claude Code, it would somewhat work, but the default prompts are catered to a user much more so than a "supervisor"_
   
-I determined the supervisor agent only needs the ability to read files and call workers, because that's what I do. 
+I determined the supervisor agent only needed the ability to read files and call workers, because that's what I do. 
   
-Rather than rebuild a coding harness, I looked at [Pi](https://pi.dev/), [OpenCode](https://opencode.ai/), and Codex's [App Server](https://learn.chatgpt.com/docs/app-server).
+Rather than rebuild a coding harness for the workers, I looked at [Pi](https://pi.dev/), [OpenCode](https://opencode.ai/), and Codex's [App Server](https://learn.chatgpt.com/docs/app-server).
 
 I'd been using Codex for quite awhile, so I decided to give app-server a spin. The other options are cool, you should check them out.
   
-Anyhow, the first version worked well enough. The supervisor would size the task, call the worker with e.g. a design request, the worker would spit out a doc, the supervisor would then ask the worker to turn that doc into an implementation spec (split by phase, as appropriate), and then finally ask the worker to actually implement the thing. 
+Anyhow, the first version worked well enough: the supervisor would size the task, call a worker with e.g. a design request, the worker would spit out a doc, the supervisor would then ask the worker to turn that doc into an implementation spec (split by phase, as appropriate), and then finally ask the worker to actually implement the thing. 
   
 Woot! I'd saved some time in my development process.
 
-(or did I?) 
+_(or did I?)_
 
 ## The Rabbit Hole
   
@@ -51,7 +51,7 @@ Sitting on my high horse, I surveyed the landscape and thought "wow, everyone sh
   
 What's the best way to do that? Benchmarks!
   
-What's the best benchmark to test this with? Not [Terminal Bench](https://github.com/harbor-framework/terminal-bench)! 
+What's the best benchmark use? Not [Terminal Bench](https://github.com/harbor-framework/terminal-bench)! 
   
 What benchmark did I dive too deep on? Terminal Bench 2.1!
   
@@ -63,9 +63,9 @@ Because it's so simple, **it's probably one of the worst benchmarks to test a sp
   
 Due to its simple nature, however, it was easy to test against. 
 
-I started with a few of the tasks that the published GPT-5.5 failed at, such as DNA assembly/insert, video extraction/processing, ELF extraction, and protein assembly.
+I started with a few of the tasks that vanilla Codex w/GPT-5.5 failed at, such as DNA assembly/insert, video extraction/processing, ELF extraction, and protein assembly.
 
-These tasks benefited from a "design pass" before implementation. 
+These tasks benefited from a "design pass" before implementation, as the doc helped avoid narrowing and circular validation. 
 
 The horse I was riding just got a lot taller.  
 
@@ -73,27 +73,27 @@ The horse I was riding just got a lot taller.
   
 ## GPT-5.6? 
 
-The [published](https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest?tab=leaderboard&leaderboard=main) GPT-5.5 benchmark is 83.8% (~74/89 tasks, across 5 runs).
+The [published](https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest?tab=leaderboard&leaderboard=main) GPT-5.5 benchmark is **83.8%** (~74/89 tasks, 5 runs).
   
-`chum-codex` was hitting 89.9% or [~80/89 tasks](https://gist.github.com/jumploops/09087cfbad3efaa94da5f6bddaacfd06).
+`chum-codex` was hitting **89.9%** or [~80/89 tasks](https://gist.github.com/jumploops/09087cfbad3efaa94da5f6bddaacfd06).
 
-Excited to share the news of my harness beating Codex, I ran a couple of vanilla Codex benchmarks just to make sure. 
+Excited to share the news of beating Codex, I ran a couple of vanilla Codex benchmarks just to make sure. 
   
 For context: this was on June 25th, 2026 and rumors were spreading that GPT-5.6 was imminent. 
 
-I ran three vanilla Codex benchmarks... and my heart sank: 88.8% 
+I ran three vanilla Codex benchmarks... and my heart sank: **88.8%**
   
 My harness was _just one task ahead_ of vanilla Codex. 
   
 Some tasks were clearly improved, others had regressed. 
   
-I reached out to OpenAI, and they mentioned GPT-5.6 was being tested, but confirmed the request IDs from my calls all hit GPT-5.5. 
+_I reached out to OpenAI, and they mentioned GPT-5.6 was being tested, but confirmed the request IDs from my calls all hit GPT-5.5._
   
 The next day, GPT-5.6 Sol was [announced](https://openai.com/index/previewing-gpt-5-6-sol/). 
 
-Interestingly, Terminal Bench 2.1 was the _only coding-related benchmark they initially shared_, showing 88.8% on GPT-5.6 Sol and 91.9% on Sol Ultra. 
+Interestingly, Terminal Bench 2.1 was the only coding-related benchmark they initially shared, showing **88.8%** on GPT-5.6 Sol and **91.9%** on Sol Ultra. 
   
-Similar to my setup, Ultra uses subagents to do work, though in my testing it's quite a bit more token-heavy than most people want/need for most tasks.
+Sol Ultra, similar to my setup, uses subagents to do work, though in my testing it's quite a bit more token-heavy than most people want/need for the majority of their tasks.
   
 In either case, I was excited to see the new frontier! 
 
@@ -103,31 +103,31 @@ GPT-5.6 is a much harder to steer.
   
 Switching from 5.5 to 5.6 made my harness drop in effectiveness. Things that were easy to do before, were now much more difficult. 
   
-I traced part of this to a change in the base Codex prompt. For GPT-5.5, [the prompt](https://gist.github.com/jumploops/56b45522d5b1fbbeb113001346580e4f) is coding-focused and spends a lot of time on "engineering judgment" including frontend guidance, editing constraints, and having "sympathy with the codebase already in front of you"
+I traced part of this delta to a change in the base Codex prompt. For GPT-5.5, [the prompt](https://gist.github.com/jumploops/56b45522d5b1fbbeb113001346580e4f) is coding-focused and spends a lot of time on "engineering judgment" including frontend guidance, editing constraints, and having "sympathy with the codebase already in front of you."
   
-The codex prompt for GPT-5.6 is [much different](https://gist.github.com/jumploops/2063c2b7c9aeca76449f12567212251d), spending almost zero energy on engineering related specifics. Instead it focuses on communication, autonomy and persistence, and skills (previously loaded in as a separate prompt for 5.5). 
+The Codex prompt for GPT-5.6 is [much different](https://gist.github.com/jumploops/2063c2b7c9aeca76449f12567212251d), spending almost zero energy on engineering related specifics. Instead it focuses on communication, autonomy/persistence, and skills (which were previously loaded in as a separate prompt for 5.5). 
   
-Similar to what many others have realized, and as I predicted [8 months ago](https://x.com/jumploops/status/2009910802170740771), as the models get better, they'll need less ceremony to get them to work effectively. 
+Similar to what others have realized, and as I predicted [8 months ago](https://x.com/jumploops/status/2009910802170740771), as the models get better, they seem to need less ceremony to work effectively. 
   
-On the flip side, as the models get _better_, they'll become [harder to control](https://openai.com/index/hugging-face-model-evaluation-security-incident/).
+On the flip side, as the models get _better_, they're become [harder to control](https://openai.com/index/hugging-face-model-evaluation-security-incident/).
   
-A simple example of this is the Pytorch task from Terminal Bench 2.1.
+A simple example of this is the PyTorch task on Terminal Bench 2.1.
   
 With GPT-5.6 Luna and Terra, the model is easily steered into a general solution that accepts two inputs: `forward(src, tgt)` 
   
-With Sol, and especially at higher reasoning levels, the model _regardless of steering_ will default to a single input `forward(src)` solution. 
+With Sol, and especially at higher reasoning levels, the model will, _regardless of steering_, default to a single input `forward(src)` solution. 
   
-The problem, it seems, is that the model is incredibly hard to steer away from its own reasoning. Even if instructed to very literally accept the broadest callable interface it can (which sometimes works, if repeated, at medium reasoning, but never works at xhigh). 
+The problem, it seems, is that the model is incredibly hard to steer away from its own reasoning. Even if instructed to very literally accept the broadest callable interface it can (which sometimes works, if repeated, at medium reasoning, but rarely works at xhigh). 
   
-Wrestling with this model led me down a path that got way too close to benchmark hacking for my liking; but I was too intrigued to stop. 
+Wrestling with this model led me down a path that got **way too close to benchmark hacking** for my liking; but I was too intrigued to stop. 
   
 ## 94% on TB 2.1
   
-Having reduced my prompts substantially, it felt like I was starting over. Even if I wanted to directly hack the benchmark, the model wouldn't let me. Its circular reasoning was too strong to overcome in some cases, and the supervisor was all too willing to go along with its intelligent worker's report.
+Having reduced my prompts substantially, it started to feel like I was starting over. Even if I wanted to directly hack the benchmark, the model wouldn't let me. Its circular reasoning was too strong to overcome in some cases, and the supervisor was all too willing to go along with its intelligent worker's report.
   
-It's a tough balance, if you swing too far in the other direction, the supervisor will happily expand scope or chase validation endlessly. 
+It's a tough balance, if you swing too far in one direction, the supervisor will happily expand scope or chase validation endlessly. 
 
-These are simple tasks. I want a working solution on the first pass, not limitless expansion. 
+These are straightforward tasks. I want a working solution on the first pass, not limitless expansion. 
   
 I tried lowering the reasoning level, using simplified language, reducing the spec-driven flow, adding new skills, etc. Some things improved, but others failed. 
   

@@ -137,15 +137,15 @@ The first was a **third context**. The idea was that I could use an agent that o
 
 The supervisor could then review the assumptions the worker took, and ask it to revisit or question said steps. This kind of works, but it's slow and happens after the fact. 
   
-Another idea was to **ask the model to output "open questions"** -- something I do with my more hands-on development. The initial idea was to have the worker return open questions (rather than a full design doc) whenever it faced them, have the supervisor resolve them. This would free up the supervisor's context to be the forest rather than the trees.
+Another idea was to **ask the model to output "open questions"** -- something I do with my more hands-on development. The initial idea was to have the worker return open questions (rather than a full design doc) whenever it faced them, and then have the supervisor resolve them. This would free up the supervisor's context, showing it the forest rather than the trees.
 
-Still, even with a reduced context, the **supervisor was still hard-pressed to disagree with the worker's conclusions** or overly eager to expand on trivial details. 
+Still, even with a reduced context, the **supervisor was hard-pressed to disagree with the worker's conclusions** (or on the flip-side, overly eager to expand on trivial details). 
 
 To remove this bias, the next idea was to employ a separate context, which would first **map and reduce** (everything old is new again!) the questions, in an attempt to remove any inherent or unfound bias, before ultimately returning a normalized version to the supervisor (or directly to the worker). 
   
-This worked better, but it relies on the worker announcing the correct issues _as questions_. 
+This performed better, but it relied on the worker announcing the correct issues _as questions_. 
   
-It turns out, with Sol, it's much easier to have it **output _its decisions_, rather than its questions.** The model is confident, so it doesn't see its assumptions as questions, even if it has already stated the alternatives in its reasoning or commentary.
+With Sol, it turns out, it's much easier to have it **output _its decisions_, rather than its questions.** The model is confident, so it doesn't see its assumptions as questions, even if it has already stated the alternatives in its reasoning or commentary.
 
 With decisions in hand, the supervisor (or third context) can pause the worker, assess the decisions as questions, and then steer appropriately. 
 
@@ -161,7 +161,9 @@ Back on my high horse, having finally harnessed Sol, and already way too far dow
   
 No longer looking exclusively at vanilla Codex regressions, I wanted to see what was stopping us from hitting 86 or 88/89. 
   
-Long story short, the tasks in Terminal Bench 2.1 are poorly specified, and that's the reason we're seeing Mythos, GPT-5.6, etc. top out around 88.8% without more robust machinery. 
+Long story short, the tail end of tasks in Terminal Bench 2.1 are poorly specified, and that's the reason we're seeing Mythos, GPT-5.6, etc. top out around 88.8% without more robust machinery.
+  
+> The direction needed to perform better in one task, actively harms another. 
   
 An example is `make-mips-interpreter` which informs the agent that the _"I (the user) will check that you booted doom correctly"_ 
   
@@ -169,7 +171,9 @@ The [problem](https://github.com/harbor-framework/terminal-bench-2-1/issues/9)? 
   
 So the user wants to check that the agent booted the VM, so the agent leaves the file behind to prove it booted, but the user's test fails early if the file already exists. A catch-22! 
   
-Before moving on to better things, I decided I wanted to share our results with the world, with the caveat that it's a little too benchmark hacky for my liking (the whole third context map-reducer thing). 
+> Fixing this is possible, by prompting the system to remove validation state/override a user concern, but that fix (obviously) backfires in other tasks/usecases
+  
+Before moving on to better things, I decided I wanted to share our results with the world, with the caveat that **it's a little too benchmark hacky for my liking** (the whole third context map-reducer thing works for this benchmark, but in the real world I can just write better instructions and/or iterate with follow-on messages).
   
 I ran the benchmark once before doing the full N=5 run, and was surprised to see a previously passing task had failed: 
  
@@ -177,21 +181,23 @@ I ran the benchmark once before doing the full N=5 run, and was surprised to see
   
 I ran it a couple of times. 1/3 worked.
   
-Diving into the details, I couldn't figure out what had changed with our harness, so I tested it against Vanilla Codex. It passed 3/3 times. 
+Diving into the details, I couldn't figure out what had changed with our harness, so I tested it against Vanilla Codex, also on xhigh. 
+  
+It passed 3/3 times. 
   
 Intriguing. 
+ 
+I had reviewed the runs to determine what worked and what didn't work. 
 
-I had an agent review all the runs and determine what worked and what didn't work. 
-
-**GPT-5.6 Sol [cheated](https://gist.github.com/jumploops/5136460fdb96da3470a8f99f20fa879d) every time** (_xhigh on vanilla Codex_).
+**GPT-5.6 Sol [cheated](https://gist.github.com/jumploops/5136460fdb96da3470a8f99f20fa879d) every time**.
   
-Uh oh, were all of our past successes due to cheating? 
+Uh oh, were _all_ of our past successes due to cheating? 
   
 ## Is it really Sol? 
 
 I looked at two passing runs for chum-codex on `torch-pipeline` and found something disturbing. 
  
-The web search feature was explicitly disabled in Codex, but life finds a way: 
+The web search feature was disabled for workers, but life finds a way: 
   
 ![codex-sol-cheating](https://r2.jumploops.com/codex-sol-cheating.png)
 _GPT-5.6 Sol on xhigh, using curl to access DuckDuckGo, Github, grep.app, and SourceGraph_
@@ -206,18 +212,20 @@ Given the recent [news](https://openai.com/index/responding-next-frontier-critic
 
 ## What's next
   
-The `torch-pipeline` task wasn't the only one to fail today, giving me an eerie reminder of upgrading our harness from GPT-5.5 to GPT-5.6. 
+The `torch-pipeline` task wasn't the only one to fail today, giving me an eerie reminder of migrating from GPT-5.5 to GPT-5.6. 
   
-It seems the better the models become, the harder they'll be to build useful guardrails around, and for now I need a break. 
+It seems that the better the models become, the harder it'll be to build useful guardrails around, and for now I need a break. 
   
 I'll probably revisit the harness as I engage more with the problems I face with Sol, Fable, and beyond, but for now I'm going to stick with a hands-on approach to my development. 
 
 Putting powerful models in a loop with lazy prompting can be fun, but trusting their output is getting harder. 
    
-As the models get more powerful, **I need to instruct them less, but the instruction is now more important than ever.** 
+As the models get more powerful, **I need to instruct them less, but those instructions are more important than ever.** 
   
-Heck, even Terminal Bench 3.0 has added the following instructions to all of their [tasks](https://github.com/harbor-framework/terminal-bench/blob/v3.0.0/tasks/distributed-dedup/instruction.md): 
+Heck, even the new Terminal Bench 3.0 has the following instructions added to all of their [tasks](https://github.com/harbor-framework/terminal-bench/blob/v3.0.0/tasks/distributed-dedup/instruction.md): 
 
 > **"Do not cheat by using online solutions or hints specific to this task."**
   
 Is this enough? **Unlikely.**
+
+  

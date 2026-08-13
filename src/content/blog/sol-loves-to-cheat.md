@@ -35,7 +35,7 @@ Rather than rebuild a coding harness, I looked at [Pi](https://pi.dev/), [OpenCo
 
 I'd been using Codex for quite awhile, so I decided to give app-server a spin. The other options are cool, you should check them out.
   
-Anyhow, the first version worked well enough. The supervisor would size the task, call the worker with e.g. a design request, the worker would spit out a doc, the supervisor would then ask the worker to turn that doc into an implementation spec (split by phase, as appropiate), and then finally ask the worker to actually implement the thing. 
+Anyhow, the first version worked well enough. The supervisor would size the task, call the worker with e.g. a design request, the worker would spit out a doc, the supervisor would then ask the worker to turn that doc into an implementation spec (split by phase, as appropriate), and then finally ask the worker to actually implement the thing. 
   
 Woot! I'd saved some time in my development process.
 
@@ -49,7 +49,7 @@ Great, it worked; hacky, but working.
   
 Sitting on my high horse, I surveyed the landscape and thought "wow, everyone should see this!"   
   
-What's the best way to do to that? Benchmarks!
+What's the best way to do that? Benchmarks!
   
 What's the best benchmark to test this with? Not [Terminal Bench](https://github.com/harbor-framework/terminal-bench)! 
   
@@ -61,7 +61,7 @@ If you're not familiar with agentic benchmarks, Terminal Bench's name gives it a
   
 Because it's so simple, **it's probably one of the worst benchmarks to test a spec-driven development flow.**
   
-Due to it's simple nature, however, it was easy to test against. 
+Due to its simple nature, however, it was easy to test against. 
 
 I started with a few of the tasks that the published GPT-5.5 failed at, such as DNA assembly/insert, video extraction/processing, ELF extraction, and protein assembly.
 
@@ -117,23 +117,23 @@ With GPT-5.6 Luna and Terra, the model is easily steered into a general solution
   
 With Sol, and especially at higher reasoning levels, the model _regardless of steering_ will default to a single input `forward(src)` solution. 
   
-The problem, it seems, is that the model is incredibly hard to steer away from it's own reasoning. Even if instructed to very literally accept the broadest callable interface it can (which sometimes works, if repeated, at medium reasoning, but never works at xhigh). 
+The problem, it seems, is that the model is incredibly hard to steer away from its own reasoning. Even if instructed to very literally accept the broadest callable interface it can (which sometimes works, if repeated, at medium reasoning, but never works at xhigh). 
   
 Wrestling with this model led me down a path that got way too close to benchmark hacking for my liking; but I was too intrigued to stop. 
   
 ## 94% on TB 2.1
   
-Having reduced my prompts substantially, it felt like I was starting over. Even if I wanted to directly hack the benchmark, the model wouldn't let me. It's circular reasoning was too strong to overcome in some cases, and the supervisor was all too willing to go along with it's intelligent worker's report.
+Having reduced my prompts substantially, it felt like I was starting over. Even if I wanted to directly hack the benchmark, the model wouldn't let me. Its circular reasoning was too strong to overcome in some cases, and the supervisor was all too willing to go along with its intelligent worker's report.
   
 It's a tough balance, if you swing too far in the other direction, the supervisor will happily expand scope or chase validation endlessly. 
 
-These are simple tasks. We want a working solution on the first pass, not limitless expansion. 
+These are simple tasks. I want a working solution on the first pass, not limitless expansion. 
   
 I tried lowering the reasoning level, using simplified language, reducing the spec-driven flow, adding new skills, etc. Some things improved, but others failed. 
   
 A few things showed promise. 
   
-The first was a **third context**. The idea was that we could use an agent that only saw the commentary/reasoning of the worker, and would surface all of the potential mismatches/assumptions that worker made compared to the strict details of the request. 
+The first was a **third context**. The idea was that I could use an agent that only saw the commentary/reasoning of the worker, and would surface all of the potential mismatches/assumptions that worker made compared to the strict details of the request. 
 
 The supervisor could then review the assumptions the worker took, and ask it to revisit or question said steps. This kind of works, but it's slow and happens after the fact. 
   
@@ -145,7 +145,7 @@ To remove this bias, the next idea was to employ a separate context, which would
   
 This worked better, but it relies on the worker announcing the correct issues _as questions_. 
   
-It turns out, with Sol, it's much easier to have it **output _its decisions_, rather than it's questions.** The model is confident, so it doesn't see it's assumptions as questions, even if it has already stated the alternatives in it's reasoning or commentary.
+It turns out, with Sol, it's much easier to have it **output _its decisions_, rather than its questions.** The model is confident, so it doesn't see its assumptions as questions, even if it has already stated the alternatives in its reasoning or commentary.
 
 With decisions in hand, the supervisor (or third context) can pause the worker, assess the decisions as questions, and then steer appropriately. 
 
@@ -157,7 +157,7 @@ _Note: 1 task was cyber security blocked, but passed with a GPT-5.6 Terra fallba
 
 ## Sol loves to cheat
   
-Back on my high horse, having finally harnessed Sol, and already way too far down the path of using the benchmark for development rather than... as a benchmark, I wanted to see how far we could push this. 
+Back on my high horse, having finally harnessed Sol, and already way too far down the path of using the benchmark for development rather than... as a benchmark, I wanted to see how far I could push this. 
   
 No longer looking exclusively at vanilla Codex regressions, I wanted to see what was stopping us from hitting 86 or 88/89. 
   
@@ -171,7 +171,7 @@ So the user wants to check that the agent booted the VM, so the agent leaves the
   
 Before moving on to better things, I decided I wanted to share our results with the world, with the caveat that it's a little too benchmark hacky for my liking (the whole third context map-reducer thing). 
   
-I ran the benchmark once before doing the full N=5 run, and was surprised to see a previouly passing task had failed: `torch-pipeline-parallelism` 
+I ran the benchmark once before doing the full N=5 run, and was surprised to see a previously passing task had failed: `torch-pipeline-parallelism` 
   
 I ran it a couple of times. 1/3 worked.
   
@@ -189,27 +189,28 @@ Uh oh, were all of our past successes due to cheating?
 
 I investigated the two recent passing runs for chum-codex on `torch-pipeline-parallelism` and found something disturbing. 
  
-We explicitly disable the web search feature in Codex, but life finds a way: 
+The web search feature was explicitly disabled in Codex, but life finds a way: 
   
 ![codex-sol-cheating](https://r2.jumploops.com/codex-sol-cheating.png)
+_GPT-5.6 Sol on xhigh, using curl to access DuckDuckGo, Github, grep.app, and SourceGraph_
   
 It seems July 29th was the first "cheat" from vanilla Codex, and our harness cheated today, August 12th. 
 
 Our worker didn't have access to the `web_search` tool, so it instead decided to use curl to access DuckDuckGo, Github, grep.app, and SourceGraph.
   
-Concerned, and equally intrigued, we looked back at the 83/89 run from July 17th, but [found no evidence of cheating](https://gist.github.com/jumploops/ef9535daff9637d087dc9fba76077a50) on this or any other tasks.
+Concerned, and equally intrigued, I looked back at the 83/89 run from July 17th, but [found no evidence of cheating](https://gist.github.com/jumploops/ef9535daff9637d087dc9fba76077a50) on this or any other tasks.
   
 Given the recent [news](https://openai.com/index/responding-next-frontier-critical-cyber-capabilities/) and delay of their next model, one has to wonder... is this really Sol? 
 
 ## What's next
   
-The `torch-pipeline` task wasn't the only one to fail today, giving me an eery reminder of upgrading our harness from GPT-5.5 to GPT-5.6. 
+The `torch-pipeline` task wasn't the only one to fail today, giving me an eerie reminder of upgrading our harness from GPT-5.5 to GPT-5.6. 
   
 It seems the better the models become, the harder they'll be to build useful guardrails around, and for now I need a break. 
   
 I'll probably revisit the harness as I engage more with the problems I face with Sol, Fable, and beyond, but for now I'm going to stick with a hands-on approach to my development. 
   
-As the models get more powerful, I need to instruct them less, but the instruction is more important than ever. 
+As the models get more powerful, **I need to instruct them less, but the instruction is more important than ever.** 
   
 Putting them in a loop with lazy prompting can be fun, but trusting their output seems harder now than ever. 
   

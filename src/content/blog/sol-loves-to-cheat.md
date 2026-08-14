@@ -135,6 +135,25 @@ A few things showed promise.
   
 The first was a **third context**. The idea was that I could use an agent that only saw the commentary/reasoning of the worker, and would surface all of the potential mismatches/assumptions that worker made compared to the strict details of the request. 
 
+```mermaid
+flowchart TB
+    S["Supervisor"]
+    W["Worker"]
+    R["Commentary / Reasoning"]
+    A["Assumption Auditor"]
+
+    S -->|"task / steer"| W
+    W -->|"result"| S
+
+    W --> R
+    R -.->|"read-only visibility"| A
+    A -->|"assumptions surfaced"| S
+
+    W ~~~ A
+
+    style R fill:#6fc7e1,stroke:#141414,color:#141414
+```
+
 The supervisor could then review the assumptions the worker took, and ask it to revisit or question said steps. This kind of works, but it's slow and happens after the fact. 
   
 Another idea was to **ask the model to output "open questions"** -- something I do with my more hands-on development. The initial idea was to have the worker return open questions (rather than a full design doc) whenever it faced them, and then have the supervisor resolve them. This would free up the supervisor's context, showing it the forest rather than the trees.
@@ -146,6 +165,29 @@ To remove this bias, the next idea was to employ a separate context, which would
 This performed better, but it relied on the worker announcing the correct issues _as questions_. 
   
 With Sol, it turns out, it's much easier to have it **output _its decisions_, rather than its questions.** The model is confident, so it doesn't see its assumptions as questions, even if it has already stated the alternatives in its reasoning or commentary.
+
+```mermaid
+flowchart TB
+    S["Supervisor"]
+    W["Worker"]
+    D["Decisions"]
+    M["Map"]
+    R["Reduce"]
+
+    S -->|"task / steer"| W
+    W -->|"result"| S
+
+    W --> D
+    D --> M
+    M --> R
+    R -->|"normalized questions"| S
+
+    R -.->|"optional"| W
+
+    style D fill:#6fc7e1,stroke:#141414,color:#141414
+    style M fill:#f49bab,stroke:#141414,color:#141414
+    style R fill:#f49bab,stroke:#141414,color:#141414
+```
 
 With decisions in hand, the supervisor (or third context) can pause the worker, assess the decisions as questions, and then steer appropriately. 
 

@@ -3,6 +3,7 @@ import { env } from "cloudflare:workers";
 import { getDraft } from "../../../lib/drafts";
 import { splitFrontmatter } from "../../../lib/frontmatter";
 import { renderMarkdown } from "../../../lib/markdown";
+import MermaidDiagrams from "../../../components/MermaidDiagrams.astro";
 import "../../../styles/global.css";
 
 export const prerender = false;
@@ -55,5 +56,6 @@ const formatDate = (date: Date) =>
         <div class="prose" set:html={html} />
       </article>
     </main>
+    <MermaidDiagrams />
   </body>
 </html>

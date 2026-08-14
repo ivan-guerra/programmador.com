@@ -384,6 +384,20 @@ main,
   font-size: inherit;
 }
 
+.prose .mermaid-figure {
+  border: 2.5px solid var(--border);
+  box-shadow: 5px 5px 0 var(--shadow);
+  background: var(--surface);
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.prose .mermaid-figure svg {
+  display: block;
+  margin: 0 auto;
+}
+
 .prose img {
   max-width: 100%;
   border: 2.5px solid var(--border);

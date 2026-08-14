@@ -27,3 +27,4 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 welcome.md
+src/content/blog/zz-mermaid-test.md

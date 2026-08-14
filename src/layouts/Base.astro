@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import MermaidDiagrams from "../components/MermaidDiagrams.astro";
 
 interface Props {
   title: string;
@@ -67,6 +68,8 @@ const { title, description = "jumploops — notes on software" } = Astro.props;
         <span>built on <a href="https://github.com/jumploops/.com">astro</a></span>
       </div>
     </footer>
+
+    <MermaidDiagrams />
 
     <script>
       // Easter egg: hovering the title "executes" the program. The header

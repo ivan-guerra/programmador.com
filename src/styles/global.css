@@ -404,6 +404,42 @@ main,
   box-shadow: 5px 5px 0 var(--shadow);
 }
 
+/* Terminal-style block for reasoning traces / captured output. Unlike a
+   code fence it wraps and keeps inline markup (em/strong). */
+.prose .term {
+  background: #141414;
+  color: #f7f5ef;
+  border: 2.5px solid var(--border);
+  box-shadow: 5px 5px 0 var(--shadow);
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.prose .term[data-title]::before {
+  content: attr(data-title);
+  display: block;
+  color: #8a8a84;
+  font-size: 0.8rem;
+  border-bottom: 1.5px solid #3a3a36;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose .term p {
+  margin: 0 0 0.75rem;
+}
+
+.prose .term p:last-child {
+  margin-bottom: 0;
+}
+
+.prose .term strong {
+  color: var(--accent);
+}
+
 .prose .apex-figure {
   border: 2.5px solid var(--border);
   box-shadow: 5px 5px 0 var(--shadow);

@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import MermaidDiagrams from "../components/MermaidDiagrams.astro";
 import ImageLightbox from "../components/ImageLightbox.astro";
+import ApexCharts from "../components/ApexCharts.astro";
 
 interface Props {
   title: string;
@@ -71,6 +72,7 @@ const { title, description = "jumploops — notes on software" } = Astro.props;
     </footer>
 
     <MermaidDiagrams />
+    <ApexCharts />
     <ImageLightbox />
 
     <script>

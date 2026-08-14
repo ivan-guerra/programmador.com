@@ -1,0 +1,99 @@
+<script>
+  // Render ```apexcharts fences into charts styled to match the site.
+  // The fence holds JSON: either full ApexCharts options inline, or
+  // { "src": "/charts/data.json", ...overrides } to fetch options/data
+  // from a static asset. A file can hold several chart configs: "pick"
+  // names the top-level key to use (default "apexCharts"; a file that is
+  // itself a bare options object also works). The library is lazy-loaded
+  // only on pages that contain a chart; on any error the original code
+  // block is left in place.
+  const blocks = [
+    ...document.querySelectorAll<HTMLPreElement>(
+      'pre[data-language="apexcharts"]'
+    ),
+  ];
+
+  if (blocks.length > 0) {
+    const { default: ApexCharts } = await import("apexcharts");
+
+    const isObj = (v: unknown): v is Record<string, any> =>
+      !!v && typeof v === "object" && !Array.isArray(v);
+    const merge = (base: any, over: any): any => {
+      if (!isObj(base) || !isObj(over)) return over === undefined ? base : over;
+      const out = { ...base };
+      for (const [k, v] of Object.entries(over)) out[k] = merge(base[k], v);
+      return out;
+    };
+
+    const noMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const defaults = {
+      colors: [
+        "#6fc7e1",
+        "#ffd23f",
+        "#f49bab",
+        "#141414",
+        "#3d8ba6",
+        "#c9a227",
+        "#c25b6d",
+        "#5c5c56",
+        "#e08e45",
+        "#7d6b9e",
+      ],
+      chart: {
+        height: 380,
+        fontFamily:
+          'ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace',
+        foreColor: "#141414",
+        background: "transparent",
+        // Minimal toolbar: apex only shows the zoom/reset icons when the
+        // chart is zoomable, so non-zoomable charts get no toolbar at all.
+        toolbar: {
+          offsetY: -16,
+          tools: {
+            download: false,
+            selection: false,
+            pan: false,
+            zoomin: false,
+            zoomout: false,
+          },
+        },
+        animations: { enabled: !noMotion },
+      },
+      grid: { borderColor: "rgb(20 20 20 / 0.15)" },
+      xaxis: {
+        axisBorder: { show: true, color: "#141414" },
+        axisTicks: { color: "#141414" },
+      },
+      legend: {
+        horizontalAlign: "left",
+        markers: { shape: "square", size: 5 },
+      },
+      tooltip: { theme: "light" },
+    };
+
+    for (const pre of blocks) {
+      try {
+        const spec = JSON.parse(pre.textContent ?? "");
+        let options = spec;
+        if (typeof spec.src === "string") {
+          const res = await fetch(spec.src);
+          if (!res.ok) throw new Error(`${spec.src}: ${res.status}`);
+          const data = await res.json();
+          const { src, pick, ...overrides } = spec;
+          const base = data[pick ?? "apexCharts"] ?? data.apexCharts ?? data;
+          options = merge(base, overrides);
+        }
+        options = merge(defaults, options);
+        const figure = document.createElement("div");
+        figure.className = "apex-figure";
+        pre.replaceWith(figure);
+        await new ApexCharts(figure, options).render();
+      } catch (err) {
+        console.error("apexcharts render failed:", err);
+      }
+    }
+  }
+</script>

@@ -404,6 +404,14 @@ main,
   box-shadow: 5px 5px 0 var(--shadow);
 }
 
+.prose .apex-figure {
+  border: 2.5px solid var(--border);
+  box-shadow: 5px 5px 0 var(--shadow);
+  background: var(--surface);
+  padding: 1.25rem 1rem 0.5rem;
+  margin: 1.5rem 0;
+}
+
 .prose img.lightbox-target {
   cursor: zoom-in;
 }

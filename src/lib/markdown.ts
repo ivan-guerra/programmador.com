@@ -9,7 +9,10 @@ import {
 let processor: Promise<MarkdownProcessor> | null = null;
 
 function getProcessor() {
-  processor ??= createMarkdownProcessor();
+  processor ??= createMarkdownProcessor({
+    // Keep in sync with markdown.shikiConfig in astro.config.mjs.
+    shikiConfig: { langAlias: { apexcharts: "json" } },
+  });
   return processor;
 }
 

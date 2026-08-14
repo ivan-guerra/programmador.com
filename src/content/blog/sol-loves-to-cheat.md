@@ -37,6 +37,28 @@ I'd been using Codex for quite awhile, so I decided to give app-server a spin. T
   
 Anyhow, the first version worked well enough: the supervisor would size the task, call a worker with e.g. a design request, the worker would spit out a doc, the supervisor would then ask the worker to turn that doc into an implementation spec (split by phase, as appropriate), and then finally ask the worker to actually implement the thing. 
   
+_Note: this simplified diagram omits the user feedback portions e.g. design doc review_
+```mermaid
+---
+config:
+  sequence:
+    mirrorActors: false
+---
+sequenceDiagram
+    participant S as Supervisor
+    participant W as Worker
+
+    S->>S: Size task
+    S->>W: Design request
+    W-->>S: Design doc
+
+    S->>W: Create implementation spec
+    W-->>S: Phased implementation spec
+
+    S->>W: Implement
+    W-->>S: Result
+```
+
 Woot! I'd saved some time in my development process.
 
 _(or did I?)_
@@ -104,8 +126,14 @@ GPT-5.6 is a much harder to steer.
 Switching from 5.5 to 5.6 made my harness drop in effectiveness. Things that were easy to do before, were now much more difficult. 
   
 I traced part of this delta to a change in the base Codex prompt. For GPT-5.5, [the prompt](https://gist.github.com/jumploops/56b45522d5b1fbbeb113001346580e4f) is coding-focused and spends a lot of time on "engineering judgment" including frontend guidance, editing constraints, and having "sympathy with the codebase already in front of you."
+
+![gpt-5.5 prompt](https://r2.jumploops.com/codex-gpt-5.5-prompt-snippet.png)
+_Excerpt from GPT-5.5 prompt_
   
 The Codex prompt for GPT-5.6 is [much different](https://gist.github.com/jumploops/2063c2b7c9aeca76449f12567212251d), spending almost zero energy on engineering related specifics. Instead it focuses on communication, autonomy/persistence, and skills (which were previously loaded in as a separate prompt for 5.5). 
+
+![gpt-5.6 prompt](https://r2.jumploops.com/codex-gpt-5.6-sol-prompt-snippet.png)
+_Excerpt from GPT-5.6 Sol prompt_
   
 Similar to what others have realized, and as I predicted [8 months ago](https://x.com/jumploops/status/2009910802170740771), as the models get better, they seem to need less ceremony to work effectively. 
   

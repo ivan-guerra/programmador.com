@@ -4,6 +4,7 @@ import { getDraft } from "../../../lib/drafts";
 import { splitFrontmatter } from "../../../lib/frontmatter";
 import { renderMarkdown } from "../../../lib/markdown";
 import MermaidDiagrams from "../../../components/MermaidDiagrams.astro";
+import ImageLightbox from "../../../components/ImageLightbox.astro";
 import "../../../styles/global.css";
 
 export const prerender = false;
@@ -57,5 +58,6 @@ const formatDate = (date: Date) =>
       </article>
     </main>
     <MermaidDiagrams />
+    <ImageLightbox />
   </body>
 </html>

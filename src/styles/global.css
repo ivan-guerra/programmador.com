@@ -404,6 +404,31 @@ main,
   box-shadow: 5px 5px 0 var(--shadow);
 }
 
+.prose img.lightbox-target {
+  cursor: zoom-in;
+}
+
+.lightbox {
+  padding: 0;
+  outline: none;
+  border: 3px solid var(--border);
+  box-shadow: 8px 8px 0 var(--shadow);
+  background: var(--surface);
+  max-width: min(92vw, 100%);
+  max-height: 92vh;
+}
+
+.lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92vh - 6px);
+  cursor: zoom-out;
+}
+
+.lightbox::backdrop {
+  background: rgb(20 20 20 / 0.55);
+}
+
 .prose hr {
   border: none;
   border-top: 3px solid var(--border);

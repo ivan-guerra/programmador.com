@@ -1,0 +1,24 @@
+<dialog class="lightbox" id="lightbox">
+  <img alt="" />
+</dialog>
+
+<script>
+  // Clicking a post image opens it full-resolution in a modal.
+  // Esc (native dialog behavior) or a click anywhere closes it.
+  const dialog = document.getElementById("lightbox") as HTMLDialogElement;
+  const dialogImg = dialog.querySelector("img")!;
+
+  for (const img of document.querySelectorAll<HTMLImageElement>(".prose img")) {
+    img.classList.add("lightbox-target");
+    img.addEventListener("click", () => {
+      dialogImg.src = img.currentSrc || img.src;
+      dialogImg.alt = img.alt;
+      dialog.showModal();
+    });
+  }
+
+  dialog.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("close", () => {
+    dialogImg.removeAttribute("src");
+  });
+</script>

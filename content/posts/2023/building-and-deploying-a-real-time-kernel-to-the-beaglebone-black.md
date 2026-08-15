@@ -117,8 +117,10 @@ follow-on article will dive into the details of how to configure the system and
 application for ideal RT performance.
 
 [1]: https://beagleboard.org/black
-[2]: https://www.linuxfoundation.org/blog/blog/intro-to-real-time-linux-for-embedded-developers
-[3]: https://github.com/RobertCNelson/ti-linux-kernel-dev/tree/5.10.162-ti-rt-r59
+[2]:
+  https://www.linuxfoundation.org/blog/blog/intro-to-real-time-linux-for-embedded-developers
+[3]:
+  https://github.com/RobertCNelson/ti-linux-kernel-dev/tree/5.10.162-ti-rt-r59
 [4]: https://beagleboard.org/latest-images
 [5]: https://github.com/ivan-guerra/bbb_kernel_builder
 [6]: https://github.com/ivan-guerra/bbb_kernel_builder/blob/master/README.md

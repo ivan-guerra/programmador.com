@@ -601,5 +601,6 @@ Structure](/series/notes/linkers-and-loaders/elf-shared-lib.webp#center)
   page 287.
 
 [1]: https://programmador.com/categories/notes/
-[2]: https://www.amazon.com/Linkers-Kaufmann-Software-Engineering-Programming/dp/1558604960#customerReviews
+[2]:
+  https://www.amazon.com/Linkers-Kaufmann-Software-Engineering-Programming/dp/1558604960#customerReviews
 [3]: https://github.com/ivan-guerra/mild/tree/master

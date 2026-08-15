@@ -310,6 +310,7 @@ Having not only the descriptions of the design patterns in the article, but a
 repository with clear examples is the true highlight.
 
 [1]: https://programmador.com/categories/notes/
-[2]: https://eli.thegreenplace.net/2013/12/05/the-cost-of-dynamic-virtual-calls-vs-static-crtp-dispatch-in-c
+[2]:
+  https://eli.thegreenplace.net/2013/12/05/the-cost-of-dynamic-virtual-calls-vs-static-crtp-dispatch-in-c
 [3]: https://github.com/0burak/imperial_hft
 [4]: https://arxiv.org/abs/2309.04259v1

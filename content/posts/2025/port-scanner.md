@@ -275,5 +275,6 @@ source is available on GitHub under [pscan][5].
 [1]: https://nmap.org/
 [2]: https://crates.io/crates/ping-rs/0.1.2
 [3]: https://github.com/ivan-guerra/pscan/tree/master/src/scanners/protocols
-[4]: https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=4
+[4]:
+  https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=4
 [5]: https://github.com/ivan-guerra/pscan.git

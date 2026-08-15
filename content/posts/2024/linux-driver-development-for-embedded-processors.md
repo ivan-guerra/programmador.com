@@ -184,6 +184,9 @@ review][3] before buying.
   expiry timers.
 
 [1]: https://programmador.com/categories/notes/
-[2]: https://www.amazon.com/Linux-Driver-Development-Embedded-Processors/dp/1729321828
-[3]: https://programmador.com/posts/2023/linux-driver-development-for-embedded-processors/
-[4]: https://unix.stackexchange.com/questions/715801/what-populates-the-sys-and-dev-directories
+[2]:
+  https://www.amazon.com/Linux-Driver-Development-Embedded-Processors/dp/1729321828
+[3]:
+  https://programmador.com/posts/2023/linux-driver-development-for-embedded-processors/
+[4]:
+  https://unix.stackexchange.com/questions/715801/what-populates-the-sys-and-dev-directories

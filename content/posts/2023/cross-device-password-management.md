@@ -274,5 +274,7 @@ meets the need on Android and Linux.
 [8]: https://linux.die.net/man/1/pass
 [9]: https://github.com/android-password-store/Android-Password-Store
 [10]: https://www.openkeychain.org/
-[11]: https://www.openkeychain.org/faq/#what-is-the-best-way-to-transfer-my-own-key-to-openkeychain
-[12]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+[11]:
+  https://www.openkeychain.org/faq/#what-is-the-best-way-to-transfer-my-own-key-to-openkeychain
+[12]:
+  https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account

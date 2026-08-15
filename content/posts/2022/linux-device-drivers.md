@@ -1,7 +1,8 @@
 ---
 title: "Docker Assisted Driver Dev and LDD3"
 date: 2022-09-18T20:44:17-07:00
-description: "Creating a containerized Linux dev environment with working LDD3 modules."
+description:
+  "Creating a containerized Linux dev environment with working LDD3 modules."
 categories: ["projects"]
 tags: ["containerization", "kernel", "linux"]
 ---
@@ -216,17 +217,24 @@ GitHub under [`linux_device_drivers`][17].
 [1]: https://lwn.net/Kernel/LDD3/
 [2]: https://lwn.net/Archives/
 [3]: https://www.qemu.org/
-[4]: https://github.com/ivan-guerra/linux_device_drivers/blob/master/docker/common/Dockerfile
+[4]:
+  https://github.com/ivan-guerra/linux_device_drivers/blob/master/docker/common/Dockerfile
 [5]: https://ccache.dev/
-[6]: https://nickdesaulniers.github.io/blog/2018/06/02/speeding-up-linux-kernel-builds-with-ccache/
+[6]:
+  https://nickdesaulniers.github.io/blog/2018/06/02/speeding-up-linux-kernel-builds-with-ccache/
 [7]: https://busybox.net/
-[8]: https://github.com/ivan-guerra/linux_device_drivers/blob/master/docker/initramfs/Dockerfile
-[9]: https://github.com/ivan-guerra/linux_device_drivers/blob/master/scripts/build.sh
-[10]: https://github.com/ivan-guerra/linux_device_drivers/blob/master/docker/kernel/Dockerfile
+[8]:
+  https://github.com/ivan-guerra/linux_device_drivers/blob/master/docker/initramfs/Dockerfile
+[9]:
+  https://github.com/ivan-guerra/linux_device_drivers/blob/master/scripts/build.sh
+[10]:
+  https://github.com/ivan-guerra/linux_device_drivers/blob/master/docker/kernel/Dockerfile
 [11]: https://docs.docker.com/storage/volumes/
-[12]: https://github.com/ivan-guerra/linux_device_drivers/blob/master/scripts/run.sh
+[12]:
+  https://github.com/ivan-guerra/linux_device_drivers/blob/master/scripts/run.sh
 [13]: https://pages.cs.wisc.edu/~remzi/OSTEP/
 [14]: https://www.linuxjournal.com/content/oops-debugging-kernel-panics-0
-[15]: https://github.com/ivan-guerra/linux_device_drivers?tab=readme-ov-file#gdb-support
+[15]:
+  https://github.com/ivan-guerra/linux_device_drivers?tab=readme-ov-file#gdb-support
 [16]: https://en.wikipedia.org/wiki/Linux_kernel_oops
 [17]: https://github.com/ivan-guerra/linux_device_drivers.git

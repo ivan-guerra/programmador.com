@@ -234,8 +234,10 @@ The complete project source is available on GitHub under [chip8][5].
 [1]: https://tobiasvl.github.io/blog/write-a-chip-8-emulator/#specifications
 [2]: https://chip-8.github.io/extensions/#xo-chip
 [3]: https://github.com/ivan-guerra/chip8/blob/master/src/state.rs
-[4]: https://github.com/Timendus/chip8-test-suite?tab=readme-ov-file#chip-8-test-suite
+[4]:
+  https://github.com/Timendus/chip8-test-suite?tab=readme-ov-file#chip-8-test-suite
 [5]: https://github.com/ivan-guerra/chip8
 [6]: https://github.com/shiver/chip8
 [7]: https://johnearnest.github.io/chip8Archive/play.html?p=sweetcopter
-[8]: https://www.reddit.com/r/EmuDev/comments/srs8q7/finished_my_chip8_schip_xochip_emulator_made_with/
+[8]:
+  https://www.reddit.com/r/EmuDev/comments/srs8q7/finished_my_chip8_schip_xochip_emulator_made_with/

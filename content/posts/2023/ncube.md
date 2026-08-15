@@ -227,5 +227,6 @@ is also better than ncurses.
 [1]: https://www.youtube.com/watch?v=p09i_hoFdd0
 [2]: https://en.wikipedia.org/wiki/Ncurses
 [3]: https://en.wikipedia.org/wiki/Rotation_matrix#General_3D_rotations
-[4]: https://stackoverflow.com/questions/32208359/is-there-a-multi-dimensional-version-of-arange-linspace-in-numpy
+[4]:
+  https://stackoverflow.com/questions/32208359/is-there-a-multi-dimensional-version-of-arange-linspace-in-numpy
 [5]: https://github.com/ivan-guerra/ncube

@@ -1,7 +1,8 @@
 ---
 title: "Linux Driver Development for Embedded Processors"
 date: 2023-10-07T17:56:16-07:00
-description: 'A short review of "Linux Driver Development for Embedded Processors".'
+description:
+  'A short review of "Linux Driver Development for Embedded Processors".'
 tags: ["linux", "hardware"]
 ---
 
@@ -113,11 +114,14 @@ You can find the ELDD project with complete source, build instructions, usage,
 etc. on GitHub under [eldd][9].
 
 [1]: https://programmador.com/posts/2022/linux-device-drivers/
-[2]: https://www.amazon.com/Linux-Driver-Development-Embedded-Processors/dp/1729321828
+[2]:
+  https://www.amazon.com/Linux-Driver-Development-Embedded-Processors/dp/1729321828
 [3]: https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/
-[4]: /posts/2023/linux-driver-development-for-embedded-processors/raspberry-pi-3b-plus.avif#center
+[4]:
+  /posts/2023/linux-driver-development-for-embedded-processors/raspberry-pi-3b-plus.avif#center
 [5]: https://elinux.org/Device_Tree_Usage
 [6]: https://www.youtube.com/watch?v=m_NyYEBxfn8
-[7]: https://github.com/ALIBERA/linux_book_2nd_edition/blob/master/Practical_labs_hardware.pdf
+[7]:
+  https://github.com/ALIBERA/linux_book_2nd_edition/blob/master/Practical_labs_hardware.pdf
 [8]: https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468
 [9]: https://github.com/ivan-guerra/eldd.git

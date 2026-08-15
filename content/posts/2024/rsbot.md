@@ -231,7 +231,8 @@ to run without supervision. Follow these basic rules and you too can save hours
 in maxing the most tedious skills in RuneScape.
 
 [1]: https://runescape.com
-[2]: https://oldschool.runescape.wiki/w/Botting#:~:text=An%20injection%20bot%20is%20a,code%20states%20it%20will%20do.
+[2]:
+  https://oldschool.runescape.wiki/w/Botting#:~:text=An%20injection%20bot%20is%20a,code%20states%20it%20will%20do.
 [3]: https://ben.land/post/2021/04/25/windmouse-human-mouse-movement/
 [4]: https://github.com/vincentbavitz/bezmouse
 [5]: https://pypi.org/project/pyHM/

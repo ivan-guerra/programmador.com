@@ -254,12 +254,17 @@ Algorithm"][12].
 [1]: https://leetcode.com
 [2]: https://leetcode.com/problems/unique-morse-code-words/
 [3]: https://en.wikipedia.org/wiki/Morse_code
-[4]: https://en.wikipedia.org/wiki/Morse_code#/media/File:International_Morse_Code.svg
+[4]:
+  https://en.wikipedia.org/wiki/Morse_code#/media/File:International_Morse_Code.svg
 [5]: https://morsecode.world/international/morse.html
-[6]: https://www.itu.int/dms_pubrec/itu-r/rec/m/R-REC-M.1677-1-200910-I!!PDF-E.pdf
-[7]: https://www.itu.int/dms_pubrec/itu-r/rec/m/R-REC-M.1172-0-199510-I!!PDF-E.pdf
+[6]:
+  https://www.itu.int/dms_pubrec/itu-r/rec/m/R-REC-M.1677-1-200910-I!!PDF-E.pdf
+[7]:
+  https://www.itu.int/dms_pubrec/itu-r/rec/m/R-REC-M.1172-0-199510-I!!PDF-E.pdf
 [8]: https://www.libsdl.org/
-[9]: https://web.archive.org/web/20100629004347/http://www.libsdl.org/games.php?order=name&category=-1&completed=0&os=-1&match_name=&perpage=-1
-[10]: https://web.archive.org/web/20120313055436/http://www.dgames.org/beep-sound-with-sdl/
+[9]:
+  https://web.archive.org/web/20100629004347/http://www.libsdl.org/games.php?order=name&category=-1&completed=0&os=-1&match_name=&perpage=-1
+[10]:
+  https://web.archive.org/web/20120313055436/http://www.dgames.org/beep-sound-with-sdl/
 [11]: https://github.com/ivan-guerra/morse.git
 [12]: http://www.pa3fwm.nl/software/rscw/algorithm.html

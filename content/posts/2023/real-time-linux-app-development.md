@@ -564,14 +564,17 @@ techniques, tools, and resources to help you standup a RT Linux system that
 meets your needs.
 
 [1]: https://beagleboard.org/black
-[2]: https://techdifferences.com/difference-between-hard-and-soft-real-time-systems.html
+[2]:
+  https://techdifferences.com/difference-between-hard-and-soft-real-time-systems.html
 [3]: https://en.wikipedia.org/wiki/Linux_kernel#Scheduling_and_preemption
-[4]: https://programmador.com/posts/2023/building-and-deploying-a-real-time-kernel-to-the-beaglebone-black/
+[4]:
+  https://programmador.com/posts/2023/building-and-deploying-a-real-time-kernel-to-the-beaglebone-black/
 [5]: https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/4.19/older/
 [6]: https://cateee.net/lkddb/web-lkddb/LOCKUP_DETECTOR.html
 [7]: https://cateee.net/lkddb/web-lkddb/DETECT_HUNG_TASK.html
 [8]: https://ubuntu.com/blog/industrial-embedded-systems-ii
-[9]: https://github.com/torvalds/linux/blob/master/Documentation/timers/no_hz.rst
+[9]:
+  https://github.com/torvalds/linux/blob/master/Documentation/timers/no_hz.rst
 [10]: https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt
 [11]: https://www.youtube.com/watch?v=NrjXEaTSyrw
 [12]: https://en.wikipedia.org/wiki/Virtual_address_space
@@ -580,13 +583,17 @@ meets your needs.
 [15]: https://www.embedded.com/how-to-use-priority-inheritance/
 [16]: https://en.wikipedia.org/wiki/Priority_inversion
 [17]: https://man7.org/linux/man-pages/man7/signal.7.html
-[18]: https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/cyclictest/start
-[19]: https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/cyclictest/faq
-[20]: https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/hackbench
-[21]: https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/worstcaselatency
-[22]: https://www.osadl.org/Continuous-latency-monitoring.qa-farm-monitoring.0.html
-
+[18]:
+  https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/cyclictest/start
+[19]:
+  https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/cyclictest/faq
+[20]:
+  https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/hackbench
+[21]:
+  https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/worstcaselatency
+[22]:
+  https://www.osadl.org/Continuous-latency-monitoring.qa-farm-monitoring.0.html
 [23]:
-https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script
+  https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script
 [24]:
-https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script
+  https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html?&no_cache=1&sword_list[0]=script

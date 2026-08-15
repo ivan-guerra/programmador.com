@@ -163,7 +163,8 @@ program uses a K-D tree for nearest neighbor searches exclusively. The
 performance of the Rust implementation is comparable to that of the original C++
 implementation.
 
-[1]: https://blackpawn.com/texts/cellular/default.html#:~:text=Making%20Cellular%20Textures&text=These%20textures%20are%20all%20based,values%20to%20determine%20a%20color.
+[1]:
+  https://blackpawn.com/texts/cellular/default.html#:~:text=Making%20Cellular%20Textures&text=These%20textures%20are%20all%20based,values%20to%20determine%20a%20color.
 [2]: https://en.wikipedia.org/wiki/K-d_tree
 [3]: https://github.com/gvd/kdtree
 [4]: https://github.com/ivan-guerra/cellular_textures.git

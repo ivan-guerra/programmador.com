@@ -315,7 +315,8 @@ implementation is comparable to that of the original C++ implementation.
 [2]: https://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
 [3]: https://en.wikipedia.org/wiki/Prime_number
 [4]: https://www.geeksforgeeks.org/prime-numbers/
-[5]: https://www.geeksforgeeks.org/sieve-eratosthenes-0n-time-complexity/?ref=lbp
+[5]:
+  https://www.geeksforgeeks.org/sieve-eratosthenes-0n-time-complexity/?ref=lbp
 [6]: https://www.boost.org/doc/libs/1_76_0/libs/gil/doc/html/index.html
 [7]: https://en.wikipedia.org/wiki/Ulam_spiral#Explanation
 [8]: https://github.com/ivan-guerra/ulam_spiral

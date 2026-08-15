@@ -276,5 +276,7 @@ a look at other QEMU tutorials and experiment a bit.
 [2]: https://en.wikipedia.org/wiki/QEMU#Operating_modes
 [3]: https://knowyourmeme.com/memes/btw-i-use-arch
 [4]: https://archlinux.org/download/
-[5]: https://en.wikipedia.org/wiki/RTFM#:~:text=RTFM%20is%20an%20initialism%20and,forum%2C%20software%20documentation%20or%20FAQ.
-[6]: https://github.com/torvalds/linux/blob/master/kernel/configs/kvm_guest.config
+[5]:
+  https://en.wikipedia.org/wiki/RTFM#:~:text=RTFM%20is%20an%20initialism%20and,forum%2C%20software%20documentation%20or%20FAQ.
+[6]:
+  https://github.com/torvalds/linux/blob/master/kernel/configs/kvm_guest.config

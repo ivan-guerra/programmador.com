@@ -485,6 +485,7 @@ includes more testing, better error handling, and buffered IO.
 
 [1]: https://en.wikipedia.org/wiki/Huffman_coding
 [2]: https://en.wikipedia.org/wiki/Huffman_coding#Basic_technique
-[3]: https://en.wikipedia.org/wiki/Magic_number_(programming)#:~:text=In%20computer%20programming%2C%20a%20magic,see%20List%20of%20file%20signatures
+[3]:
+  https://en.wikipedia.org/wiki/Magic_number_(programming)#:~:text=In%20computer%20programming%2C%20a%20magic,see%20List%20of%20file%20signatures
 [4]: https://en.wikipedia.org/wiki/Canonical_Huffman_code
 [5]: https://github.com/ivan-guerra/huffman

@@ -326,6 +326,7 @@ project includes more testing but is otherwise a straight port of the C++.
 [5]: https://github.com/dolph/dictionary
 [6]: https://github.com/piersy/ascii-char-frequency-english?tab=readme-ov-file
 [7]: https://www.daviddlewis.com/resources/testcollections/reuters21578/
-[8]: https://github.com/piersy/ascii-char-frequency-english/blob/main/ascii_freq.txt
+[8]:
+  https://github.com/piersy/ascii-char-frequency-english/blob/main/ascii_freq.txt
 [9]: https://simple.wikipedia.org/wiki/Manhattan_distance
 [10]: https://github.com/ivan-guerra/caesar_cipher

@@ -174,13 +174,17 @@ under [containerized_runescape][20].
 [8]: https://en.wikipedia.org/wiki/X_Window_System
 [9]: https://wayland.freedesktop.org/
 [10]: https://en.wikipedia.org/wiki/X_Window_authorization#Cookie-based_access
-[11]: https://github.com/ivan-guerra/containerized_runescape/blob/master/osrs/launch.sh
-[12]: https://comp0016-team-24.github.io/dev/problem-solving/2020/10/30/passing-audio-into-docker.html
+[11]:
+  https://github.com/ivan-guerra/containerized_runescape/blob/master/osrs/launch.sh
+[12]:
+  https://comp0016-team-24.github.io/dev/problem-solving/2020/10/30/passing-audio-into-docker.html
 [13]: https://pipewire.org/
 [14]: https://wiki.ubuntu.com/Audio/TheAudioGroup
 [15]: https://en.wikipedia.org/wiki/Old_School_RuneScape#Development_and_release
 [16]: https://www.youtube.com/watch?v=-IJqwg0HWUI
-[17]: https://github.com/ivan-guerra/containerized_runescape/blob/master/osrs/Dockerfile
-[18]: https://github.com/ivan-guerra/containerized_runescape/blob/master/rs3/Dockerfile
+[17]:
+  https://github.com/ivan-guerra/containerized_runescape/blob/master/osrs/Dockerfile
+[18]:
+  https://github.com/ivan-guerra/containerized_runescape/blob/master/rs3/Dockerfile
 [19]: https://www.youtube.com/watch?v=tg2PD-dwsIw
 [20]: https://github.com/ivan-guerra/containerized_runescape

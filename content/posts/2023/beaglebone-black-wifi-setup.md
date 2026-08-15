@@ -108,4 +108,5 @@ connmanctl> config WIFI_HASH --ipv4 manual IP_ADDR SUBNET_MASK GATEWAY_ADDR
 ```
 
 [1]: https://elinux.org/Beagleboard:BeagleBoneBlack#WIFI_Adapters
-[2]: https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY
+[2]:
+  https://www.amazon.com/Edimax-EW-7811Un-150Mbps-Raspberry-Supports/dp/B003MTTJOY

@@ -168,7 +168,8 @@ In the next article, you'll get a look at how to get the most out of your Linux
 text editing experience.
 
 [1]: https://wiki.archlinux.org/title/Category:Terminal_emulators
-[2]: https://news.ycombinator.com/item?id=29528343#:~:text=Faster%20screen%20updates%2C%20lower%20CPU,completely%20while%20burning%20the%20CPU.
+[2]:
+  https://news.ycombinator.com/item?id=29528343#:~:text=Faster%20screen%20updates%2C%20lower%20CPU,completely%20while%20burning%20the%20CPU.
 [3]: https://docs.xfce.org/apps/terminal/start
 [4]: https://programmador.com/posts/2024/part-3-an-i3-desktop-environment/
 [5]: https://github.com/Gogh-Co/Gogh

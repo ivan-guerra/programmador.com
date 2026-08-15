@@ -282,10 +282,11 @@ compute $ d\theta \over dt $! Fill in the blanks on the terms:
   frequency. You can compute $ \theta_j $ by taking your peer's reported wakeup
   time and converting to a phase angle using the conversion function previously
   derived.
-- $ \theta_i $ -> This is your own phase offset. Similar to $\theta_j$ , $
-  \theta_i $ converts your actual wakeup time to a phase angle. To explain a bit
-  further, you have an expected and an actual wakeup time on the computer. The
-  expected time is the time you would execute if there were no additional
+- $ \theta_i $ -> This is your own phase offset. Similar to $\theta_j$ ,
+  $
+  \theta_i $ converts your actual wakeup time to a phase angle. To explain a
+  bit further, you have an expected and an actual wakeup time on the computer.
+  The expected time is the time you would execute if there were no additional
   latencies imposed by the system. The actual wakeup time is the measured time
   after you resume execution. In short, you're off phase from the desired base
   frequency and the model uses $ \theta_i $ to account for that.
@@ -299,14 +300,14 @@ in nanoseconds. That time is an offset to the next `gsync` wakeup time.
 As an example, suppose `gsync` ran with a frequency of 1 Hz or every 1 seconds.
 Also suppose the sync function returned time deltas in seconds. If the sync
 function returned a time delta of $ -0.5
-$, then `gsync` would next sleep
-for $ 1 - 0.5 = 0.5 $ seconds (that is, `gsync` will wakeup _earlier_ by
-half a second). Maybe the sync function over shot. In the next run, the sync
-function returns a delta of $ 0.8 $, then `gsync` will sleep for $1.0 +
-0.8 = 1.8$
-seconds (that is, it will wakeup _later_). Essentially, the delta in the wakeup
-time of the computers oscillates about $ 0 $! The smaller the oscillations, the
-better the sync.
+$, then `gsync` would next sleep for
+$ 1 - 0.5 = 0.5 $ seconds (that is, `gsync` will wakeup _earlier_ by half a
+second). Maybe the sync function over shot. In the next run, the sync function
+returns a delta of $ 0.8 $, then `gsync` will sleep for $1.0 +
+0.8 = 1.8$ seconds
+(that is, it will wakeup _later_). Essentially, the delta in the wakeup time of
+the computers oscillates about $ 0 $! The smaller the oscillations, the better
+the sync.
 
 ## The End Result
 
@@ -317,7 +318,8 @@ $0.5$, you see two LEDs blinking synchronously. It takes maybe 3 to 4 cycles
 doesn't produce any noticeable hiccups in the sync!
 
 You can also play a bit with the coupling constant to see what sort of effect it
-has. You can increment the coupling constant in steps of $ 0.1 $ starting at $ K
+has. You can increment the coupling constant in steps of $ 0.1 $ starting at
+$ K
 = 0.1 $. What you'll find is that if $ K $ is too low, the LEDs never seem to
 synchronize. After crossing a threshold value, synchronization always seems to
 occur.
@@ -359,7 +361,8 @@ GitHub under [gsync][7].
 
 [1]: https://en.wikipedia.org/wiki/Kuramoto_model
 [2]: https://beagleboard.org/black
-[3]: https://www.amazon.com/Exploring-BeagleBone-Techniques-Building-Embedded/dp/1118935128#:~:text=Exploring%20BeagleBone%20provides%20a%20reader,and%20modules%2C%20with%20practical%20examples
+[3]:
+  https://www.amazon.com/Exploring-BeagleBone-Techniques-Building-Embedded/dp/1118935128#:~:text=Exploring%20BeagleBone%20provides%20a%20reader,and%20modules%2C%20with%20practical%20examples
 [4]: https://github.com/ivan-guerra/bbb_kernel_builder
 [5]: https://programmador.com/posts/2023/real-time-linux-app-development/
 [6]: https://github.com/ivan-guerra/gsync/blob/master/src/sync/sync.cc

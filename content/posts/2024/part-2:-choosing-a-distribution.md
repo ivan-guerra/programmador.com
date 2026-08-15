@@ -148,6 +148,7 @@ explore the desktop environment, specifically the i3 window manager.
 [2]: https://distrowatch.com/table.php?distribution=raspios
 [3]: https://aur.archlinux.org/
 [4]: https://wiki.archlinux.org/
-[5]: https://wiki.archlinux.org/title/Frequently_asked_questions#Why_would_I_not_want_to_use_Arch?
+[5]:
+  https://wiki.archlinux.org/title/Frequently_asked_questions#Why_would_I_not_want_to_use_Arch?
 [6]: https://wiki.archlinux.org/title/installation_guide
 [7]: https://bbs.archlinux.org/viewforum.php?id=23

@@ -5,17 +5,26 @@
 <script>
   // Clicking a post image opens it full-resolution in a modal.
   // Esc (native dialog behavior) or a click anywhere closes it.
+  //
+  // Exposed as window.upgradeLightbox(root) so the admin preview can
+  // re-wire images after a live refresh; already-wired images are skipped.
   const dialog = document.getElementById("lightbox") as HTMLDialogElement;
   const dialogImg = dialog.querySelector("img")!;
 
-  for (const img of document.querySelectorAll<HTMLImageElement>(".prose img")) {
-    img.classList.add("lightbox-target");
-    img.addEventListener("click", () => {
-      dialogImg.src = img.currentSrc || img.src;
-      dialogImg.alt = img.alt;
-      dialog.showModal();
-    });
-  }
+  const upgrade = (root: ParentNode = document) => {
+    for (const img of root.querySelectorAll<HTMLImageElement>(".prose img")) {
+      if (img.classList.contains("lightbox-target")) continue;
+      img.classList.add("lightbox-target");
+      img.addEventListener("click", () => {
+        dialogImg.src = img.currentSrc || img.src;
+        dialogImg.alt = img.alt;
+        dialog.showModal();
+      });
+    }
+  };
+
+  (window as any).upgradeLightbox = upgrade;
+  upgrade();
 
   dialog.addEventListener("click", () => dialog.close());
   dialog.addEventListener("close", () => {

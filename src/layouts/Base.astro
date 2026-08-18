@@ -7,9 +7,15 @@ import ApexCharts from "../components/ApexCharts.astro";
 interface Props {
   title: string;
   description?: string;
+  // Widens the main column (e.g. the admin editor's side-by-side panes).
+  wide?: boolean;
 }
 
-const { title, description = "jumploops — notes on software" } = Astro.props;
+const {
+  title,
+  description = "jumploops — notes on software",
+  wide = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -60,7 +66,7 @@ const { title, description = "jumploops — notes on software" } = Astro.props;
       </div>
     </header>
 
-    <main class="wrap">
+    <main class:list={["wrap", { wide }]}>
       <slot />
     </main>
 

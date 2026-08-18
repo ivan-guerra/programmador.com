@@ -82,8 +82,9 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  flex-shrink: 0;
   gap: 0.75rem;
-  margin: 2rem 0 1rem;
+  margin: 1.25rem 0 1rem;
 }
 
 .editor-bar .group {
@@ -112,6 +113,7 @@
 
 .editor-tabs {
   display: flex;
+  flex-shrink: 0;
   gap: 0;
   margin-bottom: -2.5px;
 }
@@ -136,19 +138,62 @@
   color: #141414;
 }
 
-.editor-pane {
-  border: 2.5px solid var(--border);
-  background: var(--surface);
-  margin-bottom: 3rem;
+/* The edit page locks to the viewport: the page itself never scrolls,
+   only the code and preview cells do, so the markdown source and the
+   (much taller/shorter) rendered preview never have to agree on height.
+   Narrow viewports show one cell behind the tabs; wide ones show
+   preview and code side-by-side. Keep the breakpoint in sync with the
+   matchMedia query in edit/[id].astro. */
+
+body:has(.editor-layout) {
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.editor-pane textarea {
+body:has(.editor-layout) .site-header {
+  flex-shrink: 0;
+}
+
+body:has(.editor-layout) .site-footer {
+  display: none;
+}
+
+body:has(.editor-layout) main.wrap {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main.wrap.wide {
+  max-width: 44rem;
+}
+
+.editor-layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.editor-cell {
+  border: 2.5px solid var(--border);
+  background: var(--surface);
+  min-height: 0;
+}
+
+.editor-cell textarea {
   display: block;
   width: 100%;
-  min-height: 24rem;
-  field-sizing: content;
+  height: 100%;
   resize: none;
-  overflow: hidden;
+  overflow-y: auto;
   border: none;
   outline: none;
   background: transparent;
@@ -160,12 +205,32 @@
   box-sizing: border-box;
 }
 
-.editor-pane iframe {
+.editor-cell iframe {
   display: block;
   width: 100%;
-  min-height: 24rem;
+  height: 100%;
   border: none;
   background: var(--bg);
+}
+
+@media (min-width: 1200px) {
+  main.wrap.wide {
+    max-width: 100rem;
+  }
+
+  .editor-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .editor-tabs {
+    display: none;
+  }
+
+  /* Both cells stay visible regardless of the tab state left behind by
+     a narrower viewport. */
+  .editor-layout .editor-cell.hidden {
+    display: block !important;
+  }
 }
 
 .hidden {

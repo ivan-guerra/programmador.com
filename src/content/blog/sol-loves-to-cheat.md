@@ -262,30 +262,32 @@ I ran the benchmark once before doing the full N=5 run, and was surprised to see
   
 I ran it a couple of times. 1/3 worked.
   
-Diving into the details, I couldn't figure out what had changed with our harness, so I tested it against Vanilla Codex, also on xhigh. 
+Diving into the details, I couldn't figure out what had changed with our harness, so I tested it against vanilla Codex, also on xhigh. 
   
 It passed 3/3 times. 
   
 Intriguing. 
- 
-I had reviewed the runs to determine what worked and what didn't work. 
 
-**GPT-5.6 Sol [cheated](https://gist.github.com/jumploops/5136460fdb96da3470a8f99f20fa879d) every time**.
+## Sol loves to cheat 
+ 
+I reviewed the runs to determine what worked and what didn't work. 
+
+**GPT-5.6 Sol [cheated](https://gist.github.com/jumploops/5136460fdb96da3470a8f99f20fa879d) 3/3 times** on vanilla Codex.
+  
+I looked the two recent passing runs for chum-codex on `torch-pipeline` and found it cheated as well. 
   
 Uh oh, were _all_ of the past successes due to cheating? 
-  
-## Sol loves to cheat 
-
-I looked at two passing runs for chum-codex on `torch-pipeline` and found something disturbing. 
  
-The web search was disabled, but life finds a way: 
+Interestingly, web search was disabled, but life finds a way: 
   
 ![codex-sol-cheating](https://r2.jumploops.com/codex-sol-cheating.png)
 _GPT-5.6 Sol on xhigh_
 
-Notably, our worker *did not* have access to the `web_search` tool, but instead decided to use `curl` to access DuckDuckGo, Github, grep.app, and SourceGraph.
+The worker *did not* have access to the `web_search` tool, but instead decided to use `curl` to access DuckDuckGo, Github, grep.app, and SourceGraph.
   
-It seems July 29th was the first "cheat" from vanilla Codex, and our harness cheated for the first time today, August 12th. 
+> Yes, to deal with this properly we should remove network access entirely or only allow specific resources. The point is, we didn't need to do that until now.
+  
+Looking back, July 29th was the first "cheat" from vanilla Codex, and our harness cheated for the first time today, August 12th. 
 
 ```apexcharts
 {
@@ -334,7 +336,3 @@ Heck, even the new Terminal Bench 3.0 has the following instructions added to al
 > **"Do not cheat by using online solutions or hints specific to this task."**
   
 Is this enough? **Unlikely.**
-  
-  
-  
-  

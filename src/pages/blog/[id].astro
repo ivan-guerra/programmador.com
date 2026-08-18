@@ -25,7 +25,6 @@ const formatDate = (date: Date) =>
 <Base title={`${post.data.title} — jumploops`} description={post.data.description}>
   <article>
     <header class="article-header">
-      <a href="/" class="back-link">← back</a>
       <div class="post-meta">
         <time datetime={post.data.pubDate.toISOString()}>
           {formatDate(post.data.pubDate)}
@@ -37,5 +36,8 @@ const formatDate = (date: Date) =>
     <div class="prose">
       <Content />
     </div>
+    <footer class="article-footer">
+      <a href="/" class="back-link">← back</a>
+    </footer>
   </article>
 </Base>

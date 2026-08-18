@@ -46,7 +46,6 @@ const formatDate = (date: Date) =>
     <main class="wrap">
       <article>
         <header class="article-header">
-          <a href="/" class="back-link">← back</a>
           <div class="post-meta">
             <time datetime={pubDate.toISOString()}>
               {formatDate(pubDate)}
@@ -56,6 +55,9 @@ const formatDate = (date: Date) =>
           <h1>{title}</h1>
         </header>
         <div class="prose" set:html={html} />
+        <footer class="article-footer">
+          <a href="/" class="back-link">← back</a>
+        </footer>
       </article>
     </main>
     <MermaidDiagrams />

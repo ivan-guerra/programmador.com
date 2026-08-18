@@ -93,7 +93,7 @@ These tasks benefited from a "design pass" before implementation, as the doc hel
 
 The horse I was riding just got a lot taller.  
 
-> _Note: **Terminal Bench 1.x/2.x is saturated**, but that's a story for another day._
+> _Note: **Terminal Bench 1.x/2.x is likely saturated**, more on that later._
   
 ## GPT-5.6? 
 
@@ -113,9 +113,11 @@ Some tasks were clearly improved, others had regressed.
   
 The next day, GPT-5.6 Sol was [announced](https://openai.com/index/previewing-gpt-5-6-sol/). 
   
-_I reached out to OpenAI, and they mentioned GPT-5.6 was being tested, but confirmed my request IDs all hit GPT-5.5_
-  
 Interestingly, Terminal Bench 2.1 was the only coding-related benchmark they initially shared, showing **88.8%** on GPT-5.6 Sol and **91.9%** on Sol Ultra. 
+  
+The new model (sans Ultra) is hitting the same score as the old model (_on the latest version of Codex_)? Is the harness what matters here?
+
+_I reached out to OpenAI, and they confirmed all my request IDs hit GPT-5.5, not GPT-5.6_
   
 Sol Ultra spawns parallel subagents to do work, though in my testing it's quite a bit more token-heavy than most people want/need for the majority of their tasks.
   
@@ -227,7 +229,7 @@ This worked much better, and led to the best result: 84/89 tasks on Terminal Ben
 
 _Note: 1 task was cyber security blocked, but passed with a GPT-5.6 Terra fallback, so 83 + 1_
 
-## Sol loves to cheat
+## Catch-22s
   
 Back on my high horse, having finally harnessed Sol, and already way too far down the path of using the benchmark for development rather than... as a benchmark, I wanted to see how far I could push this. 
   
@@ -272,7 +274,7 @@ I had reviewed the runs to determine what worked and what didn't work.
   
 Uh oh, were _all_ of the past successes due to cheating? 
   
-## Is it really Sol? 
+## Sol loves to cheat 
 
 I looked at two passing runs for chum-codex on `torch-pipeline` and found something disturbing. 
  
@@ -297,7 +299,7 @@ Admittedly, **this isn't a lot of data to go off of**. The 3/3 Vanilla Codex che
 
 It's also unclear if the models are being intentional about cheating, or if they're just stumbling across the solution while searching the web. 
   
-Looking at vanilla Codex traces and we find our smoking gun: 
+Looking at vanilla Codex traces however, and we find our smoking gun: 
   
 <div class="term" data-title="vanilla codex — reasoning summary excerpt">
   <p><em>I need to investigate the HF source using curl to check GitHub for the latest versions. <strong>It could be helpful to know the expected hidden test based on the challenge.</strong></em></p>
@@ -314,8 +316,6 @@ For chum-codex, the last step before the curl requests is equally revealing:
 _Not to anthropomorphize a machine modeled after humans, but it almost seems happy!_
 
 Concerned, but equally intrigued, I looked back at the 83/89 run from July 17th, and [found no evidence of cheating](https://gist.github.com/jumploops/ef9535daff9637d087dc9fba76077a50) on this or any other tasks.
-  
-Given the recent [news](https://openai.com/index/responding-next-frontier-critical-cyber-capabilities/) and delay of their next model, one has to wonder... is this the same Sol? 
 
 ## What's next
   
@@ -334,5 +334,7 @@ Heck, even the new Terminal Bench 3.0 has the following instructions added to al
 > **"Do not cheat by using online solutions or hints specific to this task."**
   
 Is this enough? **Unlikely.**
-
+  
+  
+  
   

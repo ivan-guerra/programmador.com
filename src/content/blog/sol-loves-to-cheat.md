@@ -67,7 +67,7 @@ _(or did I?)_
   
 Great, it worked; hacky, but working.
  
-> _Note: **this is where I should have stopped**_
+> _Note: this is where I should have stopped_
   
 Sitting on my high horse, I surveyed the landscape and thought "wow, everyone should see this!"   
   
@@ -81,7 +81,7 @@ What benchmark did I dive too deep on? [Terminal Bench 2.1](https://www.tbench.a
 
 If you're not familiar with agentic benchmarks, Terminal Bench's name is telling. It's a set of tasks that can be accomplished from the terminal, covering a range of one-off tasks from chess to DNA assembly. 
   
-Because it's so simple, **it's probably one of the worst benchmarks to test a spec-driven development flow.**
+Because it's so simple, it's probably one of the worst benchmarks to test a spec-driven development flow.
   
 Due to its simple nature, however, it was easy to test against. 
 
@@ -93,7 +93,7 @@ These tasks benefited from a "design pass" before implementation, as the doc hel
 
 The horse I was riding just got a lot taller.  
 
-> _Note: **Terminal Bench 1.x/2.x is likely saturated**, more on that later._
+> _Note: Terminal Bench 1.x/2.x is saturated, but that's a story for another day._
   
 ## GPT-5.6? 
 
@@ -113,11 +113,9 @@ Some tasks were clearly improved, others had regressed.
   
 The next day, GPT-5.6 Sol was [announced](https://openai.com/index/previewing-gpt-5-6-sol/). 
   
-Interestingly, Terminal Bench 2.1 was the only coding-related benchmark they initially shared, showing **88.8%** on GPT-5.6 Sol and **91.9%** on Sol Ultra. 
+> _I reached out to OpenAI, and they mentioned GPT-5.6 was being tested, but confirmed my request IDs all hit GPT-5.5_
   
-The new model (sans Ultra) is hitting the same score as the old model (_on the latest version of Codex_)? Is the harness what matters here?
-
-_I reached out to OpenAI, and they confirmed all my request IDs hit GPT-5.5, not GPT-5.6_
+Interestingly, Terminal Bench 2.1 was the only coding-related benchmark they initially shared, showing **88.8%** on GPT-5.6 Sol and **91.9%** on Sol Ultra. 
   
 Sol Ultra spawns parallel subagents to do work, though in my testing it's quite a bit more token-heavy than most people want/need for the majority of their tasks.
   
@@ -141,7 +139,7 @@ _Excerpt from GPT-5.6 Sol prompt_
   
 Similar to what others have noticed, and as I predicted [8 months ago](https://x.com/jumploops/status/2009910802170740771), better models are requiring less ceremony to work effectively. 
   
-On the flip side, as the models get _better_, they'll become [harder to control](https://openai.com/index/hugging-face-model-evaluation-security-incident/).
+On the flip side, this may imply that as the models get _better_, they'll become [harder to control](https://openai.com/index/hugging-face-model-evaluation-security-incident/).
   
 A simple example of this is the PyTorch task on Terminal Bench 2.1.
   
@@ -190,7 +188,7 @@ The supervisor could then review the assumptions the worker took, and ask it to 
   
 Another idea was to **ask the model to output "open questions"** -- something I do with my more hands-on development. The initial idea was to have the worker return open questions (rather than a full design doc) whenever it faced them, and then have the supervisor resolve them. This would free up the supervisor's context, showing it the forest rather than the trees.
 
-Still, even with a reduced context, the **supervisor was hard-pressed to disagree with the worker's conclusions** (or on the flip-side, overly eager to expand on trivial details). 
+Still, even with a reduced context, the supervisor was hard-pressed to disagree with the worker's conclusions (or on the flip-side, overly eager to expand on trivial details). 
 
 To remove this bias, the next idea was to employ a separate context, which would first **map and reduce** (everything old is new again!) the questions, in an attempt to remove any inherent or unfound bias, before ultimately returning a normalized version to the supervisor (or directly to the worker). 
   
@@ -229,7 +227,7 @@ This worked much better, and led to the best result: 84/89 tasks on Terminal Ben
 
 _Note: 1 task was cyber security blocked, but passed with a GPT-5.6 Terra fallback, so 83 + 1_
 
-## Catch-22s
+## Sol loves to cheat
   
 Back on my high horse, having finally harnessed Sol, and already way too far down the path of using the benchmark for development rather than... as a benchmark, I wanted to see how far I could push this. 
   
@@ -237,7 +235,7 @@ No longer looking exclusively at vanilla Codex regressions, I wanted to see what
   
 Long story short, the tail end of tasks in Terminal Bench 2.1 is poorly specified, and that's the reason we're seeing Mythos, GPT-5.6, etc. top out around 88.8% without more specialized machinery.
   
-> The direction needed to perform better in one task actively harms progress in another. 
+> _The direction needed to perform better in one task actively harms progress in another._
   
 An example of this is `make-mips-interpreter` which informs the agent that the _"I (the user) will check that you booted doom correctly"_ 
   
@@ -252,7 +250,7 @@ Slowing this down a bit:
 
 The agent assumes that the user wants to check that it, the agent, booted the VM, so the agent leaves the file behind to prove it booted, but the verifier's test fails early if the file already exists. A catch-22! 
   
-> Fixing this is possible, by prompting the system to remove validation state/override a user concern, but that fix (obviously) backfires in other tasks/usecases
+> _Fixing this is possible, by prompting the system to remove validation state/override a user concern, but that fix (obviously) backfires in other tasks/usecases_
   
 Before moving on to better things, I decided I wanted to share the results with the world, with the caveat that **it's a little too benchmark hacky for my liking** (the whole third context map-reducer thing works for this benchmark, but in the real world I can just write better instructions and/or iterate with follow-on messages).
   
@@ -262,32 +260,30 @@ I ran the benchmark once before doing the full N=5 run, and was surprised to see
   
 I ran it a couple of times. 1/3 worked.
   
-Diving into the details, I couldn't figure out what had changed with our harness, so I tested it against vanilla Codex, also on xhigh. 
+Diving into the details, I couldn't figure out what had changed with our harness, so I tested it against Vanilla Codex, also on xhigh. 
   
 It passed 3/3 times. 
   
 Intriguing. 
-
-## Sol loves to cheat 
  
-I reviewed the runs to determine what worked and what didn't work. 
+I had reviewed the runs to determine what worked and what didn't work. 
 
-**GPT-5.6 Sol [cheated](https://gist.github.com/jumploops/5136460fdb96da3470a8f99f20fa879d) 3/3 times** on vanilla Codex.
-  
-I looked the two recent passing runs for chum-codex on `torch-pipeline` and found it cheated as well. 
+**GPT-5.6 Sol [cheated](https://gist.github.com/jumploops/5136460fdb96da3470a8f99f20fa879d) every time**.
   
 Uh oh, were _all_ of the past successes due to cheating? 
+  
+## Is it really Sol? 
+
+I looked at two passing runs for chum-codex on `torch-pipeline` and found something disturbing. 
  
-Interestingly, web search was disabled, but life finds a way: 
+The web search was disabled, but life finds a way: 
   
 ![codex-sol-cheating](https://r2.jumploops.com/codex-sol-cheating.png)
 _GPT-5.6 Sol on xhigh_
 
-The worker *did not* have access to the `web_search` tool, but instead decided to use `curl` to access DuckDuckGo, Github, grep.app, and SourceGraph.
+Notably, our worker *did not* have access to the `web_search` tool, but instead decided to use `curl` to access DuckDuckGo, Github, grep.app, and SourceGraph.
   
-> Yes, to deal with this properly we should remove network access entirely or only allow specific resources. The point is, we didn't need to do that until now.
-  
-Looking back, July 29th was the first "cheat" from vanilla Codex, and our harness cheated for the first time today, August 12th. 
+It seems July 29th was the first "cheat" from vanilla Codex, and our harness cheated for the first time today, August 12th. 
 
 ```apexcharts
 {
@@ -297,17 +293,17 @@ Looking back, July 29th was the first "cheat" from vanilla Codex, and our harnes
 }
 ```
 
-Admittedly, **this isn't a lot of data to go off of**. The 3/3 Vanilla Codex cheating session was followed by 2 runs that _didn't cheat_. 
+Admittedly, this is not enough data to make any conclusions off of. The 3/3 Vanilla Codex cheating session was followed by 2 runs that _didn't cheat_. 
 
 It's also unclear if the models are being intentional about cheating, or if they're just stumbling across the solution while searching the web. 
   
-Looking at vanilla Codex traces however, and we find our smoking gun: 
+Looking at vanilla Codex traces and we find our smoking gun: 
   
 <div class="term" data-title="vanilla codex — reasoning summary excerpt">
   <p><em>I need to investigate the HF source using curl to check GitHub for the latest versions. <strong>It could be helpful to know the expected hidden test based on the challenge.</strong></em></p>
 </div>
   
-_That certainly feels a lot like cheating._
+That certainly feels a lot like cheating.
 
 For chum-codex, the last step before the curl requests is equally revealing: 
   
@@ -315,9 +311,11 @@ For chum-codex, the last step before the curl requests is equally revealing:
   <p><em><strong>Perhaps the solution is available publicly</strong>, which means I can compare it effectively. I'll just need to use curl to access the raw paths and <strong>gather the necessary information!</strong></em></p>
 </div>
   
-_Not to anthropomorphize a machine modeled after humans, but it almost seems happy!_
+Not to anthropomorphize a machine modeled after humans, but it almost seems delighted?
 
 Concerned, but equally intrigued, I looked back at the 83/89 run from July 17th, and [found no evidence of cheating](https://gist.github.com/jumploops/ef9535daff9637d087dc9fba76077a50) on this or any other tasks.
+  
+Given the recent [news](https://openai.com/index/responding-next-frontier-critical-cyber-capabilities/) and delay of their next model, one has to wonder... is this the same Sol? 
 
 ## What's next
   
@@ -336,3 +334,7 @@ Heck, even the new Terminal Bench 3.0 has the following instructions added to al
 > **"Do not cheat by using online solutions or hints specific to this task."**
   
 Is this enough? **Unlikely.**
+  
+  
+  
+

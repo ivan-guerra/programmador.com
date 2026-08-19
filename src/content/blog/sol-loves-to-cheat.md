@@ -7,7 +7,7 @@ tags: ["llm", "harness", "benchmark"]
 
 _tl;dr_
 
-> What started as an exploration into building a custom harness, unintentionally led to hacking benchmarks with a model that wants to win at all costs.
+> Tried to automate my dev flow, hit 94% on Terminal Bench 2.1, and then GPT-5.6 Sol started to cheat.
 
 ## Background
 
@@ -233,7 +233,7 @@ Back on my high horse, having finally harnessed Sol, and already way too far dow
   
 No longer looking exclusively at vanilla Codex regressions, I wanted to see what was stopping us from hitting 86 or 88/89. 
   
-Long story short, the tail end of tasks in Terminal Bench 2.1 is poorly specified, and that's the reason we're seeing Mythos, GPT-5.6, etc. top out around 88.8% without more specialized machinery.
+Long story short, the tail end of tasks in Terminal Bench 2.1 is poorly specified, and that's the reason we're seeing Mythos, GPT-5.6, etc. top out around ~90% without more specialized machinery.
   
 > _The direction needed to perform better in one task actively harms progress in another._
   

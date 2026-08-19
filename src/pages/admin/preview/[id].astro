@@ -49,7 +49,7 @@ const { title, article } = await renderDraftArticle(draft);
       let refreshing = false;
       let queued = false;
 
-      const refresh = async () => {
+      const doRefresh = async () => {
         if (refreshing) {
           queued = true;
           return;
@@ -86,6 +86,21 @@ const { title, article } = await renderDraftArticle(draft);
             refresh();
           }
         }
+      };
+
+      // Rendering is the worker's most expensive request — throttle to
+      // one fetch per 2s (trailing, so the last edit always lands).
+      let lastRefreshAt = 0;
+      let refreshTimer: number | undefined;
+      const refresh = () => {
+        const wait = lastRefreshAt + 2000 - Date.now();
+        if (wait > 0) {
+          clearTimeout(refreshTimer);
+          refreshTimer = window.setTimeout(refresh, wait);
+          return;
+        }
+        lastRefreshAt = Date.now();
+        doRefresh();
       };
 
       window.addEventListener("message", (e) => {

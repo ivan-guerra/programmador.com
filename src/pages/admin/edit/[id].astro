@@ -87,6 +87,9 @@ if (!draft) {
     let previewLoaded = false;
     let previewReady = false;
     let pendingRefresh = false;
+    let healAttempts = 0;
+    let lastHealAt = 0;
+    let healRetryTimer: number | undefined;
 
     // Scrolling either pane scrolls the other to the same source
     // position (only meaningful side-by-side, so gated on `wide`).
@@ -107,6 +110,17 @@ if (!draft) {
     const refreshPreview = () => {
       if (!previewLoaded) return;
       if (!previewReady) {
+        // Preview is broken or mid-(re)load. If we gave up healing it,
+        // let a successful save schedule one retry — at most one
+        // reload per 15s, however often saves come in.
+        if (healAttempts > 3) {
+          clearTimeout(healRetryTimer);
+          const wait = Math.max(0, 15000 - (Date.now() - lastHealAt));
+          healRetryTimer = window.setTimeout(() => {
+            healAttempts = 0;
+            reloadPreview();
+          }, wait);
+        }
         pendingRefresh = true;
         return;
       }
@@ -116,14 +130,31 @@ if (!draft) {
       );
     };
 
+    const reloadPreview = () => {
+      previewReady = false;
+      lastHealAt = Date.now();
+      preview.src = preview.dataset.src!;
+    };
+
     preview.addEventListener("load", () => {
-      // If a link inside the preview navigated the frame away (or to
-      // another origin, where contentDocument is null), restore it.
+      // The frame can land somewhere without #preview-root two ways: a
+      // link inside the preview navigated it away (or cross-origin,
+      // where contentDocument is null), or the server answered with an
+      // error page (e.g. a 503 when the worker is over its limits).
+      // Restore it with backoff and give up after a few tries — an
+      // immediate unconditional reload here turns a persistent error
+      // into a reload storm that hammers the worker.
       if (!preview.contentDocument?.getElementById("preview-root")) {
         previewReady = false;
-        preview.src = preview.dataset.src!;
+        healAttempts++;
+        if (healAttempts <= 3) {
+          setTimeout(reloadPreview, healAttempts * 2000);
+        } else {
+          status.textContent = "preview unavailable";
+        }
         return;
       }
+      healAttempts = 0;
       previewReady = true;
       sync.previewLoaded();
       if (pendingRefresh) {

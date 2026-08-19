@@ -16,12 +16,31 @@ const formatDate = (date: Date) =>
     timeZone: "UTC",
   });
 
+// Markdown rendering (Shiki especially) is the most CPU-expensive thing
+// this worker does, and the editor re-requests renders often. Cache the
+// result per draft version in isolate memory so only actual content
+// changes pay for a render.
+const cache = new Map<string, { updatedAt: number; result: Rendered }>();
+
+interface Rendered {
+  title: string;
+  article: string;
+}
+
 // Article markup identical to src/pages/blog/[id].astro, rendered to a
 // string so the preview page and the live-refresh endpoint
 // (/admin/api/render/[id]) can't drift apart.
-export async function renderDraftArticle(
-  draft: Draft
-): Promise<{ title: string; article: string }> {
+export async function renderDraftArticle(draft: Draft): Promise<Rendered> {
+  const hit = cache.get(draft.id);
+  if (hit && hit.updatedAt === draft.updatedAt) return hit.result;
+
+  const result = await renderDraftArticleUncached(draft);
+  if (cache.size > 50) cache.clear();
+  cache.set(draft.id, { updatedAt: draft.updatedAt, result });
+  return result;
+}
+
+async function renderDraftArticleUncached(draft: Draft): Promise<Rendered> {
   const { data, body } = splitFrontmatter(draft.content);
   const html = await renderMarkdown(body);
 

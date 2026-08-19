@@ -327,11 +327,11 @@ I'll probably revisit the harness as I engage more with the new problems I face 
 
 Putting powerful models in a loop with lazy prompting can be fun, but trusting their output is getting harder. 
    
-As the models get more powerful, **I need to instruct them less, but those instructions are more important than ever.** 
+As the models get more powerful, I need to instruct them less, but those instructions are more important than ever. 
   
 Heck, even the new Terminal Bench 3.0 has the following instructions added to all of their [tasks](https://github.com/harbor-framework/terminal-bench/blob/v3.0.0/tasks/distributed-dedup/instruction.md): 
 
-> **"Do not cheat by using online solutions or hints specific to this task."**
+> "Do not cheat by using online solutions or hints specific to this task."
   
 Is this enough? **Unlikely.**
   

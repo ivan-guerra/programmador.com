@@ -26,6 +26,30 @@ const {
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <style>
+      .site-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .site-title-cursor {
+        display: inline-block;
+        margin-left: 0.12em;
+        animation: site-title-blink 1s step-end infinite;
+      }
+
+      @keyframes site-title-blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .site-title-cursor {
+          animation: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="trail" id="trail" aria-hidden="true"></div>
@@ -33,9 +57,7 @@ const {
     <header class="site-header">
       <div class="wrap">
         <a href="/" class="site-title" aria-label="ieg archive — home">
-          <span class="asm-line asm-dim" aria-hidden="true"><span class="lbl"></span><span class="ins">noop</span></span>
-          <span class="asm-line asm-live" aria-hidden="true"><span class="lbl">ieg:</span><span class="ins">archive</span></span>
-          <span class="asm-line asm-dim" aria-hidden="true"><span class="lbl"></span><span class="ins">halt</span></span>
+          <span>ieg archive</span><span class="site-title-cursor" aria-hidden="true">_</span>
         </a>
         <nav class="site-nav" aria-label="Social links">
             <a
@@ -62,6 +84,11 @@ const {
                 ></path>
               </svg>
             </a>
+            <a href="/rss.xml" aria-label="RSS feed">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M6.18 17.82A2.18 2.18 0 1 1 6.18 22.18a2.18 2.18 0 0 1 0-4.36ZM3 3v3.27c8.67 0 15.73 7.06 15.73 15.73H22C22 11.52 13.48 3 3 3Zm0 6.54v3.27c5.06 0 9.19 4.13 9.19 9.19h3.27C15.46 14.13 8.87 9.54 3 9.54Z"></path>
+              </svg>
+            </a>
           </nav>
       </div>
     </header>
@@ -81,83 +108,6 @@ const {
     <ImageLightbox />
 
     <script>
-      // Easter egg: hovering the title "executes" the program. The header
-      // is a 3-line viewport into the listing below, centered on the
-      // program counter, which follows the jumps through future blog
-      // topics and always lands back at adam: jump loops.
-      {
-        const titleEl = document.querySelector<HTMLElement>(".site-title");
-        const noMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        if (titleEl && !noMotion) {
-          const TOPICS = ["llm", "agents", "rockhounding", "fpga"];
-          const STEP_MS = 450;
-
-          const PROGRAM: [string, string][] = [
-            ["", "noop"],
-            ["ieg:", "archive"],
-            ["", "halt"],
-            ["archive:", `jump ${TOPICS[0]}`],
-          ];
-          TOPICS.forEach((topic, i) => {
-            PROGRAM.push([`${topic}:`, `loop ${topic}`]);
-            PROGRAM.push(["", `jump ${TOPICS[i + 1] ?? "ieg"}`]);
-          });
-
-          const REST_PC = 1;
-          const PATH = PROGRAM.map((_, i) => i).slice(3);
-
-          const lines = [...titleEl.querySelectorAll(".asm-line")].map(
-            (line) => ({
-              lbl: line.querySelector(".lbl")!,
-              ins: line.querySelector(".ins")!,
-            })
-          );
-
-          const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-          const applyPc = (pc: number) => {
-            const n = PROGRAM.length;
-            [pc - 1, pc, pc + 1].forEach((idx, row) => {
-              const [l, i] = PROGRAM[(idx + n) % n];
-              lines[row].lbl.textContent = l;
-              lines[row].ins.textContent = i;
-            });
-          };
-
-          let hovered = false;
-          let running = false;
-
-          const run = async () => {
-            if (running) return;
-            running = true;
-            do {
-              for (const pc of PATH) {
-                applyPc(pc);
-                await sleep(STEP_MS);
-              }
-              applyPc(REST_PC);
-              if (hovered) await sleep(STEP_MS * 2);
-            } while (hovered);
-            running = false;
-          };
-
-          const start = () => {
-            hovered = true;
-            run();
-          };
-          const stop = () => {
-            hovered = false;
-          };
-
-          titleEl.addEventListener("mouseenter", start);
-          titleEl.addEventListener("mouseleave", stop);
-          titleEl.addEventListener("focus", start);
-          titleEl.addEventListener("blur", stop);
-        }
-      }
-
       const trail = document.getElementById("trail");
       const finePointer = window.matchMedia("(pointer: fine)").matches;
       const reducedMotion = window.matchMedia(

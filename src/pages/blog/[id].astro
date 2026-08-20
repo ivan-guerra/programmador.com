@@ -20,6 +20,8 @@ const formatDate = (date: Date) =>
     day: "numeric",
     timeZone: "UTC",
   });
+
+const getTagHref = (tag: string) => `/tags/${encodeURIComponent(tag)}/`;
 ---
 
 <Base title={`${post.data.title} — jumploops`} description={post.data.description}>
@@ -29,7 +31,15 @@ const formatDate = (date: Date) =>
         <time datetime={post.data.pubDate.toISOString()}>
           {formatDate(post.data.pubDate)}
         </time>
-        {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+        {post.data.tags.map((tag) => (
+          <a
+            class="tag tag-link"
+            href={getTagHref(tag)}
+            aria-label={`View posts tagged ${tag}`}
+          >
+            {tag}
+          </a>
+        ))}
       </div>
       <h1>{post.data.title}</h1>
     </header>

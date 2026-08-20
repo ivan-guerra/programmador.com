@@ -24,6 +24,8 @@ const formatDate = (date: Date) =>
     day: "numeric",
     timeZone: "UTC",
   });
+
+const getTagHref = (tag: string) => `/tags/${encodeURIComponent(tag)}/`;
 ---
 
 <Base title="ieg archive">
@@ -37,7 +39,13 @@ const formatDate = (date: Date) =>
                 {formatDate(post.data.pubDate)}
               </time>
               {post.data.tags.map((tag) => (
-                <span class="tag">{tag}</span>
+                <a
+                  class="tag tag-link"
+                  href={getTagHref(tag)}
+                  aria-label={`View posts tagged ${tag}`}
+                >
+                  {tag}
+                </a>
               ))}
             </div>
             <h2>

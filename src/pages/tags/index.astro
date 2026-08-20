@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const tagCounts = posts.reduce((counts, post) => {
+  post.data.tags.forEach((tag) => {
+    counts.set(tag, (counts.get(tag) ?? 0) + 1);
+  });
+
+  return counts;
+}, new Map<string, number>());
+
+const tags = Array.from(tagCounts.entries()).sort((a, b) => {
+  if (b[1] !== a[1]) return b[1] - a[1];
+  return a[0].localeCompare(b[0]);
+});
+
+const getTagHref = (tag: string) => `/tags/${encodeURIComponent(tag)}/`;
+---
+
+<Base title="tags — ieg archive" description="Browse posts by tag">
+  <section class="intro">
+    <h1>tags</h1>
+    <p>Browse {tags.length} tags across {posts.length} posts.</p>
+  </section>
+
+  {
+    tags.length > 0 ? (
+      <ul class="tag-grid">
+        {tags.map(([tag, count]) => (
+          <li class="tag-card">
+            <a
+              class="tag tag-link"
+              href={getTagHref(tag)}
+              aria-label={`Browse ${count} ${count === 1 ? "post" : "posts"} tagged ${tag}`}
+            >
+              {tag}
+            </a>
+            <span class="tag-count">
+              {count} {count === 1 ? "post" : "posts"}
+            </span>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="empty-state">
+        <p>No tags are available yet.</p>
+      </div>
+    )
+  }
+</Base>

@@ -1,0 +1,141 @@
+<script>
+  // Render ```apexcharts fences into charts styled to match the site.
+  // The fence holds JSON: either full ApexCharts options inline, or
+  // { "src": "/charts/data.json", ...overrides } to fetch options/data
+  // from a static asset. A file can hold several chart configs: "pick"
+  // names the top-level key to use (default "apexCharts"; a file that is
+  // itself a bare options object also works). The library is lazy-loaded
+  // only on pages that contain a chart; on any error the original code
+  // block is left in place.
+  //
+  // Exposed as window.upgradeApexCharts(root) so the admin preview can
+  // re-run the upgrade after a live refresh. Figures are cached by fence
+  // source: a refresh that didn't touch a chart adopts the existing
+  // rendered node instead of re-rendering (and replaying animations).
+  let apexReady: Promise<any> | null = null;
+  const rendered = new Map<string, HTMLElement[]>();
+
+  const getApexCharts = () => {
+    apexReady ??= import("apexcharts").then((m) => m.default);
+    return apexReady;
+  };
+
+  const isObj = (v: unknown): v is Record<string, any> =>
+    !!v && typeof v === "object" && !Array.isArray(v);
+  const merge = (base: any, over: any): any => {
+    if (!isObj(base) || !isObj(over)) return over === undefined ? base : over;
+    const out = { ...base };
+    for (const [k, v] of Object.entries(over)) out[k] = merge(base[k], v);
+    return out;
+  };
+
+  const noMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // In the editor's live preview, charts re-render as fences are edited;
+  // replaying the entry animation on every keystroke burst is noise.
+  const inPreview = location.pathname.startsWith("/admin/preview/");
+
+  const defaults = {
+    colors: [
+      "#6fc7e1",
+      "#ffd23f",
+      "#f49bab",
+      "#141414",
+      "#3d8ba6",
+      "#c9a227",
+      "#c25b6d",
+      "#5c5c56",
+      "#e08e45",
+      "#7d6b9e",
+    ],
+    chart: {
+      height: 380,
+      fontFamily:
+        'ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace',
+      foreColor: "#141414",
+      background: "transparent",
+      // Minimal toolbar: apex only shows the zoom/reset icons when the
+      // chart is zoomable, so non-zoomable charts get no toolbar at all.
+      toolbar: {
+        offsetY: -16,
+        tools: {
+          download: false,
+          selection: false,
+          pan: false,
+          zoomin: false,
+          zoomout: false,
+        },
+      },
+      animations: { enabled: !noMotion && !inPreview },
+    },
+    grid: { borderColor: "rgb(20 20 20 / 0.15)" },
+    xaxis: {
+      axisBorder: { show: true, color: "#141414" },
+      axisTicks: { color: "#141414" },
+    },
+    legend: {
+      horizontalAlign: "left",
+      markers: { shape: "square", size: 5 },
+    },
+    tooltip: { theme: "light" },
+  };
+
+  const upgrade = async (root: ParentNode = document) => {
+    const blocks = [
+      ...root.querySelectorAll<HTMLPreElement>(
+        'pre[data-language="apexcharts"]'
+      ),
+    ];
+    if (blocks.length === 0) return;
+
+    // Adopt previously rendered figures for fences whose source is
+    // unchanged; only new or edited fences reach apexcharts.
+    const pending: [HTMLPreElement, string][] = [];
+    for (const pre of blocks) {
+      const source = pre.textContent ?? "";
+      const figure = rendered.get(source)?.find((f) => !f.isConnected);
+      if (figure) {
+        // Refresh the scroll-sync stamp: edits above the fence may
+        // have shifted its source line since the figure was rendered.
+        if (pre.dataset.sourceLine) {
+          figure.dataset.sourceLine = pre.dataset.sourceLine;
+        } else {
+          delete figure.dataset.sourceLine;
+        }
+        pre.replaceWith(figure);
+      } else {
+        pending.push([pre, source]);
+      }
+    }
+    if (pending.length === 0) return;
+
+    const ApexCharts = await getApexCharts();
+    for (const [pre, source] of pending) {
+      try {
+        const spec = JSON.parse(source);
+        let options = spec;
+        if (typeof spec.src === "string") {
+          const res = await fetch(spec.src);
+          if (!res.ok) throw new Error(`${spec.src}: ${res.status}`);
+          const data = await res.json();
+          const { src, pick, ...overrides } = spec;
+          const base = data[pick ?? "apexCharts"] ?? data.apexCharts ?? data;
+          options = merge(base, overrides);
+        }
+        options = merge(defaults, options);
+        const figure = document.createElement("div");
+        figure.className = "apex-figure";
+        if (pre.dataset.sourceLine) {
+          figure.dataset.sourceLine = pre.dataset.sourceLine;
+        }
+        pre.replaceWith(figure);
+        await new ApexCharts(figure, options).render();
+        rendered.set(source, [...(rendered.get(source) ?? []), figure]);
+      } catch (err) {
+        console.error("apexcharts render failed:", err);
+      }
+    }
+  };
+
+  (window as any).upgradeApexCharts = upgrade;
+  upgrade();
+</script>

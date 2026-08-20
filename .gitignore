@@ -1,10 +1,8 @@
-# Ignore the Hugo server lock file.
-.hugo_build.lock
+# Build output
+dist/
 
-# Ignore generated resources:
-# https://discourse.gohugo.io/t/why-does-hugo-create-the-resources-directory/13021/2
-resources
+# Generated Astro files
+.astro/
 
-# We might occassionally build the site locally but we don't want to
-# accidentally version our local build.
-public
+# Dependencies
+node_modules/

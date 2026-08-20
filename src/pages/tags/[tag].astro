@@ -1,0 +1,90 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  const postsByTag = posts.reduce((collection, post) => {
+    post.data.tags.forEach((tag) => {
+      const taggedPosts = collection.get(tag) ?? [];
+      taggedPosts.push(post);
+      collection.set(tag, taggedPosts);
+    });
+
+    return collection;
+  }, new Map<string, typeof posts>());
+
+  return Array.from(postsByTag.entries()).map(([tag, taggedPosts]) => ({
+    params: { tag },
+    props: { tag, posts: taggedPosts },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+
+const getTagHref = (tagName: string) => `/tags/${encodeURIComponent(tagName)}/`;
+---
+
+<Base title={`tag: ${tag} — ieg archive`} description={`Posts tagged ${tag}`}>
+  <section class="intro">
+    <h1>tag: {tag}</h1>
+    <p>
+      {posts.length} {posts.length === 1 ? "post" : "posts"} tagged
+      <span class="tag" style="margin-left: 0.5rem;">{tag}</span>
+    </p>
+  </section>
+
+  {
+    posts.length > 0 ? (
+      <div class="post-feed">
+        {posts.map((post) => (
+          <article class="post-entry">
+            <header>
+              <div class="post-meta">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {formatDate(post.data.pubDate)}
+                </time>
+                {post.data.tags.map((postTag) => (
+                  <a
+                    class="tag tag-link"
+                    href={getTagHref(postTag)}
+                    aria-label={`View posts tagged ${postTag}`}
+                    aria-current={postTag === tag ? "page" : undefined}
+                  >
+                    {postTag}
+                  </a>
+                ))}
+              </div>
+              <h2>
+                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+              </h2>
+            </header>
+            <div class="prose">
+              <p>{post.data.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <p>No posts matched this tag.</p>
+      </div>
+    )
+  }
+
+  <footer class="article-footer post-nav-links">
+    <a href="/tags/" class="back-link">← all tags</a>
+    <a href="/" class="back-link">← back home</a>
+  </footer>
+</Base>

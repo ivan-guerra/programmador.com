@@ -1,0 +1,31 @@
+---
+import type { Page } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import BlogFeed from "../../components/BlogFeed.astro";
+import Pagination from "../../components/Pagination.astro";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const posts = (
+    await getCollection("blog", ({ data }) => !data.draft)
+  ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return paginate(posts, { pageSize: 10 }).filter(
+    ({ props }) => props.page.currentPage > 1
+  );
+}
+
+interface Props {
+  page: Page<CollectionEntry<"blog">>;
+}
+
+const { page } = Astro.props;
+---
+
+<Base title={`Page ${page.currentPage} — ieg archive`}>
+  <BlogFeed posts={page.data} />
+  <Pagination
+    currentPage={page.currentPage}
+    totalPages={page.lastPage}
+  />
+</Base>

@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from "astro:content";
+import TableOfContents from "../../components/TableOfContents.astro";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+
+const getTagHref = (tag: string) => `/tags/${encodeURIComponent(tag)}/`;
+---
+
+<Base title={`${post.data.title} — ieg archive`} description={post.data.description}>
+  <article>
+    <header class="article-header">
+      <div class="post-meta">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {formatDate(post.data.pubDate)}
+        </time>
+        {post.data.tags.map((tag) => (
+          <a
+            class="tag tag-link"
+            href={getTagHref(tag)}
+            aria-label={`View posts tagged ${tag}`}
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+      <h1>{post.data.title}</h1>
+    </header>
+    {post.data.toc && <TableOfContents headings={headings} />}
+    <div class="prose">
+      <Content />
+    </div>
+    <footer class="article-footer">
+      <a href="/" class="back-link">← back</a>
+    </footer>
+  </article>
+</Base>

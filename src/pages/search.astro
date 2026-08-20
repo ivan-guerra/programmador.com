@@ -1,0 +1,140 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+
+const entries = posts.map((post) => ({
+  post,
+  searchText: [
+    post.data.title,
+    post.data.description,
+    post.data.tags.join(" "),
+    post.body ?? "",
+  ]
+    .join(" ")
+    .toLocaleLowerCase(),
+}));
+---
+
+<Base
+  title="Search — ieg archive"
+  description="Search the ieg archive"
+>
+  <section class="search-page">
+    <header class="intro">
+      <h1>Search</h1>
+      <p>Search published posts by title, description, tag, or content.</p>
+    </header>
+
+    <form class="search-form" action="/search/" method="get" role="search">
+      <label for="search-query">Search posts</label>
+      <div class="search-controls">
+        <input
+          id="search-query"
+          name="q"
+          type="search"
+          placeholder="e.g. rust, linux, docker"
+          autocomplete="off"
+          autofocus
+        />
+        <button type="submit">search</button>
+      </div>
+    </form>
+
+    <p class="search-status" aria-live="polite">
+      {posts.length} {posts.length === 1 ? "post" : "posts"}
+    </p>
+
+    <div class="post-feed search-results">
+      {
+        entries.map(({ post, searchText }) => (
+          <article class="post-entry" data-search={searchText}>
+            <header>
+              <div class="post-meta">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {formatDate(post.data.pubDate)}
+                </time>
+                {post.data.tags.map((tag) => (
+                  <a
+                    class="tag tag-link"
+                    href={`/tags/${encodeURIComponent(tag)}/`}
+                    aria-label={`View posts tagged ${tag}`}
+                  >
+                    {tag}
+                  </a>
+                ))}
+              </div>
+              <h2>
+                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+              </h2>
+            </header>
+            <p>{post.data.description}</p>
+            <a class="read-more" href={`/blog/${post.id}/`}>
+              read post →
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>(".search-form");
+    const input = document.querySelector<HTMLInputElement>("#search-query");
+    const status = document.querySelector<HTMLElement>(".search-status");
+    const results = [
+      ...document.querySelectorAll<HTMLElement>(".search-results [data-search]"),
+    ];
+
+    const applySearch = (query: string, updateUrl = false) => {
+      const terms = query
+        .trim()
+        .toLocaleLowerCase()
+        .split(/\s+/)
+        .filter(Boolean);
+
+      let visible = 0;
+      for (const result of results) {
+        const haystack = result.dataset.search ?? "";
+        const matches = terms.every((term) => haystack.includes(term));
+        result.hidden = !matches;
+        if (matches) visible++;
+      }
+
+      if (status) {
+        status.textContent = `${visible} ${visible === 1 ? "post" : "posts"}`;
+      }
+
+      if (updateUrl) {
+        const url = new URL(window.location.href);
+        if (query.trim()) url.searchParams.set("q", query.trim());
+        else url.searchParams.delete("q");
+        history.replaceState(null, "", url);
+      }
+    };
+
+    if (form && input) {
+      const initialQuery =
+        new URLSearchParams(window.location.search).get("q") ?? "";
+      input.value = initialQuery;
+      applySearch(initialQuery);
+
+      input.addEventListener("input", () => applySearch(input.value, true));
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        applySearch(input.value, true);
+      });
+    }
+  </script>
+</Base>

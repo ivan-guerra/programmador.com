@@ -1,0 +1,142 @@
+<script>
+  // Render ```mermaid fences into diagrams styled to match the site.
+  // The library (~large) is lazy-loaded only on pages that contain one;
+  // on a render error the original code block is left in place.
+  //
+  // Exposed as window.upgradeMermaid(root) so the admin preview can
+  // re-run the upgrade after a live refresh. Figures are cached by fence
+  // source: a refresh that didn't touch a diagram adopts the existing
+  // rendered node instead of paying for a re-render.
+  let mermaidReady: Promise<typeof import("mermaid").default> | null = null;
+  let n = 0;
+  const rendered = new Map<string, HTMLElement[]>();
+
+  const getMermaid = () => {
+    mermaidReady ??= import("mermaid").then(({ default: mermaid }) => {
+      // useMaxWidth off everywhere: diagrams keep their natural size and the
+      // figure scrolls horizontally like a code block, instead of scaling
+      // text down to fit the column.
+      const noShrink = { useMaxWidth: false };
+
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "base",
+        flowchart: noShrink,
+        sequence: noShrink,
+        gantt: noShrink,
+        journey: noShrink,
+        timeline: noShrink,
+        class: noShrink,
+        state: noShrink,
+        er: noShrink,
+        pie: noShrink,
+        gitGraph: noShrink,
+        fontFamily:
+          'ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace',
+        themeVariables: {
+          background: "#ffffff",
+          fontSize: "14px",
+          primaryColor: "#ffd23f",
+          primaryTextColor: "#141414",
+          primaryBorderColor: "#141414",
+          secondaryColor: "#6fc7e1",
+          secondaryBorderColor: "#141414",
+          secondaryTextColor: "#141414",
+          tertiaryColor: "#f49bab",
+          tertiaryBorderColor: "#141414",
+          tertiaryTextColor: "#141414",
+          lineColor: "#141414",
+          textColor: "#141414",
+          edgeLabelBackground: "#ffffff",
+          clusterBkg: "#f7f5ef",
+          clusterBorder: "#141414",
+          noteBkgColor: "#ffd23f",
+          noteBorderColor: "#141414",
+          noteTextColor: "#141414",
+          actorBkg: "#ffd23f",
+          actorBorder: "#141414",
+          actorTextColor: "#141414",
+          actorLineColor: "#141414",
+          signalColor: "#141414",
+          signalTextColor: "#141414",
+          activationBkgColor: "#6fc7e1",
+          activationBorderColor: "#141414",
+          labelBoxBkgColor: "#f7f5ef",
+          labelBoxBorderColor: "#141414",
+          loopTextColor: "#141414",
+          pie1: "#ffd23f",
+          pie2: "#6fc7e1",
+          pie3: "#f49bab",
+          pie4: "#f7f5ef",
+          pieStrokeColor: "#141414",
+          pieStrokeWidth: "2.5px",
+          pieOuterStrokeColor: "#141414",
+          pieOuterStrokeWidth: "2.5px",
+        },
+        // Chunky borders everywhere the theme variables can't reach.
+        themeCSS: `
+          .node rect, .node circle, .node ellipse, .node polygon, .node path,
+          .cluster rect, .actor, rect.note {
+            stroke-width: 2.5px !important;
+          }
+          .edgePath .path, .flowchart-link, .messageLine0, .messageLine1,
+          .loopLine, .actor-line {
+            stroke-width: 2px !important;
+          }
+          .marker { stroke-width: 1.5px; }
+        `,
+      });
+      return mermaid;
+    });
+    return mermaidReady;
+  };
+
+  const upgrade = async (root: ParentNode = document) => {
+    const blocks = [
+      ...root.querySelectorAll<HTMLPreElement>('pre[data-language="mermaid"]'),
+    ];
+    if (blocks.length === 0) return;
+
+    // Adopt previously rendered figures for fences whose source is
+    // unchanged; only new or edited fences reach mermaid.
+    const pending: [HTMLPreElement, string][] = [];
+    for (const pre of blocks) {
+      const source = pre.textContent ?? "";
+      const figure = rendered.get(source)?.find((f) => !f.isConnected);
+      if (figure) {
+        // Refresh the scroll-sync stamp: edits above the fence may
+        // have shifted its source line since the figure was rendered.
+        if (pre.dataset.sourceLine) {
+          figure.dataset.sourceLine = pre.dataset.sourceLine;
+        } else {
+          delete figure.dataset.sourceLine;
+        }
+        pre.replaceWith(figure);
+      } else {
+        pending.push([pre, source]);
+      }
+    }
+    if (pending.length === 0) return;
+
+    const mermaid = await getMermaid();
+    for (const [pre, source] of pending) {
+      try {
+        const { svg } = await mermaid.render(`mermaid-diagram-${n++}`, source);
+        const figure = document.createElement("div");
+        figure.className = "mermaid-figure";
+        figure.setAttribute("role", "img");
+        figure.innerHTML = svg;
+        if (pre.dataset.sourceLine) {
+          figure.dataset.sourceLine = pre.dataset.sourceLine;
+        }
+        pre.replaceWith(figure);
+        rendered.set(source, [...(rendered.get(source) ?? []), figure]);
+      } catch (err) {
+        console.error("mermaid render failed:", err);
+      }
+    }
+  };
+
+  (window as any).upgradeMermaid = upgrade;
+  upgrade();
+</script>

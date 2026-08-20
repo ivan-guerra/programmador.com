@@ -1,0 +1,57 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+}
+
+const { currentPage, totalPages } = Astro.props;
+
+const getPageHref = (page: number) =>
+  page === 1 ? "/" : `/page/${page}/`;
+---
+
+{
+  totalPages > 1 && (
+    <nav class="pagination" aria-label="Post pages">
+      {currentPage > 1 ? (
+        <a
+          class="pagination-link pagination-direction"
+          href={getPageHref(currentPage - 1)}
+          rel="prev"
+        >
+          ← newer
+        </a>
+      ) : (
+        <span class="pagination-placeholder" />
+      )}
+
+      <ol class="pagination-pages">
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+          (page) => (
+            <li>
+              <a
+                class="pagination-link"
+                href={getPageHref(page)}
+                aria-current={page === currentPage ? "page" : undefined}
+              >
+                {page}
+              </a>
+            </li>
+          )
+        )}
+      </ol>
+
+      {currentPage < totalPages ? (
+        <a
+          class="pagination-link pagination-direction"
+          href={getPageHref(currentPage + 1)}
+          rel="next"
+        >
+          older →
+        </a>
+      ) : (
+        <span class="pagination-placeholder" />
+      )}
+    </nav>
+  )
+}

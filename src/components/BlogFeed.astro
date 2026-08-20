@@ -1,0 +1,67 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+
+const entries = await Promise.all(
+  posts.map(async (post) => {
+    const { Content } = await render(post);
+    return {
+      post,
+      Content,
+      clamped: (post.body?.length ?? 0) > 800,
+    };
+  })
+);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+
+const getTagHref = (tag: string) => `/tags/${encodeURIComponent(tag)}/`;
+---
+
+<div class="post-feed">
+  {
+    entries.map(({ post, Content, clamped }) => (
+      <article class="post-entry">
+        <header>
+          <div class="post-meta">
+            <time datetime={post.data.pubDate.toISOString()}>
+              {formatDate(post.data.pubDate)}
+            </time>
+            {post.data.tags.map((tag) => (
+              <a
+                class="tag tag-link"
+                href={getTagHref(tag)}
+                aria-label={`View posts tagged ${tag}`}
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+          <h2>
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+          </h2>
+        </header>
+        <div class={`prose entry-body${clamped ? " entry-clamped" : ""}`}>
+          <Content />
+        </div>
+        {clamped && (
+          <a class="read-more" href={`/blog/${post.id}/`}>
+            read more →
+          </a>
+        )}
+      </article>
+    ))
+  }
+</div>

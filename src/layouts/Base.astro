@@ -1,0 +1,213 @@
+---
+import "../styles/global.css";
+import "katex/dist/katex.min.css";
+import MermaidDiagrams from "../components/MermaidDiagrams.astro";
+import ImageLightbox from "../components/ImageLightbox.astro";
+import ApexCharts from "../components/ApexCharts.astro";
+interface Props {
+  title: string;
+  description?: string;
+  // Widens the main column (e.g. the admin editor's side-by-side panes).
+  wide?: boolean;
+}
+
+const {
+  title,
+  description = "ieg archive — notes on software",
+  wide = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <title>{title}</title>
+    <style>
+      .site-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .site-title-cursor {
+        display: inline-block;
+        margin-left: 0.12em;
+        animation: site-title-blink 1s step-end infinite;
+      }
+
+      @keyframes site-title-blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .site-title-cursor {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="trail" id="trail" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a href="/" class="site-title" aria-label="ieg archive — home">
+          <span>ieg archive</span><span class="site-title-cursor" aria-hidden="true">_</span>
+        </a>
+        <nav class="site-nav" aria-label="Site navigation">
+          <a href="/search/" aria-label="Search">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M10.5 3a7.5 7.5 0 1 0 4.72 13.33l4.72 4.72 1.41-1.41-4.72-4.72A7.5 7.5 0 0 0 10.5 3Zm0 2a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Z"></path>
+            </svg>
+          </a>
+          <a href="/tags/" aria-label="Tags">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M21.41 11.58 12.42 2.59A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l8.99 8.99a2 2 0 0 0 2.83 0l7-7a2 2 0 0 0 0-2.83ZM6.5 8A1.5 1.5 0 1 1 8 6.5 1.5 1.5 0 0 1 6.5 8Z"></path>
+            </svg>
+          </a>
+          <a href="/blog/about/" aria-label="About me">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-5.33 0-8 2.67-8 6v2h16v-2c0-3.33-2.67-6-8-6Z"></path>
+            </svg>
+          </a>
+          <a
+            href="https://github.com/ivan-guerra"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+          >
+            <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+            </svg>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ivan-guerra/"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+            </svg>
+          </a>
+          <a href="/rss.xml" aria-label="RSS feed">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M6.18 17.82A2.18 2.18 0 1 1 6.18 22.18a2.18 2.18 0 0 1 0-4.36ZM3 3v3.27c8.67 0 15.73 7.06 15.73 15.73H22C22 11.52 13.48 3 3 3Zm0 6.54v3.27c5.06 0 9.19 4.13 9.19 9.19h3.27C15.46 14.13 8.87 9.54 3 9.54Z"></path>
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class:list={["wrap", { wide }]}>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap" style="justify-content: center;">
+        <span>© {new Date().getFullYear()} Ivan Eduardo Guerra</span>
+      </div>
+    </footer>
+
+    <MermaidDiagrams />
+    <ApexCharts />
+    <ImageLightbox />
+
+    <script>
+      const trail = document.getElementById("trail");
+      const finePointer = window.matchMedia("(pointer: fine)").matches;
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (trail && finePointer && !reducedMotion) {
+        const COLORS = ["#ffd23f", "#6fc7e1", "#f49bab"];
+        const MAX_LIVE = 40;
+        const MIN_SIZE = 10;
+        const MAX_SIZE = 56;
+        const SPAWN_INTERVAL_MS = 40;
+        const MIN_TRAVEL_PX = 4;
+
+        let last: { x: number; y: number; t: number } | null = null;
+        let lastSpawn = 0;
+        let velocity = 0; // px/ms, smoothed
+        let live: { x: number; y: number; r: number; el: HTMLElement }[] = [];
+
+        const content = document.querySelector("main");
+
+        // Peak opacity by horizontal distance from the content column:
+        // barely visible over/near it, full strength out at the margins.
+        const peakOpacity = (x: number) => {
+          if (!content) return 0.9;
+          const rect = content.getBoundingClientRect();
+          const left = rect.left + window.scrollX;
+          const right = rect.right + window.scrollX;
+          const d = x < left ? left - x : x > right ? x - right : 0;
+          const factor = Math.min(1, d / 520);
+          return 0.9 * (0.05 + 0.95 * factor);
+        };
+
+        const spawn = (x: number, y: number, v: number) => {
+          const size = Math.max(
+            MIN_SIZE,
+            Math.min(MAX_SIZE, MAX_SIZE - v * 26)
+          );
+          const r = size / 2;
+          live = live.filter((c) => c.el.isConnected);
+          const overlaps = live.some(
+            (c) => Math.hypot(x - c.x, y - c.y) < r + c.r
+          );
+          if (overlaps) return;
+          const el = document.createElement("div");
+          el.className = "trail-circle";
+          el.style.width = `${size}px`;
+          el.style.height = `${size}px`;
+          el.style.left = `${x - size / 2}px`;
+          el.style.top = `${y - size / 2}px`;
+          el.style.background =
+            COLORS[Math.floor(Math.random() * COLORS.length)];
+          trail.appendChild(el);
+          live.push({ x, y, r, el });
+          while (trail.children.length > MAX_LIVE) {
+            trail.children[0].remove();
+          }
+          const peak = peakOpacity(x);
+          el.animate(
+            [
+              { opacity: peak, transform: "scale(1)" },
+              { opacity: peak, transform: "scale(1)", offset: 0.3 },
+              { opacity: 0, transform: "scale(0.4)" },
+            ],
+            { duration: 2500, easing: "ease-in", fill: "forwards" }
+          )
+            .finished.then(() => el.remove())
+            .catch(() => {});
+        };
+
+        window.addEventListener("pointermove", (e) => {
+          const now = performance.now();
+          const x = e.pageX;
+          const y = e.pageY;
+          if (!last) {
+            last = { x, y, t: now };
+            return;
+          }
+          const dt = now - last.t;
+          const dist = Math.hypot(x - last.x, y - last.y);
+          if (dt <= 0) return;
+          velocity = 0.7 * velocity + 0.3 * (dist / dt);
+          last = { x, y, t: now };
+          if (now - lastSpawn < SPAWN_INTERVAL_MS || dist < MIN_TRAVEL_PX)
+            return;
+          lastSpawn = now;
+          spawn(x, y, velocity);
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -29,30 +29,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---- cursor trail circles ---- */
-
-.trail {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.trail-circle {
-  position: absolute;
-  border-radius: 50%;
-  border: 2.5px solid var(--border);
-  will-change: transform, opacity;
-}
-
-.site-header,
-main,
-.site-footer {
-  position: relative;
-  z-index: 1;
-}
-
 .wrap {
   max-width: 44rem;
   margin: 0 auto;
@@ -75,57 +51,28 @@ main,
 }
 
 .site-title {
-  position: relative;
-  display: inline-block;
-  font-size: 0.95rem;
-  line-height: 1.35;
+  font-size: 1.1rem;
+  font-weight: 700;
   text-decoration: none;
   color: var(--text);
+  letter-spacing: -0.01em;
 }
 
-.site-title .asm-line {
-  display: block;
-  white-space: pre;
-  position: relative;
-  padding-left: 6ch;
-}
-
-/* Labels hang right-aligned off the mnemonic column: longer labels grow
-   leftward past the element's edge instead of shifting the instructions. */
-.site-title .lbl {
-  position: absolute;
-  left: 5ch;
-  transform: translateX(-100%);
-  background: inherit;
-}
-
-/* The dim lines sit outside the layout flow (header stays one line tall)
-   and dissolve vertically away from the live line. */
-.site-title .asm-dim {
-  position: absolute;
-  left: 0;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.site-title .asm-dim:first-child {
-  bottom: 100%;
-  -webkit-mask-image: linear-gradient(to top, rgb(0 0 0 / 0.9), transparent);
-  mask-image: linear-gradient(to top, rgb(0 0 0 / 0.9), transparent);
-}
-
-.site-title .asm-dim:last-child {
-  top: 100%;
-  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.9), transparent);
-  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.9), transparent);
-}
-
-.site-title .asm-live {
-  font-weight: 700;
-}
-
-.site-title:hover .asm-live {
+.site-title:hover {
   background: var(--accent);
+}
+
+/* Blinking cursor appended after title text when animation is active */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.site-title--animated::after {
+  content: "_";
+  display: inline-block;
+  animation: blink 1s step-start infinite;
+  color: var(--text);
 }
 
 .site-nav {

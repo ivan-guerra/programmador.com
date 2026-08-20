@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title,
-  description = "jumploops — notes on software",
+  description = "ieg archive — notes on software",
   wide = false,
 } = Astro.props;
 ---
@@ -28,18 +28,14 @@ const {
     <title>{title}</title>
   </head>
   <body>
-    <div class="trail" id="trail" aria-hidden="true"></div>
-
     <header class="site-header">
       <div class="wrap">
-        <a href="/" class="site-title" aria-label="adam — home">
-          <span class="asm-line asm-dim" aria-hidden="true"><span class="lbl"></span><span class="ins">noop</span></span>
-          <span class="asm-line asm-live" aria-hidden="true"><span class="lbl">adam:</span><span class="ins">jump loops</span></span>
-          <span class="asm-line asm-dim" aria-hidden="true"><span class="lbl"></span><span class="ins">halt</span></span>
+        <a href="/" class="site-title" aria-label="ieg archive — home">
+          ieg archive
         </a>
         <nav class="site-nav" aria-label="Social links">
             <a
-              href="https://github.com/jumploops"
+              href="https://github.com/ivan-guerra"
               target="_blank"
               rel="noopener"
               aria-label="GitHub"
@@ -47,18 +43,6 @@ const {
               <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true">
                 <path
                   d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
-                ></path>
-              </svg>
-            </a>
-            <a
-              href="https://x.com/jumploops"
-              target="_blank"
-              rel="noopener"
-              aria-label="X (Twitter)"
-            >
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"
                 ></path>
               </svg>
             </a>
@@ -82,174 +66,17 @@ const {
     <ImageLightbox />
 
     <script>
-      // Easter egg: hovering the title "executes" the program. The header
-      // is a 3-line viewport into the listing below, centered on the
-      // program counter, which follows the jumps through future blog
-      // topics and always lands back at adam: jump loops.
+      // Blinking-cursor animation on the site title (respects prefers-reduced-motion).
       {
-        const titleEl = document.querySelector<HTMLElement>(".site-title");
         const noMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
         ).matches;
-
-        if (titleEl && !noMotion) {
-          const TOPICS = ["llm", "agents", "rockhounding", "fpga"];
-          const STEP_MS = 450;
-
-          // Memory layout. The halt after adam: is dead code — the jump
-          // skips it, which is why the rest frame reads noop/jump/halt
-          // and the program never halts.
-          const PROGRAM: [string, string][] = [
-            ["", "noop"],
-            ["adam:", "jump loops"],
-            ["", "halt"],
-            ["loops:", `jump ${TOPICS[0]}`],
-          ];
-          TOPICS.forEach((topic, i) => {
-            PROGRAM.push([`${topic}:`, `loop ${topic}`]);
-            PROGRAM.push(["", `jump ${TOPICS[i + 1] ?? "adam"}`]);
-          });
-
-          const REST_PC = 1;
-          const PATH = PROGRAM.map((_, i) => i).slice(3);
-
-          const lines = [...titleEl.querySelectorAll(".asm-line")].map(
-            (line) => ({
-              lbl: line.querySelector(".lbl")!,
-              ins: line.querySelector(".ins")!,
-            })
-          );
-
-          const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-          const applyPc = (pc: number) => {
-            const n = PROGRAM.length;
-            [pc - 1, pc, pc + 1].forEach((idx, row) => {
-              const [l, i] = PROGRAM[(idx + n) % n];
-              lines[row].lbl.textContent = l;
-              lines[row].ins.textContent = i;
-            });
-          };
-
-          let hovered = false;
-          let running = false;
-
-          const run = async () => {
-            if (running) return;
-            running = true;
-            do {
-              for (const pc of PATH) {
-                applyPc(pc);
-                await sleep(STEP_MS);
-              }
-              applyPc(REST_PC);
-              if (hovered) await sleep(STEP_MS * 2);
-            } while (hovered);
-            running = false;
-          };
-
-          const start = () => {
-            hovered = true;
-            run();
-          };
-          const stop = () => {
-            hovered = false;
-          };
-
-          titleEl.addEventListener("mouseenter", start);
-          titleEl.addEventListener("mouseleave", stop);
-          titleEl.addEventListener("focus", start);
-          titleEl.addEventListener("blur", stop);
+        if (!noMotion) {
+          const titleEl = document.querySelector<HTMLElement>(".site-title");
+          if (titleEl) {
+            titleEl.classList.add("site-title--animated");
+          }
         }
-      }
-
-      const trail = document.getElementById("trail");
-      const finePointer = window.matchMedia("(pointer: fine)").matches;
-      const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-      if (trail && finePointer && !reducedMotion) {
-        const COLORS = ["#ffd23f", "#6fc7e1", "#f49bab"];
-        const MAX_LIVE = 40;
-        const MIN_SIZE = 10;
-        const MAX_SIZE = 56;
-        const SPAWN_INTERVAL_MS = 40;
-        const MIN_TRAVEL_PX = 4;
-
-        let last: { x: number; y: number; t: number } | null = null;
-        let lastSpawn = 0;
-        let velocity = 0; // px/ms, smoothed
-        let live: { x: number; y: number; r: number; el: HTMLElement }[] = [];
-
-        const content = document.querySelector("main");
-
-        // Peak opacity by horizontal distance from the content column:
-        // barely visible over/near it, full strength out at the margins.
-        const peakOpacity = (x: number) => {
-          if (!content) return 0.9;
-          const rect = content.getBoundingClientRect();
-          const left = rect.left + window.scrollX;
-          const right = rect.right + window.scrollX;
-          const d = x < left ? left - x : x > right ? x - right : 0;
-          const factor = Math.min(1, d / 520);
-          return 0.9 * (0.05 + 0.95 * factor);
-        };
-
-        const spawn = (x: number, y: number, v: number) => {
-          const size = Math.max(
-            MIN_SIZE,
-            Math.min(MAX_SIZE, MAX_SIZE - v * 26)
-          );
-          const r = size / 2;
-          live = live.filter((c) => c.el.isConnected);
-          const overlaps = live.some(
-            (c) => Math.hypot(x - c.x, y - c.y) < r + c.r
-          );
-          if (overlaps) return;
-          const el = document.createElement("div");
-          el.className = "trail-circle";
-          el.style.width = `${size}px`;
-          el.style.height = `${size}px`;
-          el.style.left = `${x - size / 2}px`;
-          el.style.top = `${y - size / 2}px`;
-          el.style.background =
-            COLORS[Math.floor(Math.random() * COLORS.length)];
-          trail.appendChild(el);
-          live.push({ x, y, r, el });
-          while (trail.children.length > MAX_LIVE) {
-            trail.children[0].remove();
-          }
-          const peak = peakOpacity(x);
-          el.animate(
-            [
-              { opacity: peak, transform: "scale(1)" },
-              { opacity: peak, transform: "scale(1)", offset: 0.3 },
-              { opacity: 0, transform: "scale(0.4)" },
-            ],
-            { duration: 2500, easing: "ease-in", fill: "forwards" }
-          )
-            .finished.then(() => el.remove())
-            .catch(() => {});
-        };
-
-        window.addEventListener("pointermove", (e) => {
-          const now = performance.now();
-          const x = e.pageX;
-          const y = e.pageY;
-          if (!last) {
-            last = { x, y, t: now };
-            return;
-          }
-          const dt = now - last.t;
-          const dist = Math.hypot(x - last.x, y - last.y);
-          if (dt <= 0) return;
-          velocity = 0.7 * velocity + 0.3 * (dist / dt);
-          last = { x, y, t: now };
-          if (now - lastSpawn < SPAWN_INTERVAL_MS || dist < MIN_TRAVEL_PX)
-            return;
-          lastSpawn = now;
-          spawn(x, y, velocity);
-        });
       }
     </script>
   </body>

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.1",
+    "@astrojs/rss": "^4.0.19",
     "apexcharts": "^6.8.0",
     "astro": "^7.0.9",
     "mermaid": "^11.16.1",

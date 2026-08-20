@@ -141,6 +141,12 @@ main,
   color: var(--text);
 }
 
+.site-nav-text-link {
+  font-size: 0.85rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
 .site-nav a svg {
   display: block;
 }
